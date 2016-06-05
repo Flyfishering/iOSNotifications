@@ -105,7 +105,24 @@ Everything tha about notification in iOS.
 
 *device token*
 
+[Does the APNS device token ever change, once created?](http://stackoverflow.com/questions/6652242/does-the-apns-device-token-ever-change-once-created)
+
+[does app give different device token on re-installing again](http://stackoverflow.com/questions/33888962/does-app-give-different-device-token-on-re-installing-again)
+
 [极光推送的设备唯一性标识 RegistrationID](http://blog.jpush.cn/registrationid/)
+
+
+*unique id for ios device*
+
+[UIDevice uniqueIdentifier Deprecated - What To Do Now?](http://stackoverflow.com/questions/6993325/uidevice-uniqueidentifier-deprecated-what-to-do-now)
+
+[Always get a unique device id in iOS 7](http://stackoverflow.com/questions/19606773/always-get-a-unique-device-id-in-ios-7)
+
+[objective C iOS Device ID in iOS7](http://stackoverflow.com/questions/19329765/objective-c-ios-device-id-in-ios7)
+
+[iOS unique user identifier](http://stackoverflow.com/questions/7273014/ios-unique-user-identifier?lq=1)
+
+[Unique id in ios](http://stackoverflow.com/questions/20453785/unique-id-in-ios)
 
 
 ***

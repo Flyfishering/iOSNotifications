@@ -4,6 +4,8 @@
 
 Everything tha about notification in iOS.
 
+*** 
+
 ## 开发者文档翻译
 
 1. [通知那些事儿（一）：简介](http://wenghengcong.com/2016/04/通知那些事儿（一）：简介/)
@@ -16,9 +18,18 @@ Everything tha about notification in iOS.
 
 ## 测试工具-Testing
 
-[Knuff](https://github.com/KnuffApp/Knuff) is a Mac client for testing push notification.
+**Cn**
 
 [Knuff](https://github.com/KnuffApp/Knuff)是一个用来测试远程推送的客户端。
+
+[Houston](https://github.com/nomad/houston)简易实现了发送APNs通知。
+
+**En**
+
+[Knuff](https://github.com/KnuffApp/Knuff) is a Mac client for testing push notification.
+
+[Houston](https://github.com/nomad/houston) is a simple gem for sending Apple Push Notifications.
+
 
 
 ***
@@ -28,6 +39,10 @@ Everything tha about notification in iOS.
 * [Local and Remote Notification Programming Guide](https://developer.apple.com/library/mac/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/Introduction.html#//apple_ref/doc/uid/TP40008194-CH1-SW1)
 
 * [极光推送](http://blog.jpush.cn/)
+
+* [Push Notifications Tutorial: Getting Started](https://www.raywenderlich.com/123862/push-notifications-tutorial)
+
+* [Push Issues](https://developer.apple.com/library/ios/technotes/tn2265/_index.html)
 
 ***
 
@@ -69,6 +84,28 @@ Everything tha about notification in iOS.
 
 ## 问答-Q&A
 
+*About Settings*
+
+[detect “Allow Notifications” is on/off for iOS8](http://stackoverflow.com/questions/25111644/detect-allow-notifications-is-on-off-for-ios8)
+
+[Push Notification ON or OFF Checking in iOS](http://stackoverflow.com/questions/20374801/push-notification-on-or-off-checking-in-ios)
+
+[iOS 8 enabled device not receiving PUSH notifications after code update](http://stackoverflow.com/questions/25909568/ios-8-enabled-device-not-receiving-push-notifications-after-code-update)
+
+[Show on Lock Screen push notification settings?](http://stackoverflow.com/questions/36697355/show-on-lock-screen-push-notification-settings)
+
+
+
+*Receive notification twice*
+
+[Reset push notification settings for app](http://stackoverflow.com/questions/2438400/reset-push-notification-settings-for-app?lq=1)
+
+
+[iOS Push Notification Banner shown twice for a single Push](http://stackoverflow.com/questions/33047914/ios-push-notification-banner-shown-twice-for-a-single-push)
+
+*device token*
+
 [极光推送的设备唯一性标识 RegistrationID](http://blog.jpush.cn/registrationid/)
+
 
 ***

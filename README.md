@@ -81,8 +81,10 @@ Everything tha about notification in iOS.
 
 ## 最佳实践-Best Practice
 
-***
 
+[Demo](https://github.com/wenghengcong/PushNotificationEverything/tree/master/PushSettingsDemo)
+
+***
 
 ## 问答-Q&A
 

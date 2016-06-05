@@ -130,3 +130,21 @@ Everything tha about notification in iOS.
 
 
 ***
+
+
+# 如何自己实现推送
+
+TODO:
+
+1. 服务器
+2. iOS SDK
+3. 性能测试
+
+
+# 参考
+
+* iOS API接口参考
+
+	- [个推](http://docs.getui.com/mobile/ios/api/)
+	- [百度云推送](http://push.baidu.com/doc/ios/api)
+	- [极光推送](http://docs.jpush.io/client/ios_api/)

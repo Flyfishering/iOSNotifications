@@ -6,9 +6,16 @@
 //  Copyright © 2016 WengHengcong. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "PushViewController.h"
 
-@interface ViewController ()
+@interface PushViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *dtLabel;
+@property (weak, nonatomic) IBOutlet UISwitch *allowNotiSwi;
+@property (weak, nonatomic) IBOutlet UISwitch *badgeSwi;
+@property (weak, nonatomic) IBOutlet UISwitch *soundSwi;
+@property (weak, nonatomic) IBOutlet UISwitch *alertSwi;
+@property (weak, nonatomic) IBOutlet UILabel *remoteNotiLabel;
+@property (weak, nonatomic) IBOutlet UILabel *localNotiLabel;
 
 @end
 
@@ -103,6 +110,21 @@
     NSLog(@"Push Settings: %@ -- %lu",pushAllowNotification ,(unsigned long)pushOption);
     NSLog(@"Push Switch: %@ ",pushOptionSwitchOn);
 
+}
+
+
+# pragma mark - setter
+
+- (void)setDevicetoken:(NSString *)devicetoken {
+    
+}
+
+- (void)setRemoteNoti:(NSDictionary *)remoteNoti {
+    
+}
+
+- (void)setLocalNoti:(NSDictionary *)localNoti {
+    
 }
 
 @end

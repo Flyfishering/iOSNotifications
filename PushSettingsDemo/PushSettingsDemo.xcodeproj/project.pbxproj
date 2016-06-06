@@ -18,9 +18,10 @@
 		5E3A7BF01D014AA500C44FDB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E3A7BEF1D014AA500C44FDB /* Foundation.framework */; };
 		5E3A7BF21D014AAC00C44FDB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E3A7BF11D014AAC00C44FDB /* Security.framework */; };
 		5E3A7BF41D014AB400C44FDB /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E3A7BF31D014AB400C44FDB /* libz.tbd */; };
+		5E969F3D1D055E12001BAEED /* PushManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E969F3C1D055E12001BAEED /* PushManager.m */; };
 		5EF2B44A1CC7D51000AC71C5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2B4491CC7D51000AC71C5 /* main.m */; };
 		5EF2B44D1CC7D51000AC71C5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2B44C1CC7D51000AC71C5 /* AppDelegate.m */; };
-		5EF2B4501CC7D51000AC71C5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2B44F1CC7D51000AC71C5 /* ViewController.m */; };
+		5EF2B4501CC7D51000AC71C5 /* PushViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2B44F1CC7D51000AC71C5 /* PushViewController.m */; };
 		5EF2B4531CC7D51000AC71C5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EF2B4511CC7D51000AC71C5 /* Main.storyboard */; };
 		5EF2B4551CC7D51000AC71C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EF2B4541CC7D51000AC71C5 /* Assets.xcassets */; };
 		5EF2B4581CC7D51000AC71C5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EF2B4561CC7D51000AC71C5 /* LaunchScreen.storyboard */; };
@@ -39,12 +40,14 @@
 		5E3A7BEF1D014AA500C44FDB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5E3A7BF11D014AAC00C44FDB /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		5E3A7BF31D014AB400C44FDB /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		5E969F3B1D055E12001BAEED /* PushManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushManager.h; sourceTree = "<group>"; };
+		5E969F3C1D055E12001BAEED /* PushManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushManager.m; sourceTree = "<group>"; };
 		5EF2B4451CC7D51000AC71C5 /* PushSettingsDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PushSettingsDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EF2B4491CC7D51000AC71C5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5EF2B44B1CC7D51000AC71C5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5EF2B44C1CC7D51000AC71C5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		5EF2B44E1CC7D51000AC71C5 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		5EF2B44F1CC7D51000AC71C5 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		5EF2B44E1CC7D51000AC71C5 /* PushViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PushViewController.h; sourceTree = "<group>"; };
+		5EF2B44F1CC7D51000AC71C5 /* PushViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PushViewController.m; sourceTree = "<group>"; };
 		5EF2B4521CC7D51000AC71C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5EF2B4541CC7D51000AC71C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5EF2B4571CC7D51000AC71C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -104,8 +107,10 @@
 				5E3A7BDD1D0149F600C44FDB /* lib */,
 				5EF2B44B1CC7D51000AC71C5 /* AppDelegate.h */,
 				5EF2B44C1CC7D51000AC71C5 /* AppDelegate.m */,
-				5EF2B44E1CC7D51000AC71C5 /* ViewController.h */,
-				5EF2B44F1CC7D51000AC71C5 /* ViewController.m */,
+				5E969F3B1D055E12001BAEED /* PushManager.h */,
+				5E969F3C1D055E12001BAEED /* PushManager.m */,
+				5EF2B44E1CC7D51000AC71C5 /* PushViewController.h */,
+				5EF2B44F1CC7D51000AC71C5 /* PushViewController.m */,
 				5EF2B4511CC7D51000AC71C5 /* Main.storyboard */,
 				5EF2B4541CC7D51000AC71C5 /* Assets.xcassets */,
 				5EF2B4561CC7D51000AC71C5 /* LaunchScreen.storyboard */,
@@ -204,9 +209,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5EF2B4501CC7D51000AC71C5 /* ViewController.m in Sources */,
+				5EF2B4501CC7D51000AC71C5 /* PushViewController.m in Sources */,
 				5EF2B44D1CC7D51000AC71C5 /* AppDelegate.m in Sources */,
 				5EF2B44A1CC7D51000AC71C5 /* main.m in Sources */,
+				5E969F3D1D055E12001BAEED /* PushManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

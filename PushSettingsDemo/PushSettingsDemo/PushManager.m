@@ -29,15 +29,6 @@
     return self;
 }
 
-#pragma mark - testing
-
-+ (void)testLocalNotification {
-    
-    
-    
-}
-
-
 #pragma mark - registe push notification
 
 + (void)registerPushNotification:(NSDictionary *)launchOptions {
@@ -111,9 +102,20 @@
 + (void)handleLocalNotification:(UILocalNotification *)notification {
     
     NSLog(@"***local noticaion ***\n%@",notification);
-    //show
+    
     PushViewController *pushVC = (PushViewController *)[[PushManager sharedManager]viewController];
-    pushVC.localNoti = notification;
+
+    if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
+        NSDictionary *dic = notification.userInfo;
+        pushVC.localNoti = notification;
+
+        NSString *mes = dic[kLocalNotificationContent];
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"本地通知" message:mes delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"查看", nil];
+        [alert show];
+        
+    }else{
+        pushVC.localNoti = notification;
+    }
 }
 
 + (void)handleRemoteNotification:(NSDictionary *)userinfo {
@@ -133,11 +135,85 @@
     }
 }
 
+#pragma mark - local notification
+
++ (void)buildUILocalNotificationWithNSDate:(NSDate *)date alert:(NSString *)alert badge:(int)badge identifierKey:(NSString *)identitifierKey userInfo:(NSDictionary *)userInfo {
+    
+    /*
+     NSDate *now = [NSDate date];
+     NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar] ;
+     NSDateComponents *componentsForFireDate = [calendar components:(NSDayCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit| NSSecondCalendarUnit ) fromDate:now];
+     NSInteger fireSeconds = [componentsForFireDate second]+1;
+     [componentsForFireDate setSecond:fireSeconds] ;
+     
+     NSDate *fireDateOfNotification = [calendar dateFromComponents: componentsForFireDate];
+     
+     if ([[[UIDevice currentDevice] systemVersion] floatValue] >=8.0f ) {
+     
+     UILocalNotification *localNoti = [JPUSHService setLocalNotification:fireDateOfNotification alertBody:alert badge:0 alertAction:nil identifierKey:identitifierKey userInfo:userInfo soundName:UILocalNotificationDefaultSoundName region:nil regionTriggersOnce:NO category:nil];
+     localNoti.repeatInterval = 0;
+     }else
+     {
+     UILocalNotification *localNoti = [JPUSHService setLocalNotification:fireDateOfNotification alertBody:alert badge:0 alertAction:nil identifierKey:identitifierKey userInfo:userInfo soundName:UILocalNotificationDefaultSoundName];
+     localNoti.repeatInterval = 0;
+     }
+     */
+    // 初始化本地通知对象
+    UILocalNotification *notification = [[UILocalNotification alloc] init];
+    if (notification) {
+        // 设置通知的提醒时间
+        NSDate *currentDate   = [NSDate date];
+        notification.timeZone = [NSTimeZone defaultTimeZone]; // 使用本地时区
+        notification.fireDate = [currentDate dateByAddingTimeInterval:5.0];
+        
+        // 设置重复间隔
+        notification.repeatInterval = kCFCalendarUnitDay;
+        
+        // 设置提醒的文字内容
+//        notification.alertTitle = @"起床的闹钟";     //8.2才支持
+        notification.alertBody   = @"快起床，快快起床~";
+        notification.alertAction = NSLocalizedString(@"删除", nil);
+        notification.category = @"life";
+        notification.hasAction = YES;
+        
+        // 通知提示音 使用默认的
+        notification.soundName= UILocalNotificationDefaultSoundName;
+        
+        // 设置应用程序右上角的提醒个数
+        notification.applicationIconBadgeNumber++;
+        
+        // 设定通知的userInfo，用来标识该通知
+        NSMutableDictionary *aUserInfo = [[NSMutableDictionary alloc] init];
+        aUserInfo[kLocalNotificationCategory] = @"生活闹钟";
+        aUserInfo[kLocalNotificationContent] = @"起床跑步去，起床背课文啦，马上高考啦。";
+        notification.userInfo = aUserInfo;
+        
+        // 将通知添加到系统中
+        [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+    }
+    
+}
+
+#pragma mark - badge
+
++ (void)resetBadge {
+    [PushManager setBadge:0];
+}
+
++ (void)setBadge:(NSInteger)badge {
+    [UIApplication sharedApplication].applicationIconBadgeNumber = badge;
+
+}
+
+#pragma mark - other
+
 - (UIViewController *)viewController
 {
     UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
     UIViewController *vc = keyWindow.rootViewController;
     return vc;
 }
+
+
 
 @end

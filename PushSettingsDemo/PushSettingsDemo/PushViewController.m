@@ -7,6 +7,7 @@
 //
 
 #import "PushViewController.h"
+#import "PushManager.h"
 
 @interface PushViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *dtLabel;
@@ -19,17 +20,22 @@
 
 @end
 
-@implementation ViewController
+@implementation PushViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    [self debugPushSettings];
+
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self debugPushSettings];
 }
 
 - (void)debugPushSettings {
@@ -57,74 +63,105 @@
     NSString *pushOptionSwitchOn = @"Alert/Sound/Badge All Off";
     if (pushAllowNotificationOn && (pushOption == 0)) {
         //“允许通知”打开，但是子开关全部是关闭的
-        NSString *msg = @"Please Switch Alert/Sound/Badge On ";
-        UIAlertView *alert_push = [[UIAlertView alloc] initWithTitle:@"Service On,Receive Off" message:msg delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Setting", nil];
-        alert_push.tag = 1;
-        [alert_push show];
+        self.allowNotiSwi.on = YES;
+        self.soundSwi.on = NO;
+        self.alertSwi.on = NO;
+        self.badgeSwi.on = NO;
         
-        NSLog(@" Push Notification ON");
     }else if(pushAllowNotificationOn && (pushOption != 0)){
         //“允许通知”打开，子开关有打开的
+        self.allowNotiSwi.on = YES;
         switch (pushOption) {
             case 1:
                 pushOptionSwitchOn = @"Alert:Off | Sound:Off | Badge:On";
+                self.soundSwi.on = NO;
+                self.alertSwi.on = NO;
+                self.badgeSwi.on = YES;
                 break;
             case 2:
                 pushOptionSwitchOn = @"Alert:Off | Sound:On | Badge:Off";
+                self.soundSwi.on = YES;
+                self.alertSwi.on = YES;
+                self.badgeSwi.on = NO;
                 break;
             case 3:
                 pushOptionSwitchOn = @"Alert:Off | Sound:On | Badge:On";
+                self.soundSwi.on = YES;
+                self.alertSwi.on = NO;
+                self.badgeSwi.on = YES;
                 break;
             case 4:
                 pushOptionSwitchOn = @"Alert:On | Sound:Off | Badge:Off";
+                self.soundSwi.on = NO;
+                self.alertSwi.on = YES;
+                self.badgeSwi.on = NO;
                 break;
             case 5:
                 pushOptionSwitchOn = @"Alert:On | Sound:Off | Badge:On";
+                self.soundSwi.on = NO;
+                self.alertSwi.on = YES;
+                self.badgeSwi.on = YES;
                 break;
             case 6:
                 pushOptionSwitchOn = @"Alert:On | Sound:On | Badge:Off";
+                self.soundSwi.on = YES;
+                self.alertSwi.on = YES;
+                self.badgeSwi.on = NO;
                 break;
             case 7:
                 pushOptionSwitchOn = @"Alert:On | Sound:On | Badge:On";
+                self.soundSwi.on = YES;
+                self.alertSwi.on = YES;
+                self.badgeSwi.on = YES;
                 break;
             default:
                 break;
         }
         
-        UIAlertView *alert_push = [[UIAlertView alloc] initWithTitle:@"Service On,Receive On" message:pushOptionSwitchOn delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Setting", nil];
-        alert_push.tag = 1;
-        [alert_push show];
-        [alert_push dismissWithClickedButtonIndex:0 animated:YES];
-        NSLog(@" Push Notification ON");
     }else{
         //“允许通知”关闭
-        NSString *msg = @"Please press ON to enable Push Notification";
-        UIAlertView *alert_push = [[UIAlertView alloc] initWithTitle:@"Service Off" message:msg delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Setting", nil];
-        alert_push.tag = 2;
-        [alert_push show];
-        NSLog(@" Push Notification OFF");
-
+        self.allowNotiSwi.on = NO;
+        self.soundSwi.on = NO;
+        self.alertSwi.on = NO;
+        self.badgeSwi.on = NO;
+        
     }
-    
-    NSLog(@"Push AllowNotification: %@ ",pushAllowNotification);
-    NSLog(@"Push Settings: %@ -- %lu",pushAllowNotification ,(unsigned long)pushOption);
-    NSLog(@"Push Switch: %@ ",pushOptionSwitchOn);
+    self.allowNotiSwi.enabled = NO;
+    self.soundSwi.enabled = NO;
+    self.alertSwi.enabled = NO;
+    self.badgeSwi.enabled = NO;
 
 }
 
+- (IBAction)sendLocalNoti:(id)sender {
+    
+    [PushManager buildUILocalNotificationWithNSDate:[NSDate date] alert:@"local noti" badge:1 identifierKey:@"test" userInfo:nil];
+
+}
 
 # pragma mark - setter
 
 - (void)setDevicetoken:(NSString *)devicetoken {
     
+    _devicetoken = devicetoken;
+    self.dtLabel.text = _devicetoken;
+    
 }
 
 - (void)setRemoteNoti:(NSDictionary *)remoteNoti {
     
+    _remoteNoti = remoteNoti;
+    _remoteNotiLabel.text = [NSString stringWithFormat:@"%@",remoteNoti];
+    
 }
 
-- (void)setLocalNoti:(NSDictionary *)localNoti {
+- (void)setLocalNoti:(UILocalNotification *)localNoti {
     
+    _localNoti = localNoti;
+    NSDictionary *dic = localNoti.userInfo;
+    _localNotiLabel.text = dic[kLocalNotificationContent];
+    
+
 }
 
 @end

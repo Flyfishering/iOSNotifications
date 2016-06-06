@@ -10,13 +10,10 @@
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 
+#define kLocalNotificationCategory      @"kLocalNotificationCategory"
+#define kLocalNotificationContent      @"kLocalNotificationContent"
+
 @interface PushManager : NSObject
-
-/**
- *  for test
- */
-+ (void)testLocalNotification;
-
 
 + (instancetype)sharedManager;
 /**
@@ -35,5 +32,13 @@
  */
 + (void)handleLocalNotification:(UILocalNotification *)notification;
 + (void)handleRemoteNotification:(NSDictionary *)userinfo;
+
+//badge
++ (void)resetBadge;
++ (void)setBadge:(NSInteger)badge;
+
+//local notification
++ (void)buildUILocalNotificationWithNSDate:(NSDate *)date alert:(NSString *)alert badge:(int)badge identifierKey:(NSString *)identitifierKey userInfo:(NSDictionary *)userInfo;
+
 
 @end

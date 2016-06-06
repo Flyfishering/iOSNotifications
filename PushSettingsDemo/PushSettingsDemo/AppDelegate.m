@@ -21,7 +21,7 @@
     
     [PushManager registerPushNotification:launchOptions];
     [PushManager handleNotificationApplicationLaunching:launchOptions];
-    
+    [PushManager resetBadge];
     return YES;
 }
 

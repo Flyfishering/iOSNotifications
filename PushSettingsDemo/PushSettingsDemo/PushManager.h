@@ -54,7 +54,7 @@
  *
  * @param fireDate 本地推送触发的时间
  * @param alertBody 本地推送需要显示的内容
- * @param badge 角标的数字。如果不需要改变角标传-1
+ * @param badge 角标的数字。如果不需要改变角标传-1,如果传0，默认加1
  * @param alertAction 弹框的按钮显示的内容（IOS 8默认为"打开", 其他默认为"启动"）
  * @param notificationKey 本地推送标示符
  * @param userInfo 自定义参数，可以用来标识推送和增加附加信息

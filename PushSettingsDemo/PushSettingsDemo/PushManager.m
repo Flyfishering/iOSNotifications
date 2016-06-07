@@ -170,40 +170,12 @@
      localNoti.repeatInterval = 0;
      }
      */
-    // 初始化本地通知对象
-    UILocalNotification *notification = [[UILocalNotification alloc] init];
-    if (notification) {
-        // 设置通知的提醒时间
-        NSDate *currentDate   = [NSDate date];
-        notification.timeZone = [NSTimeZone defaultTimeZone]; // 使用本地时区
-        notification.fireDate = [currentDate dateByAddingTimeInterval:5.0];
-        
-        // 设置重复间隔
-        notification.repeatInterval = kCFCalendarUnitDay;
-        
-        // 设置提醒的文字内容
-//        notification.alertTitle = @"起床的闹钟";     //8.2才支持
-        notification.alertBody   = @"快起床，快快起床~";
-        notification.alertAction = NSLocalizedString(@"删除", nil);
-        notification.category = @"life";
-        notification.hasAction = YES;
-        
-        // 通知提示音 使用默认的
-        notification.soundName= UILocalNotificationDefaultSoundName;
-        
-        // 设置应用程序右上角的提醒个数
-        notification.applicationIconBadgeNumber++;
-        
-        // 设定通知的userInfo，用来标识该通知
-        NSMutableDictionary *aUserInfo = [[NSMutableDictionary alloc] init];
-        aUserInfo[kLocalNotificationCategory] = @"生活闹钟";
-        aUserInfo[kLocalNotificationContent] = @"起床跑步去，起床背课文啦，马上高考啦。";
-        notification.userInfo = aUserInfo;
-        
-        // 将通知添加到系统中
-        [[UIApplication sharedApplication] scheduleLocalNotification:notification];
-    }
     
+    // 初始化本地通知对象
+    UILocalNotification *notification = [PushManager setLocalNotification:date alertBody:@"快起床，快快起床~" badge:badge alertAction:nil identifierKey:identitifierKey userInfo:userInfo soundName:nil];
+    // 将通知添加到系统中
+    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+
 }
 
 + (UILocalNotification *)setLocalNotification:(NSDate *)fireDate
@@ -251,10 +223,22 @@
         notification.alertAction = alertAction;
         
         // 通知提示音
-        notification.soundName = soundName;     //默认提示音：UILocalNotificationDefaultSoundName
+        if(soundName){
+            notification.soundName = soundName;     //默认提示音：UILocalNotificationDefaultSoundName
+        }else{
+            notification.soundName = UILocalNotificationDefaultSoundName;
+        }
         
         // 设置应用程序右上角的提醒个数
-        notification.applicationIconBadgeNumber++;
+        if(badge == -1){
+            //-1,不改变
+        }else if(badge == 0){
+            //applicationIconBadgeNumber,
+            //0 means no change. defaults to 0
+            notification.applicationIconBadgeNumber++;
+        }else{
+            notification.applicationIconBadgeNumber = badge;
+        }
         
         //设置地理位置
         if(region){
@@ -284,7 +268,9 @@
 }
 
 + (void)deleteLocalNotificationWithIdentifierKey:(NSString *)notificationKey {
-
+    
+    
+    
 }
 
 
@@ -311,6 +297,12 @@
 
 + (void)setBadge:(NSInteger)badge {
     [UIApplication sharedApplication].applicationIconBadgeNumber = badge;
+}
+
+#pragma mark - private
+
+- (void)getAllLocalNofication {
+    
 }
 
 #pragma mark - other

@@ -135,7 +135,7 @@
 
 - (IBAction)sendLocalNoti:(id)sender {
     
-    [PushManager buildUILocalNotificationWithNSDate:[NSDate date] alert:@"local noti" badge:1 identifierKey:@"test" userInfo:nil];
+    [PushManager buildUILocalNotificationWithNSDate:[[NSDate date] dateByAddingTimeInterval:5.0] alert:@"快起床，快快起床~" badge:0 identifierKey:@"life" userInfo:nil];
 
 }
 

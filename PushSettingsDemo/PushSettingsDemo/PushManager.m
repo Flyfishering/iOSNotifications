@@ -252,7 +252,7 @@
         }else{
             aUserInfo = [NSMutableDictionary dictionary];
         }
-        aUserInfo[kLocalNotificationCategory] = notificationKey;
+        aUserInfo[kLocalNotificationIdentifier] = notificationKey;
         notification.userInfo = [aUserInfo copy];
         
         // 将通知添加到系统中
@@ -262,31 +262,67 @@
 }
 
 
-+ (void)showLocalNotificationAtFront:(UILocalNotification *)notification
-                       identifierKey:(NSString *)notificationKey {
++ (void)showLocalNotificationAtFront:(UILocalNotification *)notification identifierKey:(NSString *)notificationKey {
     
 }
 
 + (void)deleteLocalNotificationWithIdentifierKey:(NSString *)notificationKey {
     
+    if ( (notificationKey == nil) || (notificationKey.length <= 0) || ([notificationKey isEqualToString:@" "]) ) return;
     
-    
+    NSArray *notis = [[PushManager sharedManager]getAllLocalNofication];
+    for (UILocalNotification *noti in notis) {
+        if (noti.userInfo == nil)  return;
+        NSString *identifier =  noti.userInfo[kLocalNotificationIdentifier];
+        if ([identifier isEqualToString:notificationKey]) {
+            [[UIApplication sharedApplication]cancelLocalNotification:noti];
+        }
+    }
 }
 
 
 + (void)deleteLocalNotification:(UILocalNotification *)localNotification {
     
+    if (localNotification == nil) return;
+    if (localNotification.userInfo == nil)  return;
+    NSString *notificationKey = localNotification.userInfo[kLocalNotificationIdentifier];
+    
+    if ( (notificationKey == nil) || (notificationKey.length <= 0) || ([notificationKey isEqualToString:@" "]) ) return;
+    
+    NSArray *notis = [[PushManager sharedManager]getAllLocalNofication];
+    
+    for (UILocalNotification *noti in notis) {
+        NSString *identifier =  noti.userInfo[kLocalNotificationIdentifier];
+        if ([identifier isEqualToString:notificationKey]) {
+            [[UIApplication sharedApplication]cancelLocalNotification:noti];
+        }
+    }
 }
 
 
 + (NSArray *)findLocalNotificationWithIdentifier:(NSString *)notificationKey {
-    return nil;
+    
+    NSMutableArray *finds = [NSMutableArray array];
+
+    if ( (notificationKey == nil) || (notificationKey.length <= 0) || ([notificationKey isEqualToString:@" "]) ){
+        return [finds copy];
+    }
+    
+    NSArray *notis = [[PushManager sharedManager]getAllLocalNofication];
+    
+    for (UILocalNotification *noti in notis) {
+        NSString *identifier =  noti.userInfo[kLocalNotificationIdentifier];
+        if ([identifier isEqualToString:notificationKey]) {
+            [finds addObject:noti];
+        }
+    }
+    
+    return [finds copy];
 }
 
 
 + (void)clearAllLocalNotifications {
-    
-    
+    [[UIApplication sharedApplication]cancelAllLocalNotifications];
 }
 
 #pragma mark - badge
@@ -301,8 +337,8 @@
 
 #pragma mark - private
 
-- (void)getAllLocalNofication {
-    
+- (NSArray *)getAllLocalNofication {
+    return [[UIApplication sharedApplication]scheduledLocalNotifications];
 }
 
 #pragma mark - other
@@ -313,6 +349,7 @@
     UIViewController *vc = keyWindow.rootViewController;
     return vc;
 }
+
 
 
 

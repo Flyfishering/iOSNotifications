@@ -45,7 +45,6 @@
     
     //判断“允许通知”开关是否打开
     BOOL pushAllowNotificationOn =  [[UIApplication sharedApplication] isRegisteredForRemoteNotifications];
-    NSString * pushAllowNotification = pushAllowNotificationOn ? @"on" : @"off";
     
     NSUInteger pushOption = 0;
     
@@ -159,8 +158,7 @@
     
     _localNoti = localNoti;
     NSDictionary *dic = localNoti.userInfo;
-    _localNotiLabel.text = dic[kLocalNotificationContent];
-    
+    _localNotiLabel.text = localNoti.alertBody;
 
 }
 

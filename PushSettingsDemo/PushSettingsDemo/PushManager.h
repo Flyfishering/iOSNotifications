@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 
-#define kLocalNotificationCategory      @"kLocalNotificationCategory"
+#define kLocalNotificationIdentifier      @"kLocalNotificationIdentifier"
 #define kLocalNotificationContent      @"kLocalNotificationContent"
 
 @interface PushManager : NSObject
@@ -101,7 +101,7 @@
 + (void)showLocalNotificationAtFront:(UILocalNotification *)notification
                        identifierKey:(NSString *)notificationKey;
 /*!
- * @abstract 删除本地推送定义
+ * @abstract 删除本地推送
  *
  * @param notificationKey 本地推送标示符
  * @param myUILocalNotification 本地推送对象
@@ -109,7 +109,7 @@
 + (void)deleteLocalNotificationWithIdentifierKey:(NSString *)notificationKey;
 
 /*!
- * @abstract 删除本地推送定义
+ * @abstract 删除本地推送
  */
 + (void)deleteLocalNotification:(UILocalNotification *)localNotification;
 

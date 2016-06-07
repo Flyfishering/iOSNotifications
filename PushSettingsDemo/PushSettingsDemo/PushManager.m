@@ -10,6 +10,10 @@
 #import "JPUSHService.h"
 #import "PushViewController.h"
 
+
+#define JSPUSH_SYSTEM_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
+
+
 @implementation PushManager
 
 + (instancetype)sharedManager {
@@ -209,12 +213,13 @@
                                 identifierKey:(NSString *)notificationKey
                                      userInfo:(NSDictionary *)userInfo
                                     soundName:(NSString *)soundName {
-    return nil;
-    
+   UILocalNotification *notification = [PushManager setLocalNotification:fireDate alertTitle:nil alertBody:alertBody badge:badge alertAction:nil identifierKey:notificationKey userInfo:userInfo soundName:soundName region:nil regionTriggersOnce:NO category:nil];
+    return notification;
 }
 
 
 + (UILocalNotification *)setLocalNotification:(NSDate *)fireDate
+                                    alertTitle:(NSString *)alertTitle
                                     alertBody:(NSString *)alertBody
                                         badge:(int)badge
                                   alertAction:(NSString *)alertAction
@@ -224,8 +229,52 @@
                                        region:(CLRegion *)region
                            regionTriggersOnce:(BOOL)regionTriggersOnce
                                      category:(NSString *)category NS_AVAILABLE_IOS(8_0) {
-    return nil;
-    
+    // 初始化本地通知对象
+    UILocalNotification *notification = [[UILocalNotification alloc] init];
+    if (notification) {
+        // 设置通知的提醒时间
+        notification.timeZone = [NSTimeZone defaultTimeZone]; // 使用本地时区
+        notification.fireDate = fireDate;
+        
+        // 设置重复间隔
+//        notification.repeatInterval = kCFCalendarUnitDay;
+        
+        // 设置提醒的文字内容
+        if(JSPUSH_SYSTEM_VERSION_GREATER_THAN(@"8.2")){
+            notification.alertTitle = alertTitle;     //8.2才支持,默认是应用名称
+        }
+        notification.alertBody   = alertBody;     //显示主体
+        notification.category = category;
+        
+        //设置侧滑按钮文字
+        notification.hasAction = YES;
+        notification.alertAction = alertAction;
+        
+        // 通知提示音
+        notification.soundName = soundName;     //默认提示音：UILocalNotificationDefaultSoundName
+        
+        // 设置应用程序右上角的提醒个数
+        notification.applicationIconBadgeNumber++;
+        
+        //设置地理位置
+        if(region){
+            notification.region = region;
+            notification.regionTriggersOnce = regionTriggersOnce;
+        }
+        // 设定通知的userInfo，用来标识该通知
+        NSMutableDictionary *aUserInfo = nil;
+        if(userInfo){
+            aUserInfo = [NSMutableDictionary dictionaryWithDictionary:userInfo];
+        }else{
+            aUserInfo = [NSMutableDictionary dictionary];
+        }
+        aUserInfo[kLocalNotificationCategory] = notificationKey;
+        notification.userInfo = [aUserInfo copy];
+        
+        // 将通知添加到系统中
+        [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+    }
+    return notification;
 }
 
 

@@ -79,6 +79,7 @@
  * @param category 自定义参数
  */
 + (UILocalNotification *)setLocalNotification:(NSDate *)fireDate
+                                   alertTitle:(NSString *)alertTitle
                                     alertBody:(NSString *)alertBody
                                         badge:(int)badge
                                   alertAction:(NSString *)alertAction

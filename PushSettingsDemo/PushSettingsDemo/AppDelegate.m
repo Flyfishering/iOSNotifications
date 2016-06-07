@@ -19,8 +19,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    [PushManager registerPushNotification:launchOptions];
-    [PushManager handleNotificationApplicationLaunching:launchOptions];
+    [PushManager setupWithOption:launchOptions];
+    [PushManager registerForRemoteNotificationAllTypesWithcategories:nil];
     [PushManager resetBadge];
     return YES;
 }

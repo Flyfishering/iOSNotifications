@@ -31,27 +31,10 @@
 
 #pragma mark - registe push notification
 
-+ (void)registerPushNotification:(NSDictionary *)launchOptions {
++ (void)setupWithOption:(NSDictionary *)launchOptions {
     
     //极光推送
     [JPUSHService setupWithOption:launchOptions appKey:@"0d16cdd32fbdf6849b0a5214" channel:nil apsForProduction:NO];
-    [JPUSHService registerForRemoteNotificationTypes:7 categories:nil];
-    [JPUSHService setDebugMode];
-    
-    // Override point for customization after application launch.
-    /*
-     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
-     {
-     [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound |UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
-     }
-     else
-     {
-     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound |UIRemoteNotificationTypeAlert)];
-     }
-     */
-}
-
-+ (void)handleNotificationApplicationLaunching:(NSDictionary *)launchOptions {
     
     //在app没有被启动的时候，接收到了消息通知。这时候操作系统会按照默认的方式来展现一个alert消息，在app icon上标记一个数字，甚至播放一段声音。
     
@@ -77,6 +60,30 @@
     }
 }
 
++ (void)registerForRemoteNotificationTypes:(NSUInteger)types categories:(NSSet *)categories
+{
+    //极光推送
+    [JPUSHService registerForRemoteNotificationTypes:7 categories:nil];
+    [JPUSHService setDebugMode];
+    
+    /*
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
+//        UIUserNotificationType types = UIUserNotificationTypeSound |UIUserNotificationTypeAlert | UIUserNotificationTypeBadge;
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:types categories:categories];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    }else{
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:types];
+    }
+     */
+    
+}
+
++ (void)registerForRemoteNotificationAllTypesWithcategories:(NSSet *)categories{
+    
+    [PushManager registerForRemoteNotificationTypes:7 categories:categories];
+    
+}
+
 #pragma mark - device token
 
 + (void)registerDeviceToken:(NSData*)deviceToken {
@@ -90,7 +97,7 @@
     
     NSLog(@"device token is: %@", newToken);
     
-    //向服务器注册设备
+    //HCTODO:向服务器注册设备
     [JPUSHService registerDeviceToken:deviceToken];
     //show
     PushViewController *pushVC = (PushViewController *)[[PushManager sharedManager]viewController];
@@ -140,6 +147,7 @@
 + (void)buildUILocalNotificationWithNSDate:(NSDate *)date alert:(NSString *)alert badge:(int)badge identifierKey:(NSString *)identitifierKey userInfo:(NSDictionary *)userInfo {
     
     /*
+     //极光推送
      NSDate *now = [NSDate date];
      NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar] ;
      NSDateComponents *componentsForFireDate = [calendar components:(NSDayCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit| NSSecondCalendarUnit ) fromDate:now];
@@ -194,6 +202,58 @@
     
 }
 
++ (UILocalNotification *)setLocalNotification:(NSDate *)fireDate
+                                    alertBody:(NSString *)alertBody
+                                        badge:(int)badge
+                                  alertAction:(NSString *)alertAction
+                                identifierKey:(NSString *)notificationKey
+                                     userInfo:(NSDictionary *)userInfo
+                                    soundName:(NSString *)soundName {
+    return nil;
+    
+}
+
+
++ (UILocalNotification *)setLocalNotification:(NSDate *)fireDate
+                                    alertBody:(NSString *)alertBody
+                                        badge:(int)badge
+                                  alertAction:(NSString *)alertAction
+                                identifierKey:(NSString *)notificationKey
+                                     userInfo:(NSDictionary *)userInfo
+                                    soundName:(NSString *)soundName
+                                       region:(CLRegion *)region
+                           regionTriggersOnce:(BOOL)regionTriggersOnce
+                                     category:(NSString *)category NS_AVAILABLE_IOS(8_0) {
+    return nil;
+    
+}
+
+
++ (void)showLocalNotificationAtFront:(UILocalNotification *)notification
+                       identifierKey:(NSString *)notificationKey {
+    
+}
+
++ (void)deleteLocalNotificationWithIdentifierKey:(NSString *)notificationKey {
+
+}
+
+
++ (void)deleteLocalNotification:(UILocalNotification *)localNotification {
+    
+}
+
+
++ (NSArray *)findLocalNotificationWithIdentifier:(NSString *)notificationKey {
+    return nil;
+}
+
+
++ (void)clearAllLocalNotifications {
+    
+    
+}
+
 #pragma mark - badge
 
 + (void)resetBadge {
@@ -202,7 +262,6 @@
 
 + (void)setBadge:(NSInteger)badge {
     [UIApplication sharedApplication].applicationIconBadgeNumber = badge;
-
 }
 
 #pragma mark - other

@@ -19,6 +19,8 @@
 		5E3A7BF21D014AAC00C44FDB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E3A7BF11D014AAC00C44FDB /* Security.framework */; };
 		5E3A7BF41D014AB400C44FDB /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E3A7BF31D014AB400C44FDB /* libz.tbd */; };
 		5E969F3D1D055E12001BAEED /* PushManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E969F3C1D055E12001BAEED /* PushManager.m */; };
+		5EB445B51D1B6FDA00F4CDDE /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EB445B31D1B6FDA00F4CDDE /* UserNotifications.framework */; };
+		5EB445B61D1B6FDA00F4CDDE /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EB445B41D1B6FDA00F4CDDE /* UserNotificationsUI.framework */; };
 		5EF2B44A1CC7D51000AC71C5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2B4491CC7D51000AC71C5 /* main.m */; };
 		5EF2B44D1CC7D51000AC71C5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2B44C1CC7D51000AC71C5 /* AppDelegate.m */; };
 		5EF2B4501CC7D51000AC71C5 /* PushViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2B44F1CC7D51000AC71C5 /* PushViewController.m */; };
@@ -42,6 +44,8 @@
 		5E3A7BF31D014AB400C44FDB /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		5E969F3B1D055E12001BAEED /* PushManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushManager.h; sourceTree = "<group>"; };
 		5E969F3C1D055E12001BAEED /* PushManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushManager.m; sourceTree = "<group>"; };
+		5EB445B31D1B6FDA00F4CDDE /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		5EB445B41D1B6FDA00F4CDDE /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
 		5EF2B4451CC7D51000AC71C5 /* PushSettingsDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PushSettingsDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EF2B4491CC7D51000AC71C5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5EF2B44B1CC7D51000AC71C5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -59,6 +63,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5EB445B51D1B6FDA00F4CDDE /* UserNotifications.framework in Frameworks */,
+				5EB445B61D1B6FDA00F4CDDE /* UserNotificationsUI.framework in Frameworks */,
 				5E3A7BF41D014AB400C44FDB /* libz.tbd in Frameworks */,
 				5E3A7BF21D014AAC00C44FDB /* Security.framework in Frameworks */,
 				5E3A7BF01D014AA500C44FDB /* Foundation.framework in Frameworks */,
@@ -85,11 +91,21 @@
 			path = lib;
 			sourceTree = "<group>";
 		};
+		5EB445B21D1B6FDA00F4CDDE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5EB445B31D1B6FDA00F4CDDE /* UserNotifications.framework */,
+				5EB445B41D1B6FDA00F4CDDE /* UserNotificationsUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		5EF2B43C1CC7D51000AC71C5 = {
 			isa = PBXGroup;
 			children = (
 				5EF2B4471CC7D51000AC71C5 /* PushSettingsDemo */,
 				5EF2B4461CC7D51000AC71C5 /* Products */,
+				5EB445B21D1B6FDA00F4CDDE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};

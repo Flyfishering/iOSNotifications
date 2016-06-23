@@ -10,6 +10,7 @@
 #import "PushManager.h"
 
 @interface PushViewController ()
+
 @property (weak, nonatomic) IBOutlet UILabel *dtLabel;
 @property (weak, nonatomic) IBOutlet UISwitch *allowNotiSwi;
 @property (weak, nonatomic) IBOutlet UISwitch *badgeSwi;

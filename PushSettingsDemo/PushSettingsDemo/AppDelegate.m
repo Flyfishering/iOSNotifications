@@ -51,12 +51,20 @@
 #pragma mark - Push Message Handler
 /**
  *  This callback will be made upon calling -[UIApplication registerUserNotificationSettings:]. The settings the user has granted to the application will be passed in as the second argument.
- *  ios8需要调用内容
+ *  iOS8后需要支持
+ *  根据我们提供的注册通知类型，就是UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge
+ *  以及用户在“设置”中开关的值做比较。
+ *  来决定本地和远程支持的类型。
+ *  其中在第二个参数的notificationSettings是“设置”中的值。
+ *
  */
 - (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
 {
     // Calling this will result in either application:didRegisterForRemoteNotificationsWithDeviceToken: or application:didFailToRegisterForRemoteNotificationsWithError: to be called on the application delegate. Note: these callbacks will be made only if the application has successfully registered for user notifications with registerUserNotificationSettings:, or if it is enabled for Background App Refresh.
-    [application registerForRemoteNotifications];
+    if (notificationSettings.types != UIUserNotificationTypeNone) {
+        //registerForRemoteNotifications方法调用后会application:didRegisterForRemoteNotificationsWithDeviceToken或application:didFailToRegisterForRemoteNotificationsWithError
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    }
 }
 
 /**

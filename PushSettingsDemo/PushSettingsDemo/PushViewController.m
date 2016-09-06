@@ -9,7 +9,9 @@
 #import "PushViewController.h"
 #import "PushManager.h"
 
-@interface PushViewController ()
+#import <CoreLocation/CoreLocation.h>
+
+@interface PushViewController ()<CLLocationManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *dtLabel;
 @property (weak, nonatomic) IBOutlet UISwitch *allowNotiSwi;
@@ -19,6 +21,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *remoteNotiLabel;
 @property (weak, nonatomic) IBOutlet UILabel *localNotiLabel;
 
+
+@property (nonatomic, strong) CLLocationManager* locationManager;
+
 @end
 
 @implementation PushViewController
@@ -26,6 +31,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
 
 }
 
@@ -37,6 +46,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self debugPushSettings];
+    [self findMe];
 }
 
 - (void)debugPushSettings {
@@ -161,6 +171,52 @@
     NSDictionary *dic = localNoti.userInfo;
     _localNotiLabel.text = localNoti.alertBody;
 
+}
+
+# pragma mark 定位
+
+- (void)findMe
+{
+    /** 由于IOS8中定位的授权机制改变 需要进行手动授权
+     * 获取授权认证，两个方法：
+     * [self.locationManager requestWhenInUseAuthorization];
+     * [self.locationManager requestAlwaysAuthorization];
+     */
+    
+    if ([CLLocationManager locationServicesEnabled]  //确定用户的位置服务启用
+        && [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedAlways)
+        //位置服务是在设置中禁用
+    {
+        if ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
+            NSLog(@"requestAlwaysAuthorization");
+            [self.locationManager requestAlwaysAuthorization];
+        }
+        
+        //开始定位，不断调用其代理方法
+        [self.locationManager startUpdatingLocation];
+        NSLog(@"start gps");
+    }
+    
+}
+
+- (void)locationManager:(CLLocationManager *)manager
+     didUpdateLocations:(NSArray *)locations
+{
+    // 1.获取用户位置的对象
+    CLLocation *location = [locations lastObject];
+    CLLocationCoordinate2D coordinate = location.coordinate;
+    NSLog(@"纬度:%f 经度:%f", coordinate.latitude, coordinate.longitude);
+    
+    // 2.停止定位
+    [manager stopUpdatingLocation];
+}
+
+- (void)locationManager:(CLLocationManager *)manager
+       didFailWithError:(NSError *)error
+{
+    if (error.code == kCLErrorDenied) {
+        // 提示用户出错原因，可按住Option键点击 KCLErrorDenied的查看更多出错信息，可打印error.code值查找原因所在
+    }
 }
 
 @end

@@ -38,7 +38,7 @@
 + (void)setupWithOption:(NSDictionary *)launchOptions {
     
     //极光推送
-    [JPUSHService setupWithOption:launchOptions appKey:@"0d16cdd32fbdf6849b0a5214" channel:nil apsForProduction:NO];
+//    [JPUSHService setupWithOption:launchOptions appKey:@"0d16cdd32fbdf6849b0a5214" channel:nil apsForProduction:NO];
     
     //在app没有被启动的时候，接收到了消息通知。这时候操作系统会按照默认的方式来展现一个alert消息，在app icon上标记一个数字，甚至播放一段声音。
     
@@ -67,10 +67,10 @@
 + (void)registerForRemoteNotificationTypes:(NSUInteger)types categories:(NSSet *)categories
 {
     //极光推送
-    [JPUSHService registerForRemoteNotificationTypes:7 categories:nil];
-    [JPUSHService setDebugMode];
+//    [JPUSHService registerForRemoteNotificationTypes:7 categories:nil];
+//    [JPUSHService setDebugMode];
     
-    /*
+    
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
 //        UIUserNotificationType types = UIUserNotificationTypeSound |UIUserNotificationTypeAlert | UIUserNotificationTypeBadge;
         UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:types categories:categories];
@@ -78,7 +78,7 @@
     }else{
         [[UIApplication sharedApplication] registerForRemoteNotificationTypes:types];
     }
-     */
+     
     
 }
 

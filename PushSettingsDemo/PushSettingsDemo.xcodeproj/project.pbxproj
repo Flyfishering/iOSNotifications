@@ -177,6 +177,11 @@
 					5EF2B4441CC7D51000AC71C5 = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = 69XHTLCF36;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};

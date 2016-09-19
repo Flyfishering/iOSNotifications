@@ -70,8 +70,16 @@
 //    [JPUSHService registerForRemoteNotificationTypes:7 categories:nil];
 //    [JPUSHService setDebugMode];
     
-    
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 10.0){
+        
+        [[UNUserNotificationCenter currentNotificationCenter] requestAuthorizationWithOptions:(UNAuthorizationOptionBadge |UNAuthorizationOptionSound | UNAuthorizationOptionAlert) completionHandler:^(BOOL granted, NSError * _Nullable error) {
+            if (granted) {
+                [[UIApplication sharedApplication] registerForRemoteNotifications];
+                [[UNUserNotificationCenter currentNotificationCenter] setNotificationCategories:categories];
+            }
+        }];
+        
+    }else if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
 //        UIUserNotificationType types = UIUserNotificationTypeSound |UIUserNotificationTypeAlert | UIUserNotificationTypeBadge;
         UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:types categories:categories];
         [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
@@ -82,11 +90,6 @@
     
 }
 
-+ (void)registerForRemoteNotificationAllTypesWithcategories:(NSSet *)categories{
-    
-    [PushManager registerForRemoteNotificationTypes:7 categories:categories];
-    
-}
 
 #pragma mark - device token
 
@@ -172,7 +175,7 @@
      */
     
     // 初始化本地通知对象
-    UILocalNotification *notification = [PushManager setLocalNotification:date alertBody:@"快起床，快快起床~" badge:badge alertAction:nil identifierKey:identitifierKey userInfo:userInfo soundName:nil];
+    UILocalNotification *notification = [PushManager setLocalNotification:date alertBody:@"快起床，快快起床~" badge:badge alertAction:@"起床" identifierKey:identitifierKey userInfo:userInfo soundName:nil];
     // 将通知添加到系统中
     [[UIApplication sharedApplication] scheduleLocalNotification:notification];
 
@@ -184,7 +187,8 @@
                                   alertAction:(NSString *)alertAction
                                 identifierKey:(NSString *)notificationKey
                                      userInfo:(NSDictionary *)userInfo
-                                    soundName:(NSString *)soundName {
+                                    soundName:(NSString *)soundName
+{
    UILocalNotification *notification = [PushManager setLocalNotification:fireDate alertTitle:nil alertBody:alertBody badge:badge alertAction:nil identifierKey:notificationKey userInfo:userInfo soundName:soundName region:nil regionTriggersOnce:NO category:nil];
     return notification;
 }

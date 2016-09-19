@@ -27,8 +27,7 @@
  *  typs是由三位二进制位构成的，Alert|Sound|Badge
  */
 + (void)registerForRemoteNotificationTypes:(NSUInteger)types categories:(NSSet *)categories;
-//type is 7,that means notification type contain alert、alert and sound，no category
-+ (void)registerForRemoteNotificationAllTypesWithcategories:(NSSet *)categories;
+
 
 /**
  *  send device token to your server

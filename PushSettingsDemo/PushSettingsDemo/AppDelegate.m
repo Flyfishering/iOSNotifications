@@ -19,13 +19,47 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     [PushManager setupWithOption:launchOptions];
-    [PushManager registerForRemoteNotificationAllTypesWithcategories:nil];
-    [PushManager resetBadge];
     
+    /***************************测试category*******************************/
+    /*注意：以下action注册，只在iOS10之前有效！！！  */
+    //apns: {"aps":{"alert":"测试推送的快捷回复", "sound":"default", "badge": 1, "category":"alert"}}
+    
+    /*
+    //接受按钮
+    UIMutableUserNotificationAction *acceptAction = [[UIMutableUserNotificationAction alloc] init];
+    acceptAction.identifier = @"acceptAction";
+    acceptAction.title = @"接受";
+    acceptAction.activationMode = UIUserNotificationActivationModeForeground;  //当点击的时候，启动应用
+    //拒绝按钮
+    UIMutableUserNotificationAction *rejectAction = [[UIMutableUserNotificationAction alloc] init];
+    rejectAction.identifier = @"rejectAction";
+    rejectAction.title = @"拒绝";
+    rejectAction.activationMode = UIUserNotificationActivationModeBackground;   //当点击的时候，不启动应用程序，在后台处理
+    rejectAction.authenticationRequired = YES;//需要解锁才能处理，如果action.activationMode = UIUserNotificationActivationModeForeground;则这个属性被忽略；
+    rejectAction.destructive = YES; //显示红色按钮（销毁、警告类按钮）
+    
+    UIMutableUserNotificationCategory *categorys = [[UIMutableUserNotificationCategory alloc] init];
+    categorys.identifier = @"wakeup";
+    NSArray *actions = @[acceptAction, rejectAction];
+    [categorys setActions:actions forContext:UIUserNotificationActionContextMinimal];
+     */
+    
+    /**********************************************************/
     //iOS 10以上，通知代理设置，不设置，代理不调用。
     //Above iOS 10,you must set the UNUserNotificationCenter delegate first before invoke the UNUserNotificationCenterDelegate
-//    [UNUserNotificationCenter currentNotificationCenter].delegate = self;
+    [UNUserNotificationCenter currentNotificationCenter].delegate = self;
     
+    UNNotificationAction *acceptAction = [UNNotificationAction actionWithIdentifier:@"acceptAction" title:@"接受" options:UNNotificationActionOptionDestructive];
+    
+    UNNotificationAction *rejectAction = [UNNotificationAction actionWithIdentifier:@"rejectAction" title:@"拒绝" options:UNNotificationActionOptionForeground];
+    
+    UNNotificationCategory *categorys = [UNNotificationCategory categoryWithIdentifier:@"wakeup" actions:@[acceptAction,rejectAction] intentIdentifiers:@[] options:UNNotificationCategoryOptionNone];
+    
+    
+    [PushManager registerForRemoteNotificationTypes:7 categories:[NSSet setWithObjects:categorys,nil]];
+
+    [PushManager resetBadge];
+
     return YES;
 }
 
@@ -90,14 +124,17 @@
 /**
  *  Called when your app has been activated by the user selecting an action from a remote notification.
  *  8.0 above
+ *  当操作交互式通知时，进入这里
  */
 - (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo completionHandler:(void(^)())completionHandler
 {
     //handle the actions
-    if ([identifier isEqualToString:@"declineAction"]){
+    if ([identifier isEqualToString:@"acceptAction"]){
     }
-    else if ([identifier isEqualToString:@"answerAction"]){
+    else if ([identifier isEqualToString:@"rejectAction"]){
     }
+     //注意调用该函数！！！！
+    completionHandler();
 }
 /**
  *  Called when your app has been activated by the user selecting an action from a remote notification.
@@ -105,6 +142,8 @@
  */
 - (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo withResponseInfo:(NSDictionary *)responseInfo completionHandler:(void (^)())completionHandler {
     
+    //注意调用该函数！！！！
+    completionHandler();
 }
 
 
@@ -115,6 +154,8 @@
  */
 - (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forLocalNotification:(UILocalNotification *)notification completionHandler:(void (^)())completionHandler {
     
+    //注意调用该函数！！！！
+    completionHandler();
 }
 /**
  *  Called when your app has been activated by the user selecting an action from a local notification.
@@ -122,12 +163,15 @@
  */
 - (void)application:(UIApplication *)application handleActionWithIdentifier:(nullable NSString *)identifier forLocalNotification:(UILocalNotification *)notification withResponseInfo:(NSDictionary *)responseInfo completionHandler:(void(^)())completionHandler {
 
+    //注意调用该函数！！！！
+    completionHandler();
 }
 
 #pragma mark - local/remote handle
 
 /**
- *  iOS 10之前，在后台，收到远程通知，点击会进入到这里
+ *  iOS 10之前，若未实现该代理application didReceiveRemoteNotification: fetchCompletionHandler:
+        不管在前台还是在后台，收到远程推送会进入didReceiveRemoteNotification代理方法；
  *  假如未设置UNUserNotificationCenter代理，iOS 10收到远程通知也会进入这里。
  */
 - (void)application:(UIApplication*)application didReceiveRemoteNotification:(NSDictionary*)userInfo
@@ -150,8 +194,8 @@
  
  This method will be invoked even if the application was launched or resumed because of the remote notification. The respective delegate methods will be invoked first. Note that this behavior is in contrast to application:didReceiveRemoteNotification:, which is not called in those cases, and which will not be invoked if this method is implemented. !*/
 /**
- *  iOS 10之前，在前台，收到远程通知会进入此处；
- *  iOS 10之前，在后台，收到远程推送会进入didReceiveRemoteNotification代理方法；
+ *  iOS 10之前，不管在前台还是在后台，收到远程通知会进入此处；
+ *  iOS 10之前，若未实现该代理，不管在前台还是在后台，收到远程推送会进入didReceiveRemoteNotification代理方法；
  *  iOS 10之前，静默推送，会进入到这里；
  *  iOS 10之后，在前台，静默推送，也会进入到这里
         如果为设置代理，再调用- (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler。

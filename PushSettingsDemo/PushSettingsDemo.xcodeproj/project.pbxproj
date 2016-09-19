@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5E3A7BE01D0149F600C44FDB /* jpush-ios-2.1.7.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E3A7BDE1D0149F600C44FDB /* jpush-ios-2.1.7.a */; };
-		5E3A7BE21D014A4400C44FDB /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E3A7BE11D014A4400C44FDB /* PushConfig.plist */; };
 		5E3A7BE41D014A7A00C44FDB /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E3A7BE31D014A7A00C44FDB /* CFNetwork.framework */; };
 		5E3A7BE61D014A8200C44FDB /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E3A7BE51D014A8200C44FDB /* CoreFoundation.framework */; };
 		5E3A7BE81D014A8900C44FDB /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E3A7BE71D014A8900C44FDB /* CoreTelephony.framework */; };
@@ -28,9 +26,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5E3A7BDE1D0149F600C44FDB /* jpush-ios-2.1.7.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-2.1.7.a"; sourceTree = "<group>"; };
-		5E3A7BDF1D0149F600C44FDB /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
-		5E3A7BE11D014A4400C44FDB /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
 		5E3A7BE31D014A7A00C44FDB /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		5E3A7BE51D014A8200C44FDB /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		5E3A7BE71D014A8900C44FDB /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -69,23 +64,12 @@
 				5E3A7BE81D014A8900C44FDB /* CoreTelephony.framework in Frameworks */,
 				5E3A7BE61D014A8200C44FDB /* CoreFoundation.framework in Frameworks */,
 				5E3A7BE41D014A7A00C44FDB /* CFNetwork.framework in Frameworks */,
-				5E3A7BE01D0149F600C44FDB /* jpush-ios-2.1.7.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5E3A7BDD1D0149F600C44FDB /* lib */ = {
-			isa = PBXGroup;
-			children = (
-				5E3A7BE11D014A4400C44FDB /* PushConfig.plist */,
-				5E3A7BDE1D0149F600C44FDB /* jpush-ios-2.1.7.a */,
-				5E3A7BDF1D0149F600C44FDB /* JPUSHService.h */,
-			);
-			path = lib;
-			sourceTree = "<group>";
-		};
 		5EB445B21D1B6FDA00F4CDDE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -114,7 +98,6 @@
 			isa = PBXGroup;
 			children = (
 				5E6972F91D8E72E000ECF4F1 /* PushSettingsDemo.entitlements */,
-				5E3A7BDD1D0149F600C44FDB /* lib */,
 				5EF2B44B1CC7D51000AC71C5 /* AppDelegate.h */,
 				5EF2B44C1CC7D51000AC71C5 /* AppDelegate.m */,
 				5E969F3B1D055E12001BAEED /* PushManager.h */,
@@ -213,7 +196,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5E3A7BE21D014A4400C44FDB /* PushConfig.plist in Resources */,
 				5EF2B4581CC7D51000AC71C5 /* LaunchScreen.storyboard in Resources */,
 				5EF2B4551CC7D51000AC71C5 /* Assets.xcassets in Resources */,
 				5EF2B4531CC7D51000AC71C5 /* Main.storyboard in Resources */,

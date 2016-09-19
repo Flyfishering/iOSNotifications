@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "JPUSHService.h"
 #import "PushManager.h"
 
 @interface AppDelegate ()

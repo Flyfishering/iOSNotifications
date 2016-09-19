@@ -7,7 +7,6 @@
 //
 
 #import "PushManager.h"
-#import "JPUSHService.h"
 #import "PushViewController.h"
 
 
@@ -104,8 +103,6 @@
     
     NSLog(@"device token is: %@", newToken);
     
-    //HCTODO:向服务器注册设备
-    [JPUSHService registerDeviceToken:deviceToken];
     //show
     PushViewController *pushVC = (PushViewController *)[[PushManager sharedManager]viewController];
     pushVC.devicetoken = newToken;
@@ -152,27 +149,6 @@
 #pragma mark - local notification
 
 + (void)buildUILocalNotificationWithNSDate:(NSDate *)date alert:(NSString *)alert badge:(int)badge identifierKey:(NSString *)identitifierKey userInfo:(NSDictionary *)userInfo {
-    
-    /*
-     //极光推送
-     NSDate *now = [NSDate date];
-     NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar] ;
-     NSDateComponents *componentsForFireDate = [calendar components:(NSDayCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit| NSSecondCalendarUnit ) fromDate:now];
-     NSInteger fireSeconds = [componentsForFireDate second]+1;
-     [componentsForFireDate setSecond:fireSeconds] ;
-     
-     NSDate *fireDateOfNotification = [calendar dateFromComponents: componentsForFireDate];
-     
-     if ([[[UIDevice currentDevice] systemVersion] floatValue] >=8.0f ) {
-     
-     UILocalNotification *localNoti = [JPUSHService setLocalNotification:fireDateOfNotification alertBody:alert badge:0 alertAction:nil identifierKey:identitifierKey userInfo:userInfo soundName:UILocalNotificationDefaultSoundName region:nil regionTriggersOnce:NO category:nil];
-     localNoti.repeatInterval = 0;
-     }else
-     {
-     UILocalNotification *localNoti = [JPUSHService setLocalNotification:fireDateOfNotification alertBody:alert badge:0 alertAction:nil identifierKey:identitifierKey userInfo:userInfo soundName:UILocalNotificationDefaultSoundName];
-     localNoti.repeatInterval = 0;
-     }
-     */
     
     // 初始化本地通知对象
     UILocalNotification *notification = [PushManager setLocalNotification:date alertBody:@"快起床，快快起床~" badge:badge alertAction:@"起床" identifierKey:identitifierKey userInfo:userInfo soundName:nil];

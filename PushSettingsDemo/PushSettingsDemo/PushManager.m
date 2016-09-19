@@ -120,7 +120,7 @@
         NSDictionary *dic = notification.userInfo;
         pushVC.localNoti = notification;
 
-        NSString *mes = dic[kLocalNotificationContent];
+        NSString *mes = [dic objectForKey:kLocalNotificationContent];
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"本地通知" message:mes delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"查看", nil];
         [alert show];
         
@@ -255,8 +255,6 @@
         aUserInfo[kLocalNotificationIdentifier] = notificationKey;
         notification.userInfo = [aUserInfo copy];
         
-        // 将通知添加到系统中
-        [[UIApplication sharedApplication] scheduleLocalNotification:notification];
     }
     return notification;
 }
@@ -322,7 +320,7 @@
 
 
 + (void)clearAllLocalNotifications {
-    [[UIApplication sharedApplication]cancelAllLocalNotifications];
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
 }
 
 #pragma mark - badge
@@ -338,7 +336,7 @@
 #pragma mark - private
 
 - (NSArray *)getAllLocalNofication {
-    return [[UIApplication sharedApplication]scheduledLocalNotifications];
+    return [[UIApplication sharedApplication] scheduledLocalNotifications];
 }
 
 #pragma mark - other

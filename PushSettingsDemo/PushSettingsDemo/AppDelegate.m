@@ -16,12 +16,16 @@
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     [PushManager setupWithOption:launchOptions];
     [PushManager registerForRemoteNotificationAllTypesWithcategories:nil];
     [PushManager resetBadge];
+    
+    //iOS 10以上，通知代理设置，不设置，代理不调用。
+    //Above iOS 10,you must set the UNUserNotificationCenter delegate first before invoke the UNUserNotificationCenterDelegate
+//    [UNUserNotificationCenter currentNotificationCenter].delegate = self;
+    
     return YES;
 }
 
@@ -123,13 +127,20 @@
 #pragma mark - local/remote handle
 
 /**
- *  收到远程推送都会进入到这里
+ *  iOS 10之前，在后台，收到远程通知，点击会进入到这里
+ *  假如未设置UNUserNotificationCenter代理，iOS 10收到远程通知也会进入这里。
  */
 - (void)application:(UIApplication*)application didReceiveRemoteNotification:(NSDictionary*)userInfo
 {
     [PushManager handleRemoteNotification:userInfo];
 }
 
+
+/**
+ * iOS 10之前，在前台，收到本地通知，会进入这里
+ * iOS 10之前，在后台，点击本地通知，会进入这里
+ * 假如未设置UNUserNotificationCenter代理，iOS 10收到本地通知也会进入这里。
+ */
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
     [PushManager handleLocalNotification:notification];
@@ -139,12 +150,61 @@
  
  This method will be invoked even if the application was launched or resumed because of the remote notification. The respective delegate methods will be invoked first. Note that this behavior is in contrast to application:didReceiveRemoteNotification:, which is not called in those cases, and which will not be invoked if this method is implemented. !*/
 /**
- *  该代理方法会覆盖didReceiveLocalNotification。
+ *  iOS 10之前，在前台，收到远程通知会进入此处；
+ *  iOS 10之前，在后台，收到远程推送会进入didReceiveRemoteNotification代理方法；
+ *  iOS 10之前，静默推送，会进入到这里；
+ *  iOS 10之后，在前台，静默推送，也会进入到这里
+        如果为设置代理，再调用- (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler。
+        否则，不会调用上面方法；
  */
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
     NSLog(@"push notification %@",userInfo);
 }
 
+# pragma mark iOS 10
+
+// 会屏蔽iOS10之前方法（设置对应的代理后）
+
+/**
+ *  前台收到远程通知，进入这里
+ *  前台收到本地通知，进入这里
+ *  前台收到带有其他字段alert/sound/badge的静默推送，进入这里
+ *  后台收到静默推送不会调用该方法
+ */
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler
+{
+    NSLog(@"%@",notification);
+}
+
+
+/**
+ * 后台收到远程通知，点击进入
+ * 后台收到本地通知，点击进入
+ */
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler
+{
+    /*
+    >UNNotificationResponse
+        >NSString *actionIdentifier
+        >UNNotification *notification
+            >NSDate *date
+            >UNNotificationRequest *request
+                >NSString *identifier
+                >UNNotificationTrigger *trigger
+                >UNNotificationContent *content
+                    >NSNumber *badge
+                    >NSString *body
+                    >NSString *categoryIdentifier
+                    >NSString *launchImageName
+                    >NSString *subtitle
+                    >NSString *title
+                    >NSString *threadIdentifier
+                    >UNNotificationSound *sound
+                    >NSArray <UNNotificationAttachment *> *attachments
+                    >NSDictionary *userInfo
+     */
+    NSLog(@"%@",response);
+}
 
 @end

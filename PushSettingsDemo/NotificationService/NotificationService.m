@@ -42,6 +42,27 @@
     // Modify the notification content here...
     self.bestAttemptContent.title = [NSString stringWithFormat:@"%@ [修改过哦]", self.bestAttemptContent.title];
     
+    //在此处修改category，可达到对应category的手段！！！
+    if ([self.bestAttemptContent.userInfo objectForKey:@"customUICategory"]) {
+        self.bestAttemptContent.categoryIdentifier = @"customUI";
+    }
+    
+    //此处自定义一个字段image，用语下载地址：
+    /*
+     
+     {
+     "aps":{
+     "alert":{
+     "title":"快起床",
+     "body":"真的起不来？"
+     },
+     "mutable-content":1,
+     "image":"http://p2.so.qhmsg.com/t01570d67d63111d3e7.jpg"
+     }
+     
+     */
+    
+    //同时，需要注意的是，在下载图片是采用http时，需要在extension info.plist加上 app transport
     NSString *urlStr = [self.bestAttemptContent.userInfo objectForKey:@"image"];
     
     if (urlStr) {

@@ -13,6 +13,7 @@
 
 /**
  针对iOS 10 的Push Manager
+ 参考：https://onevcat.com/2016/08/notification/
  */
 @interface NewPushManager : NSObject
 

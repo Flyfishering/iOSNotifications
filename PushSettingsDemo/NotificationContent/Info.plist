@@ -29,8 +29,10 @@
 	<dict>
 		<key>NSExtensionAttributes</key>
 		<dict>
+			<key>UNNotificationExtensionDefaultContentHidden</key>
+			<false/>
 			<key>UNNotificationExtensionCategory</key>
-			<string>myNotificationCategory</string>
+			<string>customUI</string>
 			<key>UNNotificationExtensionInitialContentSizeRatio</key>
 			<real>1</real>
 		</dict>

@@ -138,13 +138,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NotificationContent/NotificationViewController.m"
-            timestampString = "496056769.181829"
+            timestampString = "496072533.278085"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
-            landmarkName = "-didReceiveNotificationResponse:completionHandler:"
-            landmarkType = "7">
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "@implementation NotificationViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -154,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NotificationContent/NotificationViewController.m"
-            timestampString = "496056769.181829"
+            timestampString = "496072533.278085"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
             landmarkName = "-didReceiveNotification:"
             landmarkType = "7">
          </BreakpointContent>
@@ -170,28 +170,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NotificationService/NotificationService.m"
-            timestampString = "496069093.363514"
+            timestampString = "496073422.15671"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
             landmarkName = "-serviceExtensionTimeWillExpire"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "NotificationService/NotificationService.m"
-            timestampString = "496060080.076176"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
-            landmarkName = "-didReceiveNotificationRequest:withContentHandler:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -218,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NotificationService/NotificationService.m"
-            timestampString = "496069670.542825"
+            timestampString = "496073422.15671"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
             landmarkName = "-loadAttachmentForUrlString:withType:completionHandler:"
             landmarkType = "7">
          </BreakpointContent>
@@ -266,58 +250,59 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NotificationService/NotificationService.m"
-            timestampString = "496069813.527694"
+            timestampString = "496073422.15671"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
             landmarkName = "-loadAttachmentForUrlString:withType:completionHandler:"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NotificationContent/NotificationViewController.m"
+            timestampString = "496070723.377417"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "label"
+            landmarkType = "24">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "-[NotificationService loadAttachmentForUrlString:withType:completionHandler:]"
-                  moduleName = "NotificationService"
+                  symbolName = "-[NotificationViewController label]"
+                  moduleName = "NotificationContent"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/wenghengcong/Github/PushNotificationEverything/PushSettingsDemo/NotificationService/NotificationService.m"
-                  timestampString = "496069909.719421"
+                  urlString = "file:///Users/wenghengcong/Github/PushNotificationEverything/PushSettingsDemo/NotificationContent/NotificationViewController.m"
+                  timestampString = "496072079.005069"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "94"
-                  endingLineNumber = "94"
-                  offsetFromSymbolStart = "100">
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "12">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__Block_byref_object_copy_"
-                  moduleName = "NotificationService"
+                  symbolName = "-[NotificationViewController setLabel:]"
+                  moduleName = "NotificationContent"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/wenghengcong/Github/PushNotificationEverything/PushSettingsDemo/NotificationService/NotificationService.m"
-                  timestampString = "496069909.72068"
+                  urlString = "file:///Users/wenghengcong/Github/PushNotificationEverything/PushSettingsDemo/NotificationContent/NotificationViewController.m"
+                  timestampString = "496072079.006399"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "94"
-                  endingLineNumber = "94"
-                  offsetFromSymbolStart = "24">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__Block_byref_object_dispose_"
-                  moduleName = "NotificationService"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/wenghengcong/Github/PushNotificationEverything/PushSettingsDemo/NotificationService/NotificationService.m"
-                  timestampString = "496069909.722038"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "94"
-                  endingLineNumber = "94"
-                  offsetFromSymbolStart = "20">
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "32">
                </Location>
             </Locations>
          </BreakpointContent>

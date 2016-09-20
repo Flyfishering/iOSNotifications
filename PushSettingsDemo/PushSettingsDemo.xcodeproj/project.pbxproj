@@ -16,6 +16,7 @@
 		5E3A7BF01D014AA500C44FDB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E3A7BEF1D014AA500C44FDB /* Foundation.framework */; };
 		5E3A7BF21D014AAC00C44FDB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E3A7BF11D014AAC00C44FDB /* Security.framework */; };
 		5E3A7BF41D014AB400C44FDB /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E3A7BF31D014AB400C44FDB /* libz.tbd */; };
+		5E3E72631D917AA20077596D /* dog.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E3E72621D917AA20077596D /* dog.png */; };
 		5E969F3D1D055E12001BAEED /* PushManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E969F3C1D055E12001BAEED /* PushManager.m */; };
 		5EC8A5261D91269900C8AC3C /* Action列表.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 5EC8A5241D91269900C8AC3C /* Action列表.PNG */; };
 		5EC8A5271D91269900C8AC3C /* InputAction.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 5EC8A5251D91269900C8AC3C /* InputAction.PNG */; };
@@ -79,6 +80,7 @@
 		5E3A7BEF1D014AA500C44FDB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5E3A7BF11D014AAC00C44FDB /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		5E3A7BF31D014AB400C44FDB /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		5E3E72621D917AA20077596D /* dog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dog.png; sourceTree = "<group>"; };
 		5E6972F91D8E72E000ECF4F1 /* PushSettingsDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PushSettingsDemo.entitlements; sourceTree = "<group>"; };
 		5E969F3B1D055E12001BAEED /* PushManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushManager.h; sourceTree = "<group>"; };
 		5E969F3C1D055E12001BAEED /* PushManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushManager.m; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 		5EC8A5311D9127F000C8AC3C /* NotificationContent */ = {
 			isa = PBXGroup;
 			children = (
+				5E3E72621D917AA20077596D /* dog.png */,
 				5EC8A5321D9127F000C8AC3C /* NotificationViewController.h */,
 				5EC8A5331D9127F000C8AC3C /* NotificationViewController.m */,
 				5EC8A5351D9127F000C8AC3C /* MainInterface.storyboard */,
@@ -363,6 +366,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E3E72631D917AA20077596D /* dog.png in Resources */,
 				5EC8A5371D9127F000C8AC3C /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -684,6 +688,7 @@
 				5EC8A53E1D9127F000C8AC3C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5EC8A5511D9134FB00C8AC3C /* Build configuration list for PBXNativeTarget "NotificationService" */ = {
 			isa = XCConfigurationList;
@@ -692,6 +697,7 @@
 				5EC8A5531D9134FB00C8AC3C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5EF2B4401CC7D51000AC71C5 /* Build configuration list for PBXProject "PushSettingsDemo" */ = {
 			isa = XCConfigurationList;

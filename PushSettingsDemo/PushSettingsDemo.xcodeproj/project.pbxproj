@@ -17,6 +17,8 @@
 		5E3A7BF21D014AAC00C44FDB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E3A7BF11D014AAC00C44FDB /* Security.framework */; };
 		5E3A7BF41D014AB400C44FDB /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E3A7BF31D014AB400C44FDB /* libz.tbd */; };
 		5E969F3D1D055E12001BAEED /* PushManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E969F3C1D055E12001BAEED /* PushManager.m */; };
+		5EC8A5261D91269900C8AC3C /* Action列表.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 5EC8A5241D91269900C8AC3C /* Action列表.PNG */; };
+		5EC8A5271D91269900C8AC3C /* InputAction.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 5EC8A5251D91269900C8AC3C /* InputAction.PNG */; };
 		5EDF6F2C1D8FE2BA0072682F /* NewPushManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EDF6F2B1D8FE2BA0072682F /* NewPushManager.m */; };
 		5EDF6F311D8FE6BE0072682F /* dog@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EDF6F301D8FE6BE0072682F /* dog@2x.png */; };
 		5EF2B44A1CC7D51000AC71C5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2B4491CC7D51000AC71C5 /* main.m */; };
@@ -40,6 +42,8 @@
 		5E6972F91D8E72E000ECF4F1 /* PushSettingsDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PushSettingsDemo.entitlements; sourceTree = "<group>"; };
 		5E969F3B1D055E12001BAEED /* PushManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushManager.h; sourceTree = "<group>"; };
 		5E969F3C1D055E12001BAEED /* PushManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushManager.m; sourceTree = "<group>"; };
+		5EC8A5241D91269900C8AC3C /* Action列表.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Action列表.PNG"; sourceTree = "<group>"; };
+		5EC8A5251D91269900C8AC3C /* InputAction.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = InputAction.PNG; sourceTree = "<group>"; };
 		5EDF6F2A1D8FE2BA0072682F /* NewPushManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPushManager.h; sourceTree = "<group>"; };
 		5EDF6F2B1D8FE2BA0072682F /* NewPushManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPushManager.m; sourceTree = "<group>"; };
 		5EDF6F301D8FE6BE0072682F /* dog@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dog@2x.png"; sourceTree = "<group>"; };
@@ -85,6 +89,8 @@
 		5EDF6F2F1D8FE6BE0072682F /* resource */ = {
 			isa = PBXGroup;
 			children = (
+				5EC8A5241D91269900C8AC3C /* Action列表.PNG */,
+				5EC8A5251D91269900C8AC3C /* InputAction.PNG */,
 				5EDF6F301D8FE6BE0072682F /* dog@2x.png */,
 			);
 			path = resource;
@@ -215,6 +221,8 @@
 				5EF2B4581CC7D51000AC71C5 /* LaunchScreen.storyboard in Resources */,
 				5EDF6F311D8FE6BE0072682F /* dog@2x.png in Resources */,
 				5EF2B4551CC7D51000AC71C5 /* Assets.xcassets in Resources */,
+				5EC8A5261D91269900C8AC3C /* Action列表.PNG in Resources */,
+				5EC8A5271D91269900C8AC3C /* InputAction.PNG in Resources */,
 				5EF2B4531CC7D51000AC71C5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

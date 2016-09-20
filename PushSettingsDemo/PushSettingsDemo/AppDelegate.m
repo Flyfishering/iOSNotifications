@@ -57,7 +57,10 @@
     
     UNNotificationAction *rejectAction = [UNNotificationAction actionWithIdentifier:@"rejectAction" title:@"拒绝" options:UNNotificationActionOptionForeground];
     
-    UNNotificationCategory *categorys = [UNNotificationCategory categoryWithIdentifier:@"wakeup" actions:@[acceptAction,rejectAction] intentIdentifiers:@[] options:UNNotificationCategoryOptionNone];
+    //注意，输入的action，点击action后，会在Action列表显示：接受、拒绝、输入你想几点起
+    UNTextInputNotificationAction *inputAction = [UNTextInputNotificationAction actionWithIdentifier:@"inputAction" title:@"输入你想几点起" options:UNNotificationActionOptionForeground textInputButtonTitle:@"确定" textInputPlaceholder:@"再晚1小时吧"];
+    
+    UNNotificationCategory *categorys = [UNNotificationCategory categoryWithIdentifier:@"wakeup" actions:@[acceptAction,rejectAction,inputAction] intentIdentifiers:@[] options:UNNotificationCategoryOptionNone];
     
     
     [NewPushManager registerForRemoteNotificationTypes:7 categories:[NSSet setWithObjects:categorys,nil]];
@@ -216,6 +219,8 @@
 // 会屏蔽iOS10之前方法（设置对应的代理后）
 
 /**
+ *  在前台如何处理，通过completionHandler指定。如果不想显示某个通知，可以直接用空 options 调用 completionHandler:
+ // completionHandler([])
  *  前台收到远程通知，进入这里
  *  前台收到本地通知，进入这里
  *  前台收到带有其他字段alert/sound/badge的静默推送，进入这里
@@ -224,10 +229,12 @@
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler
 {
     NSLog(@"%@",notification);
+    completionHandler(UNNotificationPresentationOptionBadge | UNNotificationPresentationOptionSound | UNNotificationPresentationOptionAlert );
 }
 
 
 /**
+ * 在用户与你推送的通知进行交互时被调用，包括用户通过通知打开了你的应用，或者点击或者触发了某个action
  * 后台收到远程通知，点击进入
  * 后台收到本地通知，点击进入
  */
@@ -260,6 +267,14 @@
         
     }else if ([actionIdentifier isEqualToString:@"rejectAction"])
     {
+        
+    }else if ([actionIdentifier isEqualToString:@"inputAction"]){
+        
+        if ([response isKindOfClass:[UNTextInputNotificationResponse class]]) {
+            
+            NSString *inputText = ((UNTextInputNotificationResponse *)response).userText;
+            NSLog(@"%@",inputText);
+        }
         
     }
     

@@ -79,7 +79,18 @@
 
 + (void)buildLocalNotificationForTest
 {
+    NSError *error = nil;
+    //注意URL是本地图片路径，而不是http
+    //假如用网络地址，UNNotificationAttachment会创建失败，为nil
+    NSURL * imageUrl = [[NSBundle mainBundle] URLForResource:@"dog" withExtension:@"png"];
+    UNNotificationAttachment *imgAtt = [UNNotificationAttachment attachmentWithIdentifier:@"image" URL:imageUrl options:nil error:&error];
+    
+    NSURL * mp4Url = [[NSBundle mainBundle] URLForResource:@"media" withExtension:@"mp4"];
+    UNNotificationAttachment *mediaAtt = [UNNotificationAttachment attachmentWithIdentifier:@"image" URL:mp4Url options:nil error:&error];
+    
     UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc]init];
+    //在通知中心显示的总是第一个多媒体资源
+    content.attachments = @[mediaAtt,imgAtt];
     content.badge = @1;
     content.title = @"快起床啦啦啦啦";
     content.subtitle = @"求你了";

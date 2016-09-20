@@ -26,8 +26,9 @@
 		5EC8A5401D9134CB00C8AC3C /* NotificationContent.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 5EC8A52C1D9127F000C8AC3C /* NotificationContent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		5EC8A54C1D9134FA00C8AC3C /* NotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC8A54B1D9134FA00C8AC3C /* NotificationService.m */; };
 		5EC8A5501D9134FA00C8AC3C /* NotificationService.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 5EC8A5481D9134FA00C8AC3C /* NotificationService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		5EC8A5551D91404300C8AC3C /* media.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 5EC8A5541D91404300C8AC3C /* media.mp4 */; };
 		5EDF6F2C1D8FE2BA0072682F /* NewPushManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EDF6F2B1D8FE2BA0072682F /* NewPushManager.m */; };
-		5EDF6F311D8FE6BE0072682F /* dog@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EDF6F301D8FE6BE0072682F /* dog@2x.png */; };
+		5EDF6F311D8FE6BE0072682F /* dog.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EDF6F301D8FE6BE0072682F /* dog.png */; };
 		5EF2B44A1CC7D51000AC71C5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2B4491CC7D51000AC71C5 /* main.m */; };
 		5EF2B44D1CC7D51000AC71C5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2B44C1CC7D51000AC71C5 /* AppDelegate.m */; };
 		5EF2B4501CC7D51000AC71C5 /* PushViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2B44F1CC7D51000AC71C5 /* PushViewController.m */; };
@@ -94,9 +95,10 @@
 		5EC8A54A1D9134FA00C8AC3C /* NotificationService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationService.h; sourceTree = "<group>"; };
 		5EC8A54B1D9134FA00C8AC3C /* NotificationService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationService.m; sourceTree = "<group>"; };
 		5EC8A54D1D9134FA00C8AC3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5EC8A5541D91404300C8AC3C /* media.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = media.mp4; sourceTree = "<group>"; };
 		5EDF6F2A1D8FE2BA0072682F /* NewPushManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPushManager.h; sourceTree = "<group>"; };
 		5EDF6F2B1D8FE2BA0072682F /* NewPushManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPushManager.m; sourceTree = "<group>"; };
-		5EDF6F301D8FE6BE0072682F /* dog@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dog@2x.png"; sourceTree = "<group>"; };
+		5EDF6F301D8FE6BE0072682F /* dog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dog.png; sourceTree = "<group>"; };
 		5EF2B4451CC7D51000AC71C5 /* PushSettingsDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PushSettingsDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EF2B4491CC7D51000AC71C5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5EF2B44B1CC7D51000AC71C5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -178,9 +180,10 @@
 		5EDF6F2F1D8FE6BE0072682F /* resource */ = {
 			isa = PBXGroup;
 			children = (
+				5EC8A5541D91404300C8AC3C /* media.mp4 */,
 				5EC8A5241D91269900C8AC3C /* Action列表.PNG */,
 				5EC8A5251D91269900C8AC3C /* InputAction.PNG */,
-				5EDF6F301D8FE6BE0072682F /* dog@2x.png */,
+				5EDF6F301D8FE6BE0072682F /* dog.png */,
 			);
 			path = resource;
 			sourceTree = "<group>";
@@ -376,7 +379,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5EF2B4581CC7D51000AC71C5 /* LaunchScreen.storyboard in Resources */,
-				5EDF6F311D8FE6BE0072682F /* dog@2x.png in Resources */,
+				5EDF6F311D8FE6BE0072682F /* dog.png in Resources */,
+				5EC8A5551D91404300C8AC3C /* media.mp4 in Resources */,
 				5EF2B4551CC7D51000AC71C5 /* Assets.xcassets in Resources */,
 				5EC8A5261D91269900C8AC3C /* Action列表.PNG in Resources */,
 				5EC8A5271D91269900C8AC3C /* InputAction.PNG in Resources */,

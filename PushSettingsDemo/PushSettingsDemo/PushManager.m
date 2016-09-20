@@ -36,9 +36,6 @@
 
 + (void)setupWithOption:(NSDictionary *)launchOptions {
     
-    //极光推送
-//    [JPUSHService setupWithOption:launchOptions appKey:@"0d16cdd32fbdf6849b0a5214" channel:nil apsForProduction:NO];
-    
     //在app没有被启动的时候，接收到了消息通知。这时候操作系统会按照默认的方式来展现一个alert消息，在app icon上标记一个数字，甚至播放一段声音。
     
     //用户看到消息之后，点击了一下action按钮或者点击了应用图标。如果action按钮被点击了，系统会通过调用application:didFinishLaunchingWithOptions:这个代理方法来启动应用，并且会把notification的payload数据传递进去。如果应用图标被点击了，系统也一样会调用application:didFinishLaunchingWithOptions:这个代理方法来启动应用，唯一不同的是这时候启动参数里面不会有任何notification的信息。
@@ -65,20 +62,8 @@
 
 + (void)registerForRemoteNotificationTypes:(NSUInteger)types categories:(NSSet *)categories
 {
-    //极光推送
-//    [JPUSHService registerForRemoteNotificationTypes:7 categories:nil];
-//    [JPUSHService setDebugMode];
     
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 10.0){
-        
-        [[UNUserNotificationCenter currentNotificationCenter] requestAuthorizationWithOptions:(UNAuthorizationOptionBadge |UNAuthorizationOptionSound | UNAuthorizationOptionAlert) completionHandler:^(BOOL granted, NSError * _Nullable error) {
-            if (granted) {
-                [[UIApplication sharedApplication] registerForRemoteNotifications];
-                [[UNUserNotificationCenter currentNotificationCenter] setNotificationCategories:categories];
-            }
-        }];
-        
-    }else if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
 //        UIUserNotificationType types = UIUserNotificationTypeSound |UIUserNotificationTypeAlert | UIUserNotificationTypeBadge;
         UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:types categories:categories];
         [[UIApplication sharedApplication] registerUserNotificationSettings:settings];

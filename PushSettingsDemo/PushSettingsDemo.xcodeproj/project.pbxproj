@@ -17,6 +17,8 @@
 		5E3A7BF21D014AAC00C44FDB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E3A7BF11D014AAC00C44FDB /* Security.framework */; };
 		5E3A7BF41D014AB400C44FDB /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E3A7BF31D014AB400C44FDB /* libz.tbd */; };
 		5E969F3D1D055E12001BAEED /* PushManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E969F3C1D055E12001BAEED /* PushManager.m */; };
+		5EDF6F2C1D8FE2BA0072682F /* NewPushManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EDF6F2B1D8FE2BA0072682F /* NewPushManager.m */; };
+		5EDF6F311D8FE6BE0072682F /* dog@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EDF6F301D8FE6BE0072682F /* dog@2x.png */; };
 		5EF2B44A1CC7D51000AC71C5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2B4491CC7D51000AC71C5 /* main.m */; };
 		5EF2B44D1CC7D51000AC71C5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2B44C1CC7D51000AC71C5 /* AppDelegate.m */; };
 		5EF2B4501CC7D51000AC71C5 /* PushViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2B44F1CC7D51000AC71C5 /* PushViewController.m */; };
@@ -38,6 +40,9 @@
 		5E6972F91D8E72E000ECF4F1 /* PushSettingsDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PushSettingsDemo.entitlements; sourceTree = "<group>"; };
 		5E969F3B1D055E12001BAEED /* PushManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushManager.h; sourceTree = "<group>"; };
 		5E969F3C1D055E12001BAEED /* PushManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushManager.m; sourceTree = "<group>"; };
+		5EDF6F2A1D8FE2BA0072682F /* NewPushManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPushManager.h; sourceTree = "<group>"; };
+		5EDF6F2B1D8FE2BA0072682F /* NewPushManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPushManager.m; sourceTree = "<group>"; };
+		5EDF6F301D8FE6BE0072682F /* dog@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dog@2x.png"; sourceTree = "<group>"; };
 		5EF2B4451CC7D51000AC71C5 /* PushSettingsDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PushSettingsDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EF2B4491CC7D51000AC71C5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5EF2B44B1CC7D51000AC71C5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -77,6 +82,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		5EDF6F2F1D8FE6BE0072682F /* resource */ = {
+			isa = PBXGroup;
+			children = (
+				5EDF6F301D8FE6BE0072682F /* dog@2x.png */,
+			);
+			path = resource;
+			sourceTree = "<group>";
+		};
 		5EF2B43C1CC7D51000AC71C5 = {
 			isa = PBXGroup;
 			children = (
@@ -102,12 +115,15 @@
 				5EF2B44C1CC7D51000AC71C5 /* AppDelegate.m */,
 				5E969F3B1D055E12001BAEED /* PushManager.h */,
 				5E969F3C1D055E12001BAEED /* PushManager.m */,
+				5EDF6F2A1D8FE2BA0072682F /* NewPushManager.h */,
+				5EDF6F2B1D8FE2BA0072682F /* NewPushManager.m */,
 				5EF2B44E1CC7D51000AC71C5 /* PushViewController.h */,
 				5EF2B44F1CC7D51000AC71C5 /* PushViewController.m */,
 				5EF2B4511CC7D51000AC71C5 /* Main.storyboard */,
 				5EF2B4541CC7D51000AC71C5 /* Assets.xcassets */,
 				5EF2B4561CC7D51000AC71C5 /* LaunchScreen.storyboard */,
 				5EF2B4591CC7D51000AC71C5 /* Info.plist */,
+				5EDF6F2F1D8FE6BE0072682F /* resource */,
 				5EF2B4481CC7D51000AC71C5 /* Supporting Files */,
 			);
 			path = PushSettingsDemo;
@@ -197,6 +213,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5EF2B4581CC7D51000AC71C5 /* LaunchScreen.storyboard in Resources */,
+				5EDF6F311D8FE6BE0072682F /* dog@2x.png in Resources */,
 				5EF2B4551CC7D51000AC71C5 /* Assets.xcassets in Resources */,
 				5EF2B4531CC7D51000AC71C5 /* Main.storyboard in Resources */,
 			);
@@ -213,6 +230,7 @@
 				5EF2B44D1CC7D51000AC71C5 /* AppDelegate.m in Sources */,
 				5EF2B44A1CC7D51000AC71C5 /* main.m in Sources */,
 				5E969F3D1D055E12001BAEED /* PushManager.m in Sources */,
+				5EDF6F2C1D8FE2BA0072682F /* NewPushManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

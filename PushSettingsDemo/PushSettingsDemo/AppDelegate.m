@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "PushManager.h"
+#import "NewPushManager.h"
 
 @interface AppDelegate ()
 
@@ -41,11 +42,15 @@
     categorys.identifier = @"wakeup";
     NSArray *actions = @[acceptAction, rejectAction];
     [categorys setActions:actions forContext:UIUserNotificationActionContextMinimal];
+     
+    [PushManager registerForRemoteNotificationTypes:7 categories:[NSSet setWithObjects:categorys,nil]];
+    [PushManager resetBadge];
+
      */
     
     /**********************************************************/
     //iOS 10以上，通知代理设置，不设置，代理不调用。
-    //Above iOS 10,you must set the UNUserNotificationCenter delegate first before invoke the UNUserNotificationCenterDelegate
+    //在锁屏界面，通知栏，需要点击“查看”，才会显示“接受”、“拒绝”的按钮
     [UNUserNotificationCenter currentNotificationCenter].delegate = self;
     
     UNNotificationAction *acceptAction = [UNNotificationAction actionWithIdentifier:@"acceptAction" title:@"接受" options:UNNotificationActionOptionDestructive];
@@ -55,9 +60,9 @@
     UNNotificationCategory *categorys = [UNNotificationCategory categoryWithIdentifier:@"wakeup" actions:@[acceptAction,rejectAction] intentIdentifiers:@[] options:UNNotificationCategoryOptionNone];
     
     
-    [PushManager registerForRemoteNotificationTypes:7 categories:[NSSet setWithObjects:categorys,nil]];
+    [NewPushManager registerForRemoteNotificationTypes:7 categories:[NSSet setWithObjects:categorys,nil]];
 
-    [PushManager resetBadge];
+    [NewPushManager resetBadge];
 
     return YES;
 }
@@ -104,12 +109,13 @@
     }
 }
 
+#pragma mark - 唯二不在UserNotifications框架内的API
 /**
  *  registerForRemoteNotifications的回调
  */
 - (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
 {
-    [PushManager registerDeviceToken:deviceToken];
+    [NewPushManager registerDeviceToken:deviceToken];
 }
 /**
  *  registerForRemoteNotifications的回调
@@ -248,6 +254,15 @@
                     >NSDictionary *userInfo
      */
     NSLog(@"%@",response);
+
+    NSString *actionIdentifier = response.actionIdentifier;
+    if ([actionIdentifier isEqualToString:@"acceptAction"]) {
+        
+    }else if ([actionIdentifier isEqualToString:@"rejectAction"])
+    {
+        
+    }
+    
 }
 
 @end

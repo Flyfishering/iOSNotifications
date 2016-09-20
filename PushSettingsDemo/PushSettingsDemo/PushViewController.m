@@ -8,6 +8,7 @@
 
 #import "PushViewController.h"
 #import "PushManager.h"
+#import "NewPushManager.h"
 
 #import <CoreLocation/CoreLocation.h>
 
@@ -31,7 +32,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    [PushManager setBadge:8];
+    // [PushManager setBadge:8];
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
@@ -143,10 +144,23 @@
 
 }
 
-- (IBAction)sendLocalNoti:(id)sender {
-    
-    [PushManager buildUILocalNotificationWithNSDate:[[NSDate date] dateByAddingTimeInterval:5.0] alert:@"快起床，快快起床~" badge:0 identifierKey:@"life" userInfo:nil];
+#pragma mark - send/remove/change
 
+- (IBAction)sendNotiAction:(id)sender {
+    
+//    [PushManager buildUILocalNotificationWithNSDate:[[NSDate date] dateByAddingTimeInterval:5.0] alert:@"快起床，快快起床~" badge:0 identifierKey:@"life" userInfo:nil];
+    
+    [NewPushManager buildLocalNotificationForTest];
+
+}
+- (IBAction)removeNotiAction:(id)sender {
+    
+    [NewPushManager removeDeliveredNotificationForTest];
+}
+
+- (IBAction)updateNotiAction:(id)sender {
+    
+    [NewPushManager updateDeliveredNotificationForTest];
 }
 
 # pragma mark - setter

@@ -17,6 +17,11 @@
 		5E3A7BF21D014AAC00C44FDB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E3A7BF11D014AAC00C44FDB /* Security.framework */; };
 		5E3A7BF41D014AB400C44FDB /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E3A7BF31D014AB400C44FDB /* libz.tbd */; };
 		5E3E72631D917AA20077596D /* dog.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E3E72621D917AA20077596D /* dog.png */; };
+		5E3E72651D917FFC0077596D /* 横幅图片.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 5E3E72641D917FFC0077596D /* 横幅图片.PNG */; };
+		5E3E72691D9180320077596D /* 图片.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 5E3E72681D9180320077596D /* 图片.PNG */; };
+		5E3E726D1D9180440077596D /* 视频.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 5E3E726A1D9180440077596D /* 视频.PNG */; };
+		5E3E726E1D9180440077596D /* 通知中心图片.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 5E3E726B1D9180440077596D /* 通知中心图片.PNG */; };
+		5E3E726F1D9180440077596D /* 自定义界面.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 5E3E726C1D9180440077596D /* 自定义界面.PNG */; };
 		5E969F3D1D055E12001BAEED /* PushManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E969F3C1D055E12001BAEED /* PushManager.m */; };
 		5EC8A5261D91269900C8AC3C /* Action列表.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 5EC8A5241D91269900C8AC3C /* Action列表.PNG */; };
 		5EC8A5271D91269900C8AC3C /* InputAction.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 5EC8A5251D91269900C8AC3C /* InputAction.PNG */; };
@@ -81,6 +86,11 @@
 		5E3A7BF11D014AAC00C44FDB /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		5E3A7BF31D014AB400C44FDB /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		5E3E72621D917AA20077596D /* dog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dog.png; sourceTree = "<group>"; };
+		5E3E72641D917FFC0077596D /* 横幅图片.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "横幅图片.PNG"; sourceTree = "<group>"; };
+		5E3E72681D9180320077596D /* 图片.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "图片.PNG"; sourceTree = "<group>"; };
+		5E3E726A1D9180440077596D /* 视频.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "视频.PNG"; sourceTree = "<group>"; };
+		5E3E726B1D9180440077596D /* 通知中心图片.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "通知中心图片.PNG"; sourceTree = "<group>"; };
+		5E3E726C1D9180440077596D /* 自定义界面.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "自定义界面.PNG"; sourceTree = "<group>"; };
 		5E6972F91D8E72E000ECF4F1 /* PushSettingsDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PushSettingsDemo.entitlements; sourceTree = "<group>"; };
 		5E969F3B1D055E12001BAEED /* PushManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushManager.h; sourceTree = "<group>"; };
 		5E969F3C1D055E12001BAEED /* PushManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushManager.m; sourceTree = "<group>"; };
@@ -183,6 +193,11 @@
 		5EDF6F2F1D8FE6BE0072682F /* resource */ = {
 			isa = PBXGroup;
 			children = (
+				5E3E726A1D9180440077596D /* 视频.PNG */,
+				5E3E726B1D9180440077596D /* 通知中心图片.PNG */,
+				5E3E726C1D9180440077596D /* 自定义界面.PNG */,
+				5E3E72681D9180320077596D /* 图片.PNG */,
+				5E3E72641D917FFC0077596D /* 横幅图片.PNG */,
 				5EC8A5541D91404300C8AC3C /* media.mp4 */,
 				5EC8A5241D91269900C8AC3C /* Action列表.PNG */,
 				5EC8A5251D91269900C8AC3C /* InputAction.PNG */,
@@ -383,8 +398,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				5EF2B4581CC7D51000AC71C5 /* LaunchScreen.storyboard in Resources */,
+				5E3E72691D9180320077596D /* 图片.PNG in Resources */,
+				5E3E726E1D9180440077596D /* 通知中心图片.PNG in Resources */,
 				5EDF6F311D8FE6BE0072682F /* dog.png in Resources */,
+				5E3E726D1D9180440077596D /* 视频.PNG in Resources */,
 				5EC8A5551D91404300C8AC3C /* media.mp4 in Resources */,
+				5E3E72651D917FFC0077596D /* 横幅图片.PNG in Resources */,
+				5E3E726F1D9180440077596D /* 自定义界面.PNG in Resources */,
 				5EF2B4551CC7D51000AC71C5 /* Assets.xcassets in Resources */,
 				5EC8A5261D91269900C8AC3C /* Action列表.PNG in Resources */,
 				5EC8A5271D91269900C8AC3C /* InputAction.PNG in Resources */,

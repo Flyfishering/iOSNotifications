@@ -220,7 +220,7 @@
 
 /**
  *  在前台如何处理，通过completionHandler指定。如果不想显示某个通知，可以直接用空 options 调用 completionHandler:
- // completionHandler([])
+ // completionHandler(0)
  *  前台收到远程通知，进入这里
  *  前台收到本地通知，进入这里
  *  前台收到带有其他字段alert/sound/badge的静默推送，进入这里

@@ -16,6 +16,8 @@
 		5E3A7BF01D014AA500C44FDB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E3A7BEF1D014AA500C44FDB /* Foundation.framework */; };
 		5E3A7BF21D014AAC00C44FDB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E3A7BF11D014AAC00C44FDB /* Security.framework */; };
 		5E3A7BF41D014AB400C44FDB /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E3A7BF31D014AB400C44FDB /* libz.tbd */; };
+		5E3B4B721D9505E800E0CFC3 /* UILocalNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E3B4B711D9505E800E0CFC3 /* UILocalNotificationManager.m */; };
+		5E3B4B751D95084800E0CFC3 /* UNLocalNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E3B4B741D95084800E0CFC3 /* UNLocalNotificationManager.m */; };
 		5E3E72631D917AA20077596D /* dog.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E3E72621D917AA20077596D /* dog.png */; };
 		5E3E72651D917FFC0077596D /* 横幅图片.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 5E3E72641D917FFC0077596D /* 横幅图片.PNG */; };
 		5E3E72691D9180320077596D /* 图片.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 5E3E72681D9180320077596D /* 图片.PNG */; };
@@ -85,6 +87,10 @@
 		5E3A7BEF1D014AA500C44FDB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5E3A7BF11D014AAC00C44FDB /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		5E3A7BF31D014AB400C44FDB /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		5E3B4B701D9505E800E0CFC3 /* UILocalNotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILocalNotificationManager.h; sourceTree = "<group>"; };
+		5E3B4B711D9505E800E0CFC3 /* UILocalNotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UILocalNotificationManager.m; sourceTree = "<group>"; };
+		5E3B4B731D95084800E0CFC3 /* UNLocalNotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UNLocalNotificationManager.h; sourceTree = "<group>"; };
+		5E3B4B741D95084800E0CFC3 /* UNLocalNotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UNLocalNotificationManager.m; sourceTree = "<group>"; };
 		5E3E72621D917AA20077596D /* dog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dog.png; sourceTree = "<group>"; };
 		5E3E72641D917FFC0077596D /* 横幅图片.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "横幅图片.PNG"; sourceTree = "<group>"; };
 		5E3E72681D9180320077596D /* 图片.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "图片.PNG"; sourceTree = "<group>"; };
@@ -237,6 +243,10 @@
 				5E969F3C1D055E12001BAEED /* PushManager.m */,
 				5EDF6F2A1D8FE2BA0072682F /* NewPushManager.h */,
 				5EDF6F2B1D8FE2BA0072682F /* NewPushManager.m */,
+				5E3B4B701D9505E800E0CFC3 /* UILocalNotificationManager.h */,
+				5E3B4B711D9505E800E0CFC3 /* UILocalNotificationManager.m */,
+				5E3B4B731D95084800E0CFC3 /* UNLocalNotificationManager.h */,
+				5E3B4B741D95084800E0CFC3 /* UNLocalNotificationManager.m */,
 				5EF2B44E1CC7D51000AC71C5 /* PushViewController.h */,
 				5EF2B44F1CC7D51000AC71C5 /* PushViewController.m */,
 				5EF2B4511CC7D51000AC71C5 /* Main.storyboard */,
@@ -437,8 +447,10 @@
 			files = (
 				5EF2B4501CC7D51000AC71C5 /* PushViewController.m in Sources */,
 				5EF2B44D1CC7D51000AC71C5 /* AppDelegate.m in Sources */,
+				5E3B4B751D95084800E0CFC3 /* UNLocalNotificationManager.m in Sources */,
 				5EF2B44A1CC7D51000AC71C5 /* main.m in Sources */,
 				5E969F3D1D055E12001BAEED /* PushManager.m in Sources */,
+				5E3B4B721D9505E800E0CFC3 /* UILocalNotificationManager.m in Sources */,
 				5EDF6F2C1D8FE2BA0072682F /* NewPushManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

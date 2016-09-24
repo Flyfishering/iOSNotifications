@@ -90,11 +90,11 @@
     
     UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc]init];
     //在通知中心显示的总是第一个多媒体资源
-    content.attachments = @[mediaAtt,imgAtt];
+    content.attachments = @[imgAtt,mediaAtt];
     content.badge = @1;
-    content.title = @"快起床啦啦啦啦";
-    content.subtitle = @"求你了";
-    content.body = @"吃早餐去!";
+    content.title = @"起床闹钟";
+    content.subtitle = @"第一次起床";
+    content.body = @"起床反反复复。。。 ";
     content.categoryIdentifier = @"wakeup";
     content.launchImageName = @"dog";
     content.sound = [UNNotificationSound defaultSound];

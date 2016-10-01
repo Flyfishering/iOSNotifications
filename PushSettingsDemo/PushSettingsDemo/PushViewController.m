@@ -148,9 +148,9 @@
 
 - (IBAction)sendNotiAction:(id)sender {
     
-//    [PushManager buildUILocalNotificationWithNSDate:[[NSDate date] dateByAddingTimeInterval:5.0] alert:@"快起床，快快起床~" badge:0 identifierKey:@"life" userInfo:nil];
+    [PushManager buildUILocalNotificationWithNSDate:[[NSDate date] dateByAddingTimeInterval:5.0] alert:@"快起床，快快起床~" badge:0 identifierKey:@"life" userInfo:nil];
     
-    [NewPushManager buildLocalNotificationForTest];
+//    [NewPushManager buildLocalNotificationForTest];
 
 }
 - (IBAction)removeNotiAction:(id)sender {

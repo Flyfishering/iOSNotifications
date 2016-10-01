@@ -295,7 +295,7 @@
 }
 
 + (void)setBadge:(NSInteger)badge {
-    [UIApplication sharedApplication].applicationIconBadgeNumber = badge;
+    [UIApplication sharedApplication].applicationIconBadgeNumber--;
 }
 
 #pragma mark - private
@@ -312,8 +312,5 @@
     UIViewController *vc = keyWindow.rootViewController;
     return vc;
 }
-
-
-
 
 @end

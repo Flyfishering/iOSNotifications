@@ -683,7 +683,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.junglesong.pushtestdemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3945c86d-3453-40ab-a3f7-f60904232582";
+				PROVISIONING_PROFILE = "186067dd-3def-43c7-a3df-353f46ea2cc9";
 				PROVISIONING_PROFILE_SPECIFIER = push_test_dev_pp;
 			};
 			name = Debug;
@@ -705,7 +705,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.junglesong.pushtestdemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3945c86d-3453-40ab-a3f7-f60904232582";
+				PROVISIONING_PROFILE = "186067dd-3def-43c7-a3df-353f46ea2cc9";
 				PROVISIONING_PROFILE_SPECIFIER = push_test_dev_pp;
 			};
 			name = Release;

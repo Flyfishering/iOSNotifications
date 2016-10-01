@@ -24,7 +24,7 @@
     /*注意：以下action注册，只在iOS10之前有效！！！  */
     //apns: {"aps":{"alert":"测试推送的快捷回复", "sound":"default", "badge": 1, "category":"alert"}}
     
-    /*
+    
     //接受按钮
     UIMutableUserNotificationAction *acceptAction = [[UIMutableUserNotificationAction alloc] init];
     acceptAction.identifier = @"acceptAction";
@@ -44,13 +44,11 @@
     [categorys setActions:actions forContext:UIUserNotificationActionContextMinimal];
      
     [PushManager registerForRemoteNotificationTypes:7 categories:[NSSet setWithObjects:categorys,nil]];
-    [PushManager resetBadge];
-
-     */
     
     /**********************************************************/
     //iOS 10以上，通知代理设置，不设置，代理不调用。
     //在锁屏界面，通知栏，需要点击“查看”，才会显示“接受”、“拒绝”的按钮
+    /*
     [UNUserNotificationCenter currentNotificationCenter].delegate = self;
     
     UNNotificationAction *acceptAction = [UNNotificationAction actionWithIdentifier:@"acceptAction" title:@"接受" options:UNNotificationActionOptionDestructive];
@@ -65,7 +63,7 @@
     
     [NewPushManager registerForRemoteNotificationTypes:7 categories:[NSSet setWithObjects:categorys,nil]];
 
-    [NewPushManager resetBadge];
+     */
     return YES;
 }
 
@@ -86,6 +84,8 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+//    [NewPushManager resetBadge];
+    [PushManager resetBadge];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

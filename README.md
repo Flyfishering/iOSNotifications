@@ -41,6 +41,7 @@ https://forums.developer.apple.com/thread/54322
 
 [SmartPush](https://github.com/shaojiankui/SmartPush)一款IOS苹果远程推送测试程序,Mac OS下的APNS工具APP。
 
+[APNS / GCM Tester](http://apns-gcm.bryantan.info/) 在线测试工具。
 
 ### 相关博客或文档-Blog
 
@@ -53,6 +54,10 @@ https://forums.developer.apple.com/thread/54322
 * [Push Issues](https://developer.apple.com/library/ios/technotes/tn2265/_index.html)
 
 * [iOS 推送全解析，你不可不知的所有 Tips](http://blog.jiguang.cn/ios_push_overall/)
+
+* [服务器推送证书](http://docs.getui.com/mobile/ios/apns/)
+* [iOS开发各种证书问题](http://blog.csdn.net/li_shuang_ls/article/details/52259512)
+* [第三方服务推送名词](http://docs.getui.com/more/word/)
 
 ### 第三方服务
 

@@ -178,17 +178,6 @@
 #pragma mark - local/remote handle
 
 /**
- *  iOS 10之前，若未实现该代理application didReceiveRemoteNotification: fetchCompletionHandler:
-        不管在前台还是在后台，收到远程推送会进入didReceiveRemoteNotification代理方法；
- *  假如未设置UNUserNotificationCenter代理，iOS 10收到远程通知也会进入这里。
- */
-- (void)application:(UIApplication*)application didReceiveRemoteNotification:(NSDictionary*)userInfo
-{
-    [PushManager handleRemoteNotification:userInfo];
-}
-
-
-/**
  * iOS 10之前，在前台，收到本地通知，会进入这里
  * iOS 10之前，在后台，点击本地通知，会进入这里
  * 假如未设置UNUserNotificationCenter代理，iOS 10收到本地通知也会进入这里。
@@ -196,6 +185,18 @@
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
     [PushManager handleLocalNotification:notification];
+}
+
+/**
+ *  iOS 10之前，若未实现该代理application didReceiveRemoteNotification: fetchCompletionHandler:
+ 不管在前台还是在后台，收到远程通知（包括静默推送）会进入didReceiveRemoteNotification代理方法；
+ *  假如实现了，收到远程通知（包括静默推送）就会进入application didReceiveRemoteNotification: fetchCompletionHandler:方法
+ *  假如未设置UNUserNotificationCenter代理，iOS 10收到远程通知也会进入这里。
+ */
+- (void)application:(UIApplication*)application didReceiveRemoteNotification:(NSDictionary*)userInfo
+{
+    NSLog(@"push notification %@",userInfo);
+    [PushManager handleRemoteNotification:userInfo];
 }
 
 /*! This delegate method offers an opportunity for applications with the "remote-notification" background mode to fetch appropriate new data in response to an incoming remote notification. You should call the fetchCompletionHandler as soon as you're finished performing that operation, so the system can accurately estimate its power and data cost.
@@ -211,7 +212,7 @@
  */
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
-    NSLog(@"push notification %@",userInfo);
+    NSLog(@"push notification completionHandler %@",userInfo);
 }
 
 # pragma mark iOS 10

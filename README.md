@@ -8,7 +8,9 @@ Everything tha about notification in iOS.
 ### iOS 10.0.0 bug：点击通知，不响应
 
 https://forums.developer.apple.com/thread/62267
+
 https://forums.developer.apple.com/thread/54332
+
 https://forums.developer.apple.com/thread/54322
 
 [如何解决？去看看](http://wenghengcong.com/2016/10/%E9%80%9A%E7%9F%A5%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF%EF%BC%88%E5%85%AD%EF%BC%89%EF%BC%9A%E6%9B%B4%E5%A4%9A%E7%9A%84%E6%B3%A8%E6%84%8F%E7%82%B9/)

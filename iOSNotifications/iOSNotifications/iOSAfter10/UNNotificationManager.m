@@ -6,14 +6,14 @@
 //  Copyright © 2016年 WengHengcong. All rights reserved.
 //
 
-#import "NewPushManager.h"
+#import "UNNotificationManager.h"
 #import "PushViewController.h"
 
-@implementation NewPushManager
+@implementation UNNotificationManager
 
 + (instancetype)sharedManager {
     
-    static NewPushManager *shared = nil;
+    static UNNotificationManager *shared = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         shared = [[self alloc]init];
@@ -61,14 +61,14 @@
     NSLog(@"device token is: %@", newToken);
     
     //show
-    PushViewController *pushVC = (PushViewController *)[[NewPushManager sharedManager] viewController];
+    PushViewController *pushVC = (PushViewController *)[[UNNotificationManager sharedManager] viewController];
     pushVC.devicetoken = newToken;
 }
 
 #pragma mark - badge
 
 + (void)resetBadge {
-    [NewPushManager setBadge:0];
+    [UNNotificationManager setBadge:0];
 }
 
 + (void)setBadge:(NSInteger)badge {

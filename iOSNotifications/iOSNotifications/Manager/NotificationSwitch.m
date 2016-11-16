@@ -8,8 +8,9 @@
 
 #import "NotificationSwitch.h"
 
-#import "PushManager.h"
-#import "NewPushManager.h"
+#import "UINotificationManager.h"
+#import "UNNotificationManager.h"
+
 #import "UILocalNotificationManager.h"
 #import "UNLocalNotificationManager.h"
 
@@ -49,14 +50,14 @@
 
         /**第二组按钮结束**/
         
-        [NewPushManager registerForRemoteNotificationTypes:7 categories:[NSSet setWithObjects:wakeUpCate,customCate,nil]];
+        [UNNotificationManager registerForRemoteNotificationTypes:7 categories:[NSSet setWithObjects:wakeUpCate,customCate,nil]];
 
     }else{
         /***************************测试category*******************************/
         /*注意：以下action注册，只在iOS10之前有效！！！  */
         //apns: {"aps":{"alert":"测试推送的快捷回复", "sound":"default", "badge": 1, "category":"alert"}}
         
-        [PushManager setupWithOption:launchOptions];
+        [UINotificationManager setupWithOption:launchOptions];
 
          //接受按钮
          UIMutableUserNotificationAction *acceptAction = [[UIMutableUserNotificationAction alloc] init];
@@ -76,7 +77,7 @@
          NSArray *actions = @[acceptAction, rejectAction];
          [categorys setActions:actions forContext:UIUserNotificationActionContextMinimal];
          
-         [PushManager registerForRemoteNotificationTypes:7 categories:[NSSet setWithObjects:categorys,nil]];
+         [UINotificationManager registerForRemoteNotificationTypes:7 categories:[NSSet setWithObjects:categorys,nil]];
         
     }
 }
@@ -84,18 +85,18 @@
 + (void)resetBadge
 {
     if (NewPushSwitchOpen) {
-        [NewPushManager resetBadge];
+        [UNNotificationManager resetBadge];
     }else{
-        [PushManager resetBadge];
+        [UINotificationManager resetBadge];
     }
 }
 
 + (void)registerDeviceToken:(NSData*)deviceToken
 {
     if (NewPushSwitchOpen) {
-        [NewPushManager registerDeviceToken:deviceToken];
+        [UNNotificationManager registerDeviceToken:deviceToken];
     }else{
-        [PushManager registerDeviceToken:deviceToken];
+        [UINotificationManager registerDeviceToken:deviceToken];
     }
 }
 
@@ -113,7 +114,7 @@
     if (NewPushSwitchOpen) {
 
     }else{
-        [PushManager handleRemoteNotification:userInfo];
+        [UINotificationManager handleRemoteNotification:userInfo];
     }
 }
 

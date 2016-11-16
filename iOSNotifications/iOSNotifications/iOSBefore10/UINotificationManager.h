@@ -13,7 +13,7 @@
 #define kLocalNotificationIdentifier        @"kLocalNotificationIdentifier"
 #define kLocalNotificationContent           @"kLocalNotificationContent"
 
-@interface PushManager : NSObject
+@interface UINotificationManager : NSObject
 
 + (instancetype)sharedManager;
 /**

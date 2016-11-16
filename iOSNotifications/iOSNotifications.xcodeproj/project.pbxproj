@@ -24,9 +24,9 @@
 		5EB7A4951DDC61E4007E8C1F /* 通知中心图片.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 5EB7A47E1DDC61E4007E8C1F /* 通知中心图片.PNG */; };
 		5EB7A4A01DDC6656007E8C1F /* NotificationSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB7A49C1DDC6656007E8C1F /* NotificationSwitch.m */; };
 		5EB7A4A11DDC6656007E8C1F /* PushViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB7A49F1DDC6656007E8C1F /* PushViewController.m */; };
-		5EB7A4A71DDC66BA007E8C1F /* NewPushManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB7A4A41DDC66BA007E8C1F /* NewPushManager.m */; };
+		5EB7A4A71DDC66BA007E8C1F /* UNNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB7A4A41DDC66BA007E8C1F /* UNNotificationManager.m */; };
 		5EB7A4A81DDC66BA007E8C1F /* UNLocalNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB7A4A61DDC66BA007E8C1F /* UNLocalNotificationManager.m */; };
-		5EB7A4AD1DDC66C3007E8C1F /* PushManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB7A4AA1DDC66C3007E8C1F /* PushManager.m */; };
+		5EB7A4AD1DDC66C3007E8C1F /* UINotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB7A4AA1DDC66C3007E8C1F /* UINotificationManager.m */; };
 		5EB7A4AE1DDC66C3007E8C1F /* UILocalNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB7A4AC1DDC66C3007E8C1F /* UILocalNotificationManager.m */; };
 		5EC8A52E1D9127F000C8AC3C /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EC8A52D1D9127F000C8AC3C /* UserNotifications.framework */; };
 		5EC8A5301D9127F000C8AC3C /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EC8A52F1D9127F000C8AC3C /* UserNotificationsUI.framework */; };
@@ -92,12 +92,12 @@
 		5EB7A49C1DDC6656007E8C1F /* NotificationSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationSwitch.m; sourceTree = "<group>"; };
 		5EB7A49E1DDC6656007E8C1F /* PushViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushViewController.h; sourceTree = "<group>"; };
 		5EB7A49F1DDC6656007E8C1F /* PushViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushViewController.m; sourceTree = "<group>"; };
-		5EB7A4A31DDC66BA007E8C1F /* NewPushManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPushManager.h; sourceTree = "<group>"; };
-		5EB7A4A41DDC66BA007E8C1F /* NewPushManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPushManager.m; sourceTree = "<group>"; };
+		5EB7A4A31DDC66BA007E8C1F /* UNNotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UNNotificationManager.h; sourceTree = "<group>"; };
+		5EB7A4A41DDC66BA007E8C1F /* UNNotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UNNotificationManager.m; sourceTree = "<group>"; };
 		5EB7A4A51DDC66BA007E8C1F /* UNLocalNotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UNLocalNotificationManager.h; sourceTree = "<group>"; };
 		5EB7A4A61DDC66BA007E8C1F /* UNLocalNotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UNLocalNotificationManager.m; sourceTree = "<group>"; };
-		5EB7A4A91DDC66C3007E8C1F /* PushManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushManager.h; sourceTree = "<group>"; };
-		5EB7A4AA1DDC66C3007E8C1F /* PushManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushManager.m; sourceTree = "<group>"; };
+		5EB7A4A91DDC66C3007E8C1F /* UINotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UINotificationManager.h; sourceTree = "<group>"; };
+		5EB7A4AA1DDC66C3007E8C1F /* UINotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UINotificationManager.m; sourceTree = "<group>"; };
 		5EB7A4AB1DDC66C3007E8C1F /* UILocalNotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILocalNotificationManager.h; sourceTree = "<group>"; };
 		5EB7A4AC1DDC66C3007E8C1F /* UILocalNotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UILocalNotificationManager.m; sourceTree = "<group>"; };
 		5EC8A52C1D9127F000C8AC3C /* NotificationContent.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationContent.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -169,8 +169,8 @@
 		5EB7A4691DDC61E4007E8C1F /* iOSAfter10 */ = {
 			isa = PBXGroup;
 			children = (
-				5EB7A4A31DDC66BA007E8C1F /* NewPushManager.h */,
-				5EB7A4A41DDC66BA007E8C1F /* NewPushManager.m */,
+				5EB7A4A31DDC66BA007E8C1F /* UNNotificationManager.h */,
+				5EB7A4A41DDC66BA007E8C1F /* UNNotificationManager.m */,
 				5EB7A4A51DDC66BA007E8C1F /* UNLocalNotificationManager.h */,
 				5EB7A4A61DDC66BA007E8C1F /* UNLocalNotificationManager.m */,
 			);
@@ -180,8 +180,8 @@
 		5EB7A46A1DDC61E4007E8C1F /* iOSBefore10 */ = {
 			isa = PBXGroup;
 			children = (
-				5EB7A4A91DDC66C3007E8C1F /* PushManager.h */,
-				5EB7A4AA1DDC66C3007E8C1F /* PushManager.m */,
+				5EB7A4A91DDC66C3007E8C1F /* UINotificationManager.h */,
+				5EB7A4AA1DDC66C3007E8C1F /* UINotificationManager.m */,
 				5EB7A4AB1DDC66C3007E8C1F /* UILocalNotificationManager.h */,
 				5EB7A4AC1DDC66C3007E8C1F /* UILocalNotificationManager.m */,
 			);
@@ -446,14 +446,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5EB7A4AD1DDC66C3007E8C1F /* PushManager.m in Sources */,
+				5EB7A4AD1DDC66C3007E8C1F /* UINotificationManager.m in Sources */,
 				5EB7A4881DDC61E4007E8C1F /* main.m in Sources */,
 				5EB7A4AE1DDC66C3007E8C1F /* UILocalNotificationManager.m in Sources */,
 				5EB7A4831DDC61E4007E8C1F /* AppDelegate.m in Sources */,
 				5EB7A4A01DDC6656007E8C1F /* NotificationSwitch.m in Sources */,
 				5EB7A4A81DDC66BA007E8C1F /* UNLocalNotificationManager.m in Sources */,
 				5EB7A4A11DDC6656007E8C1F /* PushViewController.m in Sources */,
-				5EB7A4A71DDC66BA007E8C1F /* NewPushManager.m in Sources */,
+				5EB7A4A71DDC66BA007E8C1F /* UNNotificationManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,14 +6,14 @@
 //  Copyright © 2016年 WengHengcong. All rights reserved.
 //
 
-#import "PushManager.h"
+#import "UINotificationManager.h"
 #import "PushViewController.h"
 
-@implementation PushManager
+@implementation UINotificationManager
 
 + (instancetype)sharedManager {
     
-    static PushManager *shared = nil;
+    static UINotificationManager *shared = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         shared = [[self alloc]init];
@@ -85,7 +85,7 @@
     NSLog(@"device token is: %@", newToken);
     
     //show
-    PushViewController *pushVC = (PushViewController *)[[PushManager sharedManager]viewController];
+    PushViewController *pushVC = (PushViewController *)[[UINotificationManager sharedManager]viewController];
     pushVC.devicetoken = newToken;
 }
 
@@ -95,7 +95,7 @@
     
     NSLog(@"***remote notication ***\n%@",userinfo);
     //show
-    PushViewController *pushVC = (PushViewController *)[[PushManager sharedManager]viewController];
+    PushViewController *pushVC = (PushViewController *)[[UINotificationManager sharedManager]viewController];
     pushVC.remoteNoti = userinfo;
     
     UIApplication *application = [UIApplication sharedApplication];
@@ -111,7 +111,7 @@
 #pragma mark - badge
 
 + (void)resetBadge {
-    [PushManager setBadge:0];
+    [UINotificationManager setBadge:0];
 }
 
 + (void)setBadge:(NSInteger)badge {

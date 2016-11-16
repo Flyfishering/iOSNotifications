@@ -7,8 +7,8 @@
 //
 
 #import "PushViewController.h"
-#import "PushManager.h"
-#import "NewPushManager.h"
+#import "UINotificationManager.h"
+#import "UNNotificationManager.h"
 #import "UILocalNotificationManager.h"
 
 #import <CoreLocation/CoreLocation.h>
@@ -151,17 +151,17 @@
     
 //    [UILocalNotificationManager buildUILocalNotificationWithNSDate:[[NSDate date] dateByAddingTimeInterval:5.0] alert:@"快起床，快快起床~" badge:0 identifierKey:@"life" userInfo:nil];
     
-    [NewPushManager buildLocalNotificationForTest];
+    [UNNotificationManager buildLocalNotificationForTest];
 
 }
 - (IBAction)removeNotiAction:(id)sender {
     
-    [NewPushManager removeDeliveredNotificationForTest];
+    [UNNotificationManager removeDeliveredNotificationForTest];
 }
 
 - (IBAction)updateNotiAction:(id)sender {
     
-    [NewPushManager updateDeliveredNotificationForTest];
+    [UNNotificationManager updateDeliveredNotificationForTest];
 }
 
 # pragma mark - setter

@@ -1,6 +1,6 @@
 //
 //  main.m
-//  PushSettingsDemo
+//  iOSNotifications
 //
 //  Created by WengHengcong on 4/20/16.
 //  Copyright © 2016 WengHengcong. All rights reserved.

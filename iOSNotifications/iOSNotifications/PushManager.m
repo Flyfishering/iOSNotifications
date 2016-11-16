@@ -1,6 +1,6 @@
 //
 //  PushManager.m
-//  PushSettingsDemo
+//  iOSNotifications
 //
 //  Created by WengHengcong on 16/6/6.
 //  Copyright © 2016年 WengHengcong. All rights reserved.

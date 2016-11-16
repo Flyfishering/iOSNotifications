@@ -1,6 +1,6 @@
 //
 //  PushSwitch.m
-//  PushSettingsDemo
+//  iOSNotifications
 //
 //  Created by WengHengcong on 2016/11/16.
 //  Copyright © 2016年 WengHengcong. All rights reserved.

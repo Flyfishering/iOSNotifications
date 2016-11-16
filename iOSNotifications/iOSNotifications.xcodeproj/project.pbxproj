@@ -7,27 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5E3A7BE41D014A7A00C44FDB /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E3A7BE31D014A7A00C44FDB /* CFNetwork.framework */; };
-		5E3A7BE61D014A8200C44FDB /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E3A7BE51D014A8200C44FDB /* CoreFoundation.framework */; };
-		5E3A7BE81D014A8900C44FDB /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E3A7BE71D014A8900C44FDB /* CoreTelephony.framework */; };
-		5E3A7BEA1D014A9000C44FDB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E3A7BE91D014A9000C44FDB /* SystemConfiguration.framework */; };
-		5E3A7BEC1D014A9600C44FDB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E3A7BEB1D014A9600C44FDB /* CoreGraphics.framework */; };
-		5E3A7BEE1D014AA000C44FDB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E3A7BED1D014AA000C44FDB /* UIKit.framework */; };
-		5E3A7BF01D014AA500C44FDB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E3A7BEF1D014AA500C44FDB /* Foundation.framework */; };
-		5E3A7BF21D014AAC00C44FDB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E3A7BF11D014AAC00C44FDB /* Security.framework */; };
-		5E3A7BF41D014AB400C44FDB /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E3A7BF31D014AB400C44FDB /* libz.tbd */; };
-		5E3B4B721D9505E800E0CFC3 /* UILocalNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E3B4B711D9505E800E0CFC3 /* UILocalNotificationManager.m */; };
-		5E3B4B751D95084800E0CFC3 /* UNLocalNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E3B4B741D95084800E0CFC3 /* UNLocalNotificationManager.m */; };
 		5E3E72631D917AA20077596D /* dog.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E3E72621D917AA20077596D /* dog.png */; };
-		5E3E72651D917FFC0077596D /* 横幅图片.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 5E3E72641D917FFC0077596D /* 横幅图片.PNG */; };
-		5E3E72691D9180320077596D /* 图片.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 5E3E72681D9180320077596D /* 图片.PNG */; };
-		5E3E726D1D9180440077596D /* 视频.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 5E3E726A1D9180440077596D /* 视频.PNG */; };
-		5E3E726E1D9180440077596D /* 通知中心图片.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 5E3E726B1D9180440077596D /* 通知中心图片.PNG */; };
-		5E3E726F1D9180440077596D /* 自定义界面.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 5E3E726C1D9180440077596D /* 自定义界面.PNG */; };
-		5E50FB031DDBE99B00AA29FA /* NotificationSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E50FB021DDBE99B00AA29FA /* NotificationSwitch.m */; };
-		5E969F3D1D055E12001BAEED /* PushManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E969F3C1D055E12001BAEED /* PushManager.m */; };
-		5EC8A5261D91269900C8AC3C /* Action列表.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 5EC8A5241D91269900C8AC3C /* Action列表.PNG */; };
-		5EC8A5271D91269900C8AC3C /* InputAction.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 5EC8A5251D91269900C8AC3C /* InputAction.PNG */; };
+		5EB7A4831DDC61E4007E8C1F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB7A4621DDC61E4007E8C1F /* AppDelegate.m */; };
+		5EB7A4841DDC61E4007E8C1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EB7A4631DDC61E4007E8C1F /* Assets.xcassets */; };
+		5EB7A4851DDC61E4007E8C1F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EB7A4641DDC61E4007E8C1F /* LaunchScreen.storyboard */; };
+		5EB7A4861DDC61E4007E8C1F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EB7A4661DDC61E4007E8C1F /* Main.storyboard */; };
+		5EB7A4871DDC61E4007E8C1F /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5EB7A4681DDC61E4007E8C1F /* Info.plist */; };
+		5EB7A4881DDC61E4007E8C1F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB7A46C1DDC61E4007E8C1F /* main.m */; };
+		5EB7A4891DDC61E4007E8C1F /* NewPushManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB7A46E1DDC61E4007E8C1F /* NewPushManager.m */; };
+		5EB7A48A1DDC61E4007E8C1F /* NotificationSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB7A4701DDC61E4007E8C1F /* NotificationSwitch.m */; };
+		5EB7A48B1DDC61E4007E8C1F /* PushManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB7A4721DDC61E4007E8C1F /* PushManager.m */; };
+		5EB7A48C1DDC61E4007E8C1F /* PushViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB7A4741DDC61E4007E8C1F /* PushViewController.m */; };
+		5EB7A48D1DDC61E4007E8C1F /* Action列表.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 5EB7A4761DDC61E4007E8C1F /* Action列表.PNG */; };
+		5EB7A48E1DDC61E4007E8C1F /* dog.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EB7A4771DDC61E4007E8C1F /* dog.png */; };
+		5EB7A48F1DDC61E4007E8C1F /* InputAction.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 5EB7A4781DDC61E4007E8C1F /* InputAction.PNG */; };
+		5EB7A4901DDC61E4007E8C1F /* media.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 5EB7A4791DDC61E4007E8C1F /* media.mp4 */; };
+		5EB7A4911DDC61E4007E8C1F /* 图片.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 5EB7A47A1DDC61E4007E8C1F /* 图片.PNG */; };
+		5EB7A4921DDC61E4007E8C1F /* 横幅图片.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 5EB7A47B1DDC61E4007E8C1F /* 横幅图片.PNG */; };
+		5EB7A4931DDC61E4007E8C1F /* 自定义界面.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 5EB7A47C1DDC61E4007E8C1F /* 自定义界面.PNG */; };
+		5EB7A4941DDC61E4007E8C1F /* 视频.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 5EB7A47D1DDC61E4007E8C1F /* 视频.PNG */; };
+		5EB7A4951DDC61E4007E8C1F /* 通知中心图片.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 5EB7A47E1DDC61E4007E8C1F /* 通知中心图片.PNG */; };
+		5EB7A4961DDC61E4007E8C1F /* UILocalNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB7A4801DDC61E4007E8C1F /* UILocalNotificationManager.m */; };
+		5EB7A4971DDC61E4007E8C1F /* UNLocalNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB7A4821DDC61E4007E8C1F /* UNLocalNotificationManager.m */; };
 		5EC8A52E1D9127F000C8AC3C /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EC8A52D1D9127F000C8AC3C /* UserNotifications.framework */; };
 		5EC8A5301D9127F000C8AC3C /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EC8A52F1D9127F000C8AC3C /* UserNotificationsUI.framework */; };
 		5EC8A5341D9127F000C8AC3C /* NotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC8A5331D9127F000C8AC3C /* NotificationViewController.m */; };
@@ -35,15 +36,6 @@
 		5EC8A5401D9134CB00C8AC3C /* NotificationContent.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 5EC8A52C1D9127F000C8AC3C /* NotificationContent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		5EC8A54C1D9134FA00C8AC3C /* NotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC8A54B1D9134FA00C8AC3C /* NotificationService.m */; };
 		5EC8A5501D9134FA00C8AC3C /* NotificationService.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 5EC8A5481D9134FA00C8AC3C /* NotificationService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		5EC8A5551D91404300C8AC3C /* media.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 5EC8A5541D91404300C8AC3C /* media.mp4 */; };
-		5EDF6F2C1D8FE2BA0072682F /* NewPushManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EDF6F2B1D8FE2BA0072682F /* NewPushManager.m */; };
-		5EDF6F311D8FE6BE0072682F /* dog.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EDF6F301D8FE6BE0072682F /* dog.png */; };
-		5EF2B44A1CC7D51000AC71C5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2B4491CC7D51000AC71C5 /* main.m */; };
-		5EF2B44D1CC7D51000AC71C5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2B44C1CC7D51000AC71C5 /* AppDelegate.m */; };
-		5EF2B4501CC7D51000AC71C5 /* PushViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2B44F1CC7D51000AC71C5 /* PushViewController.m */; };
-		5EF2B4531CC7D51000AC71C5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EF2B4511CC7D51000AC71C5 /* Main.storyboard */; };
-		5EF2B4551CC7D51000AC71C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EF2B4541CC7D51000AC71C5 /* Assets.xcassets */; };
-		5EF2B4581CC7D51000AC71C5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EF2B4561CC7D51000AC71C5 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,32 +71,36 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		5E3A7BE31D014A7A00C44FDB /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		5E3A7BE51D014A8200C44FDB /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
-		5E3A7BE71D014A8900C44FDB /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
-		5E3A7BE91D014A9000C44FDB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		5E3A7BEB1D014A9600C44FDB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		5E3A7BED1D014AA000C44FDB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		5E3A7BEF1D014AA500C44FDB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		5E3A7BF11D014AAC00C44FDB /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		5E3A7BF31D014AB400C44FDB /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
-		5E3B4B701D9505E800E0CFC3 /* UILocalNotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILocalNotificationManager.h; sourceTree = "<group>"; };
-		5E3B4B711D9505E800E0CFC3 /* UILocalNotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UILocalNotificationManager.m; sourceTree = "<group>"; };
-		5E3B4B731D95084800E0CFC3 /* UNLocalNotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UNLocalNotificationManager.h; sourceTree = "<group>"; };
-		5E3B4B741D95084800E0CFC3 /* UNLocalNotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UNLocalNotificationManager.m; sourceTree = "<group>"; };
 		5E3E72621D917AA20077596D /* dog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dog.png; sourceTree = "<group>"; };
-		5E3E72641D917FFC0077596D /* 横幅图片.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "横幅图片.PNG"; sourceTree = "<group>"; };
-		5E3E72681D9180320077596D /* 图片.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "图片.PNG"; sourceTree = "<group>"; };
-		5E3E726A1D9180440077596D /* 视频.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "视频.PNG"; sourceTree = "<group>"; };
-		5E3E726B1D9180440077596D /* 通知中心图片.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "通知中心图片.PNG"; sourceTree = "<group>"; };
-		5E3E726C1D9180440077596D /* 自定义界面.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "自定义界面.PNG"; sourceTree = "<group>"; };
-		5E50FB011DDBE99B00AA29FA /* NotificationSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationSwitch.h; sourceTree = "<group>"; };
-		5E50FB021DDBE99B00AA29FA /* NotificationSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationSwitch.m; sourceTree = "<group>"; };
-		5E969F3B1D055E12001BAEED /* PushManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushManager.h; sourceTree = "<group>"; };
-		5E969F3C1D055E12001BAEED /* PushManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushManager.m; sourceTree = "<group>"; };
-		5EB7A45F1DDC60C4007E8C1F /* iOSNotifications.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = iOSNotifications.entitlements; path = ../iOSNotifications.entitlements; sourceTree = "<group>"; };
-		5EC8A5241D91269900C8AC3C /* Action列表.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Action列表.PNG"; sourceTree = "<group>"; };
-		5EC8A5251D91269900C8AC3C /* InputAction.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = InputAction.PNG; sourceTree = "<group>"; };
+		5EB7A45F1DDC60C4007E8C1F /* iOSNotifications.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iOSNotifications.entitlements; sourceTree = SOURCE_ROOT; };
+		5EB7A4611DDC61E4007E8C1F /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		5EB7A4621DDC61E4007E8C1F /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		5EB7A4631DDC61E4007E8C1F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5EB7A4651DDC61E4007E8C1F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		5EB7A4671DDC61E4007E8C1F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		5EB7A4681DDC61E4007E8C1F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5EB7A46C1DDC61E4007E8C1F /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		5EB7A46D1DDC61E4007E8C1F /* NewPushManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPushManager.h; sourceTree = "<group>"; };
+		5EB7A46E1DDC61E4007E8C1F /* NewPushManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPushManager.m; sourceTree = "<group>"; };
+		5EB7A46F1DDC61E4007E8C1F /* NotificationSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationSwitch.h; sourceTree = "<group>"; };
+		5EB7A4701DDC61E4007E8C1F /* NotificationSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationSwitch.m; sourceTree = "<group>"; };
+		5EB7A4711DDC61E4007E8C1F /* PushManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushManager.h; sourceTree = "<group>"; };
+		5EB7A4721DDC61E4007E8C1F /* PushManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushManager.m; sourceTree = "<group>"; };
+		5EB7A4731DDC61E4007E8C1F /* PushViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushViewController.h; sourceTree = "<group>"; };
+		5EB7A4741DDC61E4007E8C1F /* PushViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushViewController.m; sourceTree = "<group>"; };
+		5EB7A4761DDC61E4007E8C1F /* Action列表.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Action列表.PNG"; sourceTree = "<group>"; };
+		5EB7A4771DDC61E4007E8C1F /* dog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dog.png; sourceTree = "<group>"; };
+		5EB7A4781DDC61E4007E8C1F /* InputAction.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = InputAction.PNG; sourceTree = "<group>"; };
+		5EB7A4791DDC61E4007E8C1F /* media.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = media.mp4; sourceTree = "<group>"; };
+		5EB7A47A1DDC61E4007E8C1F /* 图片.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "图片.PNG"; sourceTree = "<group>"; };
+		5EB7A47B1DDC61E4007E8C1F /* 横幅图片.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "横幅图片.PNG"; sourceTree = "<group>"; };
+		5EB7A47C1DDC61E4007E8C1F /* 自定义界面.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "自定义界面.PNG"; sourceTree = "<group>"; };
+		5EB7A47D1DDC61E4007E8C1F /* 视频.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "视频.PNG"; sourceTree = "<group>"; };
+		5EB7A47E1DDC61E4007E8C1F /* 通知中心图片.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "通知中心图片.PNG"; sourceTree = "<group>"; };
+		5EB7A47F1DDC61E4007E8C1F /* UILocalNotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILocalNotificationManager.h; sourceTree = "<group>"; };
+		5EB7A4801DDC61E4007E8C1F /* UILocalNotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UILocalNotificationManager.m; sourceTree = "<group>"; };
+		5EB7A4811DDC61E4007E8C1F /* UNLocalNotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UNLocalNotificationManager.h; sourceTree = "<group>"; };
+		5EB7A4821DDC61E4007E8C1F /* UNLocalNotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UNLocalNotificationManager.m; sourceTree = "<group>"; };
 		5EC8A52C1D9127F000C8AC3C /* NotificationContent.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationContent.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EC8A52D1D9127F000C8AC3C /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		5EC8A52F1D9127F000C8AC3C /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
@@ -116,20 +112,7 @@
 		5EC8A54A1D9134FA00C8AC3C /* NotificationService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationService.h; sourceTree = "<group>"; };
 		5EC8A54B1D9134FA00C8AC3C /* NotificationService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationService.m; sourceTree = "<group>"; };
 		5EC8A54D1D9134FA00C8AC3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5EC8A5541D91404300C8AC3C /* media.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = media.mp4; sourceTree = "<group>"; };
-		5EDF6F2A1D8FE2BA0072682F /* NewPushManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPushManager.h; sourceTree = "<group>"; };
-		5EDF6F2B1D8FE2BA0072682F /* NewPushManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPushManager.m; sourceTree = "<group>"; };
-		5EDF6F301D8FE6BE0072682F /* dog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dog.png; sourceTree = "<group>"; };
 		5EF2B4451CC7D51000AC71C5 /* iOSNotifications.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSNotifications.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		5EF2B4491CC7D51000AC71C5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		5EF2B44B1CC7D51000AC71C5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		5EF2B44C1CC7D51000AC71C5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		5EF2B44E1CC7D51000AC71C5 /* PushViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PushViewController.h; sourceTree = "<group>"; };
-		5EF2B44F1CC7D51000AC71C5 /* PushViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PushViewController.m; sourceTree = "<group>"; };
-		5EF2B4521CC7D51000AC71C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		5EF2B4541CC7D51000AC71C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		5EF2B4571CC7D51000AC71C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		5EF2B4591CC7D51000AC71C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,15 +136,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5E3A7BF41D014AB400C44FDB /* libz.tbd in Frameworks */,
-				5E3A7BF21D014AAC00C44FDB /* Security.framework in Frameworks */,
-				5E3A7BF01D014AA500C44FDB /* Foundation.framework in Frameworks */,
-				5E3A7BEE1D014AA000C44FDB /* UIKit.framework in Frameworks */,
-				5E3A7BEC1D014A9600C44FDB /* CoreGraphics.framework in Frameworks */,
-				5E3A7BEA1D014A9000C44FDB /* SystemConfiguration.framework in Frameworks */,
-				5E3A7BE81D014A8900C44FDB /* CoreTelephony.framework in Frameworks */,
-				5E3A7BE61D014A8200C44FDB /* CoreFoundation.framework in Frameworks */,
-				5E3A7BE41D014A7A00C44FDB /* CFNetwork.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -175,6 +149,74 @@
 				5EC8A52F1D9127F000C8AC3C /* UserNotificationsUI.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5EB7A4601DDC61E4007E8C1F /* iOSNotifications */ = {
+			isa = PBXGroup;
+			children = (
+				5EB7A4691DDC61E4007E8C1F /* iOSAfter10 */,
+				5EB7A46A1DDC61E4007E8C1F /* iOSBefore10 */,
+				5EB7A46B1DDC61E4007E8C1F /* lib */,
+				5EB7A4751DDC61E4007E8C1F /* resource */,
+				5EB7A4611DDC61E4007E8C1F /* AppDelegate.h */,
+				5EB7A4621DDC61E4007E8C1F /* AppDelegate.m */,
+				5EB7A4631DDC61E4007E8C1F /* Assets.xcassets */,
+				5EB7A4641DDC61E4007E8C1F /* LaunchScreen.storyboard */,
+				5EB7A4661DDC61E4007E8C1F /* Main.storyboard */,
+				5EB7A4681DDC61E4007E8C1F /* Info.plist */,
+				5EB7A46C1DDC61E4007E8C1F /* main.m */,
+				5EB7A46D1DDC61E4007E8C1F /* NewPushManager.h */,
+				5EB7A46E1DDC61E4007E8C1F /* NewPushManager.m */,
+				5EB7A46F1DDC61E4007E8C1F /* NotificationSwitch.h */,
+				5EB7A4701DDC61E4007E8C1F /* NotificationSwitch.m */,
+				5EB7A4711DDC61E4007E8C1F /* PushManager.h */,
+				5EB7A4721DDC61E4007E8C1F /* PushManager.m */,
+				5EB7A4731DDC61E4007E8C1F /* PushViewController.h */,
+				5EB7A4741DDC61E4007E8C1F /* PushViewController.m */,
+				5EB7A47F1DDC61E4007E8C1F /* UILocalNotificationManager.h */,
+				5EB7A4801DDC61E4007E8C1F /* UILocalNotificationManager.m */,
+				5EB7A4811DDC61E4007E8C1F /* UNLocalNotificationManager.h */,
+				5EB7A4821DDC61E4007E8C1F /* UNLocalNotificationManager.m */,
+				5EB7A45F1DDC60C4007E8C1F /* iOSNotifications.entitlements */,
+			);
+			path = iOSNotifications;
+			sourceTree = "<group>";
+		};
+		5EB7A4691DDC61E4007E8C1F /* iOSAfter10 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = iOSAfter10;
+			sourceTree = "<group>";
+		};
+		5EB7A46A1DDC61E4007E8C1F /* iOSBefore10 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = iOSBefore10;
+			sourceTree = "<group>";
+		};
+		5EB7A46B1DDC61E4007E8C1F /* lib */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		5EB7A4751DDC61E4007E8C1F /* resource */ = {
+			isa = PBXGroup;
+			children = (
+				5EB7A4761DDC61E4007E8C1F /* Action列表.PNG */,
+				5EB7A4771DDC61E4007E8C1F /* dog.png */,
+				5EB7A4781DDC61E4007E8C1F /* InputAction.PNG */,
+				5EB7A4791DDC61E4007E8C1F /* media.mp4 */,
+				5EB7A47A1DDC61E4007E8C1F /* 图片.PNG */,
+				5EB7A47B1DDC61E4007E8C1F /* 横幅图片.PNG */,
+				5EB7A47C1DDC61E4007E8C1F /* 自定义界面.PNG */,
+				5EB7A47D1DDC61E4007E8C1F /* 视频.PNG */,
+				5EB7A47E1DDC61E4007E8C1F /* 通知中心图片.PNG */,
+			);
+			path = resource;
 			sourceTree = "<group>";
 		};
 		5EC8A5311D9127F000C8AC3C /* NotificationContent */ = {
@@ -199,26 +241,11 @@
 			path = NotificationService;
 			sourceTree = "<group>";
 		};
-		5EDF6F2F1D8FE6BE0072682F /* resource */ = {
-			isa = PBXGroup;
-			children = (
-				5E3E726A1D9180440077596D /* 视频.PNG */,
-				5E3E726B1D9180440077596D /* 通知中心图片.PNG */,
-				5E3E726C1D9180440077596D /* 自定义界面.PNG */,
-				5E3E72681D9180320077596D /* 图片.PNG */,
-				5E3E72641D917FFC0077596D /* 横幅图片.PNG */,
-				5EC8A5541D91404300C8AC3C /* media.mp4 */,
-				5EC8A5241D91269900C8AC3C /* Action列表.PNG */,
-				5EC8A5251D91269900C8AC3C /* InputAction.PNG */,
-				5EDF6F301D8FE6BE0072682F /* dog.png */,
-			);
-			path = resource;
-			sourceTree = "<group>";
-		};
 		5EF2B43C1CC7D51000AC71C5 = {
 			isa = PBXGroup;
 			children = (
-				5EF2B4471CC7D51000AC71C5 /* PushSettingsDemo */,
+				5EB7A4601DDC61E4007E8C1F /* iOSNotifications */,
+				5EF2B4471CC7D51000AC71C5 /* iOSNotifications */,
 				5EC8A5311D9127F000C8AC3C /* NotificationContent */,
 				5EC8A5491D9134FA00C8AC3C /* NotificationService */,
 				5EF2B4461CC7D51000AC71C5 /* Products */,
@@ -236,49 +263,12 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		5EF2B4471CC7D51000AC71C5 /* PushSettingsDemo */ = {
+		5EF2B4471CC7D51000AC71C5 /* iOSNotifications */ = {
 			isa = PBXGroup;
 			children = (
-				5EB7A45F1DDC60C4007E8C1F /* iOSNotifications.entitlements */,
-				5EF2B44B1CC7D51000AC71C5 /* AppDelegate.h */,
-				5EF2B44C1CC7D51000AC71C5 /* AppDelegate.m */,
-				5E50FB011DDBE99B00AA29FA /* NotificationSwitch.h */,
-				5E50FB021DDBE99B00AA29FA /* NotificationSwitch.m */,
-				5E969F3B1D055E12001BAEED /* PushManager.h */,
-				5E969F3C1D055E12001BAEED /* PushManager.m */,
-				5EDF6F2A1D8FE2BA0072682F /* NewPushManager.h */,
-				5EDF6F2B1D8FE2BA0072682F /* NewPushManager.m */,
-				5E3B4B701D9505E800E0CFC3 /* UILocalNotificationManager.h */,
-				5E3B4B711D9505E800E0CFC3 /* UILocalNotificationManager.m */,
-				5E3B4B731D95084800E0CFC3 /* UNLocalNotificationManager.h */,
-				5E3B4B741D95084800E0CFC3 /* UNLocalNotificationManager.m */,
-				5EF2B44E1CC7D51000AC71C5 /* PushViewController.h */,
-				5EF2B44F1CC7D51000AC71C5 /* PushViewController.m */,
-				5EF2B4511CC7D51000AC71C5 /* Main.storyboard */,
-				5EF2B4541CC7D51000AC71C5 /* Assets.xcassets */,
-				5EF2B4561CC7D51000AC71C5 /* LaunchScreen.storyboard */,
-				5EF2B4591CC7D51000AC71C5 /* Info.plist */,
-				5EDF6F2F1D8FE6BE0072682F /* resource */,
-				5EF2B4481CC7D51000AC71C5 /* Supporting Files */,
 			);
+			name = iOSNotifications;
 			path = PushSettingsDemo;
-			sourceTree = "<group>";
-		};
-		5EF2B4481CC7D51000AC71C5 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				5E3A7BF31D014AB400C44FDB /* libz.tbd */,
-				5E3A7BF11D014AAC00C44FDB /* Security.framework */,
-				5E3A7BEF1D014AA500C44FDB /* Foundation.framework */,
-				5E3A7BED1D014AA000C44FDB /* UIKit.framework */,
-				5E3A7BEB1D014A9600C44FDB /* CoreGraphics.framework */,
-				5E3A7BE91D014A9000C44FDB /* SystemConfiguration.framework */,
-				5E3A7BE71D014A8900C44FDB /* CoreTelephony.framework */,
-				5E3A7BE51D014A8200C44FDB /* CoreFoundation.framework */,
-				5E3A7BE31D014A7A00C44FDB /* CFNetwork.framework */,
-				5EF2B4491CC7D51000AC71C5 /* main.m */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -344,7 +334,7 @@
 		5EF2B43D1CC7D51000AC71C5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = WengHengcong;
 				TargetAttributes = {
 					5EC8A52B1D9127F000C8AC3C = {
@@ -412,18 +402,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5EF2B4581CC7D51000AC71C5 /* LaunchScreen.storyboard in Resources */,
-				5E3E72691D9180320077596D /* 图片.PNG in Resources */,
-				5E3E726E1D9180440077596D /* 通知中心图片.PNG in Resources */,
-				5EDF6F311D8FE6BE0072682F /* dog.png in Resources */,
-				5E3E726D1D9180440077596D /* 视频.PNG in Resources */,
-				5EC8A5551D91404300C8AC3C /* media.mp4 in Resources */,
-				5E3E72651D917FFC0077596D /* 横幅图片.PNG in Resources */,
-				5E3E726F1D9180440077596D /* 自定义界面.PNG in Resources */,
-				5EF2B4551CC7D51000AC71C5 /* Assets.xcassets in Resources */,
-				5EC8A5261D91269900C8AC3C /* Action列表.PNG in Resources */,
-				5EC8A5271D91269900C8AC3C /* InputAction.PNG in Resources */,
-				5EF2B4531CC7D51000AC71C5 /* Main.storyboard in Resources */,
+				5EB7A4941DDC61E4007E8C1F /* 视频.PNG in Resources */,
+				5EB7A4871DDC61E4007E8C1F /* Info.plist in Resources */,
+				5EB7A4931DDC61E4007E8C1F /* 自定义界面.PNG in Resources */,
+				5EB7A48F1DDC61E4007E8C1F /* InputAction.PNG in Resources */,
+				5EB7A4901DDC61E4007E8C1F /* media.mp4 in Resources */,
+				5EB7A4861DDC61E4007E8C1F /* Main.storyboard in Resources */,
+				5EB7A4841DDC61E4007E8C1F /* Assets.xcassets in Resources */,
+				5EB7A48D1DDC61E4007E8C1F /* Action列表.PNG in Resources */,
+				5EB7A4911DDC61E4007E8C1F /* 图片.PNG in Resources */,
+				5EB7A4921DDC61E4007E8C1F /* 横幅图片.PNG in Resources */,
+				5EB7A48E1DDC61E4007E8C1F /* dog.png in Resources */,
+				5EB7A4951DDC61E4007E8C1F /* 通知中心图片.PNG in Resources */,
+				5EB7A4851DDC61E4007E8C1F /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -450,14 +441,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5EF2B4501CC7D51000AC71C5 /* PushViewController.m in Sources */,
-				5E50FB031DDBE99B00AA29FA /* NotificationSwitch.m in Sources */,
-				5EF2B44D1CC7D51000AC71C5 /* AppDelegate.m in Sources */,
-				5E3B4B751D95084800E0CFC3 /* UNLocalNotificationManager.m in Sources */,
-				5EF2B44A1CC7D51000AC71C5 /* main.m in Sources */,
-				5E969F3D1D055E12001BAEED /* PushManager.m in Sources */,
-				5E3B4B721D9505E800E0CFC3 /* UILocalNotificationManager.m in Sources */,
-				5EDF6F2C1D8FE2BA0072682F /* NewPushManager.m in Sources */,
+				5EB7A4881DDC61E4007E8C1F /* main.m in Sources */,
+				5EB7A48B1DDC61E4007E8C1F /* PushManager.m in Sources */,
+				5EB7A4961DDC61E4007E8C1F /* UILocalNotificationManager.m in Sources */,
+				5EB7A4831DDC61E4007E8C1F /* AppDelegate.m in Sources */,
+				5EB7A48A1DDC61E4007E8C1F /* NotificationSwitch.m in Sources */,
+				5EB7A4971DDC61E4007E8C1F /* UNLocalNotificationManager.m in Sources */,
+				5EB7A4891DDC61E4007E8C1F /* NewPushManager.m in Sources */,
+				5EB7A48C1DDC61E4007E8C1F /* PushViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -477,28 +468,28 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		5EB7A4641DDC61E4007E8C1F /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5EB7A4651DDC61E4007E8C1F /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		5EB7A4661DDC61E4007E8C1F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5EB7A4671DDC61E4007E8C1F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
 		5EC8A5351D9127F000C8AC3C /* MainInterface.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				5EC8A5361D9127F000C8AC3C /* Base */,
 			);
 			name = MainInterface.storyboard;
-			sourceTree = "<group>";
-		};
-		5EF2B4511CC7D51000AC71C5 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5EF2B4521CC7D51000AC71C5 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		5EF2B4561CC7D51000AC71C5 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5EF2B4571CC7D51000AC71C5 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -594,8 +585,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Hengcong Weng (7RMANB5BXZ)";
@@ -643,8 +636,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Hengcong Weng (7RMANB5BXZ)";
@@ -680,12 +675,12 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Hengcong Weng (7RMANB5BXZ)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hengcong Weng (7RMANB5BXZ)";
 				DEVELOPMENT_TEAM = 69XHTLCF36;
-				INFOPLIST_FILE = PushSettingsDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				INFOPLIST_FILE = iOSNotifications/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/PushSettingsDemo/lib",
+					"$(PROJECT_DIR)/iOSNotifications/lib",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.junglesong.pushtestdemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -702,12 +697,12 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: Hengcong Weng (7RMANB5BXZ)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hengcong Weng (7RMANB5BXZ)";
 				DEVELOPMENT_TEAM = 69XHTLCF36;
-				INFOPLIST_FILE = PushSettingsDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				INFOPLIST_FILE = iOSNotifications/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/PushSettingsDemo/lib",
+					"$(PROJECT_DIR)/iOSNotifications/lib",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.junglesong.pushtestdemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";

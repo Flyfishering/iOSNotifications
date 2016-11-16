@@ -79,6 +79,7 @@
  */
 - (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
 {
+    [PushSwitch registerDeviceToken:deviceToken];
 }
 /**
  *  registerForRemoteNotifications的回调

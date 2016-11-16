@@ -43,11 +43,25 @@
     self.bestAttemptContent.title = [NSString stringWithFormat:@"%@ [修改过哦]", self.bestAttemptContent.title];
     
     //在此处修改category，可达到对应category的手段！！！
-    if ([self.bestAttemptContent.userInfo objectForKey:@"customUICategory"]) {
-        self.bestAttemptContent.categoryIdentifier = @"customUI";
-    }
+    //可以配合服务端针对category来进行不同的自定义页面的设置。
+    /*
+     {
+     "aps":{
+        "alert":{
+            "title":"快起床第十三",
+            "body":"真的起不来？"
+        },
+        "category":"customUI",
+        "mutable-content":1
+     },
+        "url":"http://www.baidu.com",
+        "js_category":"customUI",
+     }
+     */
+    NSString *categoryFormServer = [self.bestAttemptContent.userInfo objectForKey:@"js_category"];
+    self.bestAttemptContent.categoryIdentifier = categoryFormServer;
     
-    //此处自定义一个字段image，用语下载地址：
+    //此处自定义一个字段image，用于下载地址：
     /*
      
      {

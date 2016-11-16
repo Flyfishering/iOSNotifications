@@ -23,6 +23,7 @@
         
         [UNUserNotificationCenter currentNotificationCenter].delegate = class;
         
+        /**第一组按钮*/
         UNNotificationAction *acceptAction = [UNNotificationAction actionWithIdentifier:@"acceptAction" title:@"接受" options:UNNotificationActionOptionDestructive];
         
         UNNotificationAction *rejectAction = [UNNotificationAction actionWithIdentifier:@"rejectAction" title:@"拒绝" options:UNNotificationActionOptionForeground];
@@ -30,10 +31,25 @@
         //注意，输入的action，点击action后，会在Action列表显示：接受、拒绝、输入你想几点起
         UNTextInputNotificationAction *inputAction = [UNTextInputNotificationAction actionWithIdentifier:@"inputAction" title:@"输入你想几点起" options:UNNotificationActionOptionForeground textInputButtonTitle:@"确定" textInputPlaceholder:@"再晚1小时吧"];
         
-        UNNotificationCategory *categorys = [UNNotificationCategory categoryWithIdentifier:@"wakeup" actions:@[acceptAction,rejectAction,inputAction] intentIdentifiers:@[] options:UNNotificationCategoryOptionNone];
+        UNNotificationCategory *wakeUpCate = [UNNotificationCategory categoryWithIdentifier:@"wakeup" actions:@[acceptAction,rejectAction,inputAction] intentIdentifiers:@[] options:UNNotificationCategoryOptionNone];
+        
+        /**第一组按钮结束**/
+
+        /**第二组按钮*/
+
+        UNNotificationAction *customAction1 = [UNNotificationAction actionWithIdentifier:@"acceptAction" title:@"按钮1" options:UNNotificationActionOptionDestructive];
+        
+        UNNotificationAction *customAction2 = [UNNotificationAction actionWithIdentifier:@"rejectAction" title:@"按钮2" options:UNNotificationActionOptionForeground];
+        
+        //注意，输入的action，点击action后，会在Action列表显示：接受、拒绝、输入你想几点起
+        UNTextInputNotificationAction *customAction3 = [UNTextInputNotificationAction actionWithIdentifier:@"inputAction" title:@"输入文本" options:UNNotificationActionOptionForeground textInputButtonTitle:@"确定" textInputPlaceholder:@"输入文本默认占位符"];
         
         
-        [NewPushManager registerForRemoteNotificationTypes:7 categories:[NSSet setWithObjects:categorys,nil]];
+        UNNotificationCategory *customCate = [UNNotificationCategory categoryWithIdentifier:@"customUI" actions:@[customAction1,customAction2,customAction3] intentIdentifiers:@[] options:UNNotificationCategoryOptionNone];
+
+        /**第二组按钮结束**/
+        
+        [NewPushManager registerForRemoteNotificationTypes:7 categories:[NSSet setWithObjects:wakeUpCate,customCate,nil]];
 
     }else{
         /***************************测试category*******************************/

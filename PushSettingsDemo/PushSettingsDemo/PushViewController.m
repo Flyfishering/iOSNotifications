@@ -149,11 +149,9 @@
 
 - (IBAction)sendNotiAction:(id)sender {
     
-    [UILocalNotificationManager buildUILocalNotificationWithNSDate:[[NSDate date] dateByAddingTimeInterval:5.0] alert:@"快起床，快快起床~" badge:0 identifierKey:@"life" userInfo:nil];
+//    [UILocalNotificationManager buildUILocalNotificationWithNSDate:[[NSDate date] dateByAddingTimeInterval:5.0] alert:@"快起床，快快起床~" badge:0 identifierKey:@"life" userInfo:nil];
     
-//    [NewPushManager buildLocalNotificationForTest];
-//    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://itunes.apple.com/cn/app/id414245413"]];
-
+    [NewPushManager buildLocalNotificationForTest];
 
 }
 - (IBAction)removeNotiAction:(id)sender {

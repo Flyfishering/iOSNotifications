@@ -7,9 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "PushManager.h"
-#import "NewPushManager.h"
-#import "UILocalNotificationManager.h"
+#import "PushSwitch.h"
 
 @interface AppDelegate ()
 
@@ -24,52 +22,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    [PushManager setupWithOption:launchOptions];
-    
-    /***************************测试category*******************************/
-    /*注意：以下action注册，只在iOS10之前有效！！！  */
-    //apns: {"aps":{"alert":"测试推送的快捷回复", "sound":"default", "badge": 1, "category":"alert"}}
-    
-    
-    //接受按钮
-    UIMutableUserNotificationAction *acceptAction = [[UIMutableUserNotificationAction alloc] init];
-    acceptAction.identifier = @"acceptAction";
-    acceptAction.title = @"接受";
-    acceptAction.activationMode = UIUserNotificationActivationModeForeground;  //当点击的时候，启动应用
-    //拒绝按钮
-    UIMutableUserNotificationAction *rejectAction = [[UIMutableUserNotificationAction alloc] init];
-    rejectAction.identifier = @"rejectAction";
-    rejectAction.title = @"拒绝";
-    rejectAction.activationMode = UIUserNotificationActivationModeBackground;   //当点击的时候，不启动应用程序，在后台处理
-    rejectAction.authenticationRequired = YES;//需要解锁才能处理，如果action.activationMode = UIUserNotificationActivationModeForeground;则这个属性被忽略；
-    rejectAction.destructive = YES; //显示红色按钮（销毁、警告类按钮）
-    
-    UIMutableUserNotificationCategory *categorys = [[UIMutableUserNotificationCategory alloc] init];
-    categorys.identifier = @"wakeup";
-    NSArray *actions = @[acceptAction, rejectAction];
-    [categorys setActions:actions forContext:UIUserNotificationActionContextMinimal];
-     
-    [PushManager registerForRemoteNotificationTypes:7 categories:[NSSet setWithObjects:categorys,nil]];
-    
-    /**********************************************************/
-    //iOS 10以上，通知代理设置，不设置，代理不调用。
-    //在锁屏界面，通知栏，需要点击“查看”，才会显示“接受”、“拒绝”的按钮
-    /*
-    [UNUserNotificationCenter currentNotificationCenter].delegate = self;
-    
-    UNNotificationAction *acceptAction = [UNNotificationAction actionWithIdentifier:@"acceptAction" title:@"接受" options:UNNotificationActionOptionDestructive];
-    
-    UNNotificationAction *rejectAction = [UNNotificationAction actionWithIdentifier:@"rejectAction" title:@"拒绝" options:UNNotificationActionOptionForeground];
-    
-    //注意，输入的action，点击action后，会在Action列表显示：接受、拒绝、输入你想几点起
-    UNTextInputNotificationAction *inputAction = [UNTextInputNotificationAction actionWithIdentifier:@"inputAction" title:@"输入你想几点起" options:UNNotificationActionOptionForeground textInputButtonTitle:@"确定" textInputPlaceholder:@"再晚1小时吧"];
-    
-    UNNotificationCategory *categorys = [UNNotificationCategory categoryWithIdentifier:@"wakeup" actions:@[acceptAction,rejectAction,inputAction] intentIdentifiers:@[] options:UNNotificationCategoryOptionNone];
-    
-    
-    [NewPushManager registerForRemoteNotificationTypes:7 categories:[NSSet setWithObjects:categorys,nil]];
-
-     */
+    [PushSwitch registePushWithClass:self option:launchOptions];
     return YES;
 }
 
@@ -81,8 +34,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    //    [NewPushManager resetBadge];
-    [PushManager resetBadge];
+    [PushSwitch resetBadge];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
@@ -127,7 +79,6 @@
  */
 - (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
 {
-    [NewPushManager registerDeviceToken:deviceToken];
 }
 /**
  *  registerForRemoteNotifications的回调
@@ -193,7 +144,7 @@
  */
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
-    [UILocalNotificationManager handleLocalNotification:notification];
+    [PushSwitch handleLocalNotification:notification];
 }
 
 /**
@@ -205,7 +156,7 @@
 - (void)application:(UIApplication*)application didReceiveRemoteNotification:(NSDictionary*)userInfo
 {
     NSLog(@"push notification %@",userInfo);
-    [PushManager handleRemoteNotification:userInfo];
+    [PushSwitch handleRemoteNotification:userInfo];
 }
 
 /*! This delegate method offers an opportunity for applications with the "remote-notification" background mode to fetch appropriate new data in response to an incoming remote notification. You should call the fetchCompletionHandler as soon as you're finished performing that operation, so the system can accurately estimate its power and data cost.
@@ -222,7 +173,7 @@
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
     NSLog(@"push notification completionHandler %@",userInfo);
-    [PushManager handleRemoteNotification:userInfo];
+    [PushSwitch handleRemoteNotification:userInfo];
 }
 
 # pragma mark iOS 10

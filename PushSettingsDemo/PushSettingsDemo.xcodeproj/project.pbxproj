@@ -24,6 +24,7 @@
 		5E3E726D1D9180440077596D /* 视频.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 5E3E726A1D9180440077596D /* 视频.PNG */; };
 		5E3E726E1D9180440077596D /* 通知中心图片.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 5E3E726B1D9180440077596D /* 通知中心图片.PNG */; };
 		5E3E726F1D9180440077596D /* 自定义界面.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 5E3E726C1D9180440077596D /* 自定义界面.PNG */; };
+		5E50FB031DDBE99B00AA29FA /* PushSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E50FB021DDBE99B00AA29FA /* PushSwitch.m */; };
 		5E969F3D1D055E12001BAEED /* PushManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E969F3C1D055E12001BAEED /* PushManager.m */; };
 		5EC8A5261D91269900C8AC3C /* Action列表.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 5EC8A5241D91269900C8AC3C /* Action列表.PNG */; };
 		5EC8A5271D91269900C8AC3C /* InputAction.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 5EC8A5251D91269900C8AC3C /* InputAction.PNG */; };
@@ -97,6 +98,8 @@
 		5E3E726A1D9180440077596D /* 视频.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "视频.PNG"; sourceTree = "<group>"; };
 		5E3E726B1D9180440077596D /* 通知中心图片.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "通知中心图片.PNG"; sourceTree = "<group>"; };
 		5E3E726C1D9180440077596D /* 自定义界面.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "自定义界面.PNG"; sourceTree = "<group>"; };
+		5E50FB011DDBE99B00AA29FA /* PushSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushSwitch.h; sourceTree = "<group>"; };
+		5E50FB021DDBE99B00AA29FA /* PushSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushSwitch.m; sourceTree = "<group>"; };
 		5E6972F91D8E72E000ECF4F1 /* PushSettingsDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PushSettingsDemo.entitlements; sourceTree = "<group>"; };
 		5E969F3B1D055E12001BAEED /* PushManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushManager.h; sourceTree = "<group>"; };
 		5E969F3C1D055E12001BAEED /* PushManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushManager.m; sourceTree = "<group>"; };
@@ -237,6 +240,8 @@
 			isa = PBXGroup;
 			children = (
 				5E6972F91D8E72E000ECF4F1 /* PushSettingsDemo.entitlements */,
+				5E50FB011DDBE99B00AA29FA /* PushSwitch.h */,
+				5E50FB021DDBE99B00AA29FA /* PushSwitch.m */,
 				5EF2B44B1CC7D51000AC71C5 /* AppDelegate.h */,
 				5EF2B44C1CC7D51000AC71C5 /* AppDelegate.m */,
 				5E969F3B1D055E12001BAEED /* PushManager.h */,
@@ -446,6 +451,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5EF2B4501CC7D51000AC71C5 /* PushViewController.m in Sources */,
+				5E50FB031DDBE99B00AA29FA /* PushSwitch.m in Sources */,
 				5EF2B44D1CC7D51000AC71C5 /* AppDelegate.m in Sources */,
 				5E3B4B751D95084800E0CFC3 /* UNLocalNotificationManager.m in Sources */,
 				5EF2B44A1CC7D51000AC71C5 /* main.m in Sources */,

@@ -152,6 +152,8 @@
     [UILocalNotificationManager buildUILocalNotificationWithNSDate:[[NSDate date] dateByAddingTimeInterval:5.0] alert:@"快起床，快快起床~" badge:0 identifierKey:@"life" userInfo:nil];
     
 //    [NewPushManager buildLocalNotificationForTest];
+//    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://itunes.apple.com/cn/app/id414245413"]];
+
 
 }
 - (IBAction)removeNotiAction:(id)sender {
@@ -192,6 +194,7 @@
 
 - (void)findMe
 {
+
     /** 由于IOS8中定位的授权机制改变 需要进行手动授权
      * 获取授权认证，两个方法：
      * [self.locationManager requestWhenInUseAuthorization];

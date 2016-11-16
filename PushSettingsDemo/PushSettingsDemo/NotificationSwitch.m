@@ -6,14 +6,14 @@
 //  Copyright © 2016年 WengHengcong. All rights reserved.
 //
 
-#import "PushSwitch.h"
+#import "NotificationSwitch.h"
 
 #import "PushManager.h"
 #import "NewPushManager.h"
 #import "UILocalNotificationManager.h"
 #import "UNLocalNotificationManager.h"
 
-@implementation PushSwitch
+@implementation NotificationSwitch
 
 + (void)registePushWithClass:(id<UNUserNotificationCenterDelegate>)class  option:(NSDictionary*)launchOptions
 {

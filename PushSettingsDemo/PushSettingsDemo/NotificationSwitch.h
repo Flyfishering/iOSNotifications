@@ -12,7 +12,7 @@
 
 #define NewPushSwitchOpen 1
 
-@interface PushSwitch : NSObject
+@interface NotificationSwitch : NSObject
 
 + (void)registePushWithClass:(id<UNUserNotificationCenterDelegate>)class  option:(NSDictionary*)launchOptions;
 

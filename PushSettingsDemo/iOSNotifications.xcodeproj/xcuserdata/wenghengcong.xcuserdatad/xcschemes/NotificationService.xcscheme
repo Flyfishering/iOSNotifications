@@ -18,7 +18,7 @@
                BlueprintIdentifier = "5EC8A5471D9134FA00C8AC3C"
                BuildableName = "NotificationService.appex"
                BlueprintName = "NotificationService"
-               ReferencedContainer = "container:PushSettingsDemo.xcodeproj">
+               ReferencedContainer = "container:iOSNotifications.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -30,9 +30,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5EF2B4441CC7D51000AC71C5"
-               BuildableName = "PushSettingsDemo.app"
-               BlueprintName = "PushSettingsDemo"
-               ReferencedContainer = "container:PushSettingsDemo.xcodeproj">
+               BuildableName = "iOSNotifications.app"
+               BlueprintName = "iOSNotifications"
+               ReferencedContainer = "container:iOSNotifications.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -50,7 +50,7 @@
             BlueprintIdentifier = "5EC8A5471D9134FA00C8AC3C"
             BuildableName = "NotificationService.appex"
             BlueprintName = "NotificationService"
-            ReferencedContainer = "container:PushSettingsDemo.xcodeproj">
+            ReferencedContainer = "container:iOSNotifications.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -67,16 +67,20 @@
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES"
       launchAutomaticallySubstyle = "2">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <RemoteRunnable
+         runnableDebuggingMode = "0"
+         BundleIdentifier = "com.junglesong.pushtestdemo"
+         RemotePath = "/var/containers/Bundle/Application/7FDE5B6D-7896-45FA-9CF6-F122C14AC289/PushSettingsDemo.app">
+      </RemoteRunnable>
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5EF2B4441CC7D51000AC71C5"
-            BuildableName = "PushSettingsDemo.app"
-            BlueprintName = "PushSettingsDemo"
-            ReferencedContainer = "container:PushSettingsDemo.xcodeproj">
+            BuildableName = "iOSNotifications.app"
+            BlueprintName = "iOSNotifications"
+            ReferencedContainer = "container:iOSNotifications.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -92,9 +96,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5EF2B4441CC7D51000AC71C5"
-            BuildableName = "PushSettingsDemo.app"
-            BlueprintName = "PushSettingsDemo"
-            ReferencedContainer = "container:PushSettingsDemo.xcodeproj">
+            BuildableName = "iOSNotifications.app"
+            BlueprintName = "iOSNotifications"
+            ReferencedContainer = "container:iOSNotifications.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

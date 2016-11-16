@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "PushSwitch.h"
+#import "NotificationSwitch.h"
 
 @interface AppDelegate ()
 
@@ -22,7 +22,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    [PushSwitch registePushWithClass:self option:launchOptions];
+    [NotificationSwitch registePushWithClass:self option:launchOptions];
     return YES;
 }
 
@@ -34,7 +34,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    [PushSwitch resetBadge];
+    [NotificationSwitch resetBadge];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
@@ -79,7 +79,7 @@
  */
 - (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
 {
-    [PushSwitch registerDeviceToken:deviceToken];
+    [NotificationSwitch registerDeviceToken:deviceToken];
 }
 /**
  *  registerForRemoteNotifications的回调
@@ -145,7 +145,7 @@
  */
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
-    [PushSwitch handleLocalNotification:notification];
+    [NotificationSwitch handleLocalNotification:notification];
 }
 
 /**
@@ -157,7 +157,7 @@
 - (void)application:(UIApplication*)application didReceiveRemoteNotification:(NSDictionary*)userInfo
 {
     NSLog(@"push notification %@",userInfo);
-    [PushSwitch handleRemoteNotification:userInfo];
+    [NotificationSwitch handleRemoteNotification:userInfo];
 }
 
 /*! This delegate method offers an opportunity for applications with the "remote-notification" background mode to fetch appropriate new data in response to an incoming remote notification. You should call the fetchCompletionHandler as soon as you're finished performing that operation, so the system can accurately estimate its power and data cost.
@@ -174,7 +174,7 @@
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
     NSLog(@"push notification completionHandler %@",userInfo);
-    [PushSwitch handleRemoteNotification:userInfo];
+    [NotificationSwitch handleRemoteNotification:userInfo];
 }
 
 # pragma mark iOS 10

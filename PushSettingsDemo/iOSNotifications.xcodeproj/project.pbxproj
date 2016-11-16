@@ -24,7 +24,7 @@
 		5E3E726D1D9180440077596D /* 视频.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 5E3E726A1D9180440077596D /* 视频.PNG */; };
 		5E3E726E1D9180440077596D /* 通知中心图片.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 5E3E726B1D9180440077596D /* 通知中心图片.PNG */; };
 		5E3E726F1D9180440077596D /* 自定义界面.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 5E3E726C1D9180440077596D /* 自定义界面.PNG */; };
-		5E50FB031DDBE99B00AA29FA /* PushSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E50FB021DDBE99B00AA29FA /* PushSwitch.m */; };
+		5E50FB031DDBE99B00AA29FA /* NotificationSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E50FB021DDBE99B00AA29FA /* NotificationSwitch.m */; };
 		5E969F3D1D055E12001BAEED /* PushManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E969F3C1D055E12001BAEED /* PushManager.m */; };
 		5EC8A5261D91269900C8AC3C /* Action列表.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 5EC8A5241D91269900C8AC3C /* Action列表.PNG */; };
 		5EC8A5271D91269900C8AC3C /* InputAction.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 5EC8A5251D91269900C8AC3C /* InputAction.PNG */; };
@@ -98,11 +98,11 @@
 		5E3E726A1D9180440077596D /* 视频.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "视频.PNG"; sourceTree = "<group>"; };
 		5E3E726B1D9180440077596D /* 通知中心图片.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "通知中心图片.PNG"; sourceTree = "<group>"; };
 		5E3E726C1D9180440077596D /* 自定义界面.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "自定义界面.PNG"; sourceTree = "<group>"; };
-		5E50FB011DDBE99B00AA29FA /* PushSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushSwitch.h; sourceTree = "<group>"; };
-		5E50FB021DDBE99B00AA29FA /* PushSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushSwitch.m; sourceTree = "<group>"; };
-		5E6972F91D8E72E000ECF4F1 /* PushSettingsDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PushSettingsDemo.entitlements; sourceTree = "<group>"; };
+		5E50FB011DDBE99B00AA29FA /* NotificationSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationSwitch.h; sourceTree = "<group>"; };
+		5E50FB021DDBE99B00AA29FA /* NotificationSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationSwitch.m; sourceTree = "<group>"; };
 		5E969F3B1D055E12001BAEED /* PushManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushManager.h; sourceTree = "<group>"; };
 		5E969F3C1D055E12001BAEED /* PushManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushManager.m; sourceTree = "<group>"; };
+		5EB7A45F1DDC60C4007E8C1F /* iOSNotifications.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = iOSNotifications.entitlements; path = ../iOSNotifications.entitlements; sourceTree = "<group>"; };
 		5EC8A5241D91269900C8AC3C /* Action列表.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Action列表.PNG"; sourceTree = "<group>"; };
 		5EC8A5251D91269900C8AC3C /* InputAction.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = InputAction.PNG; sourceTree = "<group>"; };
 		5EC8A52C1D9127F000C8AC3C /* NotificationContent.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationContent.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,7 +120,7 @@
 		5EDF6F2A1D8FE2BA0072682F /* NewPushManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPushManager.h; sourceTree = "<group>"; };
 		5EDF6F2B1D8FE2BA0072682F /* NewPushManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPushManager.m; sourceTree = "<group>"; };
 		5EDF6F301D8FE6BE0072682F /* dog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dog.png; sourceTree = "<group>"; };
-		5EF2B4451CC7D51000AC71C5 /* PushSettingsDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PushSettingsDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5EF2B4451CC7D51000AC71C5 /* iOSNotifications.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSNotifications.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EF2B4491CC7D51000AC71C5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5EF2B44B1CC7D51000AC71C5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5EF2B44C1CC7D51000AC71C5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -229,7 +229,7 @@
 		5EF2B4461CC7D51000AC71C5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5EF2B4451CC7D51000AC71C5 /* PushSettingsDemo.app */,
+				5EF2B4451CC7D51000AC71C5 /* iOSNotifications.app */,
 				5EC8A52C1D9127F000C8AC3C /* NotificationContent.appex */,
 				5EC8A5481D9134FA00C8AC3C /* NotificationService.appex */,
 			);
@@ -239,11 +239,11 @@
 		5EF2B4471CC7D51000AC71C5 /* PushSettingsDemo */ = {
 			isa = PBXGroup;
 			children = (
-				5E6972F91D8E72E000ECF4F1 /* PushSettingsDemo.entitlements */,
-				5E50FB011DDBE99B00AA29FA /* PushSwitch.h */,
-				5E50FB021DDBE99B00AA29FA /* PushSwitch.m */,
+				5EB7A45F1DDC60C4007E8C1F /* iOSNotifications.entitlements */,
 				5EF2B44B1CC7D51000AC71C5 /* AppDelegate.h */,
 				5EF2B44C1CC7D51000AC71C5 /* AppDelegate.m */,
+				5E50FB011DDBE99B00AA29FA /* NotificationSwitch.h */,
+				5E50FB021DDBE99B00AA29FA /* NotificationSwitch.m */,
 				5E969F3B1D055E12001BAEED /* PushManager.h */,
 				5E969F3C1D055E12001BAEED /* PushManager.m */,
 				5EDF6F2A1D8FE2BA0072682F /* NewPushManager.h */,
@@ -318,9 +318,9 @@
 			productReference = 5EC8A5481D9134FA00C8AC3C /* NotificationService.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		5EF2B4441CC7D51000AC71C5 /* PushSettingsDemo */ = {
+		5EF2B4441CC7D51000AC71C5 /* iOSNotifications */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5EF2B45C1CC7D51000AC71C5 /* Build configuration list for PBXNativeTarget "PushSettingsDemo" */;
+			buildConfigurationList = 5EF2B45C1CC7D51000AC71C5 /* Build configuration list for PBXNativeTarget "iOSNotifications" */;
 			buildPhases = (
 				5EF2B4411CC7D51000AC71C5 /* Sources */,
 				5EF2B4421CC7D51000AC71C5 /* Frameworks */,
@@ -333,9 +333,9 @@
 				5EC8A5421D9134CB00C8AC3C /* PBXTargetDependency */,
 				5EC8A54F1D9134FA00C8AC3C /* PBXTargetDependency */,
 			);
-			name = PushSettingsDemo;
+			name = iOSNotifications;
 			productName = PushSettingsDemo;
-			productReference = 5EF2B4451CC7D51000AC71C5 /* PushSettingsDemo.app */;
+			productReference = 5EF2B4451CC7D51000AC71C5 /* iOSNotifications.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -371,7 +371,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 5EF2B4401CC7D51000AC71C5 /* Build configuration list for PBXProject "PushSettingsDemo" */;
+			buildConfigurationList = 5EF2B4401CC7D51000AC71C5 /* Build configuration list for PBXProject "iOSNotifications" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -384,7 +384,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5EF2B4441CC7D51000AC71C5 /* PushSettingsDemo */,
+				5EF2B4441CC7D51000AC71C5 /* iOSNotifications */,
 				5EC8A52B1D9127F000C8AC3C /* NotificationContent */,
 				5EC8A5471D9134FA00C8AC3C /* NotificationService */,
 			);
@@ -451,7 +451,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5EF2B4501CC7D51000AC71C5 /* PushViewController.m in Sources */,
-				5E50FB031DDBE99B00AA29FA /* PushSwitch.m in Sources */,
+				5E50FB031DDBE99B00AA29FA /* NotificationSwitch.m in Sources */,
 				5EF2B44D1CC7D51000AC71C5 /* AppDelegate.m in Sources */,
 				5E3B4B751D95084800E0CFC3 /* UNLocalNotificationManager.m in Sources */,
 				5EF2B44A1CC7D51000AC71C5 /* main.m in Sources */,
@@ -676,7 +676,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = PushSettingsDemo/PushSettingsDemo.entitlements;
+				CODE_SIGN_ENTITLEMENTS = iOSNotifications.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Hengcong Weng (7RMANB5BXZ)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hengcong Weng (7RMANB5BXZ)";
 				DEVELOPMENT_TEAM = 69XHTLCF36;
@@ -698,7 +698,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = PushSettingsDemo/PushSettingsDemo.entitlements;
+				CODE_SIGN_ENTITLEMENTS = iOSNotifications.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Hengcong Weng (7RMANB5BXZ)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hengcong Weng (7RMANB5BXZ)";
 				DEVELOPMENT_TEAM = 69XHTLCF36;
@@ -737,7 +737,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5EF2B4401CC7D51000AC71C5 /* Build configuration list for PBXProject "PushSettingsDemo" */ = {
+		5EF2B4401CC7D51000AC71C5 /* Build configuration list for PBXProject "iOSNotifications" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5EF2B45A1CC7D51000AC71C5 /* Debug */,
@@ -746,7 +746,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5EF2B45C1CC7D51000AC71C5 /* Build configuration list for PBXNativeTarget "PushSettingsDemo" */ = {
+		5EF2B45C1CC7D51000AC71C5 /* Build configuration list for PBXNativeTarget "iOSNotifications" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5EF2B45D1CC7D51000AC71C5 /* Debug */,

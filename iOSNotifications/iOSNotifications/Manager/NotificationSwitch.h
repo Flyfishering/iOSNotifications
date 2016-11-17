@@ -14,7 +14,6 @@
 #import "JSPushService.h"
 
 #import "UILocalNotificationManager.h"
-#import "UNLocalNotificationManager.h"
 
 #define iOS10 ([[ [UIDevice currentDevice] systemVersion] floatValue] > 10.0)
 

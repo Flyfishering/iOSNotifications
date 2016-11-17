@@ -97,7 +97,7 @@
     content.body = @"起床反反复复。。。 ";
     content.categoryIdentifier = @"wakeup";
     content.launchImageName = @"dog";
-    content.sound = [UNNotificationSound defaultSound];
+    content.sound = [UNNotificationSound soundNamed:@"wake.caf"];
 //    content.threadIdentifier = @"";
     content.userInfo = @{@"first":@"5:00 am",@"second":@"6:00"};
     

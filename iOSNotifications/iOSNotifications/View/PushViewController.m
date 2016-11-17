@@ -7,9 +7,7 @@
 //
 
 #import "PushViewController.h"
-#import "UINotificationManager.h"
-#import "UNNotificationManager.h"
-#import "UILocalNotificationManager.h"
+#import "NotificationSwitch.h"
 
 #import <CoreLocation/CoreLocation.h>
 
@@ -149,19 +147,29 @@
 
 - (IBAction)sendNotiAction:(id)sender {
     
-//    [UILocalNotificationManager buildUILocalNotificationWithNSDate:[[NSDate date] dateByAddingTimeInterval:5.0] alert:@"快起床，快快起床~" badge:0 identifierKey:@"life" userInfo:nil];
-    
-    [UNNotificationManager buildLocalNotificationForTest];
+    if (NewPushSwitchOpen) {
+        [UILocalNotificationManager buildUILocalNotificationWithNSDate:[[NSDate date] dateByAddingTimeInterval:5.0] alert:@"快起床，快快起床~" badge:0 identifierKey:@"life" userInfo:nil];
+    }else{
+        [UNNotificationManager buildLocalNotificationForTest];
+    }
 
 }
 - (IBAction)removeNotiAction:(id)sender {
     
-    [UNNotificationManager removeDeliveredNotificationForTest];
+    if (NewPushSwitchOpen) {
+        [UNNotificationManager removeDeliveredNotificationForTest];
+    }else{
+        
+    }
 }
 
 - (IBAction)updateNotiAction:(id)sender {
     
-    [UNNotificationManager updateDeliveredNotificationForTest];
+    if (NewPushSwitchOpen) {
+        [UNNotificationManager updateDeliveredNotificationForTest];
+    }else{
+        
+    }
 }
 
 # pragma mark - setter

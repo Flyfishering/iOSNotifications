@@ -10,6 +10,14 @@
 #import <UIKit/UIKit.h>
 #import <UserNotifications/UserNotifications.h>
 
+#import "UINotificationManager.h"
+#import "UNNotificationManager.h"
+
+#import "UILocalNotificationManager.h"
+#import "UNLocalNotificationManager.h"
+
+#define iOS10 ([[ [UIDevice currentDevice] systemVersion] floatValue] > 10.0)
+
 #define NewPushSwitchOpen 1
 
 @interface NotificationSwitch : NSObject

@@ -88,7 +88,8 @@
         }else{
             notification.soundName = UILocalNotificationDefaultSoundName;
         }
-        
+        notification.soundName = @"wake.caf";
+
         // 设置应用程序右上角的提醒个数
         if(badge == -1){
             //-1,不改变

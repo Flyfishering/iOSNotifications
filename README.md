@@ -2,7 +2,7 @@
 
 Everything tha about notification in iOS.
 
-[En]()
+[En](https://github.com/wenghengcong/iOSNotifications/blob/master/README_EN.md)
 
 ****
 ## iOS  bugs

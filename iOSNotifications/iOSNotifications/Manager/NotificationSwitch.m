@@ -46,7 +46,7 @@
 
         /**第二组按钮结束**/
         
-        [UNNotificationManager registerForRemoteNotificationTypes:7 categories:[NSSet setWithObjects:wakeUpCate,customCate,nil]];
+        [JSPushService registerForRemoteNotificationTypes:7 categories:[NSSet setWithObjects:wakeUpCate,customCate,nil]];
 
     }else{
         /***************************测试category*******************************/
@@ -81,7 +81,7 @@
 + (void)resetBadge
 {
     if (NewPushSwitchOpen) {
-        [UNNotificationManager resetBadge];
+        [JSPushService resetBadge];
     }else{
         [UINotificationManager resetBadge];
     }
@@ -90,7 +90,7 @@
 + (void)registerDeviceToken:(NSData*)deviceToken
 {
     if (NewPushSwitchOpen) {
-        [UNNotificationManager registerDeviceToken:deviceToken];
+        [JSPushService registerDeviceToken:deviceToken];
     }else{
         [UINotificationManager registerDeviceToken:deviceToken];
     }

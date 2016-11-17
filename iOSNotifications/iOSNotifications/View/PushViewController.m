@@ -150,14 +150,14 @@
     if (NewPushSwitchOpen) {
         [UILocalNotificationManager buildUILocalNotificationWithNSDate:[[NSDate date] dateByAddingTimeInterval:5.0] alert:@"快起床，快快起床~" badge:0 identifierKey:@"life" userInfo:nil];
     }else{
-        [UNNotificationManager buildLocalNotificationForTest];
+        [JSPushService buildLocalNotificationForTest];
     }
 
 }
 - (IBAction)removeNotiAction:(id)sender {
     
     if (NewPushSwitchOpen) {
-        [UNNotificationManager removeDeliveredNotificationForTest];
+        [JSPushService removeDeliveredNotificationForTest];
     }else{
         
     }
@@ -166,7 +166,7 @@
 - (IBAction)updateNotiAction:(id)sender {
     
     if (NewPushSwitchOpen) {
-        [UNNotificationManager updateDeliveredNotificationForTest];
+        [JSPushService updateDeliveredNotificationForTest];
     }else{
         
     }

@@ -8,14 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "AppDelegate.h"
-
+#import <UserNotifications/UserNotifications.h>
 
 /**
- 针对iOS 10 的Push Manager
+ 针对iOS 10
  参考：https://onevcat.com/2016/08/notification/
  */
-@interface UNNotificationManager : NSObject
+@interface JSPushService : NSObject
 
 + (instancetype)sharedManager;
 

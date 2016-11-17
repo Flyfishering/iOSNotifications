@@ -6,14 +6,14 @@
 //  Copyright © 2016年 WengHengcong. All rights reserved.
 //
 
-#import "UNNotificationManager.h"
+#import "JSPushService.h"
 #import "PushViewController.h"
 
-@implementation UNNotificationManager
+@implementation JSPushService
 
 + (instancetype)sharedManager {
     
-    static UNNotificationManager *shared = nil;
+    static JSPushService *shared = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         shared = [[self alloc]init];
@@ -61,14 +61,14 @@
     NSLog(@"device token is: %@", newToken);
     
     //show
-    PushViewController *pushVC = (PushViewController *)[[UNNotificationManager sharedManager] viewController];
+    PushViewController *pushVC = (PushViewController *)[[JSPushService sharedManager] viewController];
     pushVC.devicetoken = newToken;
 }
 
 #pragma mark - badge
 
 + (void)resetBadge {
-    [UNNotificationManager setBadge:0];
+    [JSPushService setBadge:0];
 }
 
 + (void)setBadge:(NSInteger)badge {

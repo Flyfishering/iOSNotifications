@@ -11,7 +11,7 @@
 #import <UserNotifications/UserNotifications.h>
 
 #import "UINotificationManager.h"
-#import "UNNotificationManager.h"
+#import "JSPushService.h"
 
 #import "UILocalNotificationManager.h"
 #import "UNLocalNotificationManager.h"

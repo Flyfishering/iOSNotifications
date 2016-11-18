@@ -28,7 +28,7 @@
         //注意，输入的action，点击action后，会在Action列表显示：接受、拒绝、输入你想几点起
         UNTextInputNotificationAction *inputAction = [UNTextInputNotificationAction actionWithIdentifier:@"inputAction" title:@"输入你想几点起" options:UNNotificationActionOptionForeground textInputButtonTitle:@"确定" textInputPlaceholder:@"再晚1小时吧"];
         
-        UNNotificationCategory *wakeUpCate = [UNNotificationCategory categoryWithIdentifier:@"wakeup" actions:@[acceptAction,rejectAction,inputAction] intentIdentifiers:@[@"wakeup"] options:UNNotificationCategoryOptionNone];
+        UNNotificationCategory *wakeUpCate = [UNNotificationCategory categoryWithIdentifier:@"customUI" actions:@[acceptAction,rejectAction,inputAction] intentIdentifiers:@[@"wakeup"] options:UNNotificationCategoryOptionNone];
         
         /**第一组按钮结束**/
 
@@ -42,7 +42,7 @@
         UNTextInputNotificationAction *customAction3 = [UNTextInputNotificationAction actionWithIdentifier:@"inputAction" title:@"输入文本" options:UNNotificationActionOptionForeground textInputButtonTitle:@"确定" textInputPlaceholder:@"输入文本默认占位符"];
         
         
-        UNNotificationCategory *customCate = [UNNotificationCategory categoryWithIdentifier:@"customUI" actions:@[customAction1,customAction2,customAction3] intentIdentifiers:@[@"customUI"] options:UNNotificationCategoryOptionNone];
+        UNNotificationCategory *customCate = [UNNotificationCategory categoryWithIdentifier:@"customUIWeb" actions:@[customAction1,customAction2,customAction3] intentIdentifiers:@[@"customUI"] options:UNNotificationCategoryOptionNone];
 
         /**第二组按钮结束**/
         
@@ -69,7 +69,7 @@
          rejectAction.destructive = YES; //显示红色按钮（销毁、警告类按钮）
          
          UIMutableUserNotificationCategory *categorys = [[UIMutableUserNotificationCategory alloc] init];
-         categorys.identifier = @"wakeup";
+         categorys.identifier = @"customUI";
          NSArray *actions = @[acceptAction, rejectAction];
          [categorys setActions:actions forContext:UIUserNotificationActionContextMinimal];
          

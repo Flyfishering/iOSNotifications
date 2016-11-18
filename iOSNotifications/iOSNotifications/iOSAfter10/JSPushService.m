@@ -90,7 +90,7 @@
     
     UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc]init];
     //在通知中心显示的总是第一个多媒体资源
-    content.attachments = @[imgAtt,mediaAtt];
+    content.attachments = @[mediaAtt,imgAtt];
     content.badge = @1;
     content.title = @"起床闹钟";
     content.subtitle = @"第一次起床";

@@ -45,18 +45,20 @@
     //在此处修改category，可达到对应category的手段！！！
     //可以配合服务端针对category来进行不同的自定义页面的设置。
     /*
-     {
-     "aps":{
+{
+    "aps":{
         "alert":{
-            "title":"快起床第十三",
-            "body":"真的起不来？"
+        "title":"快起床第十三",
+        "body":"真的起不来？"
         },
         "category":"customUI",
         "mutable-content":1
-     },
-        "url":"http://www.baidu.com",
-        "js_category":"customUI",
-     }
+    },
+    "url":"http://www.baidu.com",
+    "js_category":"customUI",
+    "image":"http://p2.so.qhmsg.com/t01570d67d63111d3e7.jpg"
+}
+     //上面category，另外一个定义了的：customUIWeb，用于展示web页面；
      */
     NSString *categoryFormServer = [self.bestAttemptContent.userInfo objectForKey:@"js_category"];
     self.bestAttemptContent.categoryIdentifier = categoryFormServer;
@@ -64,19 +66,20 @@
     //此处自定义一个字段image，用于下载地址：
     /*
      
-     {
-     "aps":{
-     "alert":{
-     "title":"快起床",
-     "body":"真的起不来？"
+{
+    "aps":{
+         "alert":{
+            "title":"快起床",
+            "body":"真的起不来？"
+         },
+         "mutable-content":1,
      },
-     "mutable-content":1,
      "image":"http://p2.so.qhmsg.com/t01570d67d63111d3e7.jpg"
-     }
+}
      
      */
-    
     //同时，需要注意的是，在下载图片是采用http时，需要在extension info.plist加上 app transport
+    //注意：image读取的层次结构
     NSString *urlStr = [self.bestAttemptContent.userInfo objectForKey:@"image"];
     
     if (urlStr) {

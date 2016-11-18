@@ -148,9 +148,9 @@
 - (IBAction)sendNotiAction:(id)sender {
     
     if (NewPushSwitchOpen) {
-        [UILocalNotificationManager buildUILocalNotificationWithNSDate:[[NSDate date] dateByAddingTimeInterval:5.0] alert:@"快起床，快快起床~" badge:0 identifierKey:@"life" userInfo:nil];
-    }else{
         [JSPushService buildLocalNotificationForTest];
+    }else{
+        [UILocalNotificationManager buildUILocalNotificationWithNSDate:[[NSDate date] dateByAddingTimeInterval:5.0] alert:@"快起床，快快起床~" badge:0 identifierKey:@"life" userInfo:nil];
     }
 
 }

@@ -15,9 +15,11 @@
 
 #import "UILocalNotificationManager.h"
 
-#define iOS10 ([[ [UIDevice currentDevice] systemVersion] floatValue] > 10.0)
+#define iOS10 ([[ [UIDevice currentDevice] systemVersion] floatValue] >= 10.0)
 
+//#if __IPHONE_OS_VERSION_MIN_REQUIRED > __IPHONE_10_0
 #define NewPushSwitchOpen 1
+//#endif
 
 @interface NotificationSwitch : NSObject
 
@@ -31,5 +33,6 @@
 
 + (void)handleRemoteNotification:(NSDictionary *)userInfo;
 
++ (BOOL)supportIOS10NewFramework;
 
 @end

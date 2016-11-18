@@ -14,7 +14,7 @@
 
 + (void)registePushWithClass:(id<UNUserNotificationCenterDelegate>)class  option:(NSDictionary*)launchOptions
 {
-    if (NewPushSwitchOpen  && iOS10) {
+    if ([self supportIOS10NewFramework]) {
         //iOS 10以上，通知代理设置，不设置，代理不调用。
         //在锁屏界面，通知栏，需要点击“查看”，才会显示“接受”、“拒绝”的按钮
         
@@ -80,7 +80,7 @@
 
 + (void)resetBadge
 {
-    if (NewPushSwitchOpen) {
+    if ([self supportIOS10NewFramework]) {
         [JSPushService resetBadge];
     }else{
         [UINotificationManager resetBadge];
@@ -89,7 +89,7 @@
 
 + (void)registerDeviceToken:(NSData*)deviceToken
 {
-    if (NewPushSwitchOpen) {
+    if ([self supportIOS10NewFramework]) {
         [JSPushService registerDeviceToken:deviceToken];
     }else{
         [UINotificationManager registerDeviceToken:deviceToken];
@@ -98,7 +98,7 @@
 
 + (void)handleLocalNotification:(UILocalNotification *)notification {
     
-    if (NewPushSwitchOpen) {
+    if ([self supportIOS10NewFramework]) {
         [UILocalNotificationManager handleLocalNotification:notification];
     }else{
         
@@ -107,10 +107,19 @@
 
 + (void)handleRemoteNotification:(NSDictionary *)userInfo {
     
-    if (NewPushSwitchOpen) {
+    if ([self supportIOS10NewFramework]) {
 
     }else{
         [UINotificationManager handleRemoteNotification:userInfo];
+    }
+}
+
++ (BOOL)supportIOS10NewFramework
+{
+    if (NewPushSwitchOpen && iOS10) {
+        return YES;
+    }else{
+        return NO;
     }
 }
 

@@ -43,6 +43,7 @@
             "title":"快起床第十三",
             "body":"真的起不来？"
         },
+        "sound":"default",
         "category":"customUI",
         "mutable-content":1
     },

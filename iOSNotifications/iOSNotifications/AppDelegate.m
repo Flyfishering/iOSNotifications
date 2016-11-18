@@ -192,7 +192,9 @@
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler
 {
     NSLog(@"%@",notification);
-    completionHandler(UNNotificationPresentationOptionBadge | UNNotificationPresentationOptionSound | UNNotificationPresentationOptionAlert );
+    //以下执行，是否在前台执行alert\sound\badge
+    completionHandler(0);
+    //completionHandler(UNNotificationPresentationOptionBadge | UNNotificationPresentationOptionSound | UNNotificationPresentationOptionAlert );
 }
 
 
@@ -242,6 +244,7 @@
     }
     
     completionHandler();
+    
 }
 
 #ifdef NSFoundationVersionNumber_iOS_9_x_Max

@@ -17,6 +17,7 @@
  "title":"快起床",
  "body":"真的起不来？"
  },
+ "sound":"default",
  "mutable-content":1
  }
 
@@ -51,6 +52,7 @@
         "title":"快起床第十三",
         "body":"真的起不来？"
         },
+        "sound":"default",
         "category":"customUI",
         "mutable-content":1
     },
@@ -72,7 +74,8 @@
             "title":"快起床",
             "body":"真的起不来？"
          },
-         "mutable-content":1,
+        "sound":"default",
+        "mutable-content":1,
      },
      "image":"http://p2.so.qhmsg.com/t01570d67d63111d3e7.jpg"
 }

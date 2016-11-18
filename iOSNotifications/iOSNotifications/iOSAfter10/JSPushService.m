@@ -12,6 +12,8 @@
 /***  Log */
 # define JSPUSHLog(str, ...) [self jspush_file:((char *)__FILE__) function:((char *)__FUNCTION__) line:(__LINE__) format:(str),##__VA_ARGS__]
 
+#define JSPUSH_SYSTEM_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
+
 @implementation JSPushService
 
 + (instancetype)sharedManager {
@@ -183,7 +185,20 @@
 
     }else{
         
+        UILocalNotification *noti = [self convertJSPushNotificationRequestToUILocalNotification:jsRequest];
+        //iOS10以下成功result为UILocalNotification对象，失败则result为nil
+        id result = noti ? nil : noti;
+        if (jsRequest.completionHandler) {
+            jsRequest.completionHandler(result);
+        }
+        
     }
+}
+
++ (void)removeNotification:(JSPushNotificationIdentifier *)identifier {
+
+    
+
 }
 
 #pragma mark - other
@@ -196,6 +211,8 @@
 }
 
 #pragma mark - Private Methods
+
+# pragma mark  iOS 10 以上创建通知
 
 + (nullable UNNotificationRequest *)convertJSPushNotificationRequestToUNNotificationRequest:(JSPushNotificationRequest *)jsRequest {
     
@@ -266,6 +283,100 @@
     }
     
     return trigger;
+}
+
+# pragma mark  iOS 10 以下创建本地通知
+
++ (UILocalNotification *)convertJSPushNotificationRequestToUILocalNotification:(JSPushNotificationRequest *)jsRequest {
+
+    if (jsRequest == nil) {
+        JSPUSHLog(@"error-request is nil!");
+        return nil;
+    }
+    
+    if (jsRequest.trigger == nil) {
+        JSPUSHLog(@"error-trigger is nil!");
+        return nil;
+    }
+    
+    if (jsRequest.content == nil) {
+        JSPUSHLog(@"error-content is nil!");
+        return nil;
+    }
+    
+    UILocalNotification *noti = [self setLocalNotification:jsRequest.trigger.fireDate alertTitle:jsRequest.content.title alertBody:jsRequest.content.body badge:jsRequest.content.badge alertAction:jsRequest.content.action identifierKey:jsRequest.requestIdentifier userInfo:jsRequest.content.userInfo soundName:jsRequest.content.sound region:jsRequest.trigger.region regionTriggersOnce:jsRequest.trigger.repeat category:jsRequest.content.categoryIdentifier];
+    
+    return noti;
+}
+
++ (UILocalNotification *)setLocalNotification:(NSDate *)fireDate
+                                   alertTitle:(NSString *)alertTitle
+                                    alertBody:(NSString *)alertBody
+                                        badge:(NSNumber *)badge
+                                  alertAction:(NSString *)alertAction
+                                identifierKey:(NSString *)notificationKey
+                                     userInfo:(NSDictionary *)userInfo
+                                    soundName:(NSString *)soundName
+                                       region:(CLRegion *)region
+                           regionTriggersOnce:(BOOL)regionTriggersOnce
+                                     category:(NSString *)category NS_AVAILABLE_IOS(8_0) {
+    // 初始化本地通知对象
+    UILocalNotification *notification = [[UILocalNotification alloc] init];
+    if (notification) {
+        // 设置通知的提醒时间
+        notification.timeZone = [NSTimeZone defaultTimeZone]; // 使用本地时区
+        notification.fireDate = fireDate;
+        
+        // 设置重复间隔
+        //        notification.repeatInterval = kCFCalendarUnitDay;
+        
+        // 设置提醒的文字内容
+        if(JSPUSH_SYSTEM_VERSION_GREATER_THAN(@"8.2")){
+            notification.alertTitle = alertTitle;     //8.2才支持,默认是应用名称
+        }
+        notification.alertBody   = alertBody;     //显示主体
+        notification.category = category;
+        
+        //设置侧滑按钮文字
+        notification.hasAction = YES;
+        notification.alertAction = alertAction;
+        
+        // 通知提示音
+        if(soundName){
+            notification.soundName = soundName;     //默认提示音：UILocalNotificationDefaultSoundName
+        }else{
+            notification.soundName = UILocalNotificationDefaultSoundName;
+        }
+        
+        // 设置应用程序右上角的提醒个数
+        NSInteger badgeNum = [badge integerValue];
+        if(badgeNum == -1){
+            //-1,不改变
+        }else if(badgeNum == 0){
+            //applicationIconBadgeNumber,
+            //0 means no change. defaults to 0
+            notification.applicationIconBadgeNumber++;
+        }else{
+            notification.applicationIconBadgeNumber = badgeNum;
+        }
+        
+        //设置地理位置
+        if(region){
+            notification.region = region;
+            notification.regionTriggersOnce = regionTriggersOnce;
+        }
+        // 设定通知的userInfo，用来标识该通知
+        NSMutableDictionary *aUserInfo = nil;
+        if(userInfo){
+            aUserInfo = [NSMutableDictionary dictionaryWithDictionary:userInfo];
+        }else{
+            aUserInfo = [NSMutableDictionary dictionary];
+        }
+        aUserInfo[kLocalNotificationIdentifier] = notificationKey;
+        notification.userInfo = [aUserInfo copy];
+        
+    }
+    return notification;
 }
 
 

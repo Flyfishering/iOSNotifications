@@ -116,7 +116,7 @@
 
 + (BOOL)supportIOS10NewFramework
 {
-    if (NewPushSwitchOpen && iOS10) {
+    if (NewPushSwitchOpen && iOSAbove10) {
         return YES;
     }else{
         return NO;

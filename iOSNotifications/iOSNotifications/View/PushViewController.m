@@ -147,11 +147,11 @@
 
 - (IBAction)sendNotiAction:(id)sender {
     
-    if ([NotificationSwitch supportIOS10NewFramework]) {
-        [JSPushService buildLocalNotificationForTest];
-    }else{
+//    if ([NotificationSwitch supportIOS10NewFramework]) {
+//        [JSPushService buildLocalNotificationForTest];
+//    }else{
         [UILocalNotificationManager buildUILocalNotificationWithNSDate:[[NSDate date] dateByAddingTimeInterval:5.0] alert:@"快起床，快快起床~" badge:0 identifierKey:@"life" userInfo:nil];
-    }
+//    }
 
 }
 - (IBAction)removeNotiAction:(id)sender {

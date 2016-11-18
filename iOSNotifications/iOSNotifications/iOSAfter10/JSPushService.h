@@ -15,6 +15,15 @@
 #import "JSPushNotificationTrigger.h"
 #import "JSPushNotificationRequest.h"
 
+#define iOSAbove10 ([[ [UIDevice currentDevice] systemVersion] floatValue] >= 10.0)
+#define iOS8_10 ([[ [UIDevice currentDevice] systemVersion] floatValue] < 10.0) && ( [[ [UIDevice currentDevice] systemVersion] floatValue] >= 8.0 )
+#define iOSBelow8 ([[ [UIDevice currentDevice] systemVersion] floatValue] >= 10.0)
+
+
+//#if __IPHONE_OS_VERSION_MIN_REQUIRED > __IPHONE_10_0
+#define NewPushSwitchOpen 1
+//#endif
+
 /**
  针对iOS 10
  参考：https://onevcat.com/2016/08/notification/
@@ -59,12 +68,12 @@
  * @discussion 旧的注册本地推送接口被废弃，使用此接口可以替换
  *
  */
-+ (void)addNotification:(JSPushNotificationRequest *)request;
++ (void)addNotification:(JSPushNotificationRequest *)jsRequest;
 
 /*!
  * @abstract 移除推送 (支持iOS10，并兼容iOS10以下版本)
  *
- * JPush 2.1.9新接口
+ * JSPush
  * @param identifier JPushNotificationIdentifier类型，iOS10以上identifier设置为nil，则移除所有在通知中心显示推送和待推送请求，也可以通过设置identifier.delivered和identifier.identifiers来移除相应在通知中心显示推送或待推送请求，identifier.identifiers如果设置为nil或空数组则移除相应标志下所有在通知中心显示推送或待推送请求；iOS10以下identifier设置为nil，则移除所有推送，identifier.delivered属性无效，另外可以通过identifier.notificationObj传入特定推送对象来移除此推送。
  * @discussion 旧的所有删除推送接口被废弃，使用此接口可以替换
  *

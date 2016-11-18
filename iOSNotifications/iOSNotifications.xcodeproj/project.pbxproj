@@ -32,6 +32,7 @@
 		5EB7A4B81DDD8451007E8C1F /* JSPushNotificationTrigger.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB7A4B71DDD8451007E8C1F /* JSPushNotificationTrigger.m */; };
 		5EB7A4BB1DDD8466007E8C1F /* JSPushNotificationRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB7A4BA1DDD8466007E8C1F /* JSPushNotificationRequest.m */; };
 		5EB7A4C11DDD8D7C007E8C1F /* JSPushNotificationIdentifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB7A4C01DDD8D7C007E8C1F /* JSPushNotificationIdentifier.m */; };
+		5EB7A4C31DDEF8B1007E8C1F /* PayloadJSON.md in Sources */ = {isa = PBXBuildFile; fileRef = 5EB7A4C21DDEF8B1007E8C1F /* PayloadJSON.md */; };
 		5EC8A52E1D9127F000C8AC3C /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EC8A52D1D9127F000C8AC3C /* UserNotifications.framework */; };
 		5EC8A5301D9127F000C8AC3C /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EC8A52F1D9127F000C8AC3C /* UserNotificationsUI.framework */; };
 		5EC8A5341D9127F000C8AC3C /* NotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC8A5331D9127F000C8AC3C /* NotificationViewController.m */; };
@@ -112,6 +113,7 @@
 		5EB7A4BC1DDD8AF8007E8C1F /* JSPushRegisterDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSPushRegisterDelegate.h; sourceTree = "<group>"; };
 		5EB7A4BF1DDD8D7C007E8C1F /* JSPushNotificationIdentifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSPushNotificationIdentifier.h; sourceTree = "<group>"; };
 		5EB7A4C01DDD8D7C007E8C1F /* JSPushNotificationIdentifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSPushNotificationIdentifier.m; sourceTree = "<group>"; };
+		5EB7A4C21DDEF8B1007E8C1F /* PayloadJSON.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = PayloadJSON.md; sourceTree = "<group>"; };
 		5EC8A52C1D9127F000C8AC3C /* NotificationContent.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationContent.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EC8A52D1D9127F000C8AC3C /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		5EC8A52F1D9127F000C8AC3C /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
@@ -165,6 +167,7 @@
 		5EB7A4601DDC61E4007E8C1F /* iOSNotifications */ = {
 			isa = PBXGroup;
 			children = (
+				5EB7A4C21DDEF8B1007E8C1F /* PayloadJSON.md */,
 				5EB7A4611DDC61E4007E8C1F /* AppDelegate.h */,
 				5EB7A4621DDC61E4007E8C1F /* AppDelegate.m */,
 				5EB7A4691DDC61E4007E8C1F /* iOSAfter10 */,
@@ -472,6 +475,7 @@
 				5EB7A4C11DDD8D7C007E8C1F /* JSPushNotificationIdentifier.m in Sources */,
 				5EB7A4AD1DDC66C3007E8C1F /* UINotificationManager.m in Sources */,
 				5EB7A4881DDC61E4007E8C1F /* main.m in Sources */,
+				5EB7A4C31DDEF8B1007E8C1F /* PayloadJSON.md in Sources */,
 				5EB7A4B51DDD83AD007E8C1F /* JSPushNotificationContent.m in Sources */,
 				5EB7A4AE1DDC66C3007E8C1F /* UILocalNotificationManager.m in Sources */,
 				5EB7A4831DDC61E4007E8C1F /* AppDelegate.m in Sources */,

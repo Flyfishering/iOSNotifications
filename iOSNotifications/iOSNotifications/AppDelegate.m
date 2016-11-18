@@ -192,6 +192,15 @@
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler
 {
     NSLog(@"%@",notification);
+    
+    //远程推送
+    if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        NSLog(@"push");
+    }else{
+        //本地推送
+        NSLog(@"local");
+    }
+    
     //以下执行，是否在前台执行alert\sound\badge
     completionHandler(0);
     //completionHandler(UNNotificationPresentationOptionBadge | UNNotificationPresentationOptionSound | UNNotificationPresentationOptionAlert );
@@ -227,18 +236,41 @@
      */
     NSLog(@"%@",response);
 
-    NSString *actionIdentifier = response.actionIdentifier;
-    if ([actionIdentifier isEqualToString:@"acceptAction"]) {
-        
-    }else if ([actionIdentifier isEqualToString:@"rejectAction"])
-    {
-        
-    }else if ([actionIdentifier isEqualToString:@"inputAction"]){
-        
-        if ([response isKindOfClass:[UNTextInputNotificationResponse class]]) {
+    //远程推送
+    if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+
+        NSString *actionIdentifier = response.actionIdentifier;
+        if ([actionIdentifier isEqualToString:@"acceptAction"]) {
             
-            NSString *inputText = ((UNTextInputNotificationResponse *)response).userText;
-            NSLog(@"%@",inputText);
+        }else if ([actionIdentifier isEqualToString:@"rejectAction"])
+        {
+            
+        }else if ([actionIdentifier isEqualToString:@"inputAction"]){
+            
+            if ([response isKindOfClass:[UNTextInputNotificationResponse class]]) {
+                
+                NSString *inputText = ((UNTextInputNotificationResponse *)response).userText;
+                NSLog(@"%@",inputText);
+            }
+            
+        }
+        
+    }else{
+        //本地推送
+        NSString *actionIdentifier = response.actionIdentifier;
+        if ([actionIdentifier isEqualToString:@"acceptAction"]) {
+            
+        }else if ([actionIdentifier isEqualToString:@"rejectAction"])
+        {
+            
+        }else if ([actionIdentifier isEqualToString:@"inputAction"]){
+            
+            if ([response isKindOfClass:[UNTextInputNotificationResponse class]]) {
+                
+                NSString *inputText = ((UNTextInputNotificationResponse *)response).userText;
+                NSLog(@"%@",inputText);
+            }
+            
         }
         
     }

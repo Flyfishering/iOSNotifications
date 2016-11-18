@@ -9,6 +9,9 @@
 #import "JSPushService.h"
 #import "PushViewController.h"
 
+/***  Log */
+# define JSPUSHLog(str, ...) [self jspush_file:((char *)__FILE__) function:((char *)__FUNCTION__) line:(__LINE__) format:(str),##__VA_ARGS__]
+
 @implementation JSPushService
 
 + (instancetype)sharedManager {
@@ -75,7 +78,7 @@
     [UIApplication sharedApplication].applicationIconBadgeNumber = badge;
 }
 
-#pragma mark - local notification
+#pragma mark - local notification for test
 
 + (void)buildLocalNotificationForTest
 {
@@ -159,6 +162,30 @@
 
 }
 
+#pragma mark - Public Methods
+
++ (void)addNotification:(JSPushNotificationRequest *)jsRequest {
+    
+    if (iOSAbove10) {
+        
+        //convert JSPushNotificationRequest to UNNotificationRequest
+        UNNotificationRequest *request = [self convertJSPushNotificationRequestToUNNotificationRequest:jsRequest];
+        if (request != nil) {
+            [[UNUserNotificationCenter currentNotificationCenter] addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
+                //注册或更新推送成功回调，iOS10以上成功则result为UNNotificationRequest对象，失败则result为nil
+                id result = error ? nil : request;
+                
+                if (jsRequest.completionHandler) {
+                    jsRequest.completionHandler(result);
+                }
+            }];
+        }
+
+    }else{
+        
+    }
+}
+
 #pragma mark - other
 
 - (UIViewController *)viewController
@@ -166,6 +193,115 @@
     UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
     UIViewController *vc = keyWindow.rootViewController;
     return vc;
+}
+
+#pragma mark - Private Methods
+
++ (nullable UNNotificationRequest *)convertJSPushNotificationRequestToUNNotificationRequest:(JSPushNotificationRequest *)jsRequest {
+    
+    if (jsRequest == nil) {
+        JSPUSHLog(@"error-request is nil!");
+        return nil;
+    }
+    
+    UNNotificationContent *content = [self convertJSPushNotificationContentToUNNotificationContent:jsRequest.content];
+    if (content == nil) {
+        JSPUSHLog(@"error-request content is nil!");
+        return nil;
+    }
+    UNNotificationTrigger *trigger = [self convertJSPushNotificationTriggerToUNPushNotificationTrigger:jsRequest.trigger];
+    if (trigger == nil) {
+        JSPUSHLog(@"error-request trigger is nil!");
+        return nil;
+    }
+    
+    UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:jsRequest.requestIdentifier content:content trigger:trigger];
+    return request;
+}
+
++ (nullable UNNotificationContent *)convertJSPushNotificationContentToUNNotificationContent:(JSPushNotificationContent *)jsContent {
+    
+    if (jsContent == nil) {
+        JSPUSHLog(@"error-content is nil!");
+        return nil;
+    }
+    
+    UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
+    content.title = jsContent.title;
+    content.subtitle = jsContent.subtitle;
+    content.body = jsContent.body;
+    content.badge = jsContent.badge;
+    content.categoryIdentifier = jsContent.categoryIdentifier;
+    content.userInfo = jsContent.userInfo;
+    
+    //假如sound为空，或者为default，设置为默认声音
+    if (jspush_validateString(jsContent.sound)  || [jsContent.sound isEqualToString:@"default"]) {
+        content.sound = [UNNotificationSound defaultSound];
+    }else{
+        content.sound = [UNNotificationSound soundNamed:jsContent.sound];
+    }
+    
+    content.attachments = jsContent.attachments;
+    content.threadIdentifier = jsContent.threadIdentifier;
+    content.launchImageName = jsContent.launchImageName;
+    
+    return content;
+}
+
++ (nullable UNNotificationTrigger *)convertJSPushNotificationTriggerToUNPushNotificationTrigger:(JSPushNotificationTrigger *)jsTrigger {
+    
+    if (jsTrigger == nil) {
+        JSPUSHLog(@"error-trigger is nil!");
+        return nil;
+    }
+    
+    UNNotificationTrigger *trigger = nil;
+    
+    if (jsTrigger.region != nil) {
+        trigger = [UNLocationNotificationTrigger triggerWithRegion:jsTrigger.region repeats:jsTrigger.repeat];
+    }else if (jsTrigger.dateComponents != nil){
+        trigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:jsTrigger.dateComponents repeats:jsTrigger.repeat];
+    }else{
+        trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:jsTrigger.timeInterval repeats:jsTrigger.repeat];
+    }
+    
+    return trigger;
+}
+
+
+# pragma mark - Check Nil
+
+BOOL jspush_validateString(NSString * str)
+{
+    if (str && [str isKindOfClass:[NSString class]] && str.length > 0)
+    {
+        return YES;
+    }
+    return NO;
+}
+
+BOOL jspush_validateDictionary(NSDictionary * dic)
+{
+    if (dic && [dic isKindOfClass:[NSDictionary class]] && dic.allKeys.count > 0)
+    {
+        return YES;
+    }
+    return NO;
+}
+
+# pragma mark - Log
+
++ (void)jspush_file:(char *)sourceFile function:(char *)functionName line:(int)lineNumber format:(NSString *)format, ...
+{
+    va_list args;
+    va_start(args, format);
+//    NSString * file = [NSString stringWithCString:sourceFile encoding:NSUTF8StringEncoding];
+    //        NSString * func = [NSString stringWithCString:functionName encoding:NSUTF8StringEncoding];
+    NSString * log  = [[NSString alloc] initWithFormat:format arguments:args];
+    va_end(args);
+//    NSLog(@"%@:%d %@; ", [file lastPathComponent], lineNumber, log);
+    NSLog(@"JSPUSHLog:%@",log);
+
 }
 
 @end

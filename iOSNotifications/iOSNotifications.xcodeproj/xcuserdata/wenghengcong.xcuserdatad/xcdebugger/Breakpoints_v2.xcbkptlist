@@ -246,27 +246,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iOSNotifications/AppDelegate.m"
-            timestampString = "501150183.451161"
+            timestampString = "501155865.886742"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "192"
-            endingLineNumber = "192"
-            landmarkName = "-userNotificationCenter:willPresentNotification:withCompletionHandler:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "iOSNotifications/AppDelegate.m"
-            timestampString = "501151357.209322"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "206"
-            endingLineNumber = "206"
+            startingLineNumber = "215"
+            endingLineNumber = "215"
             landmarkName = "-userNotificationCenter:didReceiveNotificationResponse:withCompletionHandler:"
             landmarkType = "7">
          </BreakpointContent>
@@ -293,29 +277,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "iOSNotifications/Manager/NotificationSwitch.m"
-            timestampString = "501150268.871783"
+            filePath = "iOSNotifications/AppDelegate.m"
+            timestampString = "501155865.886742"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "17"
-            endingLineNumber = "17"
-            landmarkName = "+registePushWithClass:option:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "iOSNotifications/Manager/NotificationSwitch.m"
-            timestampString = "501150294.101589"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
-            landmarkName = "+supportIOS10NewFramework"
+            startingLineNumber = "240"
+            endingLineNumber = "240"
+            landmarkName = "-userNotificationCenter:didReceiveNotificationResponse:withCompletionHandler:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

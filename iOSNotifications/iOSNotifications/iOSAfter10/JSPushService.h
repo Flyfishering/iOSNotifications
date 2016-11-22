@@ -19,6 +19,8 @@
 #define kLocalNotificationContent           @"kLocalNotificationContent"
 
 #define iOSAbove10 ([[ [UIDevice currentDevice] systemVersion] floatValue] >= 10.0)
+#define iOSBelow10 ([[ [UIDevice currentDevice] systemVersion] floatValue] < 10.0)
+
 #define iOS8_10 ([[ [UIDevice currentDevice] systemVersion] floatValue] < 10.0) && ( [[ [UIDevice currentDevice] systemVersion] floatValue] >= 8.0 )
 #define iOSBelow8 ([[ [UIDevice currentDevice] systemVersion] floatValue] >= 10.0)
 

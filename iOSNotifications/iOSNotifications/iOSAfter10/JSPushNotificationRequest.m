@@ -10,4 +10,15 @@
 
 @implementation JSPushNotificationRequest
 
+- (id)copyWithZone:(NSZone *)zone {
+    
+    JSPushNotificationRequest *request = [JSPushNotificationRequest new];
+    request.requestIdentifier = self.requestIdentifier;
+    request.content = self.content;
+    request.trigger = self.trigger;
+    request.completionHandler = self.completionHandler;
+    
+    return request;
+}
+
 @end

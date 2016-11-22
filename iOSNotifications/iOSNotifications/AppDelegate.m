@@ -202,8 +202,8 @@
     }
     
     //以下执行，是否在前台执行alert\sound\badge
-    completionHandler(0);
-    //completionHandler(UNNotificationPresentationOptionBadge | UNNotificationPresentationOptionSound | UNNotificationPresentationOptionAlert );
+//    completionHandler(0);
+    completionHandler(UNNotificationPresentationOptionBadge | UNNotificationPresentationOptionSound | UNNotificationPresentationOptionAlert );
 }
 
 

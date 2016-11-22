@@ -10,4 +10,15 @@
 
 @implementation JSPushNotificationIdentifier
 
+- (id)copyWithZone:(NSZone *)zone {
+    
+    JSPushNotificationIdentifier *iden = [JSPushNotificationIdentifier new];
+    iden.identifiers = self.identifiers;
+    iden.delivered = self.delivered;
+    iden.findCompletionHandler = self.findCompletionHandler;
+    
+    return iden;
+    
+}
+
 @end

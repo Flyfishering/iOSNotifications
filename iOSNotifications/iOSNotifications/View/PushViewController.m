@@ -147,12 +147,37 @@
 
 - (IBAction)sendNotiAction:(id)sender {
     
-//    if ([NotificationSwitch supportIOS10NewFramework]) {
-//        [JSPushService buildLocalNotificationForTest];
-//    }else{
-        [UILocalNotificationManager buildUILocalNotificationWithNSDate:[[NSDate date] dateByAddingTimeInterval:5.0] alert:@"快起床，快快起床~" badge:0 identifierKey:@"life" userInfo:nil];
-//    }
-
+    JSPushNotificationContent *content = [[JSPushNotificationContent alloc] init];
+    content.title = @"起床闹钟";
+    content.subtitle = @"第一次起床";
+    content.body = @"起床上学去";
+    content.badge = @1;
+//    content.action = @"查看";
+    content.userInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"5:00",@"第一次",@"6:00",@"第二次",nil];
+    content.categoryIdentifier = @"customUI";
+    content.sound = @"wake.caf";
+    
+    JSPushNotificationTrigger *trigger = [[JSPushNotificationTrigger alloc] init];
+//    trigger.region =    第一优先级
+    NSDateComponents *dateC = [[NSDateComponents alloc ]init];
+    dateC.hour = 10;
+    dateC.minute = 5;
+    dateC.second = 5;
+    trigger.dateComponents = dateC;
+    
+//    trigger.timeInterval = 5;
+//    trigger.repeat = NO;
+    
+    JSPushNotificationRequest *request = [[JSPushNotificationRequest alloc]init];
+    request.requestIdentifier = @"com.junglesong.wakeup";
+    request.content = content;
+    request.trigger = trigger;
+    request.completionHandler = ^void (id result){
+        NSLog(@"request done");
+    };
+    
+    [JSPushService addNotification:request];
+    
 }
 - (IBAction)removeNotiAction:(id)sender {
     

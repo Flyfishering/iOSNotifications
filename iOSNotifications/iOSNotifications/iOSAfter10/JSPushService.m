@@ -82,39 +82,6 @@
 
 #pragma mark - local notification for test
 
-+ (void)buildLocalNotificationForTest
-{
-    NSError *error = nil;
-    //注意URL是本地图片路径，而不是http
-    //假如用网络地址，UNNotificationAttachment会创建失败，为nil
-    NSURL * imageUrl = [[NSBundle mainBundle] URLForResource:@"dog" withExtension:@"png"];
-    UNNotificationAttachment *imgAtt = [UNNotificationAttachment attachmentWithIdentifier:@"image" URL:imageUrl options:nil error:&error];
-    
-    NSURL * mp4Url = [[NSBundle mainBundle] URLForResource:@"media" withExtension:@"mp4"];
-    UNNotificationAttachment *mediaAtt = [UNNotificationAttachment attachmentWithIdentifier:@"image" URL:mp4Url options:nil error:&error];
-    
-    UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc]init];
-    //在通知中心显示的总是第一个多媒体资源
-    content.attachments = @[mediaAtt,imgAtt];
-    content.badge = @1;
-    content.title = @"起床闹钟";
-    content.subtitle = @"第一次起床";
-    content.body = @"起床反反复复。。。 ";
-    content.categoryIdentifier = @"wakeup";
-    content.launchImageName = @"dog";
-    content.sound = [UNNotificationSound soundNamed:@"wake.caf"];
-//    content.threadIdentifier = @"";
-    content.userInfo = @{@"first":@"5:00 am",@"second":@"6:00"};
-    
-    UNTimeIntervalNotificationTrigger *trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:5.0 repeats:NO];
-    
-    UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"com.junglesong.pushtestdemo.wakeup" content:content trigger:trigger];
-    
-    [[UNUserNotificationCenter currentNotificationCenter] addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
-        NSLog(@"wake up message has been deliverd!");
-    }];
-}
-
 + (void)removeDeliveredNotificationForTest
 {
     //移除展示过的通知
@@ -197,8 +164,22 @@
 
 + (void)removeNotification:(JSPushNotificationIdentifier *)identifier {
 
-    
+    if (iOSAbove10) {
+        
+    }else{
+        
+    }
 
+}
+
++ (void)findNotification:(JSPushNotificationIdentifier *)identifier {
+    
+    if (iOSAbove10) {
+        
+    }else{
+        
+    }
+    
 }
 
 #pragma mark - other

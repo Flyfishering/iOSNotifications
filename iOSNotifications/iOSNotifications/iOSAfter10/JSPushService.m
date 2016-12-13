@@ -8,11 +8,6 @@
 
 #import "JSPushService.h"
 
-/***  Log */
-# define JSPUSHLog(str, ...) [self jspush_file:((char *)__FILE__) function:((char *)__FUNCTION__) line:(__LINE__) format:(str),##__VA_ARGS__]
-
-#define JSPUSH_SYSTEM_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
-
 @implementation JSPushService
 
 + (instancetype)sharedManager {
@@ -39,10 +34,10 @@
     
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 10.0){
         
-        [[UNUserNotificationCenter currentNotificationCenter] requestAuthorizationWithOptions:(UNAuthorizationOptionBadge |UNAuthorizationOptionSound | UNAuthorizationOptionAlert) completionHandler:^(BOOL granted, NSError * _Nullable error) {
+        [JSPUSH_NOTIFICATIONCENTER requestAuthorizationWithOptions:(UNAuthorizationOptionBadge |UNAuthorizationOptionSound | UNAuthorizationOptionAlert) completionHandler:^(BOOL granted, NSError * _Nullable error) {
             if (granted) {
                 [[UIApplication sharedApplication] registerForRemoteNotifications];
-                [[UNUserNotificationCenter currentNotificationCenter] setNotificationCategories:categories];
+                [JSPUSH_NOTIFICATIONCENTER setNotificationCategories:categories];
             }
         }];
         
@@ -84,24 +79,24 @@
 + (void)removeDeliveredNotificationForTest
 {
     //移除展示过的通知
-    [[UNUserNotificationCenter currentNotificationCenter] getDeliveredNotificationsWithCompletionHandler:^(NSArray<UNNotification *> * _Nonnull notifications) {
+    [JSPUSH_NOTIFICATIONCENTER getDeliveredNotificationsWithCompletionHandler:^(NSArray<UNNotification *> * _Nonnull notifications) {
         
         for (UNNotification *noti in notifications) {
             NSLog(@"Delivered Notification %@-%@",noti.request.content.title,noti.request.content.body);
         }
         
-        [[UNUserNotificationCenter currentNotificationCenter] removeDeliveredNotificationsWithIdentifiers:@[@"com.junglesong.pushtestdemo.wakeup"]];
+        [JSPUSH_NOTIFICATIONCENTER removeDeliveredNotificationsWithIdentifiers:@[@"com.junglesong.pushtestdemo.wakeup"]];
 
     }];
     
     //移除未展示过的通知
-    [[UNUserNotificationCenter currentNotificationCenter] getPendingNotificationRequestsWithCompletionHandler:^(NSArray<UNNotificationRequest *> * _Nonnull requests) {
+    [JSPUSH_NOTIFICATIONCENTER getPendingNotificationRequestsWithCompletionHandler:^(NSArray<UNNotificationRequest *> * _Nonnull requests) {
         
         for (UNNotificationRequest *req in requests) {
             NSLog(@"Pending Notification %@-%@",req.content.title,req.content.body);
         }
         
-        [[UNUserNotificationCenter currentNotificationCenter] removePendingNotificationRequestsWithIdentifiers:@[@"com.junglesong.pushtestdemo.wakeup"]];
+        [JSPUSH_NOTIFICATIONCENTER removePendingNotificationRequestsWithIdentifiers:@[@"com.junglesong.pushtestdemo.wakeup"]];
         
     }];
     
@@ -124,7 +119,7 @@
     
     UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"com.junglesong.pushtestdemo.wakeup" content:content trigger:trigger];
     
-    [[UNUserNotificationCenter currentNotificationCenter] addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
+    [JSPUSH_NOTIFICATIONCENTER addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
         NSLog(@"wake up message has been updated!");
     }];
 
@@ -139,7 +134,7 @@
         //convert JSPushNotificationRequest to UNNotificationRequest
         UNNotificationRequest *request = [self convertJSPushNotificationRequestToUNNotificationRequest:jsRequest];
         if (request != nil) {
-            [[UNUserNotificationCenter currentNotificationCenter] addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
+            [JSPUSH_NOTIFICATIONCENTER addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
                 //注册或更新推送成功回调，iOS10以上成功则result为UNNotificationRequest对象，失败则result为nil
                 id result = error ? nil : request;
                 
@@ -162,20 +157,62 @@
 }
 
 + (void)removeNotification:(JSPushNotificationIdentifier *)identifier {
-    
+
     if (iOSAbove10) {
+        if (identifier == nil) {
+            [JSPUSH_NOTIFICATIONCENTER removeAllDeliveredNotifications];
+            [JSPUSH_NOTIFICATIONCENTER removeAllPendingNotificationRequests];
+        }else{
+            if (identifier.delivered) {
+                if (![JSPushUtilities jspush_validateArray:identifier.identifiers]) {
+                    [JSPUSH_NOTIFICATIONCENTER removeAllDeliveredNotifications];
+                }else{
+                    [JSPUSH_NOTIFICATIONCENTER removeDeliveredNotificationsWithIdentifiers:identifier.identifiers];
+                }
+            }else{
+                if (![JSPushUtilities jspush_validateArray:identifier.identifiers]) {
+                    [JSPUSH_NOTIFICATIONCENTER removeAllPendingNotificationRequests];
+                }else{
+                    [JSPUSH_NOTIFICATIONCENTER removePendingNotificationRequestsWithIdentifiers:identifier.identifiers];
+                }
+            }
+        }
 
     }else{
         
+        if (identifier == nil) {
+            [[UIApplication sharedApplication] cancelAllLocalNotifications];
+        }else if(identifier.notificationObj != nil){
+            [[UIApplication sharedApplication] cancelLocalNotification:identifier.notificationObj];
+        }else if (![JSPushUtilities jspush_validateArray:identifier.identifiers]){
+            [[UIApplication sharedApplication] cancelAllLocalNotifications];
+        }else{
+            NSArray *notis = [[UIApplication sharedApplication] scheduledLocalNotifications];
+            for (UILocalNotification *noti in notis) {
+                for (NSString *iden in identifier.identifiers) {
+                    NSString *notiIden =  noti.userInfo[kLocalNotificationIdentifier];
+                    if ([notiIden isEqualToString:iden]) {
+                        [[UIApplication sharedApplication] cancelLocalNotification:noti];
+                    }
+                }
+                
+
+            }
+        }
     }
 
 }
 
 + (void)findNotification:(JSPushNotificationIdentifier *)identifier {
     
+    if (identifier == nil) {
+        JSPUSHLog(@"if you want to find notification.identifier musn't nil");
+        return;
+    }
+    
     if (iOSAbove10) {
         if (identifier.delivered) {
-            [[UNUserNotificationCenter currentNotificationCenter] getPendingNotificationRequestsWithCompletionHandler:^(NSArray<UNNotificationRequest *> * _Nonnull requests) {
+            [JSPUSH_NOTIFICATIONCENTER getPendingNotificationRequestsWithCompletionHandler:^(NSArray<UNNotificationRequest *> * _Nonnull requests) {
                 
                 NSArray *results = nil;
                 if (![JSPushUtilities jspush_validateArray:identifier.identifiers]) {
@@ -199,7 +236,7 @@
                 }
             }];
         }else{
-            [[UNUserNotificationCenter currentNotificationCenter] getDeliveredNotificationsWithCompletionHandler:^(NSArray<UNNotification *> * _Nonnull notifications) {
+            [JSPUSH_NOTIFICATIONCENTER getDeliveredNotificationsWithCompletionHandler:^(NSArray<UNNotification *> * _Nonnull notifications) {
                 
                 NSArray *results = nil;
                 if (![JSPushUtilities jspush_validateArray:identifier.identifiers]) {

@@ -18,7 +18,7 @@
         //iOS 10以上，通知代理设置，不设置，代理不调用。
         //在锁屏界面，通知栏，需要点击“查看”，才会显示“接受”、“拒绝”的按钮
         
-        [UNUserNotificationCenter currentNotificationCenter].delegate = class;
+        JSPUSH_NOTIFICATIONCENTER.delegate = class;
         
         /**第一组按钮*/
         UNNotificationAction *acceptAction = [UNNotificationAction actionWithIdentifier:@"acceptAction" title:@"接受" options:UNNotificationActionOptionDestructive];

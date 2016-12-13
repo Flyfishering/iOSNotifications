@@ -76,23 +76,31 @@
  */
 + (void)addNotification:(JSPushNotificationRequest *)jsRequest;
 
-/*!
- * @abstract 移除推送 (支持iOS10，并兼容iOS10以下版本)
- *
- * JSPush
- * @param identifier JPushNotificationIdentifier类型，iOS10以上identifier设置为nil，则移除所有在通知中心显示推送和待推送请求，也可以通过设置identifier.delivered和identifier.identifiers来移除相应在通知中心显示推送或待推送请求，identifier.identifiers如果设置为nil或空数组则移除相应标志下所有在通知中心显示推送或待推送请求；iOS10以下identifier设置为nil，则移除所有推送，identifier.delivered属性无效，另外可以通过identifier.notificationObj传入特定推送对象来移除此推送。
- * @discussion 旧的所有删除推送接口被废弃，使用此接口可以替换
- *
+/**
+ 移除推送
+
+ @param identifier JSPushNotificationIdentifier类型
+ 
+    iOS10以上：
+        优先级1：identifier设置为nil，则移除所有在通知中心显示推送和待推送请求；
+        优先级2：identifier.identifiers如果设置为nil或空数组，则移除相应标志下所有在通知中心显示通知或待通知请求；
+        优先级3：设置identifier.delivered和identifier.identifiers，来除相应在通知中心显示通知或待通知请求对应的多条通知；
+ 
+    iOS10以下：移除通知只针对本地通知，且identifier.delivered属性无效；
+        优先级1：identifier设置为nil，则移除所有通知；
+        优先级2：identifier.notificationObj传入特定推送对象，移除单条通知；
+        优先级3：identifier.identifiers为nil或为空数组，移除所有通知；
+        优先级4：identifier.identifiers有效数组，移除多条通知；
+
  */
 + (void)removeNotification:(JSPushNotificationIdentifier *)identifier;
 
-/*!
- * @abstract 查找推送 (支持iOS10，并兼容iOS10以下版本)
- *
- * JPush 2.1.9新接口
- * @param identifier JPushNotificationIdentifier类型，iOS10以上可以通过设置identifier.delivered和identifier.identifiers来查找相应在通知中心显示推送或待推送请求，identifier.identifiers如果设置为nil或空数组则返回相应标志下所有在通知中心显示推送或待推送请求；iOS10以下identifier.delivered属性无效，identifier.identifiers如果设置nil或空数组则返回所有推送。须要设置identifier.findCompletionHandler回调才能得到查找结果，通过(NSArray *results)返回相应对象数组。
- * @discussion 旧的查找推送接口被废弃，使用此接口可以替换
- *
+/**
+ 查找推送
+ @param identifier JSPushNotificationIdentifier类型
+    iOS10以上可以通过设置identifier.delivered和identifier.identifiers来查找相应在通知中心显示推送或待推送请求，identifier.identifiers如果设置为nil或空数组则返回相应标志下所有在通知中心显示推送或待推送请求；
+    iOS10以下identifier.delivered属性无效，identifier.identifiers如果设置nil或空数组则返回所有推送。
+    须要设置identifier.findCompletionHandler回调才能得到查找结果，通过(NSArray *results)返回相应对象数组。
  */
 + (void)findNotification:(JSPushNotificationIdentifier *)identifier;
 

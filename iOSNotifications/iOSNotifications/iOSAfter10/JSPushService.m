@@ -8,6 +8,12 @@
 
 #import "JSPushService.h"
 
+@interface JSPushService()<UNUserNotificationCenterDelegate>
+
+@property (nonatomic ,weak)id<JSPushRegisterDelegate> delegate;
+
+@end
+
 @implementation JSPushService
 
 + (instancetype)sharedManager {
@@ -22,12 +28,12 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        
+        JSPUSH_NOTIFICATIONCENTER.delegate = self;
     }
     return self;
 }
 
-
+# pragma mark - Register
 
 + (void)registerForRemoteNotificationTypes:(NSUInteger)types categories:(NSSet *)categories
 {
@@ -40,28 +46,36 @@
                 [JSPUSH_NOTIFICATIONCENTER setNotificationCategories:categories];
             }
         }];
-        
+    }else if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
+
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:types categories:categories];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    }else{
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:types];
     }
     
+}
+
++ (void)registerForRemoteNotificationConfig:(JSPushRegisterConfig *)config delegate:(id<JSPushRegisterDelegate>)delegate
+{
+    if (config == nil) {
+        JSPUSHLog(@"if you want to register remote notification,config musn't be nil");
+        return;
+    }
+    [[self class] registerForRemoteNotificationTypes:config.types categories:config.categories];
+    [JSPushService sharedManager].delegate = delegate;
     
 }
 
 #pragma mark - device token
 
-+ (void)registerDeviceToken:(NSData*)deviceToken {
-    
-    if (!deviceToken || ![deviceToken isKindOfClass:[NSData class]])
-        return;
-    
-    NSString * newToken = [deviceToken description];
-    newToken = [newToken stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
-    newToken = [newToken stringByReplacingOccurrencesOfString:@" " withString:@""];
-    
-    NSLog(@"device token is: %@", newToken);
-    
-    //show
-//    PushViewController *pushVC = (PushViewController *)[[JSPushService sharedManager] viewController];
-//    pushVC.devicetoken = newToken;
++ (void)registerDeviceToken:(NSData *)deviceToken completionHandler:(void (^)(NSString *))completionHandler
+{
+    NSString *dt = [JSPushUtilities jspush_parseDeviceToken:deviceToken];
+    if (completionHandler) {
+        completionHandler(dt);
+    }
+
 }
 
 #pragma mark - badge
@@ -74,56 +88,6 @@
     [UIApplication sharedApplication].applicationIconBadgeNumber = badge;
 }
 
-#pragma mark - local notification for test
-
-+ (void)removeDeliveredNotificationForTest
-{
-    //移除展示过的通知
-    [JSPUSH_NOTIFICATIONCENTER getDeliveredNotificationsWithCompletionHandler:^(NSArray<UNNotification *> * _Nonnull notifications) {
-        
-        for (UNNotification *noti in notifications) {
-            NSLog(@"Delivered Notification %@-%@",noti.request.content.title,noti.request.content.body);
-        }
-        
-        [JSPUSH_NOTIFICATIONCENTER removeDeliveredNotificationsWithIdentifiers:@[@"com.junglesong.pushtestdemo.wakeup"]];
-
-    }];
-    
-    //移除未展示过的通知
-    [JSPUSH_NOTIFICATIONCENTER getPendingNotificationRequestsWithCompletionHandler:^(NSArray<UNNotificationRequest *> * _Nonnull requests) {
-        
-        for (UNNotificationRequest *req in requests) {
-            NSLog(@"Pending Notification %@-%@",req.content.title,req.content.body);
-        }
-        
-        [JSPUSH_NOTIFICATIONCENTER removePendingNotificationRequestsWithIdentifiers:@[@"com.junglesong.pushtestdemo.wakeup"]];
-        
-    }];
-    
-}
-
-+ (void)updateDeliveredNotificationForTest
-{
-    UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc]init];
-    content.badge = @1;
-    content.title = @"更新啦！亲，快起床";
-    content.subtitle = @"更新啦！亲，求你了";
-    content.body = @"更新啦！吃早餐去!";
-    content.categoryIdentifier = @"wakeup";
-    content.launchImageName = @"dog";
-    content.sound = [UNNotificationSound defaultSound];
-    //    content.threadIdentifier = @"";
-    content.userInfo = @{@"first":@"5:00 am",@"second":@"6:00"};
-    
-    UNTimeIntervalNotificationTrigger *trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:5.0 repeats:NO];
-    
-    UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"com.junglesong.pushtestdemo.wakeup" content:content trigger:trigger];
-    
-    [JSPUSH_NOTIFICATIONCENTER addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
-        NSLog(@"wake up message has been updated!");
-    }];
-
-}
 
 #pragma mark - Public Methods
 
@@ -293,6 +257,18 @@
     
 }
 
+# pragma mark - UNUserNotificationCenterDelegate
+
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler
+{
+    
+}
+
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler
+{
+    
+}
+
 #pragma mark - other
 
 - (UIViewController *)viewController
@@ -301,6 +277,8 @@
     UIViewController *vc = keyWindow.rootViewController;
     return vc;
 }
+
+
 
 #pragma mark - Private Methods
 
@@ -344,7 +322,7 @@
     content.userInfo = jsContent.userInfo;
     
     //假如sound为空，或者为default，设置为默认声音
-    if (jspush_validateString(jsContent.sound)  || [jsContent.sound isEqualToString:@"default"]) {
+    if ( ([JSPushUtilities jspush_validateString:jsContent.sound]) || [jsContent.sound isEqualToString:@"default"]) {
         content.sound = [UNNotificationSound defaultSound];
     }else{
         content.sound = [UNNotificationSound soundNamed:jsContent.sound];
@@ -469,42 +447,6 @@
         
     }
     return notification;
-}
-
-
-# pragma mark - Check Nil
-
-BOOL jspush_validateString(NSString * str)
-{
-    if (str && [str isKindOfClass:[NSString class]] && str.length > 0)
-    {
-        return YES;
-    }
-    return NO;
-}
-
-BOOL jspush_validateDictionary(NSDictionary * dic)
-{
-    if (dic && [dic isKindOfClass:[NSDictionary class]] && dic.allKeys.count > 0)
-    {
-        return YES;
-    }
-    return NO;
-}
-
-# pragma mark - Log
-
-+ (void)jspush_file:(char *)sourceFile function:(char *)functionName line:(int)lineNumber format:(NSString *)format, ...
-{
-    va_list args;
-    va_start(args, format);
-//    NSString * file = [NSString stringWithCString:sourceFile encoding:NSUTF8StringEncoding];
-    //        NSString * func = [NSString stringWithCString:functionName encoding:NSUTF8StringEncoding];
-    NSString * log  = [[NSString alloc] initWithFormat:format arguments:args];
-    va_end(args);
-//    NSLog(@"%@:%d %@; ", [file lastPathComponent], lineNumber, log);
-    NSLog(@"JSPUSHLog:%@",log);
-
 }
 
 @end

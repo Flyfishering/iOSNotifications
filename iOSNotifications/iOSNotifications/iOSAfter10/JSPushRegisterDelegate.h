@@ -28,20 +28,22 @@
 
 @end
 
-/*!
- * 通知注册实体类
+/**
+ 通知注册实体类
  */
-@interface JPUSHRegisterEntity : NSObject
+@interface JSPushRegisterConfig : NSObject
 
-/*!
- * 支持的类型
- * badge,sound,alert
+/**
+ 通知支持的类型
+ badge,sound,alert
  */
 @property (nonatomic, assign) NSInteger types;
-/*!
- * 注入的类别
- * iOS10 UNNotificationCategory
- * iOS8-iOS9 UIUserNotificationCategory
+
+/**
+ 通知类别
+ iOS10 UNNotificationCategory
+ iOS8-iOS9 UIUserNotificationCategory
  */
 @property (nonatomic, strong) NSSet *categories;
+
 @end

@@ -16,50 +16,29 @@
 #import "JSPushNotificationRequest.h"
 #import "JSPushUtilities.h"
 
-#define kLocalNotificationIdentifier        @"kLocalNotificationIdentifier"
-#define kLocalNotificationContent           @"kLocalNotificationContent"
-
-#define iOSAbove10 ([[ [UIDevice currentDevice] systemVersion] floatValue] >= 10.0)
-#define iOSBelow10 ([[ [UIDevice currentDevice] systemVersion] floatValue] < 10.0)
-
-#define iOS8_10 ([[ [UIDevice currentDevice] systemVersion] floatValue] < 10.0) && ( [[ [UIDevice currentDevice] systemVersion] floatValue] >= 8.0 )
-#define iOSBelow8 ([[ [UIDevice currentDevice] systemVersion] floatValue] >= 10.0)
-
-
-//#if __IPHONE_OS_VERSION_MIN_REQUIRED > __IPHONE_10_0
-#define NewPushSwitchOpen 1
-//#endif
-
 /**
  针对iOS 10
  参考：https://onevcat.com/2016/08/notification/
  */
 @interface JSPushService : NSObject
 
-+ (instancetype)sharedManager;
-
-
 /**
- *  register notication
- *  @param types 注册类型 0~7
- *  typs是由三位二进制位构成的，Alert|Sound|Badge
+ 注册远程通知
+
+ @param types 注册类型0~7  typs是由三位二进制位构成的，Alert|Sound|Badge
+ @param categories 通知分类
  */
 + (void)registerForRemoteNotificationTypes:(NSUInteger)types categories:(NSSet *)categories;
 
-+ (void)registerForRemoteNotificationConfig:(JPUSHRegisterEntity *)config delegate:(id<JSPushRegisterDelegate>)delegate;
++ (void)registerForRemoteNotificationConfig:(JSPushRegisterConfig *)config delegate:(id<JSPushRegisterDelegate>)delegate;
 
 /**
- *  send device token to your server
+ 获取device token
+ 需要在该方法中奖token发送至你的服务器
+ 
+ @param deviceToken 从APNS中获取到的device token
  */
-+ (void)registerDeviceToken:(NSData*)deviceToken;
-
-#pragma mark - Test
-
-+ (void)buildLocalNotificationForTest;
-
-+ (void)removeDeliveredNotificationForTest;
-
-+ (void)updateDeliveredNotificationForTest;
++ (void)registerDeviceToken:(NSData*)deviceToken completionHandler:(void (^)(NSString *devicetoken))completionHandler;
 
 #pragma makr - Notification
 

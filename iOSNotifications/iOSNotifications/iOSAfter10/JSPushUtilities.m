@@ -37,4 +37,35 @@
     return NO;
 }
 
++ (NSString *)jspush_parseDeviceToken:(id)devicetoken
+{
+    NSString * tokenVal = nil;
+    if ([devicetoken isKindOfClass:[NSData class]])
+    {
+        tokenVal = [devicetoken description];
+        tokenVal = [tokenVal stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
+        tokenVal = [tokenVal stringByReplacingOccurrencesOfString:@" " withString:@""];
+    }
+    else if ([devicetoken isKindOfClass:[NSString class]])
+    {
+        tokenVal = devicetoken;
+    }
+    return tokenVal;
+}
+
+# pragma mark - Log
+
++ (void)jspush_file:(char *)sourceFile function:(char *)functionName line:(int)lineNumber format:(NSString *)format, ...
+{
+    va_list args;
+    va_start(args, format);
+    //    NSString * file = [NSString stringWithCString:sourceFile encoding:NSUTF8StringEncoding];
+    //        NSString * func = [NSString stringWithCString:functionName encoding:NSUTF8StringEncoding];
+    NSString * log  = [[NSString alloc] initWithFormat:format arguments:args];
+    va_end(args);
+    //    NSLog(@"%@:%d %@; ", [file lastPathComponent], lineNumber, log);
+    NSLog(@"JSPUSHLog:%@",log);
+    
+}
+
 @end

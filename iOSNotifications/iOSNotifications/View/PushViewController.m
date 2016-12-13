@@ -182,7 +182,6 @@
 - (IBAction)removeNotiAction:(id)sender {
     
     if ([NotificationSwitch supportIOS10NewFramework]) {
-        [JSPushService removeDeliveredNotificationForTest];
     }else{
         
     }
@@ -191,7 +190,6 @@
 - (IBAction)updateNotiAction:(id)sender {
     
     if ([NotificationSwitch supportIOS10NewFramework]) {
-        [JSPushService updateDeliveredNotificationForTest];
     }else{
         
     }

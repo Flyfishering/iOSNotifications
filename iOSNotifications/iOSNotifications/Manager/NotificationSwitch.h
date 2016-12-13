@@ -9,11 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <UserNotifications/UserNotifications.h>
-
-#import "UINotificationManager.h"
 #import "JSPushService.h"
-
-#import "UILocalNotificationManager.h"
 
 @interface NotificationSwitch : NSObject
 

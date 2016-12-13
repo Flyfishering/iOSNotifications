@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UILocalNotification.h>
 
 @interface JSPushNotificationIdentifier : NSObject<NSCopying, NSCoding>
 

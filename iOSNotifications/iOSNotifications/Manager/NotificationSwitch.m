@@ -53,7 +53,7 @@
         /*注意：以下action注册，只在iOS10之前有效！！！  */
         //apns: {"aps":{"alert":"测试推送的快捷回复", "sound":"default", "badge": 1, "category":"alert"}}
         
-        [UINotificationManager setupWithOption:launchOptions];
+        [JSPushService setupWithOption:launchOptions];
 
          //接受按钮
          UIMutableUserNotificationAction *acceptAction = [[UIMutableUserNotificationAction alloc] init];
@@ -73,7 +73,7 @@
          NSArray *actions = @[acceptAction, rejectAction];
          [categorys setActions:actions forContext:UIUserNotificationActionContextMinimal];
          
-         [UINotificationManager registerForRemoteNotificationTypes:7 categories:[NSSet setWithObjects:categorys,nil]];
+         [JSPushService registerForRemoteNotificationTypes:7 categories:[NSSet setWithObjects:categorys,nil]];
         
     }
 }
@@ -83,23 +83,20 @@
     if ([self supportIOS10NewFramework]) {
         [JSPushService resetBadge];
     }else{
-        [UINotificationManager resetBadge];
+        [JSPushService resetBadge];
     }
 }
 
 + (void)registerDeviceToken:(NSData*)deviceToken
 {
-    if ([self supportIOS10NewFramework]) {
-        [JSPushService registerDeviceToken:deviceToken];
-    }else{
-        [UINotificationManager registerDeviceToken:deviceToken];
-    }
+    [JSPushService registerDeviceToken:deviceToken completionHandler:^(NSString *devicetoken) {
+        
+    }];
 }
 
 + (void)handleLocalNotification:(UILocalNotification *)notification {
     
     if ([self supportIOS10NewFramework]) {
-        [UILocalNotificationManager handleLocalNotification:notification];
     }else{
         
     }
@@ -110,7 +107,6 @@
     if ([self supportIOS10NewFramework]) {
 
     }else{
-        [UINotificationManager handleRemoteNotification:userInfo];
     }
 }
 

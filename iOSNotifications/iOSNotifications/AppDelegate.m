@@ -294,7 +294,7 @@
     NSString *title = content.title;  // 推送消息的标题
     
     if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
-        [JSPushService handleRemoteNotification:userInfo];
+
     }
     else {
         // 判断为本地通知
@@ -316,7 +316,7 @@
     NSString *title = content.title;  // 推送消息的标题
     
     if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
-        [JSPushService handleRemoteNotification:userInfo];
+
     }
     else {
         // 判断为本地通知

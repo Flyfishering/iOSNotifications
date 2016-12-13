@@ -14,6 +14,7 @@
 #import "JSPushNotificationContent.h"
 #import "JSPushNotificationTrigger.h"
 #import "JSPushNotificationRequest.h"
+#import "JSPushUtilities.h"
 
 #define kLocalNotificationIdentifier        @"kLocalNotificationIdentifier"
 #define kLocalNotificationContent           @"kLocalNotificationContent"

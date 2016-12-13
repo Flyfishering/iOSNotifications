@@ -7,7 +7,6 @@
 //
 
 #import "JSPushService.h"
-#import "PushViewController.h"
 
 /***  Log */
 # define JSPUSHLog(str, ...) [self jspush_file:((char *)__FILE__) function:((char *)__FUNCTION__) line:(__LINE__) format:(str),##__VA_ARGS__]
@@ -66,8 +65,8 @@
     NSLog(@"device token is: %@", newToken);
     
     //show
-    PushViewController *pushVC = (PushViewController *)[[JSPushService sharedManager] viewController];
-    pushVC.devicetoken = newToken;
+//    PushViewController *pushVC = (PushViewController *)[[JSPushService sharedManager] viewController];
+//    pushVC.devicetoken = newToken;
 }
 
 #pragma mark - badge
@@ -163,9 +162,9 @@
 }
 
 + (void)removeNotification:(JSPushNotificationIdentifier *)identifier {
-
+    
     if (iOSAbove10) {
-        
+
     }else{
         
     }
@@ -175,9 +174,84 @@
 + (void)findNotification:(JSPushNotificationIdentifier *)identifier {
     
     if (iOSAbove10) {
+        if (identifier.delivered) {
+            [[UNUserNotificationCenter currentNotificationCenter] getPendingNotificationRequestsWithCompletionHandler:^(NSArray<UNNotificationRequest *> * _Nonnull requests) {
+                
+                NSArray *results = nil;
+                if (![JSPushUtilities jspush_validateArray:identifier.identifiers]) {
+                    results = requests;
+                }else{
+                    NSMutableArray *findRequests = [NSMutableArray array];
+                    for (UNNotificationRequest *request in requests) {
+                        for (NSString *iden in identifier.identifiers) {
+                            if ([iden isEqualToString:request.identifier]) {
+                                [findRequests addObject:request];
+                            }
+                        }
+                    }
+                    results = [findRequests copy];
+                }
+                
+                if (identifier.findCompletionHandler) {
+                    identifier.findCompletionHandler(results);
+                }else{
+                    JSPUSHLog(@"identifier.findCompletionHandler is nil");
+                }
+            }];
+        }else{
+            [[UNUserNotificationCenter currentNotificationCenter] getDeliveredNotificationsWithCompletionHandler:^(NSArray<UNNotification *> * _Nonnull notifications) {
+                
+                NSArray *results = nil;
+                if (![JSPushUtilities jspush_validateArray:identifier.identifiers]) {
+                    results = notifications;
+                }else{
+                    NSMutableArray *findNotifications = [NSMutableArray array];
+                    for (UNNotification *noti in notifications) {
+                        for (NSString *iden in identifier.identifiers) {
+                            if ([iden isEqualToString:noti.request.identifier]) {
+                                [findNotifications addObject:noti];
+                            }
+                        }
+                    }
+                    results = [findNotifications copy];
+                }
+                
+
+                if (identifier.findCompletionHandler) {
+                    identifier.findCompletionHandler(results);
+                }else{
+                    JSPUSHLog(@"identifier.findCompletionHandler is nil");
+                }
+            }];
+        }
         
     }else{
         
+        NSArray *results = nil;
+        NSArray *localNotifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+
+        if (![JSPushUtilities jspush_validateArray:identifier.identifiers]) {
+            results = localNotifications;
+        }else{
+            
+            NSMutableArray *findNotifications = [NSMutableArray array];
+
+            for (UILocalNotification *noti in localNotifications) {
+                for (NSString *iden in identifier.identifiers) {
+                    if ([iden isEqualToString:noti.userInfo[kLocalNotificationIdentifier]]) {
+                        [findNotifications addObject:noti];
+                    }
+                }
+            }
+            results = [findNotifications copy];
+
+        }
+        
+        if (identifier.findCompletionHandler) {
+            identifier.findCompletionHandler(results);
+        }else{
+            JSPUSHLog(@"identifier.findCompletionHandler is nil");
+        }
     }
     
 }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5E3E72631D917AA20077596D /* dog.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E3E72621D917AA20077596D /* dog.png */; };
+		5E4DE4C11DFF973A004B90C7 /* JSPushUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4DE4C01DFF973A004B90C7 /* JSPushUtilities.m */; };
 		5EB7A4831DDC61E4007E8C1F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB7A4621DDC61E4007E8C1F /* AppDelegate.m */; };
 		5EB7A4841DDC61E4007E8C1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EB7A4631DDC61E4007E8C1F /* Assets.xcassets */; };
 		5EB7A4851DDC61E4007E8C1F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EB7A4641DDC61E4007E8C1F /* LaunchScreen.storyboard */; };
@@ -76,6 +77,8 @@
 
 /* Begin PBXFileReference section */
 		5E3E72621D917AA20077596D /* dog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dog.png; sourceTree = "<group>"; };
+		5E4DE4BF1DFF973A004B90C7 /* JSPushUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSPushUtilities.h; sourceTree = "<group>"; };
+		5E4DE4C01DFF973A004B90C7 /* JSPushUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSPushUtilities.m; sourceTree = "<group>"; };
 		5EB7A45F1DDC60C4007E8C1F /* iOSNotifications.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iOSNotifications.entitlements; sourceTree = SOURCE_ROOT; };
 		5EB7A4611DDC61E4007E8C1F /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5EB7A4621DDC61E4007E8C1F /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -193,6 +196,8 @@
 				5EB7A4B71DDD8451007E8C1F /* JSPushNotificationTrigger.m */,
 				5EB7A4B91DDD8466007E8C1F /* JSPushNotificationRequest.h */,
 				5EB7A4BA1DDD8466007E8C1F /* JSPushNotificationRequest.m */,
+				5E4DE4BF1DFF973A004B90C7 /* JSPushUtilities.h */,
+				5E4DE4C01DFF973A004B90C7 /* JSPushUtilities.m */,
 				5EB7A4A31DDC66BA007E8C1F /* JSPushService.h */,
 				5EB7A4A41DDC66BA007E8C1F /* JSPushService.m */,
 			);
@@ -471,6 +476,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5EB7A4B81DDD8451007E8C1F /* JSPushNotificationTrigger.m in Sources */,
+				5E4DE4C11DFF973A004B90C7 /* JSPushUtilities.m in Sources */,
 				5EB7A4BB1DDD8466007E8C1F /* JSPushNotificationRequest.m in Sources */,
 				5EB7A4C11DDD8D7C007E8C1F /* JSPushNotificationIdentifier.m in Sources */,
 				5EB7A4AD1DDC66C3007E8C1F /* UINotificationManager.m in Sources */,

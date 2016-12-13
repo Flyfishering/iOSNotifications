@@ -261,12 +261,16 @@
 
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler
 {
-    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(jspushNotificationCenter:willPresentNotification:withCompletionHandler:)] ) {
+        [self.delegate jspushNotificationCenter:center willPresentNotification:notification withCompletionHandler:completionHandler];
+    }
 }
 
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler
 {
-    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(jspushNotificationCenter:didReceiveNotificationResponse:withCompletionHandler:)]) {
+        [self.delegate jspushNotificationCenter:center didReceiveNotificationResponse:response withCompletionHandler:completionHandler];
+    }
 }
 
 #pragma mark - other

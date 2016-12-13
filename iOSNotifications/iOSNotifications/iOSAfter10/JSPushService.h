@@ -30,6 +30,12 @@
  */
 + (void)registerForRemoteNotificationTypes:(NSUInteger)types categories:(NSSet *)categories;
 
+/**
+ 注册通知，并且设置处理通知的代理
+
+ @param config 注册通知配置，包括注册通知类别以及通知展示类型
+ @param delegate 处理通知代理
+ */
 + (void)registerForRemoteNotificationConfig:(JSPushRegisterConfig *)config delegate:(id<JSPushRegisterDelegate>)delegate;
 
 /**
@@ -42,21 +48,17 @@
 
 #pragma makr - Notification
 
-///----------------------------------------------------
-/// @name Local Notification 本地通知
-///----------------------------------------------------
-/*!
- * @abstract 注册或更新推送 (支持iOS10，并兼容iOS10以下版本)
- *
- * JPush 2.1.9新接口
- * @param request JPushNotificationRequest类型，设置推送的属性，设置已有推送的request.requestIdentifier即更新已有的推送，否则为注册新推送，更新推送仅仅在iOS10以上有效，结果通过request.completionHandler返回
- * @discussion 旧的注册本地推送接口被废弃，使用此接口可以替换
- *
+/**
+ 注册或更新通知(支持iOS10，并兼容iOS10以下版本)
+
+ @param jsRequest JPushNotificationRequest类型。
+    设置推送的属性，设置已有通知的request.requestIdentifier即更新已有的通知，否则为注册新通知。
+    更新通知仅仅在iOS10以上有效，结果通过request.completionHandler返回
  */
 + (void)addNotification:(JSPushNotificationRequest *)jsRequest;
 
 /**
- 移除推送
+ 移除推送(支持iOS10，并兼容iOS10以下版本)
 
  @param identifier JSPushNotificationIdentifier类型
  
@@ -75,7 +77,7 @@
 + (void)removeNotification:(JSPushNotificationIdentifier *)identifier;
 
 /**
- 查找推送
+ 查找推送(支持iOS10，并兼容iOS10以下版本)
  @param identifier JSPushNotificationIdentifier类型
     必现设置identifier.findCompletionHandler回调才能得到查找结果，通过(NSArray *results)返回相应对象数组。
     iOS10以上：
@@ -85,12 +87,7 @@
  */
 + (void)findNotification:(JSPushNotificationIdentifier *)identifier;
 
-#pragma mark - Push
-
-/*!
- * @abstract 处理收到的 APNs 消息
- */
-+ (void)handleRemoteNotification:(NSDictionary *)remoteInfo;
+#pragma mark - Badge
 
 /*
 

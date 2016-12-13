@@ -17,7 +17,7 @@
  * @param notification 前台得到的的通知对象
  * @param completionHandler 该callback中的options 请使用UNNotificationPresentationOptions
  */
-- (void)jspushNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(NSInteger options))completionHandler;
+- (void)jspushNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler;
 /*
  * @brief handle UserNotifications.framework [didReceiveNotificationResponse:withCompletionHandler:]
  * @param center [UNUserNotificationCenter currentNotificationCenter] 新特性用户通知中心

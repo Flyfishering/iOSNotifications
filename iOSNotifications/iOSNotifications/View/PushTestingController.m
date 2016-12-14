@@ -28,6 +28,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.mutipleSwtich.on = NO;
+    self.pictureSwitch.on = NO;
+    self.videoSwitch.on = NO;
+    self.soundSwitch.on = NO;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -37,11 +41,16 @@
 
 - (IBAction)addNotification:(id)sender {
     
-    if (self.pictureSwitch) {
-        
+    if (self.mutipleSwtich.isOn) {
+        [self test_addMutipleNotification];
+    }else if (self.videoSwitch.isOn){
+        [self test_addVideoNotication];
+    }else if (self.pictureSwitch.isOn){
+        [self test_addPictureNotication];
+    }else {
+        [self test_addTextNotofication];
+        [self test_addTextNotofication1];
     }
-    
-    [self test_addTextNotofication];
 }
 - (IBAction)removeNotification:(id)sender {
     [self test_removeNotification];
@@ -81,6 +90,9 @@
     content.subtitle = @"iOS 10适配工作";
     content.body = @"全面采用iOS 10新框架，需要封装一套完整的API供其他模块调用。";
     content.badge = @1;
+    if (self.soundSwitch.isOn) {
+        content.sound = @"wake.caf";
+    }
     content.userInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"研发、测试、产品、项目",@"与会人员",@"12月5日",@"时间",nil];
     
     JSPushNotificationTrigger *trigger = [[JSPushNotificationTrigger alloc] init];
@@ -114,6 +126,9 @@
     content.body = @"针对本期接入的新消息进行验证，保证落地页跳转正确，落参正确。";
     content.badge = @1;
     content.userInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"研发、测试、产品、项目",@"与会人员",@"12月15日",@"时间",nil];
+    if (self.soundSwitch.isOn) {
+        content.sound = @"wake.caf";
+    }
     
     JSPushNotificationTrigger *trigger = [[JSPushNotificationTrigger alloc] init];
     
@@ -151,6 +166,10 @@
     content.body = @"若你看见，call我，重谢。";
     content.badge = @1;
     content.userInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"白色",@"颜色",@"1月5日下午三点",@"时间",nil];
+    if (self.soundSwitch.isOn) {
+        content.sound = @"wake.caf";
+    }
+    
     
     JSPushNotificationTrigger *trigger = [[JSPushNotificationTrigger alloc] init];
     
@@ -176,6 +195,44 @@
     NSError *error = nil;
     //注意URL是本地图片路径，而不是http
     //假如用网络地址，UNNotificationAttachment会创建失败，为nil
+    NSURL * mp4Url = [[NSBundle mainBundle] URLForResource:@"media" withExtension:@"mp4"];
+    UNNotificationAttachment *mediaAtt = [UNNotificationAttachment attachmentWithIdentifier:@"image" URL:mp4Url options:nil error:&error];
+    
+    JSPushNotificationContent *content = [[JSPushNotificationContent alloc] init];
+    content.title = @"来，听歌";
+    content.subtitle = @"新歌新MV";
+    content.attachments = @[mediaAtt];
+    content.body = @"好听的歌~";
+    content.badge = @1;
+    content.userInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"白色",@"颜色",@"1月5日下午三点",@"时间",nil];
+    if (self.soundSwitch.isOn) {
+        content.sound = @"wake.caf";
+    }
+    
+    JSPushNotificationTrigger *trigger = [[JSPushNotificationTrigger alloc] init];
+    
+    NSDate *currentDate   = [NSDate date];
+    currentDate = [currentDate dateByAddingTimeInterval:5.0];
+    trigger.fireDate = currentDate;
+    
+    NSLog(@"%@-%@",[NSDate date],trigger.fireDate);
+    
+    JSPushNotificationRequest *request = [[JSPushNotificationRequest alloc]init];
+    request.requestIdentifier = NotificationIdentifier_Picture_1;
+    request.content = content;
+    request.trigger = trigger;
+    request.completionHandler = ^void (id result){
+        NSLog(@"MV播放通知添加成功");
+    };
+    [JSPushService addNotification:request];
+}
+
+- (void)test_addMutipleNotification
+{
+
+    NSError *error = nil;
+    //注意URL是本地图片路径，而不是http
+    //假如用网络地址，UNNotificationAttachment会创建失败，为nil
     NSURL * imageUrl = [[NSBundle mainBundle] URLForResource:@"dog" withExtension:@"png"];
     UNNotificationAttachment *imgAtt = [UNNotificationAttachment attachmentWithIdentifier:@"image" URL:imageUrl options:nil error:&error];
     
@@ -189,6 +246,9 @@
     content.body = @"好听的歌~";
     content.badge = @1;
     content.userInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"白色",@"颜色",@"1月5日下午三点",@"时间",nil];
+    if (self.soundSwitch.isOn) {
+        content.sound = @"wake.caf";
+    }
     
     JSPushNotificationTrigger *trigger = [[JSPushNotificationTrigger alloc] init];
     
@@ -203,43 +263,10 @@
     request.content = content;
     request.trigger = trigger;
     request.completionHandler = ^void (id result){
-        NSLog(@"寻🐶启示通知添加成功");
+        NSLog(@"混合通知添加成功");
     };
     [JSPushService addNotification:request];
-}
 
-- (void)test_addMutipleNotification
-{
-    NSError *error = nil;
-    //注意URL是本地图片路径，而不是http
-    //假如用网络地址，UNNotificationAttachment会创建失败，为nil
-    NSURL * mp4Url = [[NSBundle mainBundle] URLForResource:@"media" withExtension:@"mp4"];
-    UNNotificationAttachment *mediaAtt = [UNNotificationAttachment attachmentWithIdentifier:@"image" URL:mp4Url options:nil error:&error];
-    
-    JSPushNotificationContent *content = [[JSPushNotificationContent alloc] init];
-    content.title = @"来，听歌";
-    content.subtitle = @"新歌新MV";
-    content.attachments = @[mediaAtt];
-    content.body = @"好听的歌~";
-    content.badge = @1;
-    content.userInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"白色",@"颜色",@"1月5日下午三点",@"时间",nil];
-    
-    JSPushNotificationTrigger *trigger = [[JSPushNotificationTrigger alloc] init];
-    
-    NSDate *currentDate   = [NSDate date];
-    currentDate = [currentDate dateByAddingTimeInterval:5.0];
-    trigger.fireDate = currentDate;
-    
-    NSLog(@"%@-%@",[NSDate date],trigger.fireDate);
-    
-    JSPushNotificationRequest *request = [[JSPushNotificationRequest alloc]init];
-    request.requestIdentifier = NotificationIdentifier_Picture_1;
-    request.content = content;
-    request.trigger = trigger;
-    request.completionHandler = ^void (id result){
-        NSLog(@"寻🐶启示通知添加成功");
-    };
-    [JSPushService addNotification:request];
 }
 
 @end

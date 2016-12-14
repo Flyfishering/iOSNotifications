@@ -376,9 +376,8 @@
     //当fireDate不为nil，dateComponents为nil
     if ( (jsTrigger.fireDate != nil) && (jsTrigger.dateComponents == nil) ){
         unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
-        NSDate *date = [NSDate date];
         NSCalendar * cal = [NSCalendar currentCalendar];
-        NSDateComponents *dateC = [cal components:unitFlags fromDate:date];
+        NSDateComponents *dateC = [cal components:unitFlags fromDate:jsTrigger.fireDate];
         if (dateC) {
             jsTrigger.dateComponents = dateC;
         }

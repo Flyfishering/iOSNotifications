@@ -360,28 +360,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iOSNotifications/View/PushTestingController.m"
-            timestampString = "503408709.118721"
+            timestampString = "503413443.185821"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
             landmarkName = "-test_removeNotification"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "iOSNotifications/View/PushTestingController.m"
-            timestampString = "503408771.26083"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
-            landmarkName = "-removeNotification:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -414,6 +398,54 @@
             startingLineNumber = "185"
             endingLineNumber = "185"
             landmarkName = "+removeNotification:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iOSNotifications/View/PushTestingController.m"
+            timestampString = "503413520.632809"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "152"
+            endingLineNumber = "152"
+            landmarkName = "-test_addPictureNotication"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iOSNotifications/JSPushService/JSPushService.m"
+            timestampString = "503413526.188629"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "319"
+            endingLineNumber = "319"
+            landmarkName = "+convertJSPushNotificationRequestToUNNotificationRequest:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iOSNotifications/JSPushService/JSPushService.m"
+            timestampString = "503413535.641772"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "370"
+            endingLineNumber = "370"
+            landmarkName = "+convertJSPushNotificationTriggerToUNPushNotificationTrigger:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

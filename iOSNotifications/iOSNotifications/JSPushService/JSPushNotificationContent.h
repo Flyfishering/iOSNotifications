@@ -13,8 +13,15 @@
  */
 @interface JSPushNotificationContent : NSObject<NSCopying,NSCoding>
 
-@property (nonatomic, copy) NSString *title;                // 推送标题
-@property (nonatomic, copy) NSString *subtitle;             // 推送副标题
+/**
+ 推送标题
+ */
+@property (nonatomic, copy) NSString *title;
+
+/**
+ 推送副标题
+ */
+@property (nonatomic, copy) NSString *subtitle;             //
 @property (nonatomic, copy) NSString *body;                 // 推送内容
 @property (nonatomic, copy) NSNumber *badge;                // 角标的数字。如果不需要改变角标传@(-1)
 @property (nonatomic, copy) NSString *action NS_DEPRECATED_IOS(8_0, 10_0); // 弹框的按钮显示的内容（IOS 8默认为"打开", 其他默认为"启动",iOS10以上无效）

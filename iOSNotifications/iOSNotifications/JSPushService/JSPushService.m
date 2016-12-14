@@ -189,8 +189,6 @@
                         [[UIApplication sharedApplication] cancelLocalNotification:noti];
                     }
                 }
-                
-
             }
         }
     }

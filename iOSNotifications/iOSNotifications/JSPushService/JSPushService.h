@@ -88,7 +88,8 @@
     必现设置identifier.findCompletionHandler回调才能得到查找结果，通过(NSArray *results)返回相应对象数组。
     iOS10以上：
         设置identifier.delivered和identifier.identifiers来查找相应在通知中心显示通知或待通知请求，identifier.identifiers如果设置为nil或空数组则返回相应标志下所有在通知中心显示通知或待推送请求；
-    iOS10以下：identifier.delivered属性无效
+    iOS10以下：
+        identifier.delivered属性无效，即不分已推送和待推送
         identifier.identifiers如果设置nil或空数组则，返回所有通知。
  */
 + (void)findNotification:(JSPushNotificationIdentifier *)identifier;

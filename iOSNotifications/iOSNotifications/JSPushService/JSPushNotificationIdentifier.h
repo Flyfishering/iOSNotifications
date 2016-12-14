@@ -17,7 +17,7 @@
 @property (nonatomic, copy) NSArray<NSString *> *identifiers;
 
 /**
- iOS10以下可以传UILocalNotification对象数据，iOS10以上无效
+ iOS10以下:可以传UILocalNotification对象数据，iOS10以上无效
  用于查找或者移除通知
  */
 @property (nonatomic, copy) UILocalNotification *notificationObj    NS_DEPRECATED_IOS(4_0, 10_0);

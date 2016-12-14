@@ -139,7 +139,10 @@
         
         UILocalNotification *noti = [self convertJSPushNotificationRequestToUILocalNotification:jsRequest];
         //iOS10以下成功result为UILocalNotification对象，失败则result为nil
-        id result = noti ? nil : noti;
+        id result = noti ? noti : nil;
+        if (result) {
+            [[UIApplication sharedApplication] scheduleLocalNotification:noti];
+        }
         if (jsRequest.completionHandler) {
             jsRequest.completionHandler(result);
         }

@@ -61,7 +61,7 @@
     }else{
         /***************************测试category*******************************/
         /*注意：以下action注册，只在iOS10之前有效！！！  */
-        //apns: {"aps":{"alert":"测试推送的快捷回复", "sound":"default", "badge": 1, "category":"alert"}}
+        //apns: {"aps":{"alert":"测试通知的快捷回复", "sound":"default", "badge": 1, "category":"alert"}}
         
         [JSPushService setupWithOption:launchOptions];
         
@@ -219,8 +219,8 @@
 
 /**
  *  iOS 10之前，若未实现该代理application didReceiveRemoteNotification: fetchCompletionHandler:
- 不管在前台还是在后台，收到远程通知（包括静默推送）会进入didReceiveRemoteNotification代理方法；
- *  假如实现了，收到远程通知（包括静默推送）就会进入application didReceiveRemoteNotification: fetchCompletionHandler:方法
+ 不管在前台还是在后台，收到远程通知（包括静默通知）会进入didReceiveRemoteNotification代理方法；
+ *  假如实现了，收到远程通知（包括静默通知）就会进入application didReceiveRemoteNotification: fetchCompletionHandler:方法
  *  假如未设置UNUserNotificationCenter代理，iOS 10收到远程通知也会进入这里。
  */
 - (void)application:(UIApplication*)application didReceiveRemoteNotification:(NSDictionary*)userInfo
@@ -233,9 +233,9 @@
  This method will be invoked even if the application was launched or resumed because of the remote notification. The respective delegate methods will be invoked first. Note that this behavior is in contrast to application:didReceiveRemoteNotification:, which is not called in those cases, and which will not be invoked if this method is implemented. !*/
 /**
  *  iOS 10之前，不管在前台还是在后台，收到远程通知会进入此处；
- *  iOS 10之前，若未实现该代理，不管在前台还是在后台，收到远程推送会进入didReceiveRemoteNotification代理方法；
- *  iOS 10之前，静默推送，会进入到这里；
- *  iOS 10之后，在前台，静默推送，也会进入到这里
+ *  iOS 10之前，若未实现该代理，不管在前台还是在后台，收到远程通知会进入didReceiveRemoteNotification代理方法；
+ *  iOS 10之前，静默通知，会进入到这里；
+ *  iOS 10之后，在前台，静默通知，也会进入到这里
         如果为设置代理，再调用- (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler。
         否则，不会调用上面方法；
  */
@@ -256,23 +256,23 @@
  // completionHandler(0)
  *  前台收到远程通知，进入这里
  *  前台收到本地通知，进入这里
- *  前台收到带有其他字段alert/sound/badge的静默推送，进入这里
- *  后台收到静默推送不会调用该方法
+ *  前台收到带有其他字段alert/sound/badge的静默通知，进入这里
+ *  后台收到静默通知不会调用该方法
  */
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler
 {
     NSDictionary * userInfo = notification.request.content.userInfo;
     
-    UNNotificationRequest *request = notification.request; // 收到推送的请求
-    UNNotificationContent *content = request.content; // 收到推送的消息内容
+    UNNotificationRequest *request = notification.request; // 收到通知的请求
+    UNNotificationContent *content = request.content; // 收到通知的消息内容
     
-    NSNumber *badge = content.badge;  // 推送消息的角标
-    NSString *body = content.body;    // 推送消息体
-    UNNotificationSound *sound = content.sound;  // 推送消息的声音
-    NSString *subtitle = content.subtitle;  // 推送消息的副标题
-    NSString *title = content.title;  // 推送消息的标题
+    NSNumber *badge = content.badge;  // 通知消息的角标
+    NSString *body = content.body;    // 通知消息体
+    UNNotificationSound *sound = content.sound;  // 通知消息的声音
+    NSString *subtitle = content.subtitle;  // 通知消息的副标题
+    NSString *title = content.title;  // 通知消息的标题
     
-    //远程推送
+    //远程通知
     if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
         NSLog(@"push");
     }else{
@@ -286,7 +286,7 @@
 
 
 /**
- * 在用户与你推送的通知进行交互时被调用，包括用户通过通知打开了你的应用，或者点击或者触发了某个action
+ * 在用户与你通知的通知进行交互时被调用，包括用户通过通知打开了你的应用，或者点击或者触发了某个action
  * 后台收到远程通知，点击进入
  * 后台收到本地通知，点击进入
  */
@@ -313,16 +313,16 @@
                     >NSDictionary *userInfo
      */
     NSDictionary * userInfo = response.notification.request.content.userInfo;
-    UNNotificationRequest *request = response.notification.request; // 收到推送的请求
-    UNNotificationContent *content = request.content; // 收到推送的消息内容
+    UNNotificationRequest *request = response.notification.request; // 收到通知的请求
+    UNNotificationContent *content = request.content; // 收到通知的消息内容
     
-    NSNumber *badge = content.badge;  // 推送消息的角标
-    NSString *body = content.body;    // 推送消息体
-    UNNotificationSound *sound = content.sound;  // 推送消息的声音
-    NSString *subtitle = content.subtitle;  // 推送消息的副标题
-    NSString *title = content.title;  // 推送消息的标题
+    NSNumber *badge = content.badge;  // 通知消息的角标
+    NSString *body = content.body;    // 通知消息体
+    UNNotificationSound *sound = content.sound;  // 通知消息的声音
+    NSString *subtitle = content.subtitle;  // 通知消息的副标题
+    NSString *title = content.title;  // 通知消息的标题
     
-    //远程推送
+    //远程通知
     if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
 
         NSString *actionIdentifier = response.actionIdentifier;

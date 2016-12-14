@@ -11,13 +11,29 @@
 #import "JSPushNotificationTrigger.h"
 
 /*!
- * 注册或更新推送实体类
+ * 注册或更新通知实体类
  */
 @interface JSPushNotificationRequest : NSObject<NSCopying, NSCoding>
 
-@property (nonatomic, copy) NSString *requestIdentifier;    // 推送请求标识
-@property (nonatomic, copy) JSPushNotificationContent *content; // 设置推送的具体内容
-@property (nonatomic, copy) JSPushNotificationTrigger *trigger; // 设置推送的触发方式
-@property (nonatomic, copy) void (^completionHandler)(id result); // 注册或更新推送成功回调，iOS10以上成功则result为UNNotificationRequest对象，失败则result为nil;iOS10以下成功result为UILocalNotification对象，失败则result为nil
+/**
+ 通知请求标识
+ 用于查找、删除、更新通知
+ */
+@property (nonatomic, copy) NSString *requestIdentifier;
+
+/**
+ 设置通知的具体内容
+ */
+@property (nonatomic, copy) JSPushNotificationContent *content;
+
+/**
+ 设置通知的触发方式
+ */
+@property (nonatomic, copy) JSPushNotificationTrigger *trigger;
+
+/**
+ 注册或更新通知成功回调，iOS10以上成功则result为UNNotificationRequest对象，失败则result为nil;iOS10以下成功result为UILocalNotification对象，失败则result为nil
+ */
+@property (nonatomic, copy) void (^completionHandler)(id result); 
 
 @end

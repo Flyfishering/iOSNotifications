@@ -1,5 +1,5 @@
 
-> 下面说明远程服务器推送的payload json格式
+> 下面说明远程服务器通知的payload json格式
 
 # 通用
 

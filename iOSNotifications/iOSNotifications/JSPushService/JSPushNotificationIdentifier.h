@@ -12,7 +12,7 @@
 @interface JSPushNotificationIdentifier : NSObject<NSCopying, NSCoding>
 
 /**
- 推送的标识数组
+ 通知的标识数组
  */
 @property (nonatomic, copy) NSArray<NSString *> *identifiers;
 
@@ -24,9 +24,9 @@
 
 
 /**
- 在通知中心显示的或待推送的标志，默认为NO
+ 在通知中心显示的或待通知的标志，默认为NO
  YES:在通知中心显示的，
- NO:表示待推送的
+ NO:表示待通知的
  */
 @property (nonatomic, assign) BOOL delivered NS_AVAILABLE_IOS(10_0);
 

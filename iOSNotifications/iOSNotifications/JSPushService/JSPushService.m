@@ -126,7 +126,7 @@
         UNNotificationRequest *request = [self convertJSPushNotificationRequestToUNNotificationRequest:jsRequest];
         if (request != nil) {
             [JSPUSH_NOTIFICATIONCENTER addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
-                //注册或更新推送成功回调，iOS10以上成功则result为UNNotificationRequest对象，失败则result为nil
+                //注册或更新通知成功回调，iOS10以上成功则result为UNNotificationRequest对象，失败则result为nil
                 id result = error ? nil : request;
                 
                 if (jsRequest.completionHandler) {

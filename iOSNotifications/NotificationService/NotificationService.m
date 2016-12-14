@@ -8,7 +8,7 @@
 
 #import "NotificationService.h"
 
-//Service Extension 现在只对远程推送的通知起效，你可以在推送 payload 中增加一个 mutable-content 值为 1 的项来启用内容修改
+//Service Extension 现在只对远程通知的通知起效，你可以在通知 payload 中增加一个 mutable-content 值为 1 的项来启用内容修改
 /*
  
  {

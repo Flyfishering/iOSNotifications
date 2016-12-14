@@ -404,6 +404,15 @@
         JSPUSHLog(@"error-content is nil!");
         return nil;
     }
+    //假如使用时，fireDate未设置，则将dateComponents转换为对应的fireDate
+    if ( (jsRequest.trigger.fireDate == nil) && (jsRequest.trigger.dateComponents != nil) ) {
+        NSCalendar *gregorian = [NSCalendar currentCalendar];
+        gregorian.timeZone = [NSTimeZone defaultTimeZone];
+        NSDate *date = [gregorian dateFromComponents:jsRequest.trigger.dateComponents];
+        if (date) {
+            jsRequest.trigger.fireDate = date;
+        }
+    }
     
     UILocalNotification *noti = [self setLocalNotification:jsRequest.trigger.fireDate alertTitle:jsRequest.content.title alertBody:jsRequest.content.body badge:jsRequest.content.badge alertAction:jsRequest.content.action identifierKey:jsRequest.requestIdentifier userInfo:jsRequest.content.userInfo soundName:jsRequest.content.sound region:jsRequest.trigger.region regionTriggersOnce:jsRequest.trigger.repeat category:jsRequest.content.categoryIdentifier];
     

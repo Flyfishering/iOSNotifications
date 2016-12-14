@@ -14,6 +14,7 @@
 		5E4DE4D31E001FDF004B90C7 /* JSPushNotificationTrigger.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4DE4CA1E001FDF004B90C7 /* JSPushNotificationTrigger.m */; };
 		5E4DE4D41E001FDF004B90C7 /* JSPushService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4DE4CD1E001FDF004B90C7 /* JSPushService.m */; };
 		5E4DE4D51E001FDF004B90C7 /* JSPushUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4DE4CF1E001FDF004B90C7 /* JSPushUtilities.m */; };
+		5EAF7FA91E01336A00848C43 /* PushTestingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAF7FA81E01336A00848C43 /* PushTestingController.m */; };
 		5EB7A4831DDC61E4007E8C1F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB7A4621DDC61E4007E8C1F /* AppDelegate.m */; };
 		5EB7A4841DDC61E4007E8C1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EB7A4631DDC61E4007E8C1F /* Assets.xcassets */; };
 		5EB7A4851DDC61E4007E8C1F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EB7A4641DDC61E4007E8C1F /* LaunchScreen.storyboard */; };
@@ -87,6 +88,8 @@
 		5E4DE4CD1E001FDF004B90C7 /* JSPushService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSPushService.m; sourceTree = "<group>"; };
 		5E4DE4CE1E001FDF004B90C7 /* JSPushUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSPushUtilities.h; sourceTree = "<group>"; };
 		5E4DE4CF1E001FDF004B90C7 /* JSPushUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSPushUtilities.m; sourceTree = "<group>"; };
+		5EAF7FA71E01336A00848C43 /* PushTestingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushTestingController.h; sourceTree = "<group>"; };
+		5EAF7FA81E01336A00848C43 /* PushTestingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushTestingController.m; sourceTree = "<group>"; };
 		5EB7A45F1DDC60C4007E8C1F /* iOSNotifications.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iOSNotifications.entitlements; sourceTree = SOURCE_ROOT; };
 		5EB7A4611DDC61E4007E8C1F /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5EB7A4621DDC61E4007E8C1F /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -215,6 +218,8 @@
 			children = (
 				5EB7A49E1DDC6656007E8C1F /* PushViewController.h */,
 				5EB7A49F1DDC6656007E8C1F /* PushViewController.m */,
+				5EAF7FA71E01336A00848C43 /* PushTestingController.h */,
+				5EAF7FA81E01336A00848C43 /* PushTestingController.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -454,6 +459,7 @@
 				5E4DE4D01E001FDF004B90C7 /* JSPushNotificationContent.m in Sources */,
 				5E4DE4D11E001FDF004B90C7 /* JSPushNotificationIdentifier.m in Sources */,
 				5E4DE4D31E001FDF004B90C7 /* JSPushNotificationTrigger.m in Sources */,
+				5EAF7FA91E01336A00848C43 /* PushTestingController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

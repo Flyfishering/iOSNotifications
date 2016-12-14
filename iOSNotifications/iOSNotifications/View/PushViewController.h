@@ -11,11 +11,6 @@
 
 @interface PushViewController : UIViewController
 
-@property (nonatomic,copy)  NSString *devicetoken;
-
-@property (nonatomic,strong)  NSDictionary *remoteNoti;
-
-@property (nonatomic,strong)  UILocalNotification *localNoti;
 
 @end
 

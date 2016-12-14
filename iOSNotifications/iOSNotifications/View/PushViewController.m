@@ -7,8 +7,6 @@
 //
 
 #import "PushViewController.h"
-#import "NotificationSwitch.h"
-
 #import <CoreLocation/CoreLocation.h>
 
 @interface PushViewController ()<CLLocationManagerDelegate>
@@ -181,18 +179,10 @@
 }
 - (IBAction)removeNotiAction:(id)sender {
     
-    if ([NotificationSwitch supportIOS10NewFramework]) {
-    }else{
-        
-    }
 }
 
 - (IBAction)updateNotiAction:(id)sender {
     
-    if ([NotificationSwitch supportIOS10NewFramework]) {
-    }else{
-        
-    }
 }
 
 # pragma mark - setter

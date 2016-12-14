@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JSPushService.h"
 
 @interface PushViewController : UIViewController
 

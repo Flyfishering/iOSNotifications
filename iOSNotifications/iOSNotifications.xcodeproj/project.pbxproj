@@ -28,7 +28,6 @@
 		5EB7A4931DDC61E4007E8C1F /* 自定义界面.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 5EB7A47C1DDC61E4007E8C1F /* 自定义界面.PNG */; };
 		5EB7A4941DDC61E4007E8C1F /* 视频.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 5EB7A47D1DDC61E4007E8C1F /* 视频.PNG */; };
 		5EB7A4951DDC61E4007E8C1F /* 通知中心图片.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 5EB7A47E1DDC61E4007E8C1F /* 通知中心图片.PNG */; };
-		5EB7A4A01DDC6656007E8C1F /* NotificationSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB7A49C1DDC6656007E8C1F /* NotificationSwitch.m */; };
 		5EB7A4A11DDC6656007E8C1F /* PushViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB7A49F1DDC6656007E8C1F /* PushViewController.m */; };
 		5EB7A4B21DDD384D007E8C1F /* wake.caf in Resources */ = {isa = PBXBuildFile; fileRef = 5EB7A4B11DDD384D007E8C1F /* wake.caf */; };
 		5EB7A4C31DDEF8B1007E8C1F /* PayloadJSON.md in Sources */ = {isa = PBXBuildFile; fileRef = 5EB7A4C21DDEF8B1007E8C1F /* PayloadJSON.md */; };
@@ -105,8 +104,6 @@
 		5EB7A47C1DDC61E4007E8C1F /* 自定义界面.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "自定义界面.PNG"; sourceTree = "<group>"; };
 		5EB7A47D1DDC61E4007E8C1F /* 视频.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "视频.PNG"; sourceTree = "<group>"; };
 		5EB7A47E1DDC61E4007E8C1F /* 通知中心图片.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "通知中心图片.PNG"; sourceTree = "<group>"; };
-		5EB7A49B1DDC6656007E8C1F /* NotificationSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationSwitch.h; sourceTree = "<group>"; };
-		5EB7A49C1DDC6656007E8C1F /* NotificationSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationSwitch.m; sourceTree = "<group>"; };
 		5EB7A49E1DDC6656007E8C1F /* PushViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushViewController.h; sourceTree = "<group>"; };
 		5EB7A49F1DDC6656007E8C1F /* PushViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushViewController.m; sourceTree = "<group>"; };
 		5EB7A4B11DDD384D007E8C1F /* wake.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = wake.caf; sourceTree = "<group>"; };
@@ -164,10 +161,10 @@
 				5E4DE4C91E001FDF004B90C7 /* JSPushNotificationTrigger.h */,
 				5E4DE4CA1E001FDF004B90C7 /* JSPushNotificationTrigger.m */,
 				5E4DE4CB1E001FDF004B90C7 /* JSPushRegisterDelegate.h */,
-				5E4DE4CC1E001FDF004B90C7 /* JSPushService.h */,
-				5E4DE4CD1E001FDF004B90C7 /* JSPushService.m */,
 				5E4DE4CE1E001FDF004B90C7 /* JSPushUtilities.h */,
 				5E4DE4CF1E001FDF004B90C7 /* JSPushUtilities.m */,
+				5E4DE4CC1E001FDF004B90C7 /* JSPushService.h */,
+				5E4DE4CD1E001FDF004B90C7 /* JSPushService.m */,
 			);
 			path = JSPushService;
 			sourceTree = "<group>";
@@ -188,7 +185,6 @@
 				5EB7A4611DDC61E4007E8C1F /* AppDelegate.h */,
 				5EB7A4621DDC61E4007E8C1F /* AppDelegate.m */,
 				5E4DE4C21E001FDF004B90C7 /* JSPushService */,
-				5EB7A49A1DDC6656007E8C1F /* Manager */,
 				5EB7A49D1DDC6656007E8C1F /* View */,
 				5EB7A4751DDC61E4007E8C1F /* resource */,
 				5EB7A4A21DDC6667007E8C1F /* SupportFile */,
@@ -212,15 +208,6 @@
 				5EB7A47E1DDC61E4007E8C1F /* 通知中心图片.PNG */,
 			);
 			path = resource;
-			sourceTree = "<group>";
-		};
-		5EB7A49A1DDC6656007E8C1F /* Manager */ = {
-			isa = PBXGroup;
-			children = (
-				5EB7A49B1DDC6656007E8C1F /* NotificationSwitch.h */,
-				5EB7A49C1DDC6656007E8C1F /* NotificationSwitch.m */,
-			);
-			path = Manager;
 			sourceTree = "<group>";
 		};
 		5EB7A49D1DDC6656007E8C1F /* View */ = {
@@ -463,7 +450,6 @@
 				5EB7A4831DDC61E4007E8C1F /* AppDelegate.m in Sources */,
 				5E4DE4D51E001FDF004B90C7 /* JSPushUtilities.m in Sources */,
 				5E4DE4D21E001FDF004B90C7 /* JSPushNotificationRequest.m in Sources */,
-				5EB7A4A01DDC6656007E8C1F /* NotificationSwitch.m in Sources */,
 				5EB7A4A11DDC6656007E8C1F /* PushViewController.m in Sources */,
 				5E4DE4D01E001FDF004B90C7 /* JSPushNotificationContent.m in Sources */,
 				5E4DE4D11E001FDF004B90C7 /* JSPushNotificationIdentifier.m in Sources */,

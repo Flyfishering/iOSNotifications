@@ -38,7 +38,7 @@
 		5EC8A5401D9134CB00C8AC3C /* NotificationContent.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 5EC8A52C1D9127F000C8AC3C /* NotificationContent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		5EC8A54C1D9134FA00C8AC3C /* NotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC8A54B1D9134FA00C8AC3C /* NotificationService.m */; };
 		5EC8A5501D9134FA00C8AC3C /* NotificationService.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 5EC8A5481D9134FA00C8AC3C /* NotificationService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		5ED6A2C41E02246A001A3DE2 /* joy.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ED6A2C31E02246A001A3DE2 /* joy.png */; };
+		5ED6A2C61E02257C001A3DE2 /* joy.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ED6A2C51E02257C001A3DE2 /* joy.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,7 +121,7 @@
 		5EC8A54A1D9134FA00C8AC3C /* NotificationService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationService.h; sourceTree = "<group>"; };
 		5EC8A54B1D9134FA00C8AC3C /* NotificationService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationService.m; sourceTree = "<group>"; };
 		5EC8A54D1D9134FA00C8AC3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5ED6A2C31E02246A001A3DE2 /* joy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = joy.png; sourceTree = "<group>"; };
+		5ED6A2C51E02257C001A3DE2 /* joy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = joy.png; sourceTree = "<group>"; };
 		5EF2B4451CC7D51000AC71C5 /* iOSNotifications.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSNotifications.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -199,7 +199,7 @@
 		5EB7A4751DDC61E4007E8C1F /* resource */ = {
 			isa = PBXGroup;
 			children = (
-				5ED6A2C31E02246A001A3DE2 /* joy.png */,
+				5ED6A2C51E02257C001A3DE2 /* joy.png */,
 				5EB7A4761DDC61E4007E8C1F /* Action列表.PNG */,
 				5EB7A4B11DDD384D007E8C1F /* wake.caf */,
 				5EB7A4781DDC61E4007E8C1F /* InputAction.PNG */,
@@ -410,7 +410,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5ED6A2C41E02246A001A3DE2 /* joy.png in Resources */,
+				5ED6A2C61E02257C001A3DE2 /* joy.png in Resources */,
 				5EB7A4941DDC61E4007E8C1F /* 视频.PNG in Resources */,
 				5EB7A4931DDC61E4007E8C1F /* 自定义界面.PNG in Resources */,
 				5EB7A48F1DDC61E4007E8C1F /* InputAction.PNG in Resources */,

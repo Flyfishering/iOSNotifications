@@ -22,4 +22,33 @@
     return trigger;
 }
 
++ (instancetype)triggerWithTimeInterval:(NSTimeInterval)timeInterval repeats:(BOOL)repeats
+{
+    JSPushNotificationTrigger *trigger = [[JSPushNotificationTrigger alloc] init];
+    NSDate *currentDate   = [NSDate date];
+    currentDate = [currentDate dateByAddingTimeInterval:timeInterval];
+    trigger.fireDate = currentDate;
+    trigger.repeat = repeats;
+    
+    return trigger;
+}
+
++ (instancetype)triggerWithDateMatchingComponents:(NSDateComponents *)dateComponents repeats:(BOOL)repeats
+{
+    JSPushNotificationTrigger *trigger = [[JSPushNotificationTrigger alloc] init];
+    trigger.dateComponents = dateComponents;
+    trigger.repeat = repeats;
+    
+    return trigger;
+}
+
++ (instancetype)triggerWithRegion:(CLRegion *)region repeats:(BOOL)repeats __WATCHOS_PROHIBITED
+{
+    JSPushNotificationTrigger *trigger = [[JSPushNotificationTrigger alloc] init];
+    trigger.region = region;
+    trigger.repeat = repeats;
+    
+    return trigger;
+}
+
 @end

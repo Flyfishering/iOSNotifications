@@ -44,4 +44,10 @@
  */
 @property (nonatomic, assign) NSTimeInterval timeInterval NS_AVAILABLE_IOS(10_0);
 
++ (instancetype)triggerWithTimeInterval:(NSTimeInterval)timeInterval repeats:(BOOL)repeats;
+
++ (instancetype)triggerWithDateMatchingComponents:(NSDateComponents *)dateComponents repeats:(BOOL)repeats;
+
++ (instancetype)triggerWithRegion:(CLRegion *)region repeats:(BOOL)repeats __WATCHOS_PROHIBITED;
+
 @end

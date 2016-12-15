@@ -36,4 +36,5 @@
  */
 @property (nonatomic, copy) void (^completionHandler)(id result); 
 
++ (instancetype)requestWithIdentifier:(NSString *)identifier content:(JSPushNotificationContent *)content trigger:(nullable JSPushNotificationTrigger *)trigger withCompletionHandler:(nullable void(^)(NSError *__nullable error))completionHandler;
 @end

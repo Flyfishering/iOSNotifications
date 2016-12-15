@@ -38,6 +38,10 @@
 
 + (NSString *)jspush_parseDeviceToken:(id)devicetoken;
 
++ (NSDate *)jspush_dateWithNSDateComponents:(NSDateComponents *)dateComponents;
+
++ (NSDateComponents *)jspush_dateComponentsWithNSDate:(NSDate *)date;
+
 + (void)jspush_file:(char *)sourceFile function:(char *)functionName line:(int)lineNumber format:(NSString *)format, ...;
 
 @end

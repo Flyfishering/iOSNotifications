@@ -472,9 +472,7 @@
     }
     //当fireDate不为nil，dateComponents为nil
     if ( (jsTrigger.fireDate != nil) && (jsTrigger.dateComponents == nil) ){
-        unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
-        NSCalendar * cal = [NSCalendar currentCalendar];
-        NSDateComponents *dateC = [cal components:unitFlags fromDate:jsTrigger.fireDate];
+        NSDateComponents *dateC = [JSPushUtilities jspush_dateComponentsWithNSDate:jsTrigger.fireDate];
         if (dateC) {
             jsTrigger.dateComponents = dateC;
         }
@@ -513,9 +511,7 @@
     }
     //假如使用时，fireDate未设置，则将dateComponents转换为对应的fireDate
     if ( (jsRequest.trigger.fireDate == nil) && (jsRequest.trigger.dateComponents != nil) ) {
-        NSCalendar *gregorian = [NSCalendar currentCalendar];
-        gregorian.timeZone = [NSTimeZone defaultTimeZone];
-        NSDate *date = [gregorian dateFromComponents:jsRequest.trigger.dateComponents];
+        NSDate *date = [JSPushUtilities jspush_dateWithNSDateComponents:jsRequest.trigger.dateComponents];
         if (date) {
             jsRequest.trigger.fireDate = date;
         }

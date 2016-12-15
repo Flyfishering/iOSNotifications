@@ -133,6 +133,20 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="5" maxValue="15" translatesAutoresizingMaskIntoConstraints="NO" id="UYi-YL-Ihn">
+                                <rect key="frame" x="27" y="530" width="312" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="changePushFireTime:" destination="BYZ-38-t0r" eventType="valueChanged" id="27I-VM-qHY"/>
+                                </connections>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="通知触发时间设置" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ke8-gh-W7d">
+                                <rect key="frame" x="70" y="579" width="239" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -140,6 +154,8 @@
                         <outlet property="mutipleSwtich" destination="ePE-fN-fJv" id="rdB-Ag-Azd"/>
                         <outlet property="pictureSwitch" destination="LYg-z7-Qd3" id="oBJ-5R-6Sv"/>
                         <outlet property="soundSwitch" destination="SzQ-kZ-psB" id="enr-GF-A1g"/>
+                        <outlet property="timeDesL" destination="ke8-gh-W7d" id="WnX-ur-BnQ"/>
+                        <outlet property="timeSlide" destination="UYi-YL-Ihn" id="pFT-R6-3LY"/>
                         <outlet property="videoSwitch" destination="7EE-Ww-Kk2" id="Gtt-iB-H95"/>
                     </connections>
                 </viewController>

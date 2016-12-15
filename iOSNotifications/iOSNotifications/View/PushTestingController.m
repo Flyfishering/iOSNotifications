@@ -21,6 +21,11 @@
 
 @property (weak, nonatomic) IBOutlet UISwitch *videoSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *mutipleSwtich;
+
+@property (weak, nonatomic) IBOutlet UISlider *timeSlide;
+
+@property (weak, nonatomic) IBOutlet UILabel *timeDesL;
+
 @end
 
 @implementation PushTestingController
@@ -37,6 +42,13 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (IBAction)changePushFireTime:(id)sender {
+    
+    UISlider *sli = (UISlider *)sender;
+    float value = sli.value;
+    sli.value = (int)(value+0.5);
+    self.timeDesL.text = [NSString stringWithFormat:@"通知将在 %.0fs 后触发",sli.value];
 }
 
 - (IBAction)addNotification:(id)sender {
@@ -101,7 +113,7 @@
     NSDate *date = [NSDate date];
     NSCalendar * cal = [NSCalendar currentCalendar];
     NSDateComponents *dateC = [cal components:unitFlags fromDate:date];
-    dateC.second = dateC.second + 5;
+    dateC.second = dateC.second + self.timeSlide.value;
     trigger.dateComponents = dateC;
 
     NSLog(@"%@-%@",[NSDate date],trigger.fireDate);
@@ -133,7 +145,7 @@
     JSPushNotificationTrigger *trigger = [[JSPushNotificationTrigger alloc] init];
     
     NSDate *currentDate   = [NSDate date];
-    currentDate = [currentDate dateByAddingTimeInterval:5.0];
+    currentDate = [currentDate dateByAddingTimeInterval:self.timeSlide.value];
     trigger.fireDate = currentDate;
     
     NSLog(@"%@-%@",[NSDate date],trigger.fireDate);
@@ -155,26 +167,25 @@
     NSError *error = nil;
     //注意URL是本地图片路径，而不是http
     //假如用网络地址，UNNotificationAttachment会创建失败，为nil
-    NSURL * imageUrl = [[NSBundle mainBundle] URLForResource:@"dog" withExtension:@"png"];
+    NSURL * imageUrl = [[NSBundle mainBundle] URLForResource:@"joy" withExtension:@"png"];
     UNNotificationAttachment *imgAtt = [UNNotificationAttachment attachmentWithIdentifier:@"image" URL:imageUrl options:nil error:&error];
     
     
     JSPushNotificationContent *content = [[JSPushNotificationContent alloc] init];
-    content.title = @"寻🐶启示";
-    content.subtitle = @"一条可爱的小狗迷路了";
+    content.title = @"物流通知";
+    content.subtitle = @"你的宝贝在路上，注意查收~";
     content.attachments = @[imgAtt];
-    content.body = @"若你看见，call我，重谢。";
+    content.body = @"预计今天下午3：00~5：00准时送达。";
     content.badge = @1;
-    content.userInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"白色",@"颜色",@"1月5日下午三点",@"时间",nil];
+    content.userInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"商品",@"iPhone",@"白色",@"颜色",@"1月5日下午五点前",@"时间",nil];
     if (self.soundSwitch.isOn) {
         content.sound = @"wake.caf";
     }
     
-    
     JSPushNotificationTrigger *trigger = [[JSPushNotificationTrigger alloc] init];
     
     NSDate *currentDate   = [NSDate date];
-    currentDate = [currentDate dateByAddingTimeInterval:5.0];
+    currentDate = [currentDate dateByAddingTimeInterval:self.timeSlide.value];
     trigger.fireDate = currentDate;
     
     NSLog(@"%@-%@",[NSDate date],trigger.fireDate);
@@ -184,7 +195,7 @@
     request.content = content;
     request.trigger = trigger;
     request.completionHandler = ^void (id result){
-        NSLog(@"寻🐶启示通知添加成功");
+        NSLog(@"物流通知添加成功");
     };
     [JSPushService addNotification:request];
 
@@ -212,7 +223,7 @@
     JSPushNotificationTrigger *trigger = [[JSPushNotificationTrigger alloc] init];
     
     NSDate *currentDate   = [NSDate date];
-    currentDate = [currentDate dateByAddingTimeInterval:5.0];
+    currentDate = [currentDate dateByAddingTimeInterval:self.timeSlide.value];
     trigger.fireDate = currentDate;
     
     NSLog(@"%@-%@",[NSDate date],trigger.fireDate);
@@ -233,7 +244,7 @@
     NSError *error = nil;
     //注意URL是本地图片路径，而不是http
     //假如用网络地址，UNNotificationAttachment会创建失败，为nil
-    NSURL * imageUrl = [[NSBundle mainBundle] URLForResource:@"dog" withExtension:@"png"];
+    NSURL * imageUrl = [[NSBundle mainBundle] URLForResource:@"joy" withExtension:@"png"];
     UNNotificationAttachment *imgAtt = [UNNotificationAttachment attachmentWithIdentifier:@"image" URL:imageUrl options:nil error:&error];
     
     NSURL * mp4Url = [[NSBundle mainBundle] URLForResource:@"media" withExtension:@"mp4"];
@@ -253,7 +264,7 @@
     JSPushNotificationTrigger *trigger = [[JSPushNotificationTrigger alloc] init];
     
     NSDate *currentDate   = [NSDate date];
-    currentDate = [currentDate dateByAddingTimeInterval:5.0];
+    currentDate = [currentDate dateByAddingTimeInterval:self.timeSlide.value];
     trigger.fireDate = currentDate;
     
     NSLog(@"%@-%@",[NSDate date],trigger.fireDate);

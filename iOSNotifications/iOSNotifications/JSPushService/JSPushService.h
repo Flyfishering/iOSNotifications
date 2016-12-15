@@ -88,7 +88,7 @@
  
     必现设置identifier.findCompletionHandler回调才能得到查找结果，通过(NSArray *results)返回相应对象数组。
     iOS10以上：
-        设置identifier.delivered和identifier.identifiers来查找相应标志下通知请求，identifier.identifiers如果设置为nil或空数组则返回相应标志下所有通知请求；
+        设置identifier.state和identifier.identifiers来查找相应标志下通知请求，identifier.identifiers如果设置为nil或空数组则返回相应标志下所有通知请求；
     iOS10以下：
         identifier.state属性无效;
         identifier.identifiers如果设置nil或空数组则，返回所有通知。

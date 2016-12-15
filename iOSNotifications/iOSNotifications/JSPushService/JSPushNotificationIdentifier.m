@@ -14,7 +14,7 @@
     
     JSPushNotificationIdentifier *iden = [JSPushNotificationIdentifier new];
     iden.identifiers = self.identifiers;
-    iden.delivered = self.delivered;
+    iden.state = self.state;
     iden.findCompletionHandler = self.findCompletionHandler;
     
     return iden;

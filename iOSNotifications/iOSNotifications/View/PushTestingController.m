@@ -101,7 +101,7 @@
     NSDate *date = [NSDate date];
     NSCalendar * cal = [NSCalendar currentCalendar];
     NSDateComponents *dateC = [cal components:unitFlags fromDate:date];
-    dateC.second = dateC.second + 15;
+    dateC.second = dateC.second + 5;
     trigger.dateComponents = dateC;
 
     NSLog(@"%@-%@",[NSDate date],trigger.fireDate);

@@ -69,11 +69,11 @@
  @param identifier JSPushNotificationIdentifier类型
  
     iOS10以上：
-        优先级1：identifier设置为nil，则移除所有在通知中心显示通知和待通知请求；
-        优先级2：identifier.identifiers如果设置为nil或空数组，则移除相应标志下所有在通知中心显示通知或待通知请求；
-        优先级3：设置identifier.delivered和identifier.identifiers，来除相应在通知中心显示通知或待通知请求对应的多条通知；
+        优先级1：identifier为nil，则移除所有在通知中心已显示通知和待通知请求；
+        优先级2：identifier.identifiers如果设置为nil或空数组，移除identifier.state相应标志下所有通知请求；
+        优先级3：设置identifier.state和identifier.identifiers，移除identifier.state相应标志下的多条通知；
  
-    iOS10以下：移除通知只针对本地通知，且identifier.delivered属性无效；
+    iOS10以下：移除通知只针对本地通知
         优先级1：identifier设置为nil，则移除所有通知；
         优先级2：identifier.notificationObj传入特定通知对象，移除单条通知；
         优先级3：identifier.identifiers为nil或为空数组，移除所有通知；
@@ -85,11 +85,12 @@
 /**
  查找通知(支持iOS10，并兼容iOS10以下版本)
  @param identifier JSPushNotificationIdentifier类型
+ 
     必现设置identifier.findCompletionHandler回调才能得到查找结果，通过(NSArray *results)返回相应对象数组。
     iOS10以上：
-        设置identifier.delivered和identifier.identifiers来查找相应在通知中心显示通知或待通知请求，identifier.identifiers如果设置为nil或空数组则返回相应标志下所有在通知中心显示通知或待通知请求；
+        设置identifier.delivered和identifier.identifiers来查找相应标志下通知请求，identifier.identifiers如果设置为nil或空数组则返回相应标志下所有通知请求；
     iOS10以下：
-        identifier.delivered属性无效，即不分已通知和待通知
+        identifier.state属性无效;
         identifier.identifiers如果设置nil或空数组则，返回所有通知。
  */
 + (void)findNotification:(JSPushNotificationIdentifier *)identifier;

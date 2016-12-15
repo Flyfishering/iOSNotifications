@@ -21,7 +21,7 @@
 #define iOS8_10 ([[ [UIDevice currentDevice] systemVersion] floatValue] < 10.0) && ( [[ [UIDevice currentDevice] systemVersion] floatValue] >= 8.0 )
 #define iOSBelow8 ([[ [UIDevice currentDevice] systemVersion] floatValue] >= 10.0)
 
-#define kLocalNotificationIdentifier        @"kLocalNotificationIdentifier"
+#define kLocalNotificationIdentifier        @"com.jspush.kLocalNotificationIdentifier"
 #define kLocalNotificationContent           @"kLocalNotificationContent"
 
 //#if __IPHONE_OS_VERSION_MIN_REQUIRED > __IPHONE_10_0

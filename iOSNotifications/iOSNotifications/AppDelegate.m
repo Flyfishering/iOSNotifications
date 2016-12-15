@@ -44,15 +44,15 @@
         
         /**第二组按钮*/
         
-        UNNotificationAction *customAction1 = [UNNotificationAction actionWithIdentifier:@"acceptAction" title:@"按钮1" options:UNNotificationActionOptionDestructive];
+        UNNotificationAction *customAction1 = [UNNotificationAction actionWithIdentifier:@"acceptAction" title:@"购物" options:UNNotificationActionOptionDestructive];
         
-        UNNotificationAction *customAction2 = [UNNotificationAction actionWithIdentifier:@"rejectAction" title:@"按钮2" options:UNNotificationActionOptionForeground];
+        UNNotificationAction *customAction2 = [UNNotificationAction actionWithIdentifier:@"rejectAction" title:@"收藏" options:UNNotificationActionOptionForeground];
         
         //注意，输入的action，点击action后，会在Action列表显示：接受、拒绝、输入你想几点起
         UNTextInputNotificationAction *customAction3 = [UNTextInputNotificationAction actionWithIdentifier:@"inputAction" title:@"输入文本" options:UNNotificationActionOptionForeground textInputButtonTitle:@"确定" textInputPlaceholder:@"输入文本默认占位符"];
         
         
-        UNNotificationCategory *customCate = [UNNotificationCategory categoryWithIdentifier:@"customUIWeb" actions:@[customAction1,customAction2,customAction3] intentIdentifiers:@[@"customUI"] options:UNNotificationCategoryOptionNone];
+        UNNotificationCategory *customCate = [UNNotificationCategory categoryWithIdentifier:@"customUIWeb" actions:@[customAction1,customAction2] intentIdentifiers:@[@"customUI"] options:UNNotificationCategoryOptionNone];
         
         /**第二组按钮结束**/
         
@@ -147,7 +147,7 @@
 {
     [JSPushService registerDeviceToken:deviceToken completionHandler:^(NSString *devicetoken) {
        //将devicetoken传给你的服务器或者保存
-        
+        NSLog(@"device token:%@",devicetoken);
     }];
 }
 /**

@@ -41,7 +41,7 @@
     self.bestAttemptContent = [request.content mutableCopy];
     
     // Modify the notification content here...
-    self.bestAttemptContent.title = [NSString stringWithFormat:@"%@ [修改过哦]", self.bestAttemptContent.title];
+//    self.bestAttemptContent.title = [NSString stringWithFormat:@"%@ [修改过哦]", self.bestAttemptContent.title];
     
     //在此处修改category，可达到对应category的手段！！！
     //可以配合服务端针对category来进行不同的自定义页面的设置。
@@ -49,16 +49,16 @@
 {
     "aps":{
         "alert":{
-        "title":"快起床第十三",
-        "body":"真的起不来？"
+        "title":"京东商城",
+        "body":"多快好省"
         },
         "sound":"default",
         "category":"customUI",
         "mutable-content":1
     },
-    "url":"http://www.baidu.com",
+    "url":"https://m.jd.com",
     "js_category":"customUI",
-    "image":"http://p2.so.qhmsg.com/t01570d67d63111d3e7.jpg"
+    "image":"http://h.hiphotos.baidu.com/baike/c0%3Dbaike150%2C5%2C5%2C150%2C50/sign=a71d90cc0ff79052fb124f6c6d9abcaf/c75c10385343fbf235a845fcb67eca8064388f6d.jpg"
 }
      //上面category，另外一个定义了的：customUIWeb，用于展示web页面；
      */

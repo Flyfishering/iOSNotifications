@@ -210,10 +210,10 @@
     UNNotificationAttachment *mediaAtt = [UNNotificationAttachment attachmentWithIdentifier:@"image" URL:mp4Url options:nil error:&error];
     
     JSPushNotificationContent *content = [[JSPushNotificationContent alloc] init];
-    content.title = @"来，听歌";
-    content.subtitle = @"新歌新MV";
+    content.title = @"导购..";
+    content.subtitle = @"如何选电脑";
     content.attachments = @[mediaAtt];
-    content.body = @"好听的歌~";
+    content.body = @"电脑小白，如何挑选自己心仪的电脑，技术达人分分钟教会你~";
     content.badge = @1;
     content.userInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"白色",@"颜色",@"1月5日下午三点",@"时间",nil];
     if (self.soundSwitch.isOn) {

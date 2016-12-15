@@ -9,12 +9,13 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <UserNotifications/UserNotifications.h>
+
 #import "JSPushRegisterDelegate.h"
+#import "JSPushUtilities.h"
 #import "JSPushNotificationIdentifier.h"
 #import "JSPushNotificationContent.h"
 #import "JSPushNotificationTrigger.h"
 #import "JSPushNotificationRequest.h"
-#import "JSPushUtilities.h"
 
 /**
  针对iOS 10

@@ -13,7 +13,9 @@
 
 #define JSPUSH_SYSTEM_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
 
+#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= JSPUSH_IPHONE_10_0) )
 # define JSPUSH_NOTIFICATIONCENTER   ([UNUserNotificationCenter currentNotificationCenter])
+#endif
 
 #define iOSAbove10 ([[ [UIDevice currentDevice] systemVersion] floatValue] >= 10.0)
 #define iOSBelow10 ([[ [UIDevice currentDevice] systemVersion] floatValue] < 10.0)
@@ -24,9 +26,7 @@
 #define kLocalNotificationIdentifier        @"com.jspush.kLocalNotificationIdentifier"
 #define kLocalNotificationContent           @"kLocalNotificationContent"
 
-//#if __IPHONE_OS_VERSION_MIN_REQUIRED > __IPHONE_10_0
-#define NewPushSwitchOpen 1
-//#endif
+#define JSPUSH_IPHONE_10_0  100000
 
 @interface JSPushUtilities : NSObject
 

@@ -53,6 +53,8 @@
  */
 @property (nonatomic, copy) NSString *sound;
 
+#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= JSPUSH_IPHONE_10_0) )
+
 /**
  附件，iOS10以上有效，需要传入UNNotificationAttachment对象数组类型
  */
@@ -67,5 +69,6 @@
  启动图片名，iOS10以上有效，从通知启动时将会用到
  */
 @property (nonatomic, copy) NSString *launchImageName NS_AVAILABLE_IOS(10_0);
+#endif
 
 @end

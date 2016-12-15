@@ -7,6 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+
+#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= JSPUSH_IPHONE_10_0) )
+
 #import <UserNotifications/UserNotifications.h>
 
 @protocol JSPushRegisterDelegate <NSObject>
@@ -47,3 +50,6 @@
 @property (nonatomic, strong) NSSet *categories;
 
 @end
+
+#endif
+

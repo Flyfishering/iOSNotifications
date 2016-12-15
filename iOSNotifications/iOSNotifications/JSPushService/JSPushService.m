@@ -8,7 +8,11 @@
 
 #import "JSPushService.h"
 
+#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= JSPUSH_IPHONE_10_0) )
 @interface JSPushService()<UNUserNotificationCenterDelegate>
+#else
+@interface JSPushService()
+#endif
 
 @property (nonatomic ,weak)id<JSPushRegisterDelegate> delegate;
 
@@ -28,7 +32,9 @@
 
 - (instancetype)init {
     if (self = [super init]) {
+#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= JSPUSH_IPHONE_10_0) )
         JSPUSH_NOTIFICATIONCENTER.delegate = self;
+#endif
     }
     return self;
 }
@@ -66,6 +72,7 @@
 {
     
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 10.0){
+#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= JSPUSH_IPHONE_10_0) )
         
         [JSPUSH_NOTIFICATIONCENTER requestAuthorizationWithOptions:(UNAuthorizationOptionBadge |UNAuthorizationOptionSound | UNAuthorizationOptionAlert) completionHandler:^(BOOL granted, NSError * _Nullable error) {
             if (granted) {
@@ -73,6 +80,7 @@
                 [JSPUSH_NOTIFICATIONCENTER setNotificationCategories:categories];
             }
         }];
+#endif
     }else if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
 
         UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:types categories:categories];
@@ -122,6 +130,7 @@
     
     if (iOSAbove10) {
         
+#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= JSPUSH_IPHONE_10_0) )
         //convert JSPushNotificationRequest to UNNotificationRequest
         UNNotificationRequest *request = [self convertJSPushNotificationRequestToUNNotificationRequest:jsRequest];
         if (request != nil) {
@@ -134,6 +143,7 @@
                 }
             }];
         }
+#endif
 
     }else{
         
@@ -153,6 +163,7 @@
 + (void)removeNotification:(JSPushNotificationIdentifier *)identifier {
 
     if (iOSAbove10) {
+#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= JSPUSH_IPHONE_10_0) )
         if (identifier == nil) {
             [JSPUSH_NOTIFICATIONCENTER removeAllDeliveredNotifications];
             [JSPUSH_NOTIFICATIONCENTER removeAllPendingNotificationRequests];
@@ -202,7 +213,7 @@
                 }
             }
         }
-
+#endif
     }else{
         
         if (identifier == nil) {
@@ -234,7 +245,7 @@
     }
     
     if (iOSAbove10) {
-        
+#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= JSPUSH_IPHONE_10_0) )
         switch (identifier.state) {
             case JSPushNotificationStateAll:
             {
@@ -350,7 +361,7 @@
                 break;
         }
 
-        
+#endif
     }else{
         
         NSArray *results = nil;
@@ -384,6 +395,8 @@
 
 # pragma mark - UNUserNotificationCenterDelegate
 
+#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= JSPUSH_IPHONE_10_0) )
+
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler
 {
     if (self.delegate && [self.delegate respondsToSelector:@selector(jspushNotificationCenter:willPresentNotification:withCompletionHandler:)] ) {
@@ -397,6 +410,7 @@
         [self.delegate jspushNotificationCenter:center didReceiveNotificationResponse:response withCompletionHandler:completionHandler];
     }
 }
+#endif
 
 #pragma mark - other
 
@@ -412,6 +426,8 @@
 #pragma mark - Private Methods
 
 # pragma mark  iOS 10 以上创建通知
+
+#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= JSPUSH_IPHONE_10_0) )
 
 + (nullable UNNotificationRequest *)convertJSPushNotificationRequestToUNNotificationRequest:(JSPushNotificationRequest *)jsRequest {
     
@@ -490,6 +506,8 @@
     
     return trigger;
 }
+
+#endif
 
 # pragma mark  iOS 10 以下创建本地通知
 

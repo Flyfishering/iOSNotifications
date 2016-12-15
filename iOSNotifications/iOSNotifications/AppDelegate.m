@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "JSPushService.h"
 
-@interface AppDelegate ()<UNUserNotificationCenterDelegate>
+@interface AppDelegate ()
 
 @end
 
@@ -23,8 +23,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     [JSPushService registerForRemoteNotificationTypes:7 categories:nil];
+#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= JSPUSH_IPHONE_10_0) )
     [UNUserNotificationCenter currentNotificationCenter].delegate = self;
-    
+#endif
+
     //HCTEST:
     if (iOSAbove10) {
         //iOS 10以上，通知代理设置，不设置，代理不调用。
@@ -206,7 +208,6 @@
 }
 
 #pragma mark - local/remote handle
-
 /**
  * iOS 10之前，在前台，收到本地通知，会进入这里
  * iOS 10之前，在后台，点击本地通知，会进入这里
@@ -245,10 +246,9 @@
     NSLog(@"didReceiveRemoteNotification %@",userInfo);
 }
 
-#ifdef NSFoundationVersionNumber_iOS_9_x_Max
-
 # pragma mark iOS 10
 
+#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= JSPUSH_IPHONE_10_0) )
 // 会屏蔽iOS10之前方法（设置对应的代理后）
 
 /**

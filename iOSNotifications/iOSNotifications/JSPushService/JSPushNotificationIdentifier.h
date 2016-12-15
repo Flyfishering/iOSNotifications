@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UILocalNotification.h>
 
-
 /**
  通知的推送状态
 

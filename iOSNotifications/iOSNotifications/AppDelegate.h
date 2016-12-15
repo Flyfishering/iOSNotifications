@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <UserNotifications/UserNotifications.h>
 
+#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= JSPUSH_IPHONE_10_0) )
+#import <UserNotifications/UserNotifications.h>
 @interface AppDelegate : UIResponder <UIApplicationDelegate,UNUserNotificationCenterDelegate>
+#else
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
+#endif
 
 @property (strong, nonatomic) UIWindow *window;
 

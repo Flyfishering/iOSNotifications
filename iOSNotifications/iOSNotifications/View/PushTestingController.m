@@ -8,7 +8,7 @@
 
 #import "PushTestingController.h"
 
-@interface PushTestingController ()<UITextFieldDelegate>
+@interface PushTestingController ()<UITextFieldDelegate,JSPushRegisterDelegate>
 
 
 /**
@@ -47,6 +47,7 @@
     self.slientSwitch.on = NO;
     self.logLabel.numberOfLines = 0;
     self.notiIdenLbl.delegate = self;
+    [JSPushService sharedManager].delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -92,6 +93,23 @@
 - (IBAction)switchValueChanged:(id)sender {
     
 }
+
+
+#pragma mark - JSPushRegisterDelegate
+
+- (void)jspushNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler
+{
+    NSLog(@"JSPushRegisterDelegate receive notification%@",notification);
+    completionHandler(UNNotificationPresentationOptionBadge|UNNotificationPresentationOptionSound|UNNotificationPresentationOptionAlert);
+}
+
+- (void)jspushNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler
+{
+    NSLog(@"JSPushRegisterDelegate receive response%@",response);
+    completionHandler();
+}
+
+#pragma mark - private method
 
 - (void)test_removeNotification
 {

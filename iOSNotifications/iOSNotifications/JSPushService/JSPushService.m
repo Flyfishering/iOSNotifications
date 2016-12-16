@@ -12,7 +12,6 @@
 
 #if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
 @interface JSPushService()<UNUserNotificationCenterDelegate>
-@property (nonatomic ,weak)id<JSPushRegisterDelegate> delegate;
 #else
 @interface JSPushService()
 #endif

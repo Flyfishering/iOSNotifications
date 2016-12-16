@@ -20,6 +20,16 @@
 @interface JSPushService : NSObject
 
 /**
+ 单例对象
+ */
++ (instancetype)sharedManager;
+
+/**
+ 代理
+ */
+@property (nonatomic,weak)id<JSPushRegisterDelegate> delegate;
+
+/**
  *  启动时处理应用缓存消息
  *  @param launchOptions
  */

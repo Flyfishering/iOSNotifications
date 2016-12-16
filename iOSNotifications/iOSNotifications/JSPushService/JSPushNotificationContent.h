@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
 /**
  通知内容实体类
  */
@@ -29,9 +30,11 @@
 @property (nonatomic, copy) NSString *body;
 
 /**
- 角标的数字。如果不需要改变角标传@(-1)
+ 角标的数字。
+ nil:如果不需要改变角标
+ 0:隐藏角标
  */
-@property (nonatomic, copy) NSNumber *badge;
+@property (nonatomic, copy,nullable) NSNumber *badge;
 
 /**
  弹框的按钮显示的内容（IOS 8默认为"打开", 其他默认为"启动",iOS10以上无效）
@@ -51,7 +54,7 @@
 /**
  声音名称，不设置则为默认声音
  */
-@property (nonatomic, copy) NSString *sound;
+@property (nonatomic, copy,nullable) NSString *sound;
 
 #if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= JSPUSH_IPHONE_10_0) )
 
@@ -72,3 +75,5 @@
 #endif
 
 @end
+
+NS_ASSUME_NONNULL_END

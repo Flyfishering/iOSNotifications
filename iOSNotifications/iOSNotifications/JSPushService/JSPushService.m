@@ -138,9 +138,12 @@
                 //注册或更新通知成功回调，iOS10以上成功则result为UNNotificationRequest对象，失败则result为nil
                 id result = error ? nil : request;
                 
-                if (jsRequest.completionHandler) {
-                    jsRequest.completionHandler(result);
-                }
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if (jsRequest.completionHandler) {
+                        jsRequest.completionHandler(result);
+                    }
+                });
+
             }];
         }
 #endif
@@ -153,6 +156,7 @@
         if (result) {
             [[UIApplication sharedApplication] scheduleLocalNotification:noti];
         }
+        
         if (jsRequest.completionHandler) {
             jsRequest.completionHandler(result);
         }
@@ -247,13 +251,14 @@
         switch (identifier.state) {
             case JSPushNotificationStateAll:
             {
-                __block NSMutableArray *finds = nil;
                 
                 [JSPUSH_NOTIFICATIONCENTER getPendingNotificationRequestsWithCompletionHandler:^(NSArray<UNNotificationRequest *> * _Nonnull requests) {
                     
-                    NSArray *results = nil;
+                    __block NSMutableArray *finds = [NSMutableArray array];
+
+                    __block NSArray *pendingResults = nil;
                     if (![JSPushUtilities jspush_validateArray:identifier.identifiers]) {
-                        results = requests;
+                        pendingResults = requests;
                     }else{
                         NSMutableArray *findRequests = [NSMutableArray array];
                         for (UNNotificationRequest *request in requests) {
@@ -263,40 +268,46 @@
                                 }
                             }
                         }
-                        results = [findRequests copy];
+                        pendingResults = [findRequests copy];
                     }
                     
-                    finds = [NSMutableArray arrayWithArray:results];
-
-                }];
-
-                [JSPUSH_NOTIFICATIONCENTER getDeliveredNotificationsWithCompletionHandler:^(NSArray<UNNotification *> * _Nonnull notifications) {
                     
-                    NSArray *results = nil;
-                    if (![JSPushUtilities jspush_validateArray:identifier.identifiers]) {
-                        results = notifications;
-                    }else{
-                        NSMutableArray *findNotifications = [NSMutableArray array];
-                        for (UNNotification *noti in notifications) {
-                            for (NSString *iden in identifier.identifiers) {
-                                if ([iden isEqualToString:noti.request.identifier]) {
-                                    [findNotifications addObject:noti];
+                    [JSPUSH_NOTIFICATIONCENTER getDeliveredNotificationsWithCompletionHandler:^(NSArray<UNNotification *> * _Nonnull notifications) {
+                        
+                        NSArray *deliveredResults = nil;
+                        if (![JSPushUtilities jspush_validateArray:identifier.identifiers]) {
+                            deliveredResults = notifications;
+                        }else{
+                            NSMutableArray *findNotifications = [NSMutableArray array];
+                            for (UNNotification *noti in notifications) {
+                                for (NSString *iden in identifier.identifiers) {
+                                    if ([iden isEqualToString:noti.request.identifier]) {
+                                        [findNotifications addObject:noti];
+                                    }
                                 }
                             }
+                            deliveredResults = [findNotifications copy];
                         }
-                        results = [findNotifications copy];
-                    }
+                        
+                        [finds addObjectsFromArray:pendingResults];
+                        [finds addObjectsFromArray:deliveredResults];
                     
-                    [finds addObjectsFromArray:results];
+                        NSArray *allFinds = [finds copy];
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            if (identifier.findCompletionHandler) {
+                                identifier.findCompletionHandler(allFinds);
+                            }else{
+                                JSPUSHLog(@"identifier.findCompletionHandler is nil");
+                            }
+                        });
+
+
+                    }];
+                    
                     
                 }];
-                NSArray *allFinds = [finds copy];
-                if (identifier.findCompletionHandler) {
-                    identifier.findCompletionHandler(allFinds);
-                }else{
-                    JSPUSHLog(@"identifier.findCompletionHandler is nil");
-                }
-
+                
                 break;
             }
             case JSPushNotificationStatePending:
@@ -318,11 +329,13 @@
                         results = [findRequests copy];
                     }
                     
-                    if (identifier.findCompletionHandler) {
-                        identifier.findCompletionHandler(results);
-                    }else{
-                        JSPUSHLog(@"identifier.findCompletionHandler is nil");
-                    }
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        if (identifier.findCompletionHandler) {
+                            identifier.findCompletionHandler(results);
+                        }else{
+                            JSPUSHLog(@"identifier.findCompletionHandler is nil");
+                        }
+                    });
                 }];
 
                 break;
@@ -346,12 +359,13 @@
                         results = [findNotifications copy];
                     }
                     
-                    
-                    if (identifier.findCompletionHandler) {
-                        identifier.findCompletionHandler(results);
-                    }else{
-                        JSPUSHLog(@"identifier.findCompletionHandler is nil");
-                    }
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        if (identifier.findCompletionHandler) {
+                            identifier.findCompletionHandler(results);
+                        }else{
+                            JSPUSHLog(@"identifier.findCompletionHandler is nil");
+                        }
+                    });
                 }];
                 break;
             }
@@ -381,11 +395,13 @@
             results = [findNotifications copy];
         }
         
-        if (identifier.findCompletionHandler) {
-            identifier.findCompletionHandler(results);
-        }else{
-            JSPUSHLog(@"identifier.findCompletionHandler is nil");
-        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (identifier.findCompletionHandler) {
+                identifier.findCompletionHandler(results);
+            }else{
+                JSPUSHLog(@"identifier.findCompletionHandler is nil");
+            }
+        });
     }
     
 }
@@ -431,6 +447,11 @@
     
     if (jsRequest == nil) {
         JSPUSHLog(@"error-request is nil!");
+        return nil;
+    }
+    
+    if (jsRequest.requestIdentifier == nil) {
+        JSPUSHLog(@"error requestIdentifier is nil!");
         return nil;
     }
     

@@ -27,6 +27,7 @@
 #define kLocalNotificationContent           @"kLocalNotificationContent"
 
 #define JSPUSH_IPHONE_10_0  100000
+#define JSPUSH_IPHONE_8_2   80200
 
 @interface JSPushUtilities : NSObject
 

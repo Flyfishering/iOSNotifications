@@ -565,7 +565,9 @@
         
         // 设置提醒的文字内容
         if(JSPUSH_SYSTEM_VERSION_GREATER_THAN(@"8.2")){
+#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= JSPUSH_IPHONE_8_2) )
             notification.alertTitle = alertTitle;     //8.2才支持,默认是应用名称
+#endif
         }
         notification.alertBody   = alertBody;     //显示主体
         notification.category = category;
@@ -582,16 +584,17 @@
         }
         
         // 设置应用程序右上角的提醒个数
-        NSInteger badgeNum = [badge integerValue];
-        if(badgeNum == -1){
-            //-1,不改变
-        }else if(badgeNum == 0){
-            //applicationIconBadgeNumber,
-            //0 means no change. defaults to 0
-            notification.applicationIconBadgeNumber++;
-        }else{
-            notification.applicationIconBadgeNumber = badgeNum;
+        if(badge != nil){
+            NSInteger badgeNum = [badge integerValue];
+            if(badgeNum == 0){
+                notification.applicationIconBadgeNumber = 0;
+            }else if(badgeNum > 0){
+                notification.applicationIconBadgeNumber = badgeNum;
+            }else if(badgeNum < 0){
+                notification.applicationIconBadgeNumber++;
+            }
         }
+ 
         
         //设置地理位置
         if(region){

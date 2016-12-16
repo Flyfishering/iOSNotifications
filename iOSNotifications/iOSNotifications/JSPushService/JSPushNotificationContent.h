@@ -33,6 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
  角标的数字。
  nil:如果不需要改变角标
  0:隐藏角标
+ -1:表示对当前badge++
  */
 @property (nonatomic, copy,nullable) NSNumber *badge;
 

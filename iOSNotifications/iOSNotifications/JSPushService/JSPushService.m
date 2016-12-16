@@ -216,11 +216,9 @@
 #endif
     }else{
         
-        if (identifier == nil) {
-            [[UIApplication sharedApplication] cancelAllLocalNotifications];
-        }else if(identifier.notificationObj != nil){
+        if(identifier.notificationObj != nil){
             [[UIApplication sharedApplication] cancelLocalNotification:identifier.notificationObj];
-        }else if (![JSPushUtilities jspush_validateArray:identifier.identifiers]){
+        }else if ( (identifier == nil) || (![JSPushUtilities jspush_validateArray:identifier.identifiers]) ){
             [[UIApplication sharedApplication] cancelAllLocalNotifications];
         }else{
             NSArray *notis = [[UIApplication sharedApplication] scheduledLocalNotifications];

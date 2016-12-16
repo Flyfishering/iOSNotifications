@@ -75,9 +75,8 @@
         优先级3：设置identifier.state和identifier.identifiers，移除identifier.state相应标志下的多条通知；
  
     iOS10以下：移除通知只针对本地通知
-        优先级1：identifier设置为nil，则移除所有通知；
-        优先级2：identifier.notificationObj传入特定通知对象，移除单条通知；
-        优先级3：identifier.identifiers为nil或为空数组，移除所有通知；
+        优先级1：identifier.notificationObj传入特定通知对象，移除单条通知；
+        优先级3：identifier设置为nil,identifier.identifiers为nil或为空数组，移除所有通知；
         优先级4：identifier.identifiers有效数组，移除多条通知；
 
  */

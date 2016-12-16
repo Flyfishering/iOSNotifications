@@ -64,12 +64,15 @@
         [self test_addTextNotofication1];
     }
 }
+
 - (IBAction)removeNotification:(id)sender {
     [self test_removeNotification];
 }
+
 - (IBAction)updateNotification:(id)sender {
     
 }
+
 - (IBAction)findNotification:(id)sender {
     
 }
@@ -107,17 +110,15 @@
     }
     content.userInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"研发、测试、产品、项目",@"与会人员",@"12月5日",@"时间",nil];
     
-    JSPushNotificationTrigger *trigger = [[JSPushNotificationTrigger alloc] init];
-    
+    //传递NSDateComponents作为触发时间
     unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
     NSDate *date = [NSDate date];
     NSCalendar * cal = [NSCalendar currentCalendar];
     NSDateComponents *dateC = [cal components:unitFlags fromDate:date];
     dateC.second = dateC.second + self.timeSlide.value;
-    trigger.dateComponents = dateC;
 
-    NSLog(@"%@-%@",[NSDate date],trigger.fireDate);
-    
+    JSPushNotificationTrigger *trigger = [JSPushNotificationTrigger triggerWithDateMatchingComponents:dateC repeats:NO];
+
     JSPushNotificationRequest *request = [[JSPushNotificationRequest alloc]init];
     request.requestIdentifier = NotificationIdentifier_Text_1;
     request.content = content;
@@ -142,28 +143,18 @@
         content.sound = @"wake.caf";
     }
     
-    JSPushNotificationTrigger *trigger = [[JSPushNotificationTrigger alloc] init];
+    //传递NSTimeInterval作为触发时间
+    JSPushNotificationTrigger *trigger = [JSPushNotificationTrigger triggerWithTimeInterval:self.timeSlide.value repeats:NO];
     
-    NSDate *currentDate   = [NSDate date];
-    currentDate = [currentDate dateByAddingTimeInterval:self.timeSlide.value];
-    trigger.fireDate = currentDate;
-    
-    NSLog(@"%@-%@",[NSDate date],trigger.fireDate);
-    
-    JSPushNotificationRequest *request = [[JSPushNotificationRequest alloc]init];
-    request.requestIdentifier = NotificationIdentifier_Text_2;
-    request.content = content;
-    request.trigger = trigger;
-    request.completionHandler = ^void (id result){
+    JSPushNotificationRequest *request = [JSPushNotificationRequest requestWithIdentifier:NotificationIdentifier_Text_2 content:content trigger:trigger withCompletionHandler:^(id  _Nullable result) {
         NSLog(@"测试用例通知添加成功");
-    };
+    }];
     
     [JSPushService addNotification:request];
 }
 
 - (void)test_addPictureNotication
 {
-    
     NSError *error = nil;
     //注意URL是本地图片路径，而不是http
     //假如用网络地址，UNNotificationAttachment会创建失败，为nil
@@ -182,21 +173,15 @@
         content.sound = @"wake.caf";
     }
     
+    //传递NSDate作为触发时间
     JSPushNotificationTrigger *trigger = [[JSPushNotificationTrigger alloc] init];
-    
     NSDate *currentDate   = [NSDate date];
     currentDate = [currentDate dateByAddingTimeInterval:self.timeSlide.value];
     trigger.fireDate = currentDate;
     
-    NSLog(@"%@-%@",[NSDate date],trigger.fireDate);
-    
-    JSPushNotificationRequest *request = [[JSPushNotificationRequest alloc]init];
-    request.requestIdentifier = NotificationIdentifier_Picture_1;
-    request.content = content;
-    request.trigger = trigger;
-    request.completionHandler = ^void (id result){
+    JSPushNotificationRequest *request = [JSPushNotificationRequest requestWithIdentifier:NotificationIdentifier_Picture_1 content:content trigger:trigger withCompletionHandler:^(id  _Nullable result) {
         NSLog(@"物流通知添加成功");
-    };
+    }];
     [JSPushService addNotification:request];
 
 }
@@ -220,13 +205,7 @@
         content.sound = @"wake.caf";
     }
     
-    JSPushNotificationTrigger *trigger = [[JSPushNotificationTrigger alloc] init];
-    
-    NSDate *currentDate   = [NSDate date];
-    currentDate = [currentDate dateByAddingTimeInterval:self.timeSlide.value];
-    trigger.fireDate = currentDate;
-    
-    NSLog(@"%@-%@",[NSDate date],trigger.fireDate);
+    JSPushNotificationTrigger *trigger = [JSPushNotificationTrigger triggerWithTimeInterval:self.timeSlide.value repeats:NO];
     
     JSPushNotificationRequest *request = [[JSPushNotificationRequest alloc]init];
     request.requestIdentifier = NotificationIdentifier_Picture_1;
@@ -261,14 +240,8 @@
         content.sound = @"wake.caf";
     }
     
-    JSPushNotificationTrigger *trigger = [[JSPushNotificationTrigger alloc] init];
-    
-    NSDate *currentDate   = [NSDate date];
-    currentDate = [currentDate dateByAddingTimeInterval:self.timeSlide.value];
-    trigger.fireDate = currentDate;
-    
-    NSLog(@"%@-%@",[NSDate date],trigger.fireDate);
-    
+    JSPushNotificationTrigger *trigger = [JSPushNotificationTrigger triggerWithTimeInterval:self.timeSlide.value repeats:NO];
+
     JSPushNotificationRequest *request = [[JSPushNotificationRequest alloc]init];
     request.requestIdentifier = NotificationIdentifier_Picture_1;
     request.content = content;

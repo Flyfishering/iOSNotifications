@@ -8,12 +8,6 @@
 
 #import "PushTestingController.h"
 
-#define NotificationIdentifier_Text_1        @"com.junglesong.productreview"
-#define NotificationIdentifier_Text_2        @"com.junglesong.testreview"
-
-#define NotificationIdentifier_Picture_1        @"com.junglesong.testreview"
-
-
 @interface PushTestingController ()
 
 @property (weak, nonatomic) IBOutlet UISwitch *soundSwitch;
@@ -25,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UISlider *timeSlide;
 
 @property (weak, nonatomic) IBOutlet UILabel *timeDesL;
+@property (weak, nonatomic) IBOutlet UITextField *notiIdenLbl;
 
 @end
 
@@ -80,7 +75,7 @@
 - (void)test_removeNotification
 {
     JSPushNotificationIdentifier *iden = [[JSPushNotificationIdentifier alloc] init];
-    iden.identifiers = @[NotificationIdentifier_Text_1];
+    iden.identifiers = @[self.notiIdenLbl.text];
     [JSPushService removeNotification:iden];
 }
 
@@ -92,7 +87,7 @@
 - (void)test_findNotification
 {
     JSPushNotificationIdentifier *iden = [[JSPushNotificationIdentifier alloc] init];
-    iden.identifiers = @[NotificationIdentifier_Text_2];
+    iden.identifiers = @[self.notiIdenLbl.text];
     [JSPushService findNotification:iden];
 }
 
@@ -120,7 +115,7 @@
     JSPushNotificationTrigger *trigger = [JSPushNotificationTrigger triggerWithDateMatchingComponents:dateC repeats:NO];
 
     JSPushNotificationRequest *request = [[JSPushNotificationRequest alloc]init];
-    request.requestIdentifier = NotificationIdentifier_Text_1;
+    request.requestIdentifier = self.notiIdenLbl.text;
     request.content = content;
     request.trigger = trigger;
     request.completionHandler = ^void (id result){
@@ -146,7 +141,7 @@
     //传递NSTimeInterval作为触发时间
     JSPushNotificationTrigger *trigger = [JSPushNotificationTrigger triggerWithTimeInterval:self.timeSlide.value repeats:NO];
     
-    JSPushNotificationRequest *request = [JSPushNotificationRequest requestWithIdentifier:NotificationIdentifier_Text_2 content:content trigger:trigger withCompletionHandler:^(id  _Nullable result) {
+    JSPushNotificationRequest *request = [JSPushNotificationRequest requestWithIdentifier:self.notiIdenLbl.text content:content trigger:trigger withCompletionHandler:^(id  _Nullable result) {
         NSLog(@"测试用例通知添加成功");
     }];
     
@@ -179,7 +174,7 @@
     currentDate = [currentDate dateByAddingTimeInterval:self.timeSlide.value];
     trigger.fireDate = currentDate;
     
-    JSPushNotificationRequest *request = [JSPushNotificationRequest requestWithIdentifier:NotificationIdentifier_Picture_1 content:content trigger:trigger withCompletionHandler:^(id  _Nullable result) {
+    JSPushNotificationRequest *request = [JSPushNotificationRequest requestWithIdentifier:self.notiIdenLbl.text content:content trigger:trigger withCompletionHandler:^(id  _Nullable result) {
         NSLog(@"物流通知添加成功");
     }];
     [JSPushService addNotification:request];
@@ -208,7 +203,7 @@
     JSPushNotificationTrigger *trigger = [JSPushNotificationTrigger triggerWithTimeInterval:self.timeSlide.value repeats:NO];
     
     JSPushNotificationRequest *request = [[JSPushNotificationRequest alloc]init];
-    request.requestIdentifier = NotificationIdentifier_Picture_1;
+    request.requestIdentifier = self.notiIdenLbl.text;
     request.content = content;
     request.trigger = trigger;
     request.completionHandler = ^void (id result){
@@ -243,7 +238,7 @@
     JSPushNotificationTrigger *trigger = [JSPushNotificationTrigger triggerWithTimeInterval:self.timeSlide.value repeats:NO];
 
     JSPushNotificationRequest *request = [[JSPushNotificationRequest alloc]init];
-    request.requestIdentifier = NotificationIdentifier_Picture_1;
+    request.requestIdentifier = self.notiIdenLbl.text;
     request.content = content;
     request.trigger = trigger;
     request.completionHandler = ^void (id result){

@@ -8,7 +8,7 @@
 
 #import "PushTestingController.h"
 
-@interface PushTestingController ()
+@interface PushTestingController ()<UITextFieldDelegate>
 
 
 /**
@@ -31,7 +31,7 @@
  */
 @property (weak, nonatomic) IBOutlet UITextField *notiIdenLbl;
 
-@property (weak, nonatomic) IBOutlet UITextView *logTextView;
+@property (weak, nonatomic) IBOutlet UILabel *logLabel;
 
 @end
 
@@ -45,6 +45,8 @@
     self.videoSwitch.on = NO;
     self.soundSwitch.on = NO;
     self.slientSwitch.on = NO;
+    self.logLabel.numberOfLines = 0;
+    self.notiIdenLbl.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -103,10 +105,14 @@
 
 - (void)test_findNotification
 {
-    JSPushNotificationIdentifier *iden = [JSPushNotificationIdentifier identifireWithIdentifiers:@[self.notiIdenLbl.text] state:JSPushNotificationStateAll withFindCompletionHandler:^(NSArray * _Nullable results) {
-        NSString *logStr = [NSString stringWithFormat:@"查找通知：id-%@-%lu",iden.identifiers,results.count];
+    JSPushNotificationIdentifier *iden = [JSPushNotificationIdentifier identifireWithIdentifiers:@[self.notiIdenLbl.text] state:JSPushNotificationStateAll];
+   
+    __block NSArray * identifiers = [iden.identifiers copy];
+    iden.findCompletionHandler = ^(NSArray * result){
+        NSString *logStr = [NSString stringWithFormat:@"查找通知：id-%@-%lu",identifiers,result.count];
         [self logNextActionString:logStr];
-    }];
+    };
+
     [JSPushService findNotification:iden];
 }
 
@@ -124,12 +130,13 @@
     
     //传递NSTimeInterval作为触发时间
     JSPushNotificationTrigger *trigger = [JSPushNotificationTrigger triggerWithTimeInterval:self.timeSlide.value repeats:NO];
-    NSString *logStr = [NSString stringWithFormat:@"更新通知：%@-%@",content.title,content.body];
+    
     JSPushNotificationRequest *request = [JSPushNotificationRequest requestWithIdentifier:self.notiIdenLbl.text content:content trigger:trigger withCompletionHandler:^(id  _Nullable result) {
-        [self logNextActionString:logStr];
     }];
     
     [JSPushService addNotification:request];
+    NSString *logStr = [NSString stringWithFormat:@"更新通知：%@-%@",content.title,content.body];
+    [self logNextActionString:logStr];
 }
 
 # pragma mark - Notification Types
@@ -159,12 +166,12 @@
     request.requestIdentifier = self.notiIdenLbl.text;
     request.content = content;
     request.trigger = trigger;
-    NSString *logStr = [NSString stringWithFormat:@"添加文本通知：%@-%@",content.title,content.body];
     request.completionHandler = ^void (id result){
-        [self logNextActionString:logStr];
     };
     
     [JSPushService addNotification:request];
+    NSString *logStr = [NSString stringWithFormat:@"添加文本通知：%@-%@",content.title,content.body];
+    [self logNextActionString:logStr];
 }
 
 - (void)test_addPictureNotication
@@ -193,11 +200,11 @@
     currentDate = [currentDate dateByAddingTimeInterval:self.timeSlide.value];
     trigger.fireDate = currentDate;
     
-    NSString *logStr = [NSString stringWithFormat:@"添加图片通知：%@-%@",content.title,content.body];
     JSPushNotificationRequest *request = [JSPushNotificationRequest requestWithIdentifier:self.notiIdenLbl.text content:content trigger:trigger withCompletionHandler:^(id  _Nullable result) {
-        [self logNextActionString:logStr];
     }];
     [JSPushService addNotification:request];
+    NSString *logStr = [NSString stringWithFormat:@"添加图片通知：%@-%@",content.title,content.body];
+    [self logNextActionString:logStr];
 
 }
 
@@ -226,11 +233,11 @@
     request.requestIdentifier = self.notiIdenLbl.text;
     request.content = content;
     request.trigger = trigger;
-    NSString *logStr = [NSString stringWithFormat:@"添加视频通知：%@-%@",content.title,content.body];
     request.completionHandler = ^void (id result){
-        [self logNextActionString:logStr];
     };
     [JSPushService addNotification:request];
+    NSString *logStr = [NSString stringWithFormat:@"添加视频通知：%@-%@",content.title,content.body];
+    [self logNextActionString:logStr];
 }
 
 - (void)test_addMutipleNotification
@@ -263,18 +270,35 @@
     request.content = content;
     request.trigger = trigger;
     
-    NSString *logStr = [NSString stringWithFormat:@"添加混合通知：%@-%@",content.title,content.body];
     request.completionHandler = ^void (id result){
-        [self logNextActionString:logStr];
     };
     [JSPushService addNotification:request];
-
+    NSString *logStr = [NSString stringWithFormat:@"添加混合通知：%@-%@",content.title,content.body];
+    [self logNextActionString:logStr];
 }
 
 - (void)logNextActionString:(NSString *)next
 {
-    NSString *nextLog = [NSString stringWithFormat:@"%@\n%@",self.logTextView.text,next];
-    self.logTextView.text = nextLog;
+    NSString *nextLog = [NSString stringWithFormat:@"%@\n%@",self.logLabel.text,next];
+    self.logLabel.text = nextLog;
+    
+    NSDictionary *attributes = @{NSFontAttributeName:[UIFont systemFontOfSize:12]};
+
+    CGRect rect = [self.logLabel.text boundingRectWithSize:CGSizeMake(self.logLabel.frame.size.width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil];
+    
+    if (rect.size.height > self.logLabel.frame.size.height) {
+        self.logLabel.text = @"";
+    }
+}
+
+
+#pragma mark UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    [self.view endEditing:YES];
+    return YES;
 }
 
 @end

@@ -10,13 +10,12 @@
 
 #define kLocalNotificationIdentifier        @"com.jspush.kLocalNotificationIdentifier"
 
-#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= JSPUSH_IPHONE_10_0) )
+#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
 @interface JSPushService()<UNUserNotificationCenterDelegate>
+@property (nonatomic ,weak)id<JSPushRegisterDelegate> delegate;
 #else
 @interface JSPushService()
 #endif
-
-@property (nonatomic ,weak)id<JSPushRegisterDelegate> delegate;
 
 @end
 
@@ -34,7 +33,7 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= JSPUSH_IPHONE_10_0) )
+#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
         JSPUSH_NOTIFICATIONCENTER.delegate = self;
 #endif
     }
@@ -74,7 +73,7 @@
 {
     
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 10.0){
-#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= JSPUSH_IPHONE_10_0) )
+#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
         
         [JSPUSH_NOTIFICATIONCENTER requestAuthorizationWithOptions:(UNAuthorizationOptionBadge |UNAuthorizationOptionSound | UNAuthorizationOptionAlert) completionHandler:^(BOOL granted, NSError * _Nullable error) {
             if (granted) {
@@ -93,6 +92,8 @@
     
 }
 
+#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
+
 + (void)registerForRemoteNotificationConfig:(JSPushRegisterConfig *)config delegate:(id<JSPushRegisterDelegate>)delegate
 {
     if (config == nil) {
@@ -103,6 +104,7 @@
     [JSPushService sharedManager].delegate = delegate;
     
 }
+#endif
 
 #pragma mark - device token
 
@@ -132,7 +134,7 @@
     
     if (iOSAbove10) {
         
-#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= JSPUSH_IPHONE_10_0) )
+#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
         //convert JSPushNotificationRequest to UNNotificationRequest
         UNNotificationRequest *request = [self convertJSPushNotificationRequestToUNNotificationRequest:jsRequest];
         if (request != nil) {
@@ -169,7 +171,7 @@
 + (void)removeNotification:(JSPushNotificationIdentifier *)identifier {
 
     if (iOSAbove10) {
-#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= JSPUSH_IPHONE_10_0) )
+#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
         if (identifier == nil) {
             [JSPUSH_NOTIFICATIONCENTER removeAllDeliveredNotifications];
             [JSPUSH_NOTIFICATIONCENTER removeAllPendingNotificationRequests];
@@ -249,7 +251,7 @@
     }
     
     if (iOSAbove10) {
-#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= JSPUSH_IPHONE_10_0) )
+#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
         switch (identifier.state) {
             case JSPushNotificationStateAll:
             {
@@ -411,7 +413,7 @@
 
 # pragma mark - UNUserNotificationCenterDelegate
 
-#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= JSPUSH_IPHONE_10_0) )
+#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
 
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler
 {
@@ -443,7 +445,7 @@
 
 # pragma mark  iOS 10 以上创建通知
 
-#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= JSPUSH_IPHONE_10_0) )
+#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
 
 + (nullable UNNotificationRequest *)convertJSPushNotificationRequestToUNNotificationRequest:(JSPushNotificationRequest *)jsRequest {
     

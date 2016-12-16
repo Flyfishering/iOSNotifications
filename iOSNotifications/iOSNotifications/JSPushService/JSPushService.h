@@ -33,6 +33,7 @@
  */
 + (void)registerForRemoteNotificationTypes:(NSUInteger)types categories:(NSSet *)categories;
 
+#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
 /**
  注册通知，并且设置处理通知的代理
 
@@ -40,7 +41,7 @@
  @param delegate 处理通知代理
  */
 + (void)registerForRemoteNotificationConfig:(JSPushRegisterConfig *)config delegate:(id<JSPushRegisterDelegate>)delegate;
-
+#endif
 /**
  获取device token
  需要在该方法中奖token发送至你的服务器

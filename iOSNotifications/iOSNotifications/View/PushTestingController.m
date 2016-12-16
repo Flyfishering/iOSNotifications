@@ -176,17 +176,19 @@
 
 - (void)test_addPictureNotication
 {
+    JSPushNotificationContent *content = [[JSPushNotificationContent alloc] init];
+    content.title = @"物流通知";
+    content.subtitle = @"你的宝贝在路上，注意查收~";
+    
+#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
     NSError *error = nil;
     //注意URL是本地图片路径，而不是http
     //假如用网络地址，UNNotificationAttachment会创建失败，为nil
     NSURL * imageUrl = [[NSBundle mainBundle] URLForResource:@"joy" withExtension:@"png"];
     UNNotificationAttachment *imgAtt = [UNNotificationAttachment attachmentWithIdentifier:@"image" URL:imageUrl options:nil error:&error];
-    
-    
-    JSPushNotificationContent *content = [[JSPushNotificationContent alloc] init];
-    content.title = @"物流通知";
-    content.subtitle = @"你的宝贝在路上，注意查收~";
     content.attachments = @[imgAtt];
+#endif
+    
     content.body = @"预计今天下午3：00~5：00准时送达。";
     content.badge = @1;
     content.userInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"商品",@"iPhone",@"白色",@"颜色",@"1月5日下午五点前",@"时间",nil];
@@ -210,16 +212,18 @@
 
 - (void)test_addVideoNotication
 {
+    JSPushNotificationContent *content = [[JSPushNotificationContent alloc] init];
+    content.title = @"导购..";
+    content.subtitle = @"如何选电脑";
+    
+#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
     NSError *error = nil;
     //注意URL是本地图片路径，而不是http
     //假如用网络地址，UNNotificationAttachment会创建失败，为nil
     NSURL * mp4Url = [[NSBundle mainBundle] URLForResource:@"media" withExtension:@"mp4"];
     UNNotificationAttachment *mediaAtt = [UNNotificationAttachment attachmentWithIdentifier:@"image" URL:mp4Url options:nil error:&error];
-    
-    JSPushNotificationContent *content = [[JSPushNotificationContent alloc] init];
-    content.title = @"导购..";
-    content.subtitle = @"如何选电脑";
     content.attachments = @[mediaAtt];
+#endif
     content.body = @"电脑小白，如何挑选自己心仪的电脑，技术达人分分钟教会你~";
     content.badge = @1;
     content.userInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"白色",@"颜色",@"1月5日下午三点",@"时间",nil];
@@ -242,7 +246,11 @@
 
 - (void)test_addMutipleNotification
 {
-
+    JSPushNotificationContent *content = [[JSPushNotificationContent alloc] init];
+    content.title = @"来，听歌";
+    content.subtitle = @"许嵩新曲-素颜";
+    
+#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
     NSError *error = nil;
     //注意URL是本地图片路径，而不是http
     //假如用网络地址，UNNotificationAttachment会创建失败，为nil
@@ -251,11 +259,9 @@
     
     NSURL * mp4Url = [[NSBundle mainBundle] URLForResource:@"media" withExtension:@"mp4"];
     UNNotificationAttachment *mediaAtt = [UNNotificationAttachment attachmentWithIdentifier:@"image" URL:mp4Url options:nil error:&error];
-    
-    JSPushNotificationContent *content = [[JSPushNotificationContent alloc] init];
-    content.title = @"来，听歌";
-    content.subtitle = @"许嵩新曲-素颜";
     content.attachments = @[imgAtt,mediaAtt];
+#endif
+    
     content.body = @"~~~~~~~~~~播放中~~~~~";
     content.badge = @1;
     content.userInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"白色",@"颜色",@"1月5日下午三点",@"时间",nil];

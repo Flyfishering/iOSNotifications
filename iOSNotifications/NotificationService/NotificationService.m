@@ -6,6 +6,8 @@
 //  Copyright © 2016年 WengHengcong. All rights reserved.
 //
 
+#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
+
 #import "NotificationService.h"
 
 //Service Extension 现在只对远程通知的通知起效，你可以在通知 payload 中增加一个 mutable-content 值为 1 的项来启用内容修改
@@ -185,3 +187,5 @@
 }
 
 @end
+
+#endif

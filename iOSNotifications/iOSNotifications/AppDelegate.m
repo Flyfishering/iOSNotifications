@@ -23,12 +23,14 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     [JSPushService registerForRemoteNotificationTypes:7 categories:nil];
-#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= JSPUSH_IPHONE_10_0) )
+#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
     [UNUserNotificationCenter currentNotificationCenter].delegate = self;
 #endif
 
     //HCTEST:
     if (iOSAbove10) {
+#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
+
         //iOS 10以上，通知代理设置，不设置，代理不调用。
         //在锁屏界面，通知栏，需要点击“查看”，才会显示“接受”、“拒绝”的按钮
         
@@ -59,7 +61,7 @@
         /**第二组按钮结束**/
         
         [JSPushService registerForRemoteNotificationTypes:7 categories:[NSSet setWithObjects:wakeUpCate,customCate,nil]];
-        
+#endif
     }else{
         /***************************测试category*******************************/
         /*注意：以下action注册，只在iOS10之前有效！！！  */
@@ -248,7 +250,7 @@
 
 # pragma mark iOS 10
 
-#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= JSPUSH_IPHONE_10_0) )
+#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
 // 会屏蔽iOS10之前方法（设置对应的代理后）
 
 /**

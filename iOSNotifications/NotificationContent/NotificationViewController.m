@@ -6,6 +6,8 @@
 //  Copyright © 2016年 WengHengcong. All rights reserved.
 //
 
+#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
+
 #import "NotificationViewController.h"
 #import <UserNotifications/UserNotifications.h>
 #import <UserNotificationsUI/UserNotificationsUI.h>
@@ -117,3 +119,5 @@
 
 
 @end
+
+#endif

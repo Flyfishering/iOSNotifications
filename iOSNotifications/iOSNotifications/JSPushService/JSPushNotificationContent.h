@@ -57,7 +57,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, copy,nullable) NSString *sound;
 
-#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= JSPUSH_IPHONE_10_0) )
+#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
 
 /**
  附件，iOS10以上有效，需要传入UNNotificationAttachment对象数组类型

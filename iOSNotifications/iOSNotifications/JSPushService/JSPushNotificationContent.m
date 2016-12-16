@@ -21,12 +21,14 @@
     content.categoryIdentifier = self.categoryIdentifier;
     content.userInfo = self.userInfo;
     content.sound = self.sound;
+    
+#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
     content.attachments = self.attachments;
     content.threadIdentifier = self.threadIdentifier;
     content.launchImageName = self.launchImageName;
     
+#endif
     return content;
-    
 }
 
 @end

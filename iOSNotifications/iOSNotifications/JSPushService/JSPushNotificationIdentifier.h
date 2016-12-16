@@ -28,14 +28,13 @@ typedef NS_ENUM(NSUInteger, JSPushNotificationState) {
  通知的标识数组
  适用与查找与移除通知
  */
-@property (nonatomic, copy) NSArray<NSString *> *identifiers;
+@property (nonatomic, copy, nullable) NSArray<NSString *> *identifiers;
 
 /**
- 仅用于移除通知
- 不支持iOS10 以上
- 在iOS 10以下，设置notificationObj和identifiers，notificationObj优先级更高
+ iOS 以下仅用于移除通知
+ iOS 10以下，设置notificationObj和identifiers，notificationObj优先级更高
  */
-@property (nonatomic, copy ,nullable) UILocalNotification *notificationObj    NS_DEPRECATED_IOS(4_0, 10_0);
+@property (nonatomic, copy ,nullable) UILocalNotification *notificationObj    NS_DEPRECATED_IOS(4_0, 10_0 , "Use UserNotifications Framework's UNNotificationRequest");
 
 /**
  标志需要查找或者移除通知的通知状态
@@ -55,7 +54,7 @@ typedef NS_ENUM(NSUInteger, JSPushNotificationState) {
 /**
  iOS 10 以下，移除UILocalNotification可通过该方法创建
  */
-+ (instancetype)identifireWithNnotificationObj:(UILocalNotification *)noti;
++ (instancetype)identifireWithNnotificationObj:(UILocalNotification *)noti NS_DEPRECATED_IOS(4_0, 10_0 , "Use UserNotifications Framework's");
 
 /**
  移除identifiers对应通知，可通过该方法创建

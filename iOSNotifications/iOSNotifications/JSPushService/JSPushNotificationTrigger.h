@@ -31,9 +31,9 @@ NS_ASSUME_NONNULL_BEGIN
  !!不建议使用！！
  仅作为兼容iOS 10以下
  iOS 10以下，用来设置触发通知的时间
- iOS10以上有效，优先级为II
+ iOS 10以上，当dateComponents为空，会以该值作为触发时间
  */
-@property (nonatomic, copy) NSDate      *fireDate   NS_DEPRECATED_IOS(2_0, 10_0);
+@property (nonatomic, copy) NSDate      *fireDate   NS_DEPRECATED_IOS(2_0, 10_0 ,"Use dateComponents replace fireDate");
 
 /**
  用来设置触发通知的日期时间

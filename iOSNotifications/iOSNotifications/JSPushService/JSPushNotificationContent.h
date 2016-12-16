@@ -40,7 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  弹框的按钮显示的内容（IOS 8默认为"打开", 其他默认为"启动",iOS10以上无效）
  */
-@property (nonatomic, copy) NSString *action NS_DEPRECATED_IOS(8_0, 10_0);
+@property (nonatomic, copy) NSString *action    NS_DEPRECATED_IOS(8_0, 10_0);
 
 /**
  行为分类标识

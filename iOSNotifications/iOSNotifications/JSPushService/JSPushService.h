@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import <UserNotifications/UserNotifications.h>
 
 #import "JSPushRegisterDelegate.h"
 #import "JSPushUtilities.h"
@@ -17,10 +16,7 @@
 #import "JSPushNotificationTrigger.h"
 #import "JSPushNotificationRequest.h"
 
-/**
- 针对iOS 10
- 参考：https://onevcat.com/2016/08/notification/
- */
+
 @interface JSPushService : NSObject
 
 /**

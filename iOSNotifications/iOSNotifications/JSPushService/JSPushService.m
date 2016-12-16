@@ -441,10 +441,10 @@
         JSPUSHLog(@"error-request content is nil!");
         return nil;
     }
+    //trigger为nil，则为立即触发
     UNNotificationTrigger *trigger = [self convertJSPushNotificationTriggerToUNPushNotificationTrigger:jsRequest.trigger];
     if (trigger == nil) {
-        JSPUSHLog(@"error-request trigger is nil!");
-        return nil;
+        trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:0.0 repeats:NO];
     }
     
     UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:jsRequest.requestIdentifier content:content trigger:trigger];
@@ -483,8 +483,8 @@
 + (nullable UNNotificationTrigger *)convertJSPushNotificationTriggerToUNPushNotificationTrigger:(JSPushNotificationTrigger *)jsTrigger {
     
     if (jsTrigger == nil) {
-        JSPUSHLog(@"error-trigger is nil!");
-        return nil;
+       UNTimeIntervalNotificationTrigger *trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:0.0 repeats:NO];
+        return trigger;
     }
     //当fireDate不为nil，dateComponents为nil
     if ( (jsTrigger.fireDate != nil) && (jsTrigger.dateComponents == nil) ){
@@ -500,7 +500,7 @@
         trigger = [UNLocationNotificationTrigger triggerWithRegion:jsTrigger.region repeats:jsTrigger.repeat];
     }else if (jsTrigger.dateComponents != nil){
         trigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:jsTrigger.dateComponents repeats:jsTrigger.repeat];
-    }else{
+    }else {
         trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:jsTrigger.timeInterval repeats:jsTrigger.repeat];
     }
     
@@ -517,25 +517,27 @@
         JSPUSHLog(@"error-request is nil!");
         return nil;
     }
-    
-    if (jsRequest.trigger == nil) {
-        JSPUSHLog(@"error-trigger is nil!");
-        return nil;
-    }
-    
+
     if (jsRequest.content == nil) {
         JSPUSHLog(@"error-content is nil!");
         return nil;
     }
-    //假如使用时，fireDate未设置，则将dateComponents转换为对应的fireDate
-    if ( (jsRequest.trigger.fireDate == nil) && (jsRequest.trigger.dateComponents != nil) ) {
+    
+    NSDate *fireDate = nil;
+    
+    if (jsRequest.trigger == nil) {
+        fireDate = [NSDate date];
+    }else if ( (jsRequest.trigger.fireDate == nil) && (jsRequest.trigger.dateComponents != nil) ) {
+        //假如使用时，fireDate未设置，则将dateComponents转换为对应的fireDate
         NSDate *date = [JSPushUtilities jspush_dateWithNSDateComponents:jsRequest.trigger.dateComponents];
         if (date) {
-            jsRequest.trigger.fireDate = date;
+            fireDate = date;
         }
+    }else if((jsRequest.trigger.fireDate != nil) && (jsRequest.trigger.dateComponents == nil)){
+        fireDate = jsRequest.trigger.fireDate;
     }
     
-    UILocalNotification *noti = [self setLocalNotification:jsRequest.trigger.fireDate alertTitle:jsRequest.content.title alertBody:jsRequest.content.body badge:jsRequest.content.badge alertAction:jsRequest.content.action identifierKey:jsRequest.requestIdentifier userInfo:jsRequest.content.userInfo soundName:jsRequest.content.sound region:jsRequest.trigger.region regionTriggersOnce:jsRequest.trigger.repeat category:jsRequest.content.categoryIdentifier];
+    UILocalNotification *noti = [self setLocalNotification:fireDate alertTitle:jsRequest.content.title alertBody:jsRequest.content.body badge:jsRequest.content.badge alertAction:jsRequest.content.action identifierKey:jsRequest.requestIdentifier userInfo:jsRequest.content.userInfo soundName:jsRequest.content.sound region:jsRequest.trigger.region regionTriggersOnce:jsRequest.trigger.repeat category:jsRequest.content.categoryIdentifier];
     
     return noti;
 }

@@ -22,16 +22,18 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL repeat;
 
 /**
- iOS 10以下，用来设置触发通知的时间
- 注意：iOS10以上无效
- */
-@property (nonatomic, copy) NSDate      *fireDate NS_DEPRECATED_IOS(2_0, 10_0);
-
-/**
  iOS8以上有效，用来设置触发通知的位置
  iOS10以上优先级为I，应用需要有允许使用定位的授权
  */
 @property (nonatomic, copy) CLRegion    *region NS_AVAILABLE_IOS(8_0);
+
+/**
+ !!不建议使用！！
+ 仅作为兼容iOS 10以下
+ iOS 10以下，用来设置触发通知的时间
+ iOS10以上有效，优先级为II
+ */
+@property (nonatomic, copy) NSDate      *fireDate   NS_DEPRECATED_IOS(2_0, 10_0);
 
 /**
  用来设置触发通知的日期时间

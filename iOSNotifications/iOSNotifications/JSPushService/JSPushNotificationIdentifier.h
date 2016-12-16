@@ -63,14 +63,17 @@ typedef NS_ENUM(NSUInteger, JSPushNotificationState) {
 
 
 /**
- iOS 10以上查找，可通过该方法创建
- */
-+ (instancetype)identifireWithIdentifiers:(NSArray <NSString *> *)identifiers  state:(JSPushNotificationState)state withFindCompletionHandler:(void(^)(NSArray * __nullable results))findCompletionHandler;
-
-/**
- iOS 以上移除通知，可通过该方法创建
+ iOS 10以上用于查找或移除
+ @param identifiers 查找或移除的id
+ @param state 对应通知的状态
  */
 + (instancetype)identifireWithIdentifiers:(NSArray <NSString *> *)identifiers  state:(JSPushNotificationState)state;
+
+/**
+ iOS 10以上查找，可通过该方法创建
+ 如果是移除，findCompletionHandler为nil即可
+ */
++ (instancetype)identifireWithIdentifiers:(NSArray <NSString *> *)identifiers  state:(JSPushNotificationState)state withFindCompletionHandler:(void(^)(NSArray * __nullable results))findCompletionHandler;
 
 
 @end

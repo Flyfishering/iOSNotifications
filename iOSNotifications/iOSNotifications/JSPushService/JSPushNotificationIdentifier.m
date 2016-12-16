@@ -42,6 +42,16 @@
     return iden;
 }
 
+/**
+ iOS 10以上，查找或移除通知
+ */
++ (instancetype)identifireWithIdentifiers:(NSArray <NSString *> *)identifiers  state:(JSPushNotificationState)state
+{
+    JSPushNotificationIdentifier *iden = [[JSPushNotificationIdentifier alloc] init];
+    iden.identifiers = identifiers;
+    iden.state = state;
+    return iden;
+}
 
 /**
  iOS 10以上查找，可通过该方法创建
@@ -52,17 +62,6 @@
     iden.identifiers = identifiers;
     iden.state = state;
     iden.findCompletionHandler = findCompletionHandler;
-    return iden;
-}
-
-/**
- iOS 10以上移除通知，可通过该方法创建
- */
-+ (instancetype)identifireWithIdentifiers:(NSArray <NSString *> *)identifiers  state:(JSPushNotificationState)state
-{
-    JSPushNotificationIdentifier *iden = [[JSPushNotificationIdentifier alloc] init];
-    iden.identifiers = identifiers;
-    iden.state = state;
     return iden;
 }
 

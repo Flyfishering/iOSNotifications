@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 /*
  * 注册或更新通知实体类
  */
-@interface JSPushNotificationRequest : NSObject<NSCopying, NSCoding>
+@interface JSPushNotificationRequest : NSObject<NSCopying>
 
 /**
  通知请求标识

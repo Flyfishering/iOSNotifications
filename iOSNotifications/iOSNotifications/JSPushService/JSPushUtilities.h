@@ -18,13 +18,6 @@
 #endif
 
 #define iOSAbove10 ([[ [UIDevice currentDevice] systemVersion] floatValue] >= 10.0)
-#define iOSBelow10 ([[ [UIDevice currentDevice] systemVersion] floatValue] < 10.0)
-
-#define iOS8_10 ([[ [UIDevice currentDevice] systemVersion] floatValue] < 10.0) && ( [[ [UIDevice currentDevice] systemVersion] floatValue] >= 8.0 )
-#define iOSBelow8 ([[ [UIDevice currentDevice] systemVersion] floatValue] >= 10.0)
-
-#define kLocalNotificationIdentifier        @"com.jspush.kLocalNotificationIdentifier"
-#define kLocalNotificationContent           @"kLocalNotificationContent"
 
 #define JSPUSH_IPHONE_10_0  100000
 #define JSPUSH_IPHONE_8_2   80200

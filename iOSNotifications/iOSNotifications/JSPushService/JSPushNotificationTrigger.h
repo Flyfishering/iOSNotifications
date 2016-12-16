@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
  * 通知触发方式实体类
  * 注：dateComponents、timeInterval、region在iOS10以上可选择其中一个参数传入有效值，如果同时传入值会根据优先级I、II、III使其中一种触发方式生效，fireDate为iOS10以下根据时间触发时须传入的参数
  */
-@interface JSPushNotificationTrigger : NSObject<NSCopying, NSCoding>
+@interface JSPushNotificationTrigger : NSObject<NSCopying>
 
 /**
  设置是否重复，默认为NO

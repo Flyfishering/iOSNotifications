@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  通知内容实体类
  */
-@interface JSPushNotificationContent : NSObject<NSCopying,NSCoding>
+@interface JSPushNotificationContent : NSObject<NSCopying>
 
 /**
  通知标题

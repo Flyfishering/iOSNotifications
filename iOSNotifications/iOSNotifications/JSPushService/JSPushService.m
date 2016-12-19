@@ -71,7 +71,7 @@
 + (void)registerForRemoteNotificationTypes:(NSUInteger)types categories:(NSSet *)categories
 {
     
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 10.0){
+    if (JSPUSH_IOS_10){
 #if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
         
         [JSPUSH_NOTIFICATIONCENTER requestAuthorizationWithOptions:(UNAuthorizationOptionBadge |UNAuthorizationOptionSound | UNAuthorizationOptionAlert) completionHandler:^(BOOL granted, NSError * _Nullable error) {
@@ -131,7 +131,7 @@
 
 + (void)addNotification:(JSPushNotificationRequest *)jsRequest {
     
-    if (iOSAbove10) {
+    if (JSPUSH_IOS_10) {
         
 #if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
         //convert JSPushNotificationRequest to UNNotificationRequest
@@ -169,7 +169,7 @@
 
 + (void)removeNotification:(JSPushNotificationIdentifier *)identifier {
 
-    if (iOSAbove10) {
+    if (JSPUSH_IOS_10) {
 #if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
         if (identifier == nil) {
             [JSPUSH_NOTIFICATIONCENTER removeAllDeliveredNotifications];
@@ -249,7 +249,7 @@
         return;
     }
     
-    if (iOSAbove10) {
+    if (JSPUSH_IOS_10) {
 #if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
         switch (identifier.state) {
             case JSPushNotificationStateAll:

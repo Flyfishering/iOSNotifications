@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 /***  Log */
 # define JSPUSHLog(str, ...) [JSPushUtilities jspush_file:((char *)__FILE__) function:((char *)__FUNCTION__) line:(__LINE__) format:(str),##__VA_ARGS__]
@@ -17,7 +18,8 @@
 # define JSPUSH_NOTIFICATIONCENTER   ([UNUserNotificationCenter currentNotificationCenter])
 #endif
 
-#define iOSAbove10 ([[ [UIDevice currentDevice] systemVersion] floatValue] >= 10.0)
+#define JSPUSH_IOS_10   ([[ [UIDevice currentDevice] systemVersion] floatValue] >= 10.0)
+#define JSPUSH_IOS_8    ([[ [UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
 
 #define JSPUSH_IPHONE_10_0  100000
 #define JSPUSH_IPHONE_8_2   80200

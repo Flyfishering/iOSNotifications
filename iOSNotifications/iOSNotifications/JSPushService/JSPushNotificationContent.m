@@ -26,7 +26,6 @@
     content.attachments = self.attachments;
     content.threadIdentifier = self.threadIdentifier;
     content.launchImageName = self.launchImageName;
-    
 #endif
     return content;
 }

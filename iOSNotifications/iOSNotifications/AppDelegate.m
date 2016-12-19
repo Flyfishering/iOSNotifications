@@ -28,7 +28,7 @@
 #endif
 
     //HCTEST:
-    if (iOSAbove10) {
+    if (JSPUSH_IOS_10) {
 #if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
 
         //iOS 10以上，通知代理设置，不设置，代理不调用。

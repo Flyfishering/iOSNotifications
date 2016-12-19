@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UISwitch *mutipleSwtich;
 @property (weak, nonatomic) IBOutlet UISwitch *slientSwitch;
 
+@property (strong, nonatomic) NSArray   *switchArr;
 /**
  时间轴
  */
@@ -48,6 +49,8 @@
     self.logLabel.numberOfLines = 0;
     self.notiIdenLbl.delegate = self;
     [JSPushService sharedManager].delegate = self;
+    
+    self.switchArr = [NSArray arrayWithObjects:self.mutipleSwtich,self.pictureSwitch,self.videoSwitch,self.slientSwitch, nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -92,11 +95,28 @@
  */
 - (IBAction)switchValueChanged:(id)sender {
     
+    UISwitch *swi = (UISwitch *)sender;
+    if (swi == self.soundSwitch) {
+        
+    }else{
+        if (swi.isOn) {
+            for (UISwitch *other in self.switchArr) {
+                if (other != swi) {
+                    other.on = NO;
+                }
+            }
+        }
+    }
+    
 }
 
 
 #pragma mark - JSPushRegisterDelegate
 
+/**
+ 收到通知的代理方法
+ 参考 UNUserNotificationCenterDelegate
+ */
 - (void)jspushNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler
 {
     NSLog(@"JSPushRegisterDelegate receive notification%@",notification);
@@ -119,7 +139,6 @@
     NSString *logStr = [NSString stringWithFormat:@"移除通知：id-%@",iden.identifiers];
     [self logNextActionString:logStr];
 }
-
 
 - (void)test_findNotification
 {

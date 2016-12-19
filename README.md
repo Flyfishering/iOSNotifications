@@ -37,6 +37,8 @@ Everything tha about notification in iOS.
 
 ## 开发者文档翻译及拓展
 
+以下翻译的苹果原文档，现在均已经失效。
+
 1. [通知那些事儿（一）：简介](http://wenghengcong.com/2016/04/通知那些事儿（一）：简介/)
 2. [通知那些事儿（二）：深度剖析本地与远程通知](http://wenghengcong.com/2016/04/通知那些事儿（二）：深度剖析本地与远程通知/)
 3. [通知那些事儿（三）：注册、调度及处理用户通知](http://wenghengcong.com/2016/04/通知那些事儿（三）：注册、调度及处理用户通知/)
@@ -155,9 +157,12 @@ Everything tha about notification in iOS.
 
 TODO:
 
-1. 服务器
-2. iOS SDK
-3. 性能测试
+1. 服务器；
+2. iOS SDK；
+   1. ~~第一步：创建本地通知，测试DEMO；~~
+   2. 第二步：服务器通信SDK（采用MQTT）；
+3. 性能测试；
+4. 翻译最新退出的[Guide](https://developer.apple.com/library/content/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/index.html);
 
 *****
 

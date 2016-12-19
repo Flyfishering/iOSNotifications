@@ -7,6 +7,7 @@
 //
 
 #import "PushTestingController.h"
+#import <Intents/INIntentIdentifiers.h>
 
 @interface PushTestingController ()<UITextFieldDelegate,JSPushRegisterDelegate>
 
@@ -38,6 +39,7 @@
 
 @implementation PushTestingController
 
+#pragma mark - View
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -48,7 +50,7 @@
     self.slientSwitch.on = NO;
     self.logLabel.numberOfLines = 0;
     self.notiIdenLbl.delegate = self;
-    [JSPushService sharedManager].delegate = self;
+//    [JSPushService sharedManager].delegate = self;
     
     self.switchArr = [NSArray arrayWithObjects:self.mutipleSwtich,self.pictureSwitch,self.videoSwitch,self.slientSwitch, nil];
 }
@@ -57,6 +59,74 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+# pragma mark - Category Test
+
++ (NSSet *)categoriesAction4Test
+{
+    //HCTEST:
+    if (JSPUSH_IOS_10) {
+#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
+        
+        //iOS 10以上，通知代理设置，不设置，代理不调用。
+        //在锁屏界面，通知栏，需要点击“查看”，才会显示“接受”、“拒绝”的按钮
+        
+        /**第一组按钮*/
+        UNNotificationAction *acceptAction = [UNNotificationAction actionWithIdentifier:@"acceptAction" title:@"接受" options:UNNotificationActionOptionDestructive];
+        
+        UNNotificationAction *rejectAction = [UNNotificationAction actionWithIdentifier:@"rejectAction" title:@"拒绝" options:UNNotificationActionOptionForeground];
+        
+        //注意，输入的action，点击action后，会在Action列表显示：接受、拒绝、输入你想几点起
+        UNTextInputNotificationAction *inputAction = [UNTextInputNotificationAction actionWithIdentifier:@"inputAction" title:@"输入你想几点起" options:UNNotificationActionOptionForeground textInputButtonTitle:@"确定" textInputPlaceholder:@"再晚1小时吧"];
+        
+        UNNotificationCategory *wakeUpCate = [UNNotificationCategory categoryWithIdentifier:@"customUI" actions:@[acceptAction,rejectAction,inputAction] intentIdentifiers:@[INStartAudioCallIntentIdentifier] options:UNNotificationCategoryOptionNone];
+        
+        /**第一组按钮结束**/
+        
+        /**第二组按钮*/
+        
+        UNNotificationAction *customAction1 = [UNNotificationAction actionWithIdentifier:@"acceptAction" title:@"上网冲浪" options:UNNotificationActionOptionDestructive];
+        
+        UNNotificationAction *customAction2 = [UNNotificationAction actionWithIdentifier:@"rejectAction" title:@"收藏" options:UNNotificationActionOptionForeground];
+        
+        UNNotificationCategory *customCate = [UNNotificationCategory categoryWithIdentifier:@"customUIWeb" actions:@[customAction1,customAction2] intentIdentifiers:@[INStartAudioCallIntentIdentifier] options:UNNotificationCategoryOptionNone];
+        
+        /**第二组按钮结束**/
+        NSSet *set = [NSSet setWithObjects:wakeUpCate,customCate,nil];
+        
+        return set;
+        
+#endif
+    }else{
+        /***************************测试category*******************************/
+        /*注意：以下action注册，只在iOS10之前有效！！！  */
+        //apns: {"aps":{"alert":"测试通知的快捷回复", "sound":"default", "badge": 1, "category":"alert"}}
+        
+        //接受按钮
+        UIMutableUserNotificationAction *acceptAction = [[UIMutableUserNotificationAction alloc] init];
+        acceptAction.identifier = @"acceptAction";
+        acceptAction.title = @"接受";
+        acceptAction.activationMode = UIUserNotificationActivationModeForeground;  //当点击的时候，启动应用
+        //拒绝按钮
+        UIMutableUserNotificationAction *rejectAction = [[UIMutableUserNotificationAction alloc] init];
+        rejectAction.identifier = @"rejectAction";
+        rejectAction.title = @"拒绝";
+        rejectAction.activationMode = UIUserNotificationActivationModeBackground;   //当点击的时候，不启动应用程序，在后台处理
+        rejectAction.authenticationRequired = YES;//需要解锁才能处理，如果action.activationMode = UIUserNotificationActivationModeForeground;则这个属性被忽略；
+        rejectAction.destructive = YES; //显示红色按钮（销毁、警告类按钮）
+        
+        UIMutableUserNotificationCategory *categorys = [[UIMutableUserNotificationCategory alloc] init];
+        categorys.identifier = @"customUI";
+        NSArray *actions = @[acceptAction, rejectAction];
+        [categorys setActions:actions forContext:UIUserNotificationActionContextMinimal];
+        
+        NSSet *set = [NSSet setWithObjects:categorys,nil];
+        return set;
+    }
+}
+
+#pragma mark - Content View Action
+
 - (IBAction)changePushFireTime:(id)sender {
     
     UISlider *sli = (UISlider *)sender;

@@ -12,4 +12,6 @@
 
 @interface PushTestingController : UIViewController
 
++ (NSSet *)categoriesAction4Test;
+
 @end

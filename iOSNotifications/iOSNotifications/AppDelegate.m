@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "JSPushService.h"
+#import "PushTestingController.h"
+
 
 @interface AppDelegate ()
 
@@ -22,74 +24,16 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    [JSPushService registerForRemoteNotificationTypes:7 categories:nil];
-#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
-    [UNUserNotificationCenter currentNotificationCenter].delegate = self;
-#endif
+    [JSPushService setupWithOption:launchOptions];
 
-    //HCTEST:
     if (JSPUSH_IOS_10) {
-#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
-
-        //iOS 10以上，通知代理设置，不设置，代理不调用。
-        //在锁屏界面，通知栏，需要点击“查看”，才会显示“接受”、“拒绝”的按钮
-        
-        /**第一组按钮*/
-        UNNotificationAction *acceptAction = [UNNotificationAction actionWithIdentifier:@"acceptAction" title:@"接受" options:UNNotificationActionOptionDestructive];
-        
-        UNNotificationAction *rejectAction = [UNNotificationAction actionWithIdentifier:@"rejectAction" title:@"拒绝" options:UNNotificationActionOptionForeground];
-        
-        //注意，输入的action，点击action后，会在Action列表显示：接受、拒绝、输入你想几点起
-        UNTextInputNotificationAction *inputAction = [UNTextInputNotificationAction actionWithIdentifier:@"inputAction" title:@"输入你想几点起" options:UNNotificationActionOptionForeground textInputButtonTitle:@"确定" textInputPlaceholder:@"再晚1小时吧"];
-        
-        UNNotificationCategory *wakeUpCate = [UNNotificationCategory categoryWithIdentifier:@"customUI" actions:@[acceptAction,rejectAction,inputAction] intentIdentifiers:@[@"wakeup"] options:UNNotificationCategoryOptionNone];
-        
-        /**第一组按钮结束**/
-        
-        /**第二组按钮*/
-        
-        UNNotificationAction *customAction1 = [UNNotificationAction actionWithIdentifier:@"acceptAction" title:@"购物" options:UNNotificationActionOptionDestructive];
-        
-        UNNotificationAction *customAction2 = [UNNotificationAction actionWithIdentifier:@"rejectAction" title:@"收藏" options:UNNotificationActionOptionForeground];
-        
-        //注意，输入的action，点击action后，会在Action列表显示：接受、拒绝、输入你想几点起
-        UNTextInputNotificationAction *customAction3 = [UNTextInputNotificationAction actionWithIdentifier:@"inputAction" title:@"输入文本" options:UNNotificationActionOptionForeground textInputButtonTitle:@"确定" textInputPlaceholder:@"输入文本默认占位符"];
-        
-        
-        UNNotificationCategory *customCate = [UNNotificationCategory categoryWithIdentifier:@"customUIWeb" actions:@[customAction1,customAction2] intentIdentifiers:@[@"customUI"] options:UNNotificationCategoryOptionNone];
-        
-        /**第二组按钮结束**/
-        
-        [JSPushService registerForRemoteNotificationTypes:7 categories:[NSSet setWithObjects:wakeUpCate,customCate,nil]];
-#endif
+        [UNUserNotificationCenter currentNotificationCenter].delegate = self;
+        [JSPushService registerForRemoteNotificationTypes:7 categories:[PushTestingController categoriesAction4Test]];
     }else{
-        /***************************测试category*******************************/
-        /*注意：以下action注册，只在iOS10之前有效！！！  */
-        //apns: {"aps":{"alert":"测试通知的快捷回复", "sound":"default", "badge": 1, "category":"alert"}}
-        
-        [JSPushService setupWithOption:launchOptions];
-        
-        //接受按钮
-        UIMutableUserNotificationAction *acceptAction = [[UIMutableUserNotificationAction alloc] init];
-        acceptAction.identifier = @"acceptAction";
-        acceptAction.title = @"接受";
-        acceptAction.activationMode = UIUserNotificationActivationModeForeground;  //当点击的时候，启动应用
-        //拒绝按钮
-        UIMutableUserNotificationAction *rejectAction = [[UIMutableUserNotificationAction alloc] init];
-        rejectAction.identifier = @"rejectAction";
-        rejectAction.title = @"拒绝";
-        rejectAction.activationMode = UIUserNotificationActivationModeBackground;   //当点击的时候，不启动应用程序，在后台处理
-        rejectAction.authenticationRequired = YES;//需要解锁才能处理，如果action.activationMode = UIUserNotificationActivationModeForeground;则这个属性被忽略；
-        rejectAction.destructive = YES; //显示红色按钮（销毁、警告类按钮）
-        
-        UIMutableUserNotificationCategory *categorys = [[UIMutableUserNotificationCategory alloc] init];
-        categorys.identifier = @"customUI";
-        NSArray *actions = @[acceptAction, rejectAction];
-        [categorys setActions:actions forContext:UIUserNotificationActionContextMinimal];
-        
-        [JSPushService registerForRemoteNotificationTypes:7 categories:[NSSet setWithObjects:categorys,nil]];
-        
+        [JSPushService registerForRemoteNotificationTypes:7 categories:[PushTestingController categoriesAction4Test]];
     }
+
+
 
     
     return YES;
@@ -241,6 +185,7 @@
  *  iOS 10之后，在前台，静默通知，也会进入到这里
         如果为设置代理，再调用- (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler。
         否则，不会调用上面方法；
+ *  iOS 10之后，在后台，收到静默推送，也会进到这里。
  */
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {

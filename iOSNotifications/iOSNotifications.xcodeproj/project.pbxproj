@@ -101,14 +101,14 @@
 			isa = PBXGroup;
 			children = (
 				5E4DE4CB1E001FDF004B90C7 /* JSPushRegisterDelegate.h */,
-				5E4DE4C31E001FDF004B90C7 /* JSPushNotificationContent.h */,
-				5E4DE4C41E001FDF004B90C7 /* JSPushNotificationContent.m */,
 				5E4DE4C51E001FDF004B90C7 /* JSPushNotificationIdentifier.h */,
 				5E4DE4C61E001FDF004B90C7 /* JSPushNotificationIdentifier.m */,
-				5E4DE4C71E001FDF004B90C7 /* JSPushNotificationRequest.h */,
-				5E4DE4C81E001FDF004B90C7 /* JSPushNotificationRequest.m */,
+				5E4DE4C31E001FDF004B90C7 /* JSPushNotificationContent.h */,
+				5E4DE4C41E001FDF004B90C7 /* JSPushNotificationContent.m */,
 				5E4DE4C91E001FDF004B90C7 /* JSPushNotificationTrigger.h */,
 				5E4DE4CA1E001FDF004B90C7 /* JSPushNotificationTrigger.m */,
+				5E4DE4C71E001FDF004B90C7 /* JSPushNotificationRequest.h */,
+				5E4DE4C81E001FDF004B90C7 /* JSPushNotificationRequest.m */,
 				5E4DE4CE1E001FDF004B90C7 /* JSPushUtilities.h */,
 				5E4DE4CF1E001FDF004B90C7 /* JSPushUtilities.m */,
 				5E4DE4CC1E001FDF004B90C7 /* JSPushService.h */,

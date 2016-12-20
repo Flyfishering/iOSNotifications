@@ -22,7 +22,7 @@ typedef NS_ENUM(NSUInteger, JSPushNotificationState) {
     JSPushNotificationStateDelivered,
 };
 
-@interface JSPushNotificationIdentifier : NSObject<NSCopying, NSCoding>
+@interface JSPushNotificationIdentifier : NSObject<NSCopying>
 
 /**
  通知的标识数组

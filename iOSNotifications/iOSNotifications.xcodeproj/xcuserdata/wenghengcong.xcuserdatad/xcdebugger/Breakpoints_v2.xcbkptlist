@@ -319,6 +319,38 @@
             endingLineNumber = "230"
             landmarkName = "+removeNotification:"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "+[JSPushService findNotification:]"
+                  moduleName = "iOSNotifications"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wenghengcong/Github/iOSNotifications/iOSNotifications/iOSNotifications/JSPushService/JSPushService.m"
+                  timestampString = "503916121.655403"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "230"
+                  endingLineNumber = "230"
+                  offsetFromSymbolStart = "388">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__34+[JSPushService findNotification:]_block_invoke"
+                  moduleName = "iOSNotifications"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wenghengcong/Github/iOSNotifications/iOSNotifications/iOSNotifications/JSPushService/JSPushService.m"
+                  timestampString = "503916121.656918"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "230"
+                  endingLineNumber = "230"
+                  offsetFromSymbolStart = "40">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

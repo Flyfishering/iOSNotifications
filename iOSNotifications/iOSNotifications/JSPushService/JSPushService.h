@@ -30,12 +30,6 @@
 @property (nonatomic,weak)id<JSPushRegisterDelegate> delegate;
 
 /**
- *  启动时处理应用缓存消息
- *  @param launchOptions
- */
-+ (void)setupWithOption:(NSDictionary *)launchOptions;
-
-/**
  注册远程通知
 
  @param types 注册类型0~7  typs是由三位二进制位构成的，Alert|Sound|Badge

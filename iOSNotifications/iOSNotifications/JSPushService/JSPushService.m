@@ -39,33 +39,6 @@
     return self;
 }
 
-+ (void)setupWithOption:(NSDictionary *)launchOptions {
-    
-    //在app没有被启动的时候，接收到了消息通知。这时候操作系统会按照默认的方式来展现一个alert消息，在app icon上标记一个数字，甚至播放一段声音。
-    
-    //用户看到消息之后，点击了一下action按钮或者点击了应用图标。如果action按钮被点击了，系统会通过调用application:didFinishLaunchingWithOptions:这个代理方法来启动应用，并且会把notification的payload数据传递进去。如果应用图标被点击了，系统也一样会调用application:didFinishLaunchingWithOptions:这个代理方法来启动应用，唯一不同的是这时候启动参数里面不会有任何notification的信息。
-    NSLog(@"*** push original info:%@",launchOptions);
-    
-    NSDictionary* remoteDictionary = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
-    NSDictionary* localDictionary = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
-    //iOS8.0新增Today Widget
-    NSURL * launchUrl              = [launchOptions objectForKey:UIApplicationLaunchOptionsURLKey];
-    NSString * sourceApplicationKey = [launchOptions objectForKey:UIApplicationLaunchOptionsSourceApplicationKey];
-    if (remoteDictionary != nil)
-    {
-        //处理app未启动的情况下，push跳转
-        NSLog(@"setup-%@",remoteDictionary[@"seg"]);
-    }
-    
-    // 本地消息
-    else if (localDictionary != nil)
-    {
-        // 本地消息
-        NSLog(@"setup-%@",remoteDictionary[@"seg"]);
-    }
-}
-
-
 # pragma mark - Register
 
 + (void)registerForRemoteNotificationTypes:(NSUInteger)types categories:(NSSet *)categories

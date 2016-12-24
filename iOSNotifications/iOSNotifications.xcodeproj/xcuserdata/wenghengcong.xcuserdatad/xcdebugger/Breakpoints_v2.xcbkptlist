@@ -328,7 +328,7 @@
                   moduleName = "iOSNotifications"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wenghengcong/Github/iOSNotifications/iOSNotifications/iOSNotifications/JSPushService/JSPushService.m"
-                  timestampString = "504237550.23028"
+                  timestampString = "504251162.597294"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "230"
@@ -343,7 +343,7 @@
                   moduleName = "iOSNotifications"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wenghengcong/Github/iOSNotifications/iOSNotifications/iOSNotifications/JSPushService/JSPushService.m"
-                  timestampString = "504237550.23148"
+                  timestampString = "504251162.599032"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "230"
@@ -382,6 +382,22 @@
             startingLineNumber = "85"
             endingLineNumber = "85"
             landmarkName = "-didReceiveNotification:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iOSNotifications/View/PushTestingController.m"
+            timestampString = "504251150.026516"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "-alertView:clickedButtonAtIndex:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

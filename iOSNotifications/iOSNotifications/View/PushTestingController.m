@@ -7,6 +7,7 @@
 //
 
 #import "PushTestingController.h"
+#import "AppDelegate.h"
 
 #if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
 @interface PushTestingController ()<UITextFieldDelegate,JSPushRegisterDelegate>
@@ -56,6 +57,7 @@
 //    [JSPushService sharedManager].delegate = self;
     
     self.switchArr = [NSArray arrayWithObjects:self.mutipleSwtich,self.pictureSwitch,self.videoSwitch,self.slientSwitch, nil];
+    [self alertUserOpenPush];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -64,6 +66,32 @@
 }
 
 # pragma mark - Category Test
+
+
+- (void)alertUserOpenPush
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"允许通知？" message:@"通知打开，及时收到最新的资讯" delegate:self cancelButtonTitle:@"不" otherButtonTitles:@"好的", nil];
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        NSLog(@"我不让你骚扰我");
+    }else{
+        [self registerRemote];
+    }
+}
+- (void)registerRemote
+{
+    if (JSPUSH_IOS_10) {
+        [UNUserNotificationCenter currentNotificationCenter].delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        [JSPushService registerForRemoteNotificationTypes:7 categories:[PushTestingController categoriesAction4Test]];
+    }else{
+        [JSPushService registerForRemoteNotificationTypes:7 categories:[PushTestingController categoriesAction4Test]];
+    }
+    
+}
 
 + (NSSet *)categoriesAction4Test
 {

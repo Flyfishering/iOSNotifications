@@ -24,16 +24,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    if (JSPUSH_IOS_10) {
-        [UNUserNotificationCenter currentNotificationCenter].delegate = self;
-        [JSPushService registerForRemoteNotificationTypes:7 categories:[PushTestingController categoriesAction4Test]];
-    }else{
-        [JSPushService registerForRemoteNotificationTypes:7 categories:[PushTestingController categoriesAction4Test]];
-    }
-
-
-
-    
     return YES;
 }
 

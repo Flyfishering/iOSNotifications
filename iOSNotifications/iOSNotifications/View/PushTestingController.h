@@ -10,7 +10,7 @@
 #import <Foundation/Foundation.h>
 #import "JSPushService.h"
 
-@interface PushTestingController : UIViewController
+@interface PushTestingController : UIViewController<UIAlertViewDelegate>
 
 + (NSSet *)categoriesAction4Test;
 

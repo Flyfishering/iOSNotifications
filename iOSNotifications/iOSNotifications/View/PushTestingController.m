@@ -7,10 +7,13 @@
 //
 
 #import "PushTestingController.h"
-#import <Intents/INIntentIdentifiers.h>
 
+#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
 @interface PushTestingController ()<UITextFieldDelegate,JSPushRegisterDelegate>
+#else
+@interface PushTestingController ()<UITextFieldDelegate>
 
+#endif
 
 /**
  各类开关
@@ -95,7 +98,8 @@
         NSSet *set = [NSSet setWithObjects:wakeUpCate,customCate,nil];
         
         return set;
-        
+#else
+        return nil;
 #endif
     }else{
         /***************************测试category*******************************/
@@ -210,6 +214,7 @@
 
 
 #pragma mark - JSPushRegisterDelegate
+#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
 
 /**
  收到通知的代理方法
@@ -226,6 +231,8 @@
     NSLog(@"JSPushRegisterDelegate receive response%@",response);
     completionHandler();
 }
+#endif
+
 
 #pragma mark - private method
 

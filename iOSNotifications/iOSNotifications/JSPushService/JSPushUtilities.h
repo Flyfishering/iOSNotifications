@@ -23,6 +23,7 @@
 
 #define JSPUSH_IPHONE_10_0  100000
 #define JSPUSH_IPHONE_8_2   80200
+#define JSPUSH_IPHONE_8_0   80000
 
 @interface JSPushUtilities : NSObject
 

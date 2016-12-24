@@ -564,7 +564,16 @@
 #endif
         }
         notification.alertBody   = alertBody;     //显示主体
-        notification.category = category;
+#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= JSPUSH_IPHONE_8_0) )
+        if(JSPUSH_IOS_8){
+            notification.category = category;
+            //设置地理位置
+            if(region){
+                notification.region = region;
+                notification.regionTriggersOnce = regionTriggersOnce;
+            }
+        }
+#endif
         
         //设置侧滑按钮文字
         notification.hasAction = YES;
@@ -589,12 +598,6 @@
             }
         }
  
-        
-        //设置地理位置
-        if(region){
-            notification.region = region;
-            notification.regionTriggersOnce = regionTriggersOnce;
-        }
         // 设定通知的userInfo，用来标识该通知
         NSMutableDictionary *aUserInfo = nil;
         if(userInfo){

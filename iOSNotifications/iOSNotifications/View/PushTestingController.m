@@ -82,7 +82,9 @@
         //注意，输入的action，点击action后，会在Action列表显示：接受、拒绝、输入你想几点起
         UNTextInputNotificationAction *inputAction = [UNTextInputNotificationAction actionWithIdentifier:@"inputAction" title:@"输入你想几点起" options:UNNotificationActionOptionForeground textInputButtonTitle:@"确定" textInputPlaceholder:@"再晚1小时吧"];
         
-        UNNotificationCategory *wakeUpCate = [UNNotificationCategory categoryWithIdentifier:@"customUI" actions:@[acceptAction,rejectAction,inputAction] intentIdentifiers:@[INStartAudioCallIntentIdentifier] options:UNNotificationCategoryOptionNone];
+        //intentIdentifiers: INStartAudioCallIntentIdentifier
+        //form <Intents/INIntentIdentifiers.h>
+        UNNotificationCategory *wakeUpCate = [UNNotificationCategory categoryWithIdentifier:@"customUI" actions:@[acceptAction,rejectAction,inputAction] intentIdentifiers:@[@""] options:UNNotificationCategoryOptionNone];
         
         /**第一组按钮结束**/
         
@@ -92,7 +94,7 @@
         
         UNNotificationAction *customAction2 = [UNNotificationAction actionWithIdentifier:@"rejectAction" title:@"收藏" options:UNNotificationActionOptionForeground];
         
-        UNNotificationCategory *customCate = [UNNotificationCategory categoryWithIdentifier:@"customUIWeb" actions:@[customAction1,customAction2] intentIdentifiers:@[INStartAudioCallIntentIdentifier] options:UNNotificationCategoryOptionNone];
+        UNNotificationCategory *customCate = [UNNotificationCategory categoryWithIdentifier:@"customUIWeb" actions:@[customAction1,customAction2] intentIdentifiers:@[@""] options:UNNotificationCategoryOptionNone];
         
         /**第二组按钮结束**/
         NSSet *set = [NSSet setWithObjects:wakeUpCate,customCate,nil];

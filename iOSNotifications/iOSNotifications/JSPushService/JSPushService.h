@@ -16,6 +16,7 @@
 #import "JSPushNotificationTrigger.h"
 #import "JSPushNotificationRequest.h"
 
+UIKIT_EXTERN NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER;
 
 @interface JSPushService : NSObject
 

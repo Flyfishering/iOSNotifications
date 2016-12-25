@@ -8,7 +8,7 @@
 
 #import "JSPushService.h"
 
-#define kLocalNotificationIdentifier        @"com.jspush.kLocalNotificationIdentifier"
+NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER       = @"com.jspush.kLocalNotificationIdentifier";
 
 #if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
 @interface JSPushService()<UNUserNotificationCenterDelegate>
@@ -17,6 +17,7 @@
 #endif
 
 @end
+
 
 @implementation JSPushService
 
@@ -203,7 +204,7 @@
             NSArray *notis = [[UIApplication sharedApplication] scheduledLocalNotifications];
             for (UILocalNotification *noti in notis) {
                 for (NSString *iden in identifier.identifiers) {
-                    NSString *notiIden =  noti.userInfo[kLocalNotificationIdentifier];
+                    NSString *notiIden =  noti.userInfo[JSPUSHSERVICE_LOCALNOTI_IDENTIFIER];
                     if ([notiIden isEqualToString:iden]) {
                         [[UIApplication sharedApplication] cancelLocalNotification:noti];
                     }
@@ -362,7 +363,7 @@
 
             for (UILocalNotification *noti in localNotifications) {
                 for (NSString *iden in identifier.identifiers) {
-                    if ([iden isEqualToString:noti.userInfo[kLocalNotificationIdentifier]]) {
+                    if ([iden isEqualToString:noti.userInfo[JSPUSHSERVICE_LOCALNOTI_IDENTIFIER]]) {
                         [findNotifications addObject:noti];
                     }
                 }
@@ -605,7 +606,7 @@
         }else{
             aUserInfo = [NSMutableDictionary dictionary];
         }
-        aUserInfo[kLocalNotificationIdentifier] = notificationKey;
+        aUserInfo[JSPUSHSERVICE_LOCALNOTI_IDENTIFIER] = notificationKey;
         notification.userInfo = [aUserInfo copy];
         
     }

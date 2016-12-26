@@ -104,13 +104,13 @@ NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER       = @"com.jspush.kLocalNo
 
 #pragma mark - Public Methods
 
-+ (void)addNotification:(JSPushNotificationRequest *)jsRequest {
++ (void)addNotification:(JSNotificationRequest *)jsRequest {
     
     if (JSPUSH_IOS_10) {
         
 #if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
-        //convert JSPushNotificationRequest to UNNotificationRequest
-        UNNotificationRequest *request = [self convertJSPushNotificationRequestToUNNotificationRequest:jsRequest];
+        //convert JSNotificationRequest to UNNotificationRequest
+        UNNotificationRequest *request = [self convertJSNotificationRequestToUNNotificationRequest:jsRequest];
         if (request != nil) {
             [JSPUSH_NOTIFICATIONCENTER addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
                 //注册或更新通知成功回调，iOS10以上成功则result为UNNotificationRequest对象，失败则result为nil
@@ -128,7 +128,7 @@ NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER       = @"com.jspush.kLocalNo
 
     }else{
         
-        UILocalNotification *noti = [self convertJSPushNotificationRequestToUILocalNotification:jsRequest];
+        UILocalNotification *noti = [self convertJSNotificationRequestToUILocalNotification:jsRequest];
         //iOS10以下成功result为UILocalNotification对象，失败则result为nil
         id result = noti ? noti : nil;
         if (result) {
@@ -421,7 +421,7 @@ NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER       = @"com.jspush.kLocalNo
 
 #if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
 
-+ (nullable UNNotificationRequest *)convertJSPushNotificationRequestToUNNotificationRequest:(JSPushNotificationRequest *)jsRequest {
++ (nullable UNNotificationRequest *)convertJSNotificationRequestToUNNotificationRequest:(JSNotificationRequest *)jsRequest {
     
     if (jsRequest == nil) {
         JSPUSHLog(@"error-request is nil!");
@@ -519,7 +519,7 @@ NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER       = @"com.jspush.kLocalNo
 
 # pragma mark  iOS 10 以下创建本地通知
 
-+ (UILocalNotification *)convertJSPushNotificationRequestToUILocalNotification:(JSPushNotificationRequest *)jsRequest {
++ (UILocalNotification *)convertJSNotificationRequestToUILocalNotification:(JSNotificationRequest *)jsRequest {
 
     if (jsRequest == nil) {
         JSPUSHLog(@"error-request is nil!");
@@ -626,6 +626,8 @@ NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER       = @"com.jspush.kLocalNo
     }
     return notification;
 }
+
+# pragma mark- Other
 
 + (BOOL)isFromJSPushService:(id)usernotication
 {

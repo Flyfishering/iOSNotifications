@@ -303,7 +303,7 @@
     //传递NSTimeInterval作为触发时间
     JSPushNotificationTrigger *trigger = [JSPushNotificationTrigger triggerWithTimeInterval:self.timeSlide.value repeats:NO];
     
-    JSPushNotificationRequest *request = [JSPushNotificationRequest requestWithIdentifier:self.notiIdenLbl.text content:content trigger:trigger withCompletionHandler:^(id  _Nullable result) {
+    JSNotificationRequest *request = [JSNotificationRequest requestWithIdentifier:self.notiIdenLbl.text content:content trigger:trigger withCompletionHandler:^(id  _Nullable result) {
     }];
     
     [JSPushService addNotification:request];
@@ -334,7 +334,7 @@
 
     JSPushNotificationTrigger *trigger = [JSPushNotificationTrigger triggerWithDateMatchingComponents:dateC repeats:NO];
 
-    JSPushNotificationRequest *request = [[JSPushNotificationRequest alloc]init];
+    JSNotificationRequest *request = [[JSNotificationRequest alloc]init];
     request.requestIdentifier = self.notiIdenLbl.text;
     request.content = content;
     request.trigger = trigger;
@@ -374,7 +374,7 @@
     currentDate = [currentDate dateByAddingTimeInterval:self.timeSlide.value];
     trigger.fireDate = currentDate;
     
-    JSPushNotificationRequest *request = [JSPushNotificationRequest requestWithIdentifier:self.notiIdenLbl.text content:content trigger:trigger withCompletionHandler:^(id  _Nullable result) {
+    JSNotificationRequest *request = [JSNotificationRequest requestWithIdentifier:self.notiIdenLbl.text content:content trigger:trigger withCompletionHandler:^(id  _Nullable result) {
     }];
     [JSPushService addNotification:request];
     NSString *logStr = [NSString stringWithFormat:@"添加图片通知：%@-%@",content.title,content.body];
@@ -405,7 +405,7 @@
     
     JSPushNotificationTrigger *trigger = [JSPushNotificationTrigger triggerWithTimeInterval:self.timeSlide.value repeats:NO];
     
-    JSPushNotificationRequest *request = [[JSPushNotificationRequest alloc]init];
+    JSNotificationRequest *request = [[JSNotificationRequest alloc]init];
     request.requestIdentifier = self.notiIdenLbl.text;
     request.content = content;
     request.trigger = trigger;
@@ -443,7 +443,7 @@
     
     JSPushNotificationTrigger *trigger = [JSPushNotificationTrigger triggerWithTimeInterval:self.timeSlide.value repeats:NO];
 
-    JSPushNotificationRequest *request = [[JSPushNotificationRequest alloc]init];
+    JSNotificationRequest *request = [[JSNotificationRequest alloc]init];
     request.requestIdentifier = self.notiIdenLbl.text;
     request.content = content;
     request.trigger = trigger;

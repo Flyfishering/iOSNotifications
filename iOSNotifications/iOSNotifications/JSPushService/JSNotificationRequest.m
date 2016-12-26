@@ -1,18 +1,18 @@
 //
-//  JSPushNotificationRequest.m
+//  JSNotificationRequest.m
 //  iOSNotifications
 //
 //  Created by WengHengcong on 2016/11/17.
 //  Copyright © 2016年 WengHengcong. All rights reserved.
 //
 
-#import "JSPushNotificationRequest.h"
+#import "JSNotificationRequest.h"
 
-@implementation JSPushNotificationRequest
+@implementation JSNotificationRequest
 
 - (id)copyWithZone:(NSZone *)zone {
     
-    JSPushNotificationRequest *request = [JSPushNotificationRequest new];
+    JSNotificationRequest *request = [JSNotificationRequest new];
     request.requestIdentifier = self.requestIdentifier;
     request.content = self.content;
     request.trigger = self.trigger;
@@ -23,7 +23,7 @@
 
 + (instancetype)requestWithIdentifier:(NSString *)identifier content:(JSPushNotificationContent *)content trigger:(nullable JSPushNotificationTrigger *)trigger withCompletionHandler:(void(^)(id __nullable result))completionHandler
 {
-    JSPushNotificationRequest *request = [[JSPushNotificationRequest alloc] init];
+    JSNotificationRequest *request = [[JSNotificationRequest alloc] init];
     request.requestIdentifier = identifier;
     request.content = content;
     request.trigger = trigger;

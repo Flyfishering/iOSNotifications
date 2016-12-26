@@ -12,7 +12,7 @@
 #import "JSPushNotificationIdentifier.h"
 #import "JSPushNotificationContent.h"
 #import "JSPushNotificationTrigger.h"
-#import "JSPushNotificationRequest.h"
+#import "JSNotificationRequest.h"
 
 UIKIT_EXTERN NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER;
 
@@ -62,7 +62,7 @@ UIKIT_EXTERN NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER;
     设置通知的属性，设置已有通知的request.requestIdentifier即更新已有的通知，否则为注册新通知。
     更新通知仅仅在iOS10以上有效，结果通过request.completionHandler返回
  */
-+ (void)addNotification:(JSPushNotificationRequest *)jsRequest;
++ (void)addNotification:(JSNotificationRequest *)jsRequest;
 
 /**
  移除通知(支持iOS10，并兼容iOS10以下版本)
@@ -114,7 +114,7 @@ UIKIT_EXTERN NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER;
  */
 + (void)setBadge:(NSInteger)badge;
 /**
- *  重置脚标(为0)
+ *  重置应用角标(为0)
  */
 + (void)resetBadge;
 

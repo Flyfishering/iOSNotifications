@@ -6,7 +6,6 @@
 //  Copyright © 2016年 WengHengcong. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 
 NS_ASSUME_NONNULL_BEGIN

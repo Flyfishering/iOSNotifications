@@ -6,7 +6,6 @@
 //  Copyright © 2016年 WengHengcong. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "JSNotificationContent.h"
 #import "JSNotificationTrigger.h"
 

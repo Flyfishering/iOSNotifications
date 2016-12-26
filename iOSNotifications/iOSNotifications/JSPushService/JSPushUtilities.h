@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <UIKit/UILocalNotification.h>
+#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
+#import <UserNotifications/UserNotifications.h>
+#endif
 
 /***  Log */
 # define JSPUSHLog(str, ...) [JSPushUtilities jspush_file:((char *)__FILE__) function:((char *)__FUNCTION__) line:(__LINE__) format:(str),##__VA_ARGS__]

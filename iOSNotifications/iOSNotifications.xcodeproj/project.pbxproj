@@ -30,6 +30,8 @@
 		5EB7A4B21DDD384D007E8C1F /* wake.caf in Resources */ = {isa = PBXBuildFile; fileRef = 5EB7A4B11DDD384D007E8C1F /* wake.caf */; };
 		5EB7A4C31DDEF8B1007E8C1F /* PayloadJSON.md in Sources */ = {isa = PBXBuildFile; fileRef = 5EB7A4C21DDEF8B1007E8C1F /* PayloadJSON.md */; };
 		5EBC82101E1123A10068A20C /* JSRegisterConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBC820F1E1123A10068A20C /* JSRegisterConfig.m */; };
+		5EBC82131E1134A60068A20C /* JSNotificationResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBC82121E1134A60068A20C /* JSNotificationResponse.m */; };
+		5EBC82161E1136670068A20C /* JSNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBC82151E1136670068A20C /* JSNotification.m */; };
 		5ED6A2C61E02257C001A3DE2 /* joy.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ED6A2C51E02257C001A3DE2 /* joy.png */; };
 /* End PBXBuildFile section */
 
@@ -83,6 +85,10 @@
 		5EBC820B1E11222B0068A20C /* JSServiceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSServiceDelegate.h; sourceTree = "<group>"; };
 		5EBC820E1E1123A10068A20C /* JSRegisterConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSRegisterConfig.h; sourceTree = "<group>"; };
 		5EBC820F1E1123A10068A20C /* JSRegisterConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSRegisterConfig.m; sourceTree = "<group>"; };
+		5EBC82111E1134A60068A20C /* JSNotificationResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSNotificationResponse.h; sourceTree = "<group>"; };
+		5EBC82121E1134A60068A20C /* JSNotificationResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSNotificationResponse.m; sourceTree = "<group>"; };
+		5EBC82141E1136670068A20C /* JSNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSNotification.h; sourceTree = "<group>"; };
+		5EBC82151E1136670068A20C /* JSNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSNotification.m; sourceTree = "<group>"; };
 		5EC8A52D1D9127F000C8AC3C /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		5EC8A52F1D9127F000C8AC3C /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
 		5ED6A2C51E02257C001A3DE2 /* joy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = joy.png; sourceTree = "<group>"; };
@@ -103,6 +109,10 @@
 		5E4DE4C21E001FDF004B90C7 /* JSPushService */ = {
 			isa = PBXGroup;
 			children = (
+				5E4DE4CE1E001FDF004B90C7 /* JSPushUtilities.h */,
+				5E4DE4CF1E001FDF004B90C7 /* JSPushUtilities.m */,
+				5EBC82141E1136670068A20C /* JSNotification.h */,
+				5EBC82151E1136670068A20C /* JSNotification.m */,
 				5EBC820B1E11222B0068A20C /* JSServiceDelegate.h */,
 				5EBC820E1E1123A10068A20C /* JSRegisterConfig.h */,
 				5EBC820F1E1123A10068A20C /* JSRegisterConfig.m */,
@@ -114,8 +124,8 @@
 				5E4DE4CA1E001FDF004B90C7 /* JSNotificationTrigger.m */,
 				5E4DE4C71E001FDF004B90C7 /* JSNotificationRequest.h */,
 				5E4DE4C81E001FDF004B90C7 /* JSNotificationRequest.m */,
-				5E4DE4CE1E001FDF004B90C7 /* JSPushUtilities.h */,
-				5E4DE4CF1E001FDF004B90C7 /* JSPushUtilities.m */,
+				5EBC82111E1134A60068A20C /* JSNotificationResponse.h */,
+				5EBC82121E1134A60068A20C /* JSNotificationResponse.m */,
 				5E4DE4CC1E001FDF004B90C7 /* JSPushService.h */,
 				5E4DE4CD1E001FDF004B90C7 /* JSPushService.m */,
 			);
@@ -295,10 +305,12 @@
 			files = (
 				5EBC82101E1123A10068A20C /* JSRegisterConfig.m in Sources */,
 				5E4DE4D41E001FDF004B90C7 /* JSPushService.m in Sources */,
+				5EBC82131E1134A60068A20C /* JSNotificationResponse.m in Sources */,
 				5EB7A4881DDC61E4007E8C1F /* main.m in Sources */,
 				5EB7A4C31DDEF8B1007E8C1F /* PayloadJSON.md in Sources */,
 				5EB7A4831DDC61E4007E8C1F /* AppDelegate.m in Sources */,
 				5E4DE4D51E001FDF004B90C7 /* JSPushUtilities.m in Sources */,
+				5EBC82161E1136670068A20C /* JSNotification.m in Sources */,
 				5E4DE4D21E001FDF004B90C7 /* JSNotificationRequest.m in Sources */,
 				5E4DE4D01E001FDF004B90C7 /* JSNotificationContent.m in Sources */,
 				5E4DE4D11E001FDF004B90C7 /* JSNotificationIdentifier.m in Sources */,

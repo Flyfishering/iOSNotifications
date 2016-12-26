@@ -5,9 +5,8 @@
 //  Created by WengHengcong on 2016/11/17.
 //  Copyright © 2016年 WengHengcong. All rights reserved.
 //
+#import "JSPushUtilities.h"
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UILocalNotification.h>
 NS_ASSUME_NONNULL_BEGIN
 /**
  通知的推送状态

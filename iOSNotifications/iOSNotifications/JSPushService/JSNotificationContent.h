@@ -6,7 +6,7 @@
 //  Copyright © 2016年 WengHengcong. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "JSPushUtilities.h"
 
 NS_ASSUME_NONNULL_BEGIN
 /**

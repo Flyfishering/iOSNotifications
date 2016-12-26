@@ -10,7 +10,7 @@
 #import "AppDelegate.h"
 
 #if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
-@interface PushTestingController ()<UITextFieldDelegate,JSPushServiceDelegate>
+@interface PushTestingController ()<UITextFieldDelegate,JSServiceDelegate>
 #else
 @interface PushTestingController ()<UITextFieldDelegate>
 
@@ -268,7 +268,7 @@
 
 - (void)test_removeNotification
 {
-    JSPushNotificationIdentifier *iden = [JSPushNotificationIdentifier identifireWithIdentifiers:@[self.notiIdenLbl.text] state:JSPushNotificationStateAll];
+    JSNotificationIdentifier *iden = [JSNotificationIdentifier identifireWithIdentifiers:@[self.notiIdenLbl.text] state:JSPushNotificationStateAll];
     [JSPushService removeNotification:iden];
     
     NSString *logStr = [NSString stringWithFormat:@"移除通知：id-%@",iden.identifiers];
@@ -277,7 +277,7 @@
 
 - (void)test_findNotification
 {
-    JSPushNotificationIdentifier *iden = [JSPushNotificationIdentifier identifireWithIdentifiers:@[self.notiIdenLbl.text] state:JSPushNotificationStateAll];
+    JSNotificationIdentifier *iden = [JSNotificationIdentifier identifireWithIdentifiers:@[self.notiIdenLbl.text] state:JSPushNotificationStateAll];
    
     __block NSArray * identifiers = [iden.identifiers copy];
     iden.findCompletionHandler = ^(NSArray * result){
@@ -290,7 +290,7 @@
 
 - (void)test_updateTextNotofication
 {
-    JSPushNotificationContent *content = [[JSPushNotificationContent alloc] init];
+    JSNotificationContent *content = [[JSNotificationContent alloc] init];
     content.title = @"需求评审更新为-测试用例评审";
     content.subtitle = @"测试用例评审-新消息接入";
     content.body = @"测试用例评审-针对本期接入的新消息进行验证，保证落地页跳转正确，落参正确。";
@@ -315,7 +315,7 @@
 
 - (void)test_addTextNotofication
 {
-    JSPushNotificationContent *content = [[JSPushNotificationContent alloc] init];
+    JSNotificationContent *content = [[JSNotificationContent alloc] init];
     content.title = @"需求评审";
     content.subtitle = @"iOS 10适配工作";
     content.body = @"全面采用iOS 10新框架，需要封装一套完整的API供其他模块调用。";
@@ -348,7 +348,7 @@
 
 - (void)test_addPictureNotication
 {
-    JSPushNotificationContent *content = [[JSPushNotificationContent alloc] init];
+    JSNotificationContent *content = [[JSNotificationContent alloc] init];
     content.title = @"物流通知";
     content.subtitle = @"你的宝贝在路上，注意查收~";
     
@@ -384,7 +384,7 @@
 
 - (void)test_addVideoNotication
 {
-    JSPushNotificationContent *content = [[JSPushNotificationContent alloc] init];
+    JSNotificationContent *content = [[JSNotificationContent alloc] init];
     content.title = @"导购..";
     content.subtitle = @"如何选电脑";
     
@@ -418,7 +418,7 @@
 
 - (void)test_addMutipleNotification
 {
-    JSPushNotificationContent *content = [[JSPushNotificationContent alloc] init];
+    JSNotificationContent *content = [[JSNotificationContent alloc] init];
     content.title = @"来，听歌";
     content.subtitle = @"许嵩新曲-素颜";
     

@@ -1,5 +1,5 @@
 //
-//  JSPushNotificationContent.h
+//  JSNotificationContent.h
 //  iOSNotifications
 //
 //  Created by WengHengcong on 2016/11/17.
@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  通知内容实体类
  */
-@interface JSPushNotificationContent : NSObject<NSCopying>
+@interface JSNotificationContent : NSObject<NSCopying>
 
 /**
  通知标题

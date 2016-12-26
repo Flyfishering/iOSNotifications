@@ -1,5 +1,5 @@
 //
-//  JSPushNotificationIdentifier.h
+//  JSNotificationIdentifier.h
 //  iOSNotifications
 //
 //  Created by WengHengcong on 2016/11/17.
@@ -22,7 +22,7 @@ typedef NS_ENUM(NSUInteger, JSPushNotificationState) {
     JSPushNotificationStateDelivered,
 };
 
-@interface JSPushNotificationIdentifier : NSObject<NSCopying>
+@interface JSNotificationIdentifier : NSObject<NSCopying>
 
 /**
  通知的标识数组

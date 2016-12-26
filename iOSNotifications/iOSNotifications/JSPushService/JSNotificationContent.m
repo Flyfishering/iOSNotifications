@@ -1,18 +1,18 @@
 //
-//  JSPushNotificationContent.m
+//  JSNotificationContent.m
 //  iOSNotifications
 //
 //  Created by WengHengcong on 2016/11/17.
 //  Copyright © 2016年 WengHengcong. All rights reserved.
 //
 
-#import "JSPushNotificationContent.h"
+#import "JSNotificationContent.h"
 
-@implementation JSPushNotificationContent
+@implementation JSNotificationContent
 
 - (id)copyWithZone:(NSZone *)zone {
     
-    JSPushNotificationContent *content = [JSPushNotificationContent new];
+    JSNotificationContent *content = [JSNotificationContent new];
     content.title = self.title;
     content.subtitle = self.subtitle;
     content.body = self.body;

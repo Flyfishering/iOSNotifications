@@ -1,18 +1,18 @@
 //
-//  JSPushNotificationIdentifier.m
+//  JSNotificationIdentifier.m
 //  iOSNotifications
 //
 //  Created by WengHengcong on 2016/11/17.
 //  Copyright © 2016年 WengHengcong. All rights reserved.
 //
 
-#import "JSPushNotificationIdentifier.h"
+#import "JSNotificationIdentifier.h"
 
-@implementation JSPushNotificationIdentifier
+@implementation JSNotificationIdentifier
 
 - (id)copyWithZone:(NSZone *)zone {
     
-    JSPushNotificationIdentifier *iden = [JSPushNotificationIdentifier new];
+    JSNotificationIdentifier *iden = [JSNotificationIdentifier new];
     iden.identifiers = self.identifiers;
     iden.state = self.state;
     iden.findCompletionHandler = self.findCompletionHandler;
@@ -27,7 +27,7 @@
  */
 + (instancetype)identifireWithNnotificationObj:(UILocalNotification *)noti
 {
-    JSPushNotificationIdentifier *iden = [[JSPushNotificationIdentifier alloc] init];
+    JSNotificationIdentifier *iden = [[JSNotificationIdentifier alloc] init];
     iden.notificationObj = noti;
     return iden;
 }
@@ -37,7 +37,7 @@
  */
 + (instancetype)identifireWithIdentifiers:(NSArray <NSString *> *)identifiers
 {
-    JSPushNotificationIdentifier *iden = [[JSPushNotificationIdentifier alloc] init];
+    JSNotificationIdentifier *iden = [[JSNotificationIdentifier alloc] init];
     iden.identifiers = identifiers;
     return iden;
 }
@@ -47,7 +47,7 @@
  */
 + (instancetype)identifireWithIdentifiers:(NSArray <NSString *> *)identifiers  state:(JSPushNotificationState)state
 {
-    JSPushNotificationIdentifier *iden = [[JSPushNotificationIdentifier alloc] init];
+    JSNotificationIdentifier *iden = [[JSNotificationIdentifier alloc] init];
     iden.identifiers = identifiers;
     iden.state = state;
     return iden;
@@ -58,7 +58,7 @@
  */
 + (instancetype)identifireWithIdentifiers:(NSArray <NSString *> *)identifiers  state:(JSPushNotificationState)state withFindCompletionHandler:(void(^)(NSArray * __nullable results))findCompletionHandler
 {
-    JSPushNotificationIdentifier *iden = [[JSPushNotificationIdentifier alloc] init];
+    JSNotificationIdentifier *iden = [[JSNotificationIdentifier alloc] init];
     iden.identifiers = identifiers;
     iden.state = state;
     iden.findCompletionHandler = findCompletionHandler;

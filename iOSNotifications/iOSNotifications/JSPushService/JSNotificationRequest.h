@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "JSPushNotificationContent.h"
+#import "JSNotificationContent.h"
 #import "JSNotificationTrigger.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  设置通知的具体内容
  */
-@property (nonatomic, copy) JSPushNotificationContent *content;
+@property (nonatomic, copy) JSNotificationContent *content;
 
 /**
  设置通知的触发方式
@@ -38,7 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, copy) void (^completionHandler)(id __nullable result);
 
-+ (instancetype)requestWithIdentifier:(NSString *)identifier content:(JSPushNotificationContent *)content trigger:(nullable JSNotificationTrigger *)trigger withCompletionHandler:(void(^)(id __nullable result))completionHandler;
++ (instancetype)requestWithIdentifier:(NSString *)identifier content:(JSNotificationContent *)content trigger:(nullable JSNotificationTrigger *)trigger withCompletionHandler:(void(^)(id __nullable result))completionHandler;
 @end
 
 NS_ASSUME_NONNULL_END

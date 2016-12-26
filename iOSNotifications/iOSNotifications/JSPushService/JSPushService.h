@@ -7,10 +7,10 @@
 //
 
 #import "JSPushUtilities.h"
-#import "JSPushServiceDelegate.h"
-#import "JSPushRegisterConfig.h"
-#import "JSPushNotificationIdentifier.h"
-#import "JSPushNotificationContent.h"
+#import "JSServiceDelegate.h"
+#import "JSRegisterConfig.h"
+#import "JSNotificationIdentifier.h"
+#import "JSNotificationContent.h"
 #import "JSNotificationTrigger.h"
 #import "JSNotificationRequest.h"
 
@@ -26,7 +26,7 @@ UIKIT_EXTERN NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER;
 /**
  代理
  */
-@property (nonatomic,weak)id<JSPushServiceDelegate> delegate;
+@property (nonatomic,weak)id<JSServiceDelegate> delegate;
 
 /**
  注册远程通知
@@ -43,7 +43,7 @@ UIKIT_EXTERN NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER;
  @param config 注册通知配置，包括注册通知类别以及通知展示类型
  @param delegate 处理通知代理
  */
-+ (void)registerForRemoteNotificationConfig:(JSPushRegisterConfig *)config delegate:(id<JSPushServiceDelegate>)delegate;
++ (void)registerForRemoteNotificationConfig:(JSRegisterConfig *)config delegate:(id<JSServiceDelegate>)delegate;
 #endif
 /**
  获取device token
@@ -67,7 +67,7 @@ UIKIT_EXTERN NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER;
 /**
  移除通知(支持iOS10，并兼容iOS10以下版本)
 
- @param identifier JSPushNotificationIdentifier类型
+ @param identifier JSNotificationIdentifier类型
  
     iOS10以上：
         优先级1：identifier为nil，则移除所有在通知中心已显示通知和待通知请求；
@@ -80,11 +80,11 @@ UIKIT_EXTERN NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER;
         优先级4：identifier.identifiers有效数组，移除多条通知；
 
  */
-+ (void)removeNotification:(JSPushNotificationIdentifier *)identifier;
++ (void)removeNotification:(JSNotificationIdentifier *)identifier;
 
 /**
  查找通知(支持iOS10，并兼容iOS10以下版本)
- @param identifier JSPushNotificationIdentifier类型
+ @param identifier JSNotificationIdentifier类型
  
     必现设置identifier.findCompletionHandler回调才能得到查找结果，通过(NSArray *results)返回相应对象数组。
     iOS10以上：
@@ -93,7 +93,7 @@ UIKIT_EXTERN NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER;
         identifier.state属性无效;
         identifier.identifiers如果设置nil或空数组则，返回所有通知。
  */
-+ (void)findNotification:(JSPushNotificationIdentifier *)identifier;
++ (void)findNotification:(JSNotificationIdentifier *)identifier;
 
 #pragma mark - Badge
 

@@ -1,5 +1,5 @@
 //
-//  JSPushRegisterConfig.h
+//  JSRegisterConfig.h
 //  iOSNotifications
 //
 //  Created by WengHengcong on 2016/12/26.
@@ -10,7 +10,7 @@
 /**
  通知注册实体类
  */
-@interface JSPushRegisterConfig : NSObject
+@interface JSRegisterConfig : NSObject
 
 /**
  通知支持的类型

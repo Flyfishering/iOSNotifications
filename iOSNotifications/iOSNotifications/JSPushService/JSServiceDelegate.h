@@ -9,7 +9,7 @@
 #if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
 #import <UserNotifications/UserNotifications.h>
 
-@protocol JSPushServiceDelegate <NSObject>
+@protocol JSServiceDelegate <NSObject>
 /*
  * @brief handle UserNotifications.framework [willPresentNotification:withCompletionHandler:]
  * @param center [UNUserNotificationCenter currentNotificationCenter] 新特性用户通知中心

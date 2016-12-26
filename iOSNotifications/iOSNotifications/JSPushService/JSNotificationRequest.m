@@ -21,7 +21,7 @@
     return request;
 }
 
-+ (instancetype)requestWithIdentifier:(NSString *)identifier content:(JSPushNotificationContent *)content trigger:(nullable JSNotificationTrigger *)trigger withCompletionHandler:(void(^)(id __nullable result))completionHandler
++ (instancetype)requestWithIdentifier:(NSString *)identifier content:(JSNotificationContent *)content trigger:(nullable JSNotificationTrigger *)trigger withCompletionHandler:(void(^)(id __nullable result))completionHandler
 {
     JSNotificationRequest *request = [[JSNotificationRequest alloc] init];
     request.requestIdentifier = identifier;

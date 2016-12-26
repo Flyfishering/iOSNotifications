@@ -68,7 +68,7 @@ NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER       = @"com.jspush.kLocalNo
 
 #if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
 
-+ (void)registerForRemoteNotificationConfig:(JSPushRegisterConfig *)config delegate:(id<JSPushServiceDelegate>)delegate
++ (void)registerForRemoteNotificationConfig:(JSRegisterConfig *)config delegate:(id<JSServiceDelegate>)delegate
 {
     if (config == nil) {
         JSPUSHLog(@"if you want to register remote notification,config musn't be nil");
@@ -142,7 +142,7 @@ NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER       = @"com.jspush.kLocalNo
     }
 }
 
-+ (void)removeNotification:(JSPushNotificationIdentifier *)identifier {
++ (void)removeNotification:(JSNotificationIdentifier *)identifier {
 
     if (JSPUSH_IOS_10) {
 #if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
@@ -217,7 +217,7 @@ NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER       = @"com.jspush.kLocalNo
 
 }
 
-+ (void)findNotification:(JSPushNotificationIdentifier *)identifier {
++ (void)findNotification:(JSNotificationIdentifier *)identifier {
     
     if (identifier == nil) {
         JSPUSHLog(@"if you want to find notification.identifier musn't nil");
@@ -433,7 +433,7 @@ NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER       = @"com.jspush.kLocalNo
         return nil;
     }
     
-    UNNotificationContent *content = [self convertJSPushNotificationContentToUNNotificationContent:jsRequest.content];
+    UNNotificationContent *content = [self convertJSNotificationContentToUNNotificationContent:jsRequest.content];
     if (content == nil) {
         JSPUSHLog(@"error-request content is nil!");
         return nil;
@@ -448,7 +448,7 @@ NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER       = @"com.jspush.kLocalNo
     return request;
 }
 
-+ (nullable UNNotificationContent *)convertJSPushNotificationContentToUNNotificationContent:(JSPushNotificationContent *)jsContent {
++ (nullable UNNotificationContent *)convertJSNotificationContentToUNNotificationContent:(JSNotificationContent *)jsContent {
     
     if (jsContent == nil) {
         JSPUSHLog(@"error-content is nil!");

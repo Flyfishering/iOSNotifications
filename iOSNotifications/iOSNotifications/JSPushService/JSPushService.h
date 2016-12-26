@@ -11,7 +11,7 @@
 #import "JSPushRegisterConfig.h"
 #import "JSPushNotificationIdentifier.h"
 #import "JSPushNotificationContent.h"
-#import "JSPushNotificationTrigger.h"
+#import "JSNotificationTrigger.h"
 #import "JSNotificationRequest.h"
 
 UIKIT_EXTERN NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER;

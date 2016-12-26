@@ -10,7 +10,7 @@
 		5E4DE4D01E001FDF004B90C7 /* JSPushNotificationContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4DE4C41E001FDF004B90C7 /* JSPushNotificationContent.m */; };
 		5E4DE4D11E001FDF004B90C7 /* JSPushNotificationIdentifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4DE4C61E001FDF004B90C7 /* JSPushNotificationIdentifier.m */; };
 		5E4DE4D21E001FDF004B90C7 /* JSNotificationRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4DE4C81E001FDF004B90C7 /* JSNotificationRequest.m */; };
-		5E4DE4D31E001FDF004B90C7 /* JSPushNotificationTrigger.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4DE4CA1E001FDF004B90C7 /* JSPushNotificationTrigger.m */; };
+		5E4DE4D31E001FDF004B90C7 /* JSNotificationTrigger.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4DE4CA1E001FDF004B90C7 /* JSNotificationTrigger.m */; };
 		5E4DE4D41E001FDF004B90C7 /* JSPushService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4DE4CD1E001FDF004B90C7 /* JSPushService.m */; };
 		5E4DE4D51E001FDF004B90C7 /* JSPushUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4DE4CF1E001FDF004B90C7 /* JSPushUtilities.m */; };
 		5EAF7FA91E01336A00848C43 /* PushTestingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAF7FA81E01336A00848C43 /* PushTestingController.m */; };
@@ -53,8 +53,8 @@
 		5E4DE4C61E001FDF004B90C7 /* JSPushNotificationIdentifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSPushNotificationIdentifier.m; sourceTree = "<group>"; };
 		5E4DE4C71E001FDF004B90C7 /* JSNotificationRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSNotificationRequest.h; sourceTree = "<group>"; };
 		5E4DE4C81E001FDF004B90C7 /* JSNotificationRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSNotificationRequest.m; sourceTree = "<group>"; };
-		5E4DE4C91E001FDF004B90C7 /* JSPushNotificationTrigger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSPushNotificationTrigger.h; sourceTree = "<group>"; };
-		5E4DE4CA1E001FDF004B90C7 /* JSPushNotificationTrigger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSPushNotificationTrigger.m; sourceTree = "<group>"; };
+		5E4DE4C91E001FDF004B90C7 /* JSNotificationTrigger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSNotificationTrigger.h; sourceTree = "<group>"; };
+		5E4DE4CA1E001FDF004B90C7 /* JSNotificationTrigger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSNotificationTrigger.m; sourceTree = "<group>"; };
 		5E4DE4CC1E001FDF004B90C7 /* JSPushService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSPushService.h; sourceTree = "<group>"; };
 		5E4DE4CD1E001FDF004B90C7 /* JSPushService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSPushService.m; sourceTree = "<group>"; };
 		5E4DE4CE1E001FDF004B90C7 /* JSPushUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSPushUtilities.h; sourceTree = "<group>"; };
@@ -110,8 +110,8 @@
 				5E4DE4C61E001FDF004B90C7 /* JSPushNotificationIdentifier.m */,
 				5E4DE4C31E001FDF004B90C7 /* JSPushNotificationContent.h */,
 				5E4DE4C41E001FDF004B90C7 /* JSPushNotificationContent.m */,
-				5E4DE4C91E001FDF004B90C7 /* JSPushNotificationTrigger.h */,
-				5E4DE4CA1E001FDF004B90C7 /* JSPushNotificationTrigger.m */,
+				5E4DE4C91E001FDF004B90C7 /* JSNotificationTrigger.h */,
+				5E4DE4CA1E001FDF004B90C7 /* JSNotificationTrigger.m */,
 				5E4DE4C71E001FDF004B90C7 /* JSNotificationRequest.h */,
 				5E4DE4C81E001FDF004B90C7 /* JSNotificationRequest.m */,
 				5E4DE4CE1E001FDF004B90C7 /* JSPushUtilities.h */,
@@ -302,7 +302,7 @@
 				5E4DE4D21E001FDF004B90C7 /* JSNotificationRequest.m in Sources */,
 				5E4DE4D01E001FDF004B90C7 /* JSPushNotificationContent.m in Sources */,
 				5E4DE4D11E001FDF004B90C7 /* JSPushNotificationIdentifier.m in Sources */,
-				5E4DE4D31E001FDF004B90C7 /* JSPushNotificationTrigger.m in Sources */,
+				5E4DE4D31E001FDF004B90C7 /* JSNotificationTrigger.m in Sources */,
 				5EAF7FA91E01336A00848C43 /* PushTestingController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

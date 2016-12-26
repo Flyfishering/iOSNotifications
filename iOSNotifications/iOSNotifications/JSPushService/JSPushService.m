@@ -439,7 +439,7 @@ NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER       = @"com.jspush.kLocalNo
         return nil;
     }
     //trigger为nil，则为立即触发
-    UNNotificationTrigger *trigger = [self convertJSPushNotificationTriggerToUNPushNotificationTrigger:jsRequest.trigger];
+    UNNotificationTrigger *trigger = [self convertJSNotificationTriggerToUNPushNotificationTrigger:jsRequest.trigger];
     if (trigger == nil) {
         trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:0.0 repeats:NO];
     }
@@ -488,7 +488,7 @@ NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER       = @"com.jspush.kLocalNo
     return content;
 }
 
-+ (nullable UNNotificationTrigger *)convertJSPushNotificationTriggerToUNPushNotificationTrigger:(JSPushNotificationTrigger *)jsTrigger {
++ (nullable UNNotificationTrigger *)convertJSNotificationTriggerToUNPushNotificationTrigger:(JSNotificationTrigger *)jsTrigger {
     
     if (jsTrigger == nil) {
        UNTimeIntervalNotificationTrigger *trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:0.0 repeats:NO];

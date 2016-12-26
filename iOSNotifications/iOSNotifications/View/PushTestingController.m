@@ -301,7 +301,7 @@
     }
     
     //传递NSTimeInterval作为触发时间
-    JSPushNotificationTrigger *trigger = [JSPushNotificationTrigger triggerWithTimeInterval:self.timeSlide.value repeats:NO];
+    JSNotificationTrigger *trigger = [JSNotificationTrigger triggerWithTimeInterval:self.timeSlide.value repeats:NO];
     
     JSNotificationRequest *request = [JSNotificationRequest requestWithIdentifier:self.notiIdenLbl.text content:content trigger:trigger withCompletionHandler:^(id  _Nullable result) {
     }];
@@ -332,7 +332,7 @@
     NSDateComponents *dateC = [cal components:unitFlags fromDate:date];
     dateC.second = dateC.second + self.timeSlide.value;
 
-    JSPushNotificationTrigger *trigger = [JSPushNotificationTrigger triggerWithDateMatchingComponents:dateC repeats:NO];
+    JSNotificationTrigger *trigger = [JSNotificationTrigger triggerWithDateMatchingComponents:dateC repeats:NO];
 
     JSNotificationRequest *request = [[JSNotificationRequest alloc]init];
     request.requestIdentifier = self.notiIdenLbl.text;
@@ -369,7 +369,7 @@
     }
     
     //传递NSDate作为触发时间
-    JSPushNotificationTrigger *trigger = [[JSPushNotificationTrigger alloc] init];
+    JSNotificationTrigger *trigger = [[JSNotificationTrigger alloc] init];
     NSDate *currentDate   = [NSDate date];
     currentDate = [currentDate dateByAddingTimeInterval:self.timeSlide.value];
     trigger.fireDate = currentDate;
@@ -403,7 +403,7 @@
         content.sound = @"wake.caf";
     }
     
-    JSPushNotificationTrigger *trigger = [JSPushNotificationTrigger triggerWithTimeInterval:self.timeSlide.value repeats:NO];
+    JSNotificationTrigger *trigger = [JSNotificationTrigger triggerWithTimeInterval:self.timeSlide.value repeats:NO];
     
     JSNotificationRequest *request = [[JSNotificationRequest alloc]init];
     request.requestIdentifier = self.notiIdenLbl.text;
@@ -441,7 +441,7 @@
         content.sound = @"wake.caf";
     }
     
-    JSPushNotificationTrigger *trigger = [JSPushNotificationTrigger triggerWithTimeInterval:self.timeSlide.value repeats:NO];
+    JSNotificationTrigger *trigger = [JSNotificationTrigger triggerWithTimeInterval:self.timeSlide.value repeats:NO];
 
     JSNotificationRequest *request = [[JSNotificationRequest alloc]init];
     request.requestIdentifier = self.notiIdenLbl.text;

@@ -120,4 +120,22 @@ UIKIT_EXTERN NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER;
  */
 + (void)resetBadge;
 
+#pragma mark - Others
+/**
+ 判断所截获的通知对象是否通过JSPushService创建
+ 
+ @param usernotication 对象类包括：UILocalNotification、UNNotificationResponse、UNNotification
+ */
++ (BOOL)isFromJSPushService:(id)usernotication;
+
+#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
+/**
+ 根据对象获取其中的UNNotification对象
+ 
+ @param obj 包括UNNotificationResponse、UNNotification类对象
+ @return 返回obj中的UNNotification对象，假如类型不对返回nil
+ */
++ (UNNotification *)getUNNotification:(id)obj;
+#endif
+
 @end

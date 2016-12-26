@@ -9,6 +9,8 @@
 #import "JSPushService.h"
 
 NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER       = @"com.jspush.kLocalNotificationIdentifier";
+#define  kLocalNotificationFromJSPushServiceKey           @"com.jspush.jspushservice"
+
 
 #if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
 @interface JSPushService()<UNUserNotificationCenterDelegate>
@@ -459,6 +461,17 @@ NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER       = @"com.jspush.kLocalNo
     content.body = jsContent.body;
     content.badge = jsContent.badge;
     content.categoryIdentifier = jsContent.categoryIdentifier;
+
+    if (jsContent.userInfo != nil) {
+        NSMutableDictionary *userInfoM = [jsContent.userInfo mutableCopy];
+        [userInfoM setValue:@"YES" forKey:kLocalNotificationFromJSPushServiceKey];
+        jsContent.userInfo = [userInfoM copy];
+    }else{
+        NSMutableDictionary *userInfoM = [NSMutableDictionary dictionary];
+        [userInfoM setValue:@"YES" forKey:kLocalNotificationFromJSPushServiceKey];
+        jsContent.userInfo = [userInfoM copy];
+    }
+    
     content.userInfo = jsContent.userInfo;
     
     //假如sound为空，或者为default，设置为默认声音
@@ -607,10 +620,74 @@ NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER       = @"com.jspush.kLocalNo
             aUserInfo = [NSMutableDictionary dictionary];
         }
         aUserInfo[JSPUSHSERVICE_LOCALNOTI_IDENTIFIER] = notificationKey;
-        notification.userInfo = [aUserInfo copy];
+        aUserInfo[kLocalNotificationFromJSPushServiceKey] = @"YES";
         
+        notification.userInfo = [aUserInfo copy];
     }
     return notification;
 }
+
++ (BOOL)isFromJSPushService:(id)usernotication
+{
+    if (usernotication == nil) return NO;
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 10.0) {
+        
+#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
+        if ([usernotication isKindOfClass:[UNNotification class]]) {
+            UNNotification *unNoti = (UNNotification *)usernotication;
+            if (unNoti == nil) return NO;
+            if (unNoti.request.content.userInfo && [unNoti.request.content.userInfo[kLocalNotificationFromJSPushServiceKey] isEqualToString:@"YES"]) {
+                return YES;
+            }else{
+                return NO;
+            }
+            
+        }else if ([usernotication isKindOfClass:[UNNotificationResponse class]]){
+            UNNotificationResponse *unResp = (UNNotificationResponse *)usernotication;
+            if (unResp == nil || unResp.notification == nil) return NO;
+            if (unResp.notification.request.content.userInfo && [unResp.notification.request.content.userInfo[kLocalNotificationFromJSPushServiceKey] isEqualToString:@"YES"]) {
+                return YES;
+            }else{
+                return NO;
+            }
+        }else{
+            return NO;
+        }
+#endif
+    }else{
+        if([usernotication isKindOfClass: [UILocalNotification class]]){
+            UILocalNotification *locaoNoti = (UILocalNotification *)usernotication;
+            if (locaoNoti) {
+                if ( (locaoNoti.userInfo[kLocalNotificationFromJSPushServiceKey]) && ([locaoNoti.userInfo[kLocalNotificationFromJSPushServiceKey] isEqualToString:@"YES"])) {
+                    return YES;
+                }
+            }
+        }else{
+            return NO;
+        }
+    }
+    return NO;
+}
+
+#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
+
++ (UNNotification *)getUNNotification:(id)obj
+{
+    UNNotification *unNoti = nil;
+    if ([obj isKindOfClass:[UNNotification class]]) {
+        unNoti = (UNNotification *)obj;
+        if (unNoti == nil) return nil;
+    }else if ([obj isKindOfClass:[UNNotificationResponse class]]){
+        UNNotificationResponse *unResp = (UNNotificationResponse *)obj;
+        if (unResp == nil || unResp.notification == nil) return nil;
+        unNoti = unResp.notification;
+        if (unNoti == nil) return nil;
+    }else{
+        return nil;
+    }
+    return unNoti;
+}
+
+#endif
 
 @end

@@ -29,6 +29,7 @@
 		5EB7A4951DDC61E4007E8C1F /* 通知中心图片.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 5EB7A47E1DDC61E4007E8C1F /* 通知中心图片.PNG */; };
 		5EB7A4B21DDD384D007E8C1F /* wake.caf in Resources */ = {isa = PBXBuildFile; fileRef = 5EB7A4B11DDD384D007E8C1F /* wake.caf */; };
 		5EB7A4C31DDEF8B1007E8C1F /* PayloadJSON.md in Sources */ = {isa = PBXBuildFile; fileRef = 5EB7A4C21DDEF8B1007E8C1F /* PayloadJSON.md */; };
+		5EBC82101E1123A10068A20C /* JSPushRegisterConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBC820F1E1123A10068A20C /* JSPushRegisterConfig.m */; };
 		5ED6A2C61E02257C001A3DE2 /* joy.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ED6A2C51E02257C001A3DE2 /* joy.png */; };
 /* End PBXBuildFile section */
 
@@ -54,7 +55,6 @@
 		5E4DE4C81E001FDF004B90C7 /* JSPushNotificationRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSPushNotificationRequest.m; sourceTree = "<group>"; };
 		5E4DE4C91E001FDF004B90C7 /* JSPushNotificationTrigger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSPushNotificationTrigger.h; sourceTree = "<group>"; };
 		5E4DE4CA1E001FDF004B90C7 /* JSPushNotificationTrigger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSPushNotificationTrigger.m; sourceTree = "<group>"; };
-		5E4DE4CB1E001FDF004B90C7 /* JSPushRegisterDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSPushRegisterDelegate.h; sourceTree = "<group>"; };
 		5E4DE4CC1E001FDF004B90C7 /* JSPushService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSPushService.h; sourceTree = "<group>"; };
 		5E4DE4CD1E001FDF004B90C7 /* JSPushService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSPushService.m; sourceTree = "<group>"; };
 		5E4DE4CE1E001FDF004B90C7 /* JSPushUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSPushUtilities.h; sourceTree = "<group>"; };
@@ -80,6 +80,9 @@
 		5EB7A47E1DDC61E4007E8C1F /* 通知中心图片.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "通知中心图片.PNG"; sourceTree = "<group>"; };
 		5EB7A4B11DDD384D007E8C1F /* wake.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = wake.caf; sourceTree = "<group>"; };
 		5EB7A4C21DDEF8B1007E8C1F /* PayloadJSON.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = PayloadJSON.md; sourceTree = "<group>"; };
+		5EBC820B1E11222B0068A20C /* JSPushServiceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSPushServiceDelegate.h; sourceTree = "<group>"; };
+		5EBC820E1E1123A10068A20C /* JSPushRegisterConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSPushRegisterConfig.h; sourceTree = "<group>"; };
+		5EBC820F1E1123A10068A20C /* JSPushRegisterConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSPushRegisterConfig.m; sourceTree = "<group>"; };
 		5EC8A52D1D9127F000C8AC3C /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		5EC8A52F1D9127F000C8AC3C /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
 		5ED6A2C51E02257C001A3DE2 /* joy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = joy.png; sourceTree = "<group>"; };
@@ -100,7 +103,9 @@
 		5E4DE4C21E001FDF004B90C7 /* JSPushService */ = {
 			isa = PBXGroup;
 			children = (
-				5E4DE4CB1E001FDF004B90C7 /* JSPushRegisterDelegate.h */,
+				5EBC820B1E11222B0068A20C /* JSPushServiceDelegate.h */,
+				5EBC820E1E1123A10068A20C /* JSPushRegisterConfig.h */,
+				5EBC820F1E1123A10068A20C /* JSPushRegisterConfig.m */,
 				5E4DE4C51E001FDF004B90C7 /* JSPushNotificationIdentifier.h */,
 				5E4DE4C61E001FDF004B90C7 /* JSPushNotificationIdentifier.m */,
 				5E4DE4C31E001FDF004B90C7 /* JSPushNotificationContent.h */,
@@ -288,6 +293,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5EBC82101E1123A10068A20C /* JSPushRegisterConfig.m in Sources */,
 				5E4DE4D41E001FDF004B90C7 /* JSPushService.m in Sources */,
 				5EB7A4881DDC61E4007E8C1F /* main.m in Sources */,
 				5EB7A4C31DDEF8B1007E8C1F /* PayloadJSON.md in Sources */,

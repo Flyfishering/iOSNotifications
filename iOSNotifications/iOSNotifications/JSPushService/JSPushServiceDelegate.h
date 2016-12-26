@@ -1,18 +1,15 @@
 //
-//  JPUSHRegisterDelegate.h
+//  JSPushServiceDelegate.h
 //  iOSNotifications
 //
-//  Created by WengHengcong on 2016/11/17.
+//  Created by WengHengcong on 2016/12/26.
 //  Copyright © 2016年 WengHengcong. All rights reserved.
 //
-
-#import <Foundation/Foundation.h>
 
 #if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
 #import <UserNotifications/UserNotifications.h>
 
-@protocol JSPushRegisterDelegate <NSObject>
-
+@protocol JSPushServiceDelegate <NSObject>
 /*
  * @brief handle UserNotifications.framework [willPresentNotification:withCompletionHandler:]
  * @param center [UNUserNotificationCenter currentNotificationCenter] 新特性用户通知中心
@@ -31,25 +28,3 @@
 @end
 
 #endif
-
-/**
- 通知注册实体类
- */
-@interface JSPushRegisterConfig : NSObject
-
-/**
- 通知支持的类型
- badge,sound,alert
- */
-@property (nonatomic, assign) NSInteger types;
-
-/**
- 通知类别
- iOS10 UNNotificationCategory
- iOS8-iOS9 UIUserNotificationCategory
- */
-@property (nonatomic, strong) NSSet *categories;
-
-@end
-
-

@@ -6,11 +6,9 @@
 //  Copyright © 2016年 WengHengcong. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-
-#import "JSPushRegisterDelegate.h"
 #import "JSPushUtilities.h"
+#import "JSPushServiceDelegate.h"
+#import "JSPushRegisterConfig.h"
 #import "JSPushNotificationIdentifier.h"
 #import "JSPushNotificationContent.h"
 #import "JSPushNotificationTrigger.h"
@@ -28,7 +26,7 @@ UIKIT_EXTERN NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER;
 /**
  代理
  */
-@property (nonatomic,weak)id<JSPushRegisterDelegate> delegate;
+@property (nonatomic,weak)id<JSPushServiceDelegate> delegate;
 
 /**
  注册远程通知
@@ -45,7 +43,7 @@ UIKIT_EXTERN NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER;
  @param config 注册通知配置，包括注册通知类别以及通知展示类型
  @param delegate 处理通知代理
  */
-+ (void)registerForRemoteNotificationConfig:(JSPushRegisterConfig *)config delegate:(id<JSPushRegisterDelegate>)delegate;
++ (void)registerForRemoteNotificationConfig:(JSPushRegisterConfig *)config delegate:(id<JSPushServiceDelegate>)delegate;
 #endif
 /**
  获取device token

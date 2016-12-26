@@ -10,7 +10,7 @@
 #import "AppDelegate.h"
 
 #if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
-@interface PushTestingController ()<UITextFieldDelegate,JSPushRegisterDelegate>
+@interface PushTestingController ()<UITextFieldDelegate,JSPushServiceDelegate>
 #else
 @interface PushTestingController ()<UITextFieldDelegate>
 

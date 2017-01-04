@@ -33,6 +33,7 @@
     
     //自定义一个字段image，用于下载地址：
     //同时，需要注意的是，在下载图片是采用http时，需要在extension info.plist加上 app transport
+    
     self.contentHandler(self.bestAttemptContent);
 }
 
@@ -44,6 +45,80 @@
     // Called just before the extension will be terminated by the system.
     // Use this as an opportunity to deliver your "best attempt" at modified content, otherwise the original push payload will be used.
     self.contentHandler(self.bestAttemptContent);
+}
+
+
+- (NSString *)fileExtensionForMediaType:(NSString *)type {
+    NSString *ext = type;
+    
+    if ([type isEqualToString:@"image"]) {
+        ext = @"jpg";
+    }
+    
+    if ([type isEqualToString:@"video"]) {
+        ext = @"mp4";
+    }
+    
+    if ([type isEqualToString:@"audio"]) {
+        ext = @"mp3";
+    }
+    
+    return [@"." stringByAppendingString:ext];
+}
+
+- (void)loadAttachmentForUrlString:(NSString *)urlString withType:(NSString *)type
+                 completionHandler:(void(^)(UNNotificationAttachment *))completionHandler  {
+    
+    __block UNNotificationAttachment *attachment = nil;
+    NSURL *attachmentURL = [NSURL URLWithString:urlString];
+    NSString *fileExt = [self fileExtensionForMediaType:type];
+    
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    [[session downloadTaskWithURL:attachmentURL
+                completionHandler:^(NSURL *temporaryFileLocation, NSURLResponse *response, NSError *error) {
+                    if (error != nil) {
+                        NSLog(@"%@", error.localizedDescription);
+                    } else {
+                        NSFileManager *fileManager = [NSFileManager defaultManager];
+                        NSURL *localURL = [NSURL fileURLWithPath:[temporaryFileLocation.path stringByAppendingString:fileExt]];
+                        [fileManager moveItemAtURL:temporaryFileLocation toURL:localURL error:&error];
+                        
+                        NSError *attachmentError = nil;
+                        attachment = [UNNotificationAttachment attachmentWithIdentifier:@"" URL:localURL options:nil error:&attachmentError];
+                        if (attachmentError) {
+                            NSLog(@"%@", attachmentError.localizedDescription);
+                        }
+                    }
+                    completionHandler(attachment);
+                }] resume];
+}
+
+- (void)downloadImageWithURL:(NSString *)urlStr withCompletedHanlder:(void  (^)(NSURL *fileUrl))completedHanlder
+{
+    //http://p2.so.qhmsg.com/t01570d67d63111d3e7.jpg
+    if (urlStr) {
+        
+        NSURL *url = [NSURL URLWithString:urlStr];
+        
+        NSURLSession *session = [NSURLSession sharedSession];
+        
+        NSURLSessionDataTask *task = [session dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            
+            NSURL *documentsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
+            documentsDirectoryURL = [documentsDirectoryURL URLByAppendingPathComponent:[response suggestedFilename]];
+            
+            if (data && (error == nil)) {
+                if (completedHanlder) {
+                    completedHanlder(documentsDirectoryURL);
+                }
+            }
+            
+        }];
+        
+        [task resume];
+        
+        
+    }
 }
 
 @end

@@ -18,12 +18,13 @@
  {
     "aps":{
         "alert":{
-            "title":"Hurry Up!",
-            "body":"Go to School~"
+            "title":"斯沃驰2016秋冬系列华丽上市",
+            "body":"Swatch推出Magies D'Hiver系列新品！"
         },
         "sound":"default",
         "mutable-content":1,
         "category":"customUI",
+        "mutable-content":1
     },
     "image":"http://p2.so.qhmsg.com/t01570d67d63111d3e7.jpg"
  }

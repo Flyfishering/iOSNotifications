@@ -14,14 +14,31 @@
     "custom-field" : "some value",
 }
 
-# 自定义界面
-1. category，根据该字段加载不同category action。即下面显示的按钮。
+# 内容修改
+
+mutable-content：表明需要修改通知内容，只针对远程通知有效！
+可修改的内容包括整个通知中所有的部分。
 
 {
     "aps":{
         "alert":{
-            "title":"起床闹钟",
-            "body":"快醒醒，开启美好的一天。"
+            "title":"Hurry Up!",
+            "body":"Go to School~"
+        },
+    "sound":"default",
+    "mutable-content":1,
+    },
+}
+
+# 自定义界面
+
+category，根据该字段加载不同category action，以及加载不同的Notification Content
+
+{
+    "aps":{
+        "alert":{
+            "title":"Hurry Up!",
+            "body":"Go to School~"
         },
     "sound":"default",
     "category":"customUI",
@@ -30,35 +47,18 @@
 
 注意：category必须和Info.plist中的UNNotificationExtensionCategory一致。
 
-2. 在此处修改category，可达到对应category的手段！！！
-    可以配合服务端针对category来进行不同的自定义页面的设置。
-/*
-{
-    "aps":{
-        "alert":{
-            "title":"导航网址",
-            "body":"不知道，去哪儿？跟我走，Let's GO！"
-         },
-        "sound":"default",
-        "category":"customUI",
-        "mutable-content":1
-    },
-    "url":"http://m.hao123.com",
-    "image":"http://p2.so.qhmsg.com/t01570d67d63111d3e7.jpg"
-}
-
 # 图片加载
 
 //此处自定义一个字段image，用于下载地址：
-
 {
     "aps":{
         "alert":{
-            "title":"快起床",
-            "body":"真的起不来？"
+            "title":"Hurry Up!",
+            "body":"Go to School~"
         },
         "sound":"default",
         "mutable-content":1,
+        "category":"customUI",
     },
     "image":"http://p2.so.qhmsg.com/t01570d67d63111d3e7.jpg"
 }

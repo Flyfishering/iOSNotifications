@@ -10,7 +10,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>NotificationContent</string>
+	<string>NotificationService</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -27,19 +27,10 @@
 	<string>1</string>
 	<key>NSExtension</key>
 	<dict>
-		<key>NSExtensionAttributes</key>
-		<dict>
-			<key>UNNotificationExtensionCategory</key>
-			<string>customUI</string>
-			<key>UNNotificationExtensionDefaultContentHidden</key>
-			<true/>
-			<key>UNNotificationExtensionInitialContentSizeRatio</key>
-			<real>0.8</real>
-		</dict>
-		<key>NSExtensionMainStoryboard</key>
-		<string>MainInterface</string>
 		<key>NSExtensionPointIdentifier</key>
-		<string>com.apple.usernotifications.content-extension</string>
+		<string>com.apple.usernotifications.service</string>
+		<key>NSExtensionPrincipalClass</key>
+		<string>NotificationService</string>
 	</dict>
 </dict>
 </plist>

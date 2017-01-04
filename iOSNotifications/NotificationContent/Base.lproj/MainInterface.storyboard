@@ -18,11 +18,11 @@
                         <viewControllerLayoutGuide type="bottom" id="FKl-LY-JtV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" simulatedAppContext="notificationCenter" id="S3S-Oj-5AN">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="255"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="斯沃驰2016秋冬系列华丽上市" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n6M-CX-7hX">
-                                <rect key="frame" x="15" y="8" width="290" height="27"/>
+                                <rect key="frame" x="15" y="8" width="345" height="27"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="27" id="sJ9-GE-AS9"/>
                                 </constraints>
@@ -31,25 +31,25 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="txn-aR-QBQ">
-                                <rect key="frame" x="0.0" y="39" width="320" height="138"/>
+                                <rect key="frame" x="0.0" y="39" width="375" height="138"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="137.5" id="Kw3-UU-nW9"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="hZZ-jP-8oo">
-                                <rect key="frame" x="0.0" y="126" width="320" height="50"/>
+                                <rect key="frame" x="0.0" y="126" width="375" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="lgd-CK-Tsm"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="BpS-pK-K4h">
-                                <rect key="frame" x="0.0" y="39" width="320" height="50"/>
+                                <rect key="frame" x="0.0" y="39" width="375" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="L1B-Vw-zvr"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swatch推出Magies D'Hiver系列新品。该系列灵感来源于雪花的结晶构造，技术感十足，配以新潮迷彩色和爱尔兰式粗花呢，宛若置身壁炉旁。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1DP-Di-Azx">
-                                <rect key="frame" x="15" y="191" width="290" height="50"/>
+                                <rect key="frame" x="15" y="191" width="345" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="3Hm-zu-TZw"/>
                                 </constraints>
@@ -69,10 +69,10 @@
                             <constraint firstAttribute="trailing" secondItem="n6M-CX-7hX" secondAttribute="trailing" constant="15" id="OgZ-KR-ouu"/>
                             <constraint firstItem="hZZ-jP-8oo" firstAttribute="top" secondItem="BpS-pK-K4h" secondAttribute="bottom" constant="37" id="PR8-zG-1DJ"/>
                             <constraint firstItem="txn-aR-QBQ" firstAttribute="top" secondItem="n6M-CX-7hX" secondAttribute="bottom" constant="4" id="QE3-UV-hbz"/>
+                            <constraint firstItem="n6M-CX-7hX" firstAttribute="top" secondItem="Ft6-oW-KC0" secondAttribute="bottom" constant="8" id="QOb-Qi-kCx"/>
                             <constraint firstItem="BpS-pK-K4h" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leading" id="W7K-Qx-zNh"/>
                             <constraint firstItem="txn-aR-QBQ" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leading" id="Xey-xw-cFR"/>
                             <constraint firstItem="n6M-CX-7hX" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leading" constant="15" id="ZmN-sa-pwn"/>
-                            <constraint firstItem="n6M-CX-7hX" firstAttribute="top" secondItem="Ft6-oW-KC0" secondAttribute="bottom" constant="8" id="u2l-me-vUb"/>
                             <constraint firstItem="hZZ-jP-8oo" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leading" id="vaT-uT-adK"/>
                             <constraint firstAttribute="trailing" secondItem="BpS-pK-K4h" secondAttribute="trailing" id="wjp-Ia-hAn"/>
                         </constraints>
@@ -81,17 +81,16 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="255"/>
                     <connections>
-                        <outlet property="botText" destination="1DP-Di-Azx" id="Dkg-XV-8xA"/>
-                        <outlet property="contentImg" destination="txn-aR-QBQ" id="pZM-2q-WmH"/>
-                        <outlet property="topText" destination="n6M-CX-7hX" id="EsR-lR-hqL"/>
+                        <outlet property="botText" destination="1DP-Di-Azx" id="nyi-ha-V5V"/>
+                        <outlet property="contentImg" destination="txn-aR-QBQ" id="nwe-4t-35R"/>
+                        <outlet property="contentView" destination="S3S-Oj-5AN" id="lnl-E4-wyZ"/>
+                        <outlet property="topText" destination="n6M-CX-7hX" id="sQo-Ws-JPT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vXp-U4-Rya" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1094.4000000000001" y="-107.0464767616192"/>
+            <point key="canvasLocation" x="-1104" y="-107"/>
         </scene>
     </scenes>
     <resources>

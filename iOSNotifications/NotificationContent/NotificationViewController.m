@@ -5,11 +5,8 @@
 //  Created by WengHengcong on 2017/1/4.
 //  Copyright © 2017年 WengHengcong. All rights reserved.
 //
-#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
 
 #import "NotificationViewController.h"
-#import <UserNotifications/UserNotifications.h>
-#import <UserNotificationsUI/UserNotificationsUI.h>
 
 /*
  
@@ -32,37 +29,9 @@
  NSExtensionMainStoryboard                            storyboard文件的名字
  NSExtensionPointIdentifier                           Notification Content的bundle id
  
- */
-
-
-/*
- 对应的payload可以如此：
- 
- {
- "aps":{
- "alert":{
- "title":"快起床第十三",
- "body":"真的起不来？"
- },
- "sound":"default",
- "category":"customUI",
- "mutable-content":1
- },
- }
- 
  注意：category必须和Info.plist中的UNNotificationExtensionCategory一致。
  
  */
-
-
-@interface NotificationViewController () <UNNotificationContentExtension>
-
-@property IBOutlet UILabel *topText;
-
-@property IBOutlet UIImageView *contentImg;
-@property IBOutlet UILabel *botText;
-
-@end
 
 @implementation NotificationViewController
 
@@ -71,18 +40,42 @@
     // Do any required interface initialization here.
 }
 
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+//    self.contentView.frame = CGRectMake(0, 0, 200, 100);
+}
+
 - (void)didReceiveNotification:(UNNotification *)notification {
     
     //后加载didReceiveNotification
     /*
      注意加载图片的机制，要么在NotificationContent中文件夹中放置对应的图片
      */
+    
     if ([notification.request.content.categoryIdentifier isEqualToString:@"customUI"]) {
-        
-        self.topText.text = @"hha";
+        //注意：image读取的层次结构
         NSString *urlFromNoti = notification.request.content.userInfo[@"image"];
-        NSURL* url = [NSURL URLWithString:urlFromNoti];//创建URL
-        
+        if (urlFromNoti) {
+            [self downloadImageWithURL:urlFromNoti withCompletedHanlder:^(NSURL *fileUrl, NSData *data) {
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+//                    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+//                    NSString *documentsDirectory = [paths objectAtIndex:0];
+                    //NSString *extension = [imageName pathExtension];
+                    //NSString *fileName = [imageName componentsSeparatedByString:@"."].firstObject;
+                    
+//                    NSString *localFileURLStr = [NSString stringWithFormat:@"%@/%@",documentsDirectory,imageName];
+//                    NSURL *localFileURL = [NSURL URLWithString:localFileURLStr];
+//                    NSData *tempData = [NSData dataWithContentsOfURL:localFileURL];
+                    self.contentImg.image = [UIImage imageWithData:data] ;
+                });
+                
+            }];
+        }else{
+        }
+
     }
 }
 
@@ -95,6 +88,78 @@
 //    completion(UNNotificationContentExtensionResponseOptionDoNotDismiss);
 //}
 
-@end
+- (NSString *)fileExtensionForMediaType:(NSString *)type {
+    NSString *ext = type;
+    
+    if ([type isEqualToString:@"image"]) {
+        ext = @"jpg";
+    }
+    
+    if ([type isEqualToString:@"video"]) {
+        ext = @"mp4";
+    }
+    
+    if ([type isEqualToString:@"audio"]) {
+        ext = @"mp3";
+    }
+    
+    return [@"." stringByAppendingString:ext];
+}
 
-#endif
+- (void)loadAttachmentForUrlString:(NSString *)urlString withType:(NSString *)type
+                 completionHandler:(void(^)(UNNotificationAttachment *))completionHandler  {
+    
+    __block UNNotificationAttachment *attachment = nil;
+    NSURL *attachmentURL = [NSURL URLWithString:urlString];
+    NSString *fileExt = [self fileExtensionForMediaType:type];
+    
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    [[session downloadTaskWithURL:attachmentURL
+                completionHandler:^(NSURL *temporaryFileLocation, NSURLResponse *response, NSError *error) {
+                    if (error != nil) {
+                        NSLog(@"%@", error.localizedDescription);
+                    } else {
+                        NSFileManager *fileManager = [NSFileManager defaultManager];
+                        NSURL *localURL = [NSURL fileURLWithPath:[temporaryFileLocation.path stringByAppendingString:fileExt]];
+                        [fileManager moveItemAtURL:temporaryFileLocation toURL:localURL error:&error];
+                        
+                        NSError *attachmentError = nil;
+                        attachment = [UNNotificationAttachment attachmentWithIdentifier:@"" URL:localURL options:nil error:&attachmentError];
+                        if (attachmentError) {
+                            NSLog(@"%@", attachmentError.localizedDescription);
+                        }
+                    }
+                    completionHandler(attachment);
+                }] resume];
+}
+
+- (void)downloadImageWithURL:(NSString *)urlStr withCompletedHanlder:(void  (^)(NSURL *fileUrl , NSData *data))completedHanlder
+{
+    //http://p2.so.qhmsg.com/t01570d67d63111d3e7.jpg
+    if (urlStr) {
+        
+        NSURL *url = [NSURL URLWithString:urlStr];
+        
+        NSURLSession *session = [NSURLSession sharedSession];
+        
+        NSURLSessionDataTask *task = [session dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            
+            NSURL *documentsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
+            NSString *imageName = [response suggestedFilename];
+            documentsDirectoryURL = [documentsDirectoryURL URLByAppendingPathComponent:imageName];
+            
+            if (data && (error == nil)) {
+                if (completedHanlder) {
+                    completedHanlder(documentsDirectoryURL,data);
+                }
+            }
+            
+        }];
+        
+        [task resume];
+        
+        
+    }
+}
+
+@end

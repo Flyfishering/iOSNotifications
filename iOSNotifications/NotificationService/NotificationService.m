@@ -33,8 +33,21 @@
     
     //自定义一个字段image，用于下载地址：
     //同时，需要注意的是，在下载图片是采用http时，需要在extension info.plist加上 app transport
+    NSString *urlStr = [self.bestAttemptContent.userInfo objectForKey:@"image"];
     
-    self.contentHandler(self.bestAttemptContent);
+    if (urlStr) {
+        // load the attachment
+        [self loadAttachmentForUrlString:urlStr withType:@"jpg" completionHandler:^(UNNotificationAttachment *attachment) {
+            if (attachment) {
+                self.bestAttemptContent.attachments = [NSArray arrayWithObject:attachment];
+            }
+            //返回给系统执行
+            self.contentHandler(self.bestAttemptContent);
+            
+        }];
+    }else{
+        self.contentHandler(self.bestAttemptContent);
+    }
 }
 
 

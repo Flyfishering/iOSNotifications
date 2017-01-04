@@ -38,12 +38,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any required interface initialization here.
+    self.preferredContentSize = CGSizeMake(self.view.bounds.size.width, 256);
 }
 
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-//    self.contentView.frame = CGRectMake(0, 0, 200, 100);
+
 }
 
 - (void)didReceiveNotification:(UNNotification *)notification {
@@ -65,7 +66,6 @@
 //                    NSString *documentsDirectory = [paths objectAtIndex:0];
                     //NSString *extension = [imageName pathExtension];
                     //NSString *fileName = [imageName componentsSeparatedByString:@"."].firstObject;
-                    
 //                    NSString *localFileURLStr = [NSString stringWithFormat:@"%@/%@",documentsDirectory,imageName];
 //                    NSURL *localFileURL = [NSURL URLWithString:localFileURLStr];
 //                    NSData *tempData = [NSData dataWithContentsOfURL:localFileURL];

@@ -28,8 +28,8 @@
     
     //在此处修改category，可达到对应category的手段！！！
     //可以配合服务端针对category来进行不同的自定义页面的设置。
-    NSString *categoryFormServer = [self.bestAttemptContent.userInfo objectForKey:@"js_category"];
-    self.bestAttemptContent.categoryIdentifier = categoryFormServer;
+    //NSString *categoryFormServer = [self.bestAttemptContent.userInfo objectForKey:@"js_category"];
+    //self.bestAttemptContent.categoryIdentifier = categoryFormServer;
     
     //自定义一个字段image，用于下载地址：
     //同时，需要注意的是，在下载图片是采用http时，需要在extension info.plist加上 app transport

@@ -90,11 +90,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NotificationContent/NotificationViewController.m"
-            timestampString = "503575904.188836"
+            timestampString = "505188307.972621"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30">
+            startingLineNumber = "98"
+            endingLineNumber = "98"
+            landmarkName = "@implementation NotificationViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -152,13 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NotificationContent/NotificationViewController.m"
-            timestampString = "503831826.908588"
+            timestampString = "505188307.972621"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
-            landmarkName = "-viewDidLoad"
-            landmarkType = "7">
+            startingLineNumber = "138"
+            endingLineNumber = "138">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -328,11 +328,11 @@
                   moduleName = "iOSNotifications"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wenghengcong/Github/iOSNotifications/iOSNotifications/iOSNotifications/JSPushService/JSPushService.m"
-                  timestampString = "504251162.597294"
+                  timestampString = "505190432.40973"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "230"
-                  endingLineNumber = "230"
+                  startingLineNumber = "233"
+                  endingLineNumber = "233"
                   offsetFromSymbolStart = "388">
                </Location>
                <Location
@@ -343,11 +343,11 @@
                   moduleName = "iOSNotifications"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wenghengcong/Github/iOSNotifications/iOSNotifications/iOSNotifications/JSPushService/JSPushService.m"
-                  timestampString = "504251162.599032"
+                  timestampString = "505190432.411109"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "230"
-                  endingLineNumber = "230"
+                  startingLineNumber = "233"
+                  endingLineNumber = "233"
                   offsetFromSymbolStart = "40">
                </Location>
             </Locations>
@@ -376,11 +376,25 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NotificationContent/NotificationViewController.m"
-            timestampString = "503832041.599661"
+            timestampString = "505188307.972621"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
+            startingLineNumber = "155"
+            endingLineNumber = "155">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NotificationContent/NotificationViewController.m"
+            timestampString = "505190432.291594"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
             landmarkName = "-didReceiveNotification:"
             landmarkType = "7">
          </BreakpointContent>

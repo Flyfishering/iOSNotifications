@@ -40,7 +40,7 @@
             "body":"不知道，去哪儿？跟我走，Let's GO！"
          },
         "sound":"default",
-        "category":"customUIWeb",
+        "category":"customUI",
         "mutable-content":1
     },
     "url":"http://m.hao123.com",

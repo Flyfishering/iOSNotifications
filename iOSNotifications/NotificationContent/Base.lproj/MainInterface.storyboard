@@ -84,9 +84,12 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="255"/>
                     <connections>
+                        <outlet property="botBackground" destination="hZZ-jP-8oo" id="c5G-Gm-Q2X"/>
                         <outlet property="botText" destination="1DP-Di-Azx" id="nyi-ha-V5V"/>
                         <outlet property="contentImg" destination="txn-aR-QBQ" id="nwe-4t-35R"/>
                         <outlet property="contentView" destination="S3S-Oj-5AN" id="lnl-E4-wyZ"/>
+                        <outlet property="imageHeight" destination="Kw3-UU-nW9" id="eWS-Yt-Wvo"/>
+                        <outlet property="topBackground" destination="BpS-pK-K4h" id="l30-Az-0wA"/>
                         <outlet property="topText" destination="n6M-CX-7hX" id="sQo-Ws-JPT"/>
                     </connections>
                 </viewController>

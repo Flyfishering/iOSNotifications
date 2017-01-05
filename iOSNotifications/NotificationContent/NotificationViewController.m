@@ -74,8 +74,12 @@
                 
             }];
         }else{
+            self.topBackground.hidden = YES;
+            self.botBackground.hidden = YES;
+            self.preferredContentSize = CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height-138);
+            self.imageHeight.constant = 0;
+            [self.view layoutIfNeeded];
         }
-
     }
 }
 

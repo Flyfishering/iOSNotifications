@@ -40,10 +40,18 @@
  */
 
 @interface NotificationViewController : UIViewController <UNNotificationContentExtension>
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageHeight;
+
 @property (strong, nonatomic) IBOutlet UIView *contentView;
 
 @property IBOutlet UILabel *topText;
+@property (weak, nonatomic) IBOutlet UIImageView *topBackground;
+
 @property IBOutlet UIImageView *contentImg;
+
+@property (weak, nonatomic) IBOutlet UIImageView *botBackground;
+
 @property IBOutlet UILabel *botText;
 
 @end

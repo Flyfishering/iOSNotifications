@@ -18,6 +18,8 @@ NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER       = @"com.jspush.kLocalNo
 @interface JSPushService()
 #endif
 
+@property (nonatomic ,strong) JSRegisterConfig *config;
+
 @end
 
 
@@ -76,6 +78,7 @@ NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER       = @"com.jspush.kLocalNo
     }
     [[self class] registerForRemoteNotificationTypes:config.types categories:config.categories];
     [JSPushService sharedManager].delegate = delegate;
+    [JSPushService sharedManager].config = config;
     
 }
 #endif
@@ -98,9 +101,53 @@ NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER       = @"com.jspush.kLocalNo
 }
 
 + (void)setBadge:(NSInteger)badge {
+    
+    //只对角标大于0，修改为0
+    if ([UIApplication sharedApplication]) {
+        if ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0) {
+            [self setBadgeToZero];
+        }else{
+            if ([self checkNotificationType:UIRemoteNotificationTypeBadge]){
+                [self setBadgeToZero];
+            }else{
+                JSRegisterConfig *config = [JSPushService sharedManager].config;
+                if (config.types == 0) {
+                    config.types = 7;
+                }
+                [[self class] registerForRemoteNotificationTypes:config.types categories:config.categories];
+                [self setBadgeToZero];
+            }
+        }
+        
+    }
+
+    
     [UIApplication sharedApplication].applicationIconBadgeNumber = badge;
 }
 
++ (BOOL)checkNotificationType:(UIRemoteNotificationType)type
+{
+    if ( ([UIApplication sharedApplication])) {
+        NSUInteger notiType = 0;
+        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
+            UIUserNotificationSettings *currentSettings = [[UIApplication sharedApplication] currentUserNotificationSettings];
+            notiType = currentSettings.types;
+        }else{
+            notiType = [[UIApplication sharedApplication] enabledRemoteNotificationTypes];
+        }
+        
+        return (notiType & type);
+    }else{
+        return NO;
+    }
+}
+
++ (void)setBadgeToZero
+{
+    if (([UIApplication sharedApplication].applicationIconBadgeNumber) > 0) {
+        [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+    }
+}
 
 #pragma mark - Public Methods
 

@@ -107,12 +107,16 @@ NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER       = @"com.jspush.kLocalNo
         if ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0) {
             [self setBadgeToZero];
         }else{
+            //是否已经注册角标
             if ([self checkNotificationType:UIRemoteNotificationTypeBadge]){
                 [self setBadgeToZero];
             }else{
                 JSRegisterConfig *config = [JSPushService sharedManager].config;
-                if (config.types == 0) {
-                    config.types = 7;
+                if (config == nil) {
+                    config = [[JSRegisterConfig alloc] init];
+                    if (config.types == 0) {
+                        config.types = 7;
+                    }
                 }
                 [[self class] registerForRemoteNotificationTypes:config.types categories:config.categories];
                 [self setBadgeToZero];
@@ -120,11 +124,8 @@ NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER       = @"com.jspush.kLocalNo
         }
         
     }
-
-    
-    [UIApplication sharedApplication].applicationIconBadgeNumber = badge;
 }
-
+//TODO: 返回已经注册的通知类型，需要重构
 + (BOOL)checkNotificationType:(UIRemoteNotificationType)type
 {
     if ( ([UIApplication sharedApplication])) {
@@ -144,9 +145,7 @@ NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER       = @"com.jspush.kLocalNo
 
 + (void)setBadgeToZero
 {
-    if (([UIApplication sharedApplication].applicationIconBadgeNumber) > 0) {
-        [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
-    }
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
 }
 
 #pragma mark - Public Methods

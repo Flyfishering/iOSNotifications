@@ -197,7 +197,7 @@ NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER       = @"com.jspush.kLocalNo
             [JSPUSH_NOTIFICATIONCENTER removeAllPendingNotificationRequests];
         }else{
             
-            if (![JSPushUtilities jspush_validateArray:identifier.identifiers]) {
+            if ([JSPushUtilities jspush_validateArray:identifier.identifiers]) {
                 switch (identifier.state) {
                     case JSPushNotificationStateAll:
                     {

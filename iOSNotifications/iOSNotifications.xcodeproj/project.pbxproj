@@ -535,7 +535,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 69XHTLCF36;
 				INFOPLIST_FILE = NotificationContent/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.junglesong.pushtestdemo.NotificationContent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -551,7 +551,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 69XHTLCF36;
 				INFOPLIST_FILE = NotificationContent/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.junglesong.pushtestdemo.NotificationContent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -704,7 +704,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.junglesong.pushtestdemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "186067dd-3def-43c7-a3df-353f46ea2cc9";
+				PROVISIONING_PROFILE = "7884ee0c-57bd-4db4-ade1-4728f8b89240";
 				PROVISIONING_PROFILE_SPECIFIER = push_test_dev_pp;
 			};
 			name = Debug;

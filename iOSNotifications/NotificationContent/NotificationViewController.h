@@ -31,12 +31,14 @@
         },
         "sound":"default",
         "mutable-content":1,
-        "category":"customUI",
+        "category":"pictureCat",
         "mutable-content":1
     },
-    "image":"http://p2.so.qhmsg.com/t01570d67d63111d3e7.jpg"
+    "image":"http://p2.so.qhmsg.com/t01570d67d63111d3e7.jpg",
+    "title":"斯沃驰2016秋冬系列华丽上市",
+	"content":"Swatch推出Magies D'Hiver系列新品。该系列灵感来源于雪花的结晶构造，技术感十足，配以新潮迷彩色和爱尔兰式粗花呢，宛若置身壁炉旁。",
  }
- 
+
  */
 
 @interface NotificationViewController : UIViewController <UNNotificationContentExtension>

@@ -10,10 +10,16 @@
 
 @implementation JSNotificationIdentifier
 
+
+#pragma mark - copy/coding
+
 - (id)copyWithZone:(NSZone *)zone {
     
     JSNotificationIdentifier *iden = [JSNotificationIdentifier new];
     iden.identifiers = self.identifiers;
+    if (iden.notificationObj!=nil) {
+        iden.notificationObj = self.notificationObj;
+    }
     iden.state = self.state;
     iden.findCompletionHandler = self.findCompletionHandler;
     
@@ -21,6 +27,28 @@
     
 }
 
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super init];
+    if (!self) {
+        return nil;
+    }
+    
+    self.identifiers = [aDecoder decodeObjectForKey:@"identifiers"];
+    self.notificationObj = [aDecoder decodeObjectForKey:@"notificationObj"];
+    self.state = [aDecoder decodeIntegerForKey:@"state"];
+    self.findCompletionHandler = [aDecoder decodeObjectForKey:@"findCompletionHandler"];
+    
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:self.identifiers forKey:@"identifiers"];
+    [aCoder encodeObject:self.notificationObj forKey:@"notificationObj"];
+    [aCoder encodeInteger:self.state forKey:@"state"];
+    [aCoder encodeObject:self.findCompletionHandler forKey:@"findCompletionHandler"];
+}
 
 /**
  iOS 10 以下，移除UILocalNotification可通过该方法创建

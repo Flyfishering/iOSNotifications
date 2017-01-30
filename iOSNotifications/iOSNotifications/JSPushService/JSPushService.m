@@ -53,17 +53,27 @@ NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER       = @"com.jspush.kLocalNo
 #if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
         [JSPUSH_NOTIFICATIONCENTER requestAuthorizationWithOptions:types completionHandler:^(BOOL granted, NSError * _Nullable error) {
             if (granted) {
-                [[UIApplication sharedApplication] registerForRemoteNotifications];
-                [JSPUSH_NOTIFICATIONCENTER setNotificationCategories:categories];
+                if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerForRemoteNotifications)]) {
+                    [[UIApplication sharedApplication] registerForRemoteNotifications];
+                }
+                if ([JSPUSH_NOTIFICATIONCENTER respondsToSelector:@selector(setNotificationCategories:)]) {
+                    [JSPUSH_NOTIFICATIONCENTER setNotificationCategories:categories];
+                }
             }
         }];
 #endif
-    }else if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
-
-        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:types categories:categories];
-        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    }else if (JSPUSH_IOS_8) {
+        
+        if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+            [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:types categories:categories]];
+        }
+        if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerForRemoteNotifications)]) {
+            [[UIApplication sharedApplication] registerForRemoteNotifications];
+        }
     }else{
-        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:types];
+        if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerForRemoteNotificationTypes:)]) {
+            [[UIApplication sharedApplication] registerForRemoteNotificationTypes:types];
+        }
     }
     
 }
@@ -130,7 +140,7 @@ NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER       = @"com.jspush.kLocalNo
 {
     if ( ([UIApplication sharedApplication])) {
         NSUInteger notiType = 0;
-        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
+        if (JSPUSH_IOS_8) {
             UIUserNotificationSettings *currentSettings = [[UIApplication sharedApplication] currentUserNotificationSettings];
             notiType = currentSettings.types;
         }else{
@@ -620,17 +630,25 @@ NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER       = @"com.jspush.kLocalNo
         // 设置提醒的文字内容
         if(JSPUSH_SYSTEM_VERSION_GREATER_THAN(@"8.2")){
 #if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= JSPUSH_IPHONE_8_2) )
-            notification.alertTitle = alertTitle;     //8.2才支持,默认是应用名称
+            if([notification respondsToSelector:@selector(setAlertTitle:)]){
+                notification.alertTitle = alertTitle;     //8.2才支持,默认是应用名称
+            }
 #endif
         }
         notification.alertBody   = alertBody;     //显示主体
 #if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= JSPUSH_IPHONE_8_0) )
         if(JSPUSH_IOS_8){
-            notification.category = category;
+            if([notification respondsToSelector:@selector(setCategory:)]){
+                notification.category = category;
+            }
             //设置地理位置
             if(region){
-                notification.region = region;
-                notification.regionTriggersOnce = regionTriggersOnce;
+                if([notification respondsToSelector:@selector(setRegion:)]){
+                    notification.region = region;
+                }
+                if([notification respondsToSelector:@selector(setRegionTriggersOnce:)]){
+                    notification.regionTriggersOnce = regionTriggersOnce;
+                }
             }
         }
 #endif

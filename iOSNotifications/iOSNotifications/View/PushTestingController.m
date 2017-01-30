@@ -499,7 +499,7 @@
     //NSOrderedAscending\NSOrderedDescending
     //前者相对于后者
     //10.0相对于10是低版本，显然不合理，所以该判断也是存在问题的。
-    NSInteger compareResult = [@"10.0" compare:@"10.1" options:NSNumericSearch];
+    NSInteger compareResult = [@"8.3" compare:@"8.2" options:NSNumericSearch];
     NSLog(@"string result %ld",(long)compareResult);
     
 }

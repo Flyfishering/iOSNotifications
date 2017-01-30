@@ -278,11 +278,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iOSNotifications/JSPushService/JSPushService.m"
-            timestampString = "504441844.549842"
+            timestampString = "507440088.918553"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "232"
-            endingLineNumber = "232"
+            startingLineNumber = "242"
+            endingLineNumber = "242"
             landmarkName = "+removeNotification:"
             landmarkType = "7">
          </BreakpointContent>
@@ -339,13 +339,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "iOSNotifications/AppDelegate.m"
-            timestampString = "506616835.854016"
+            filePath = "iOSNotifications/View/PushTestingController.m"
+            timestampString = "507438905.438995"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
-            landmarkName = "-applicationDidBecomeActive:"
+            startingLineNumber = "502"
+            endingLineNumber = "502"
+            landmarkName = "-test_systemCompare"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -355,14 +355,30 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "iOSNotifications/View/PushTestingController.m"
-            timestampString = "507437582.338904"
+            filePath = "iOSNotifications/JSPushService/JSPushService.m"
+            timestampString = "507440050.204597"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "503"
-            endingLineNumber = "503"
-            landmarkName = "-test_systemCompare"
-            landmarkType = "7">
+            startingLineNumber = "640"
+            endingLineNumber = "640"
+            landmarkName = "@implementation JSPushService"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iOSNotifications/JSPushService/JSPushService.m"
+            timestampString = "507440083.41143"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "609"
+            endingLineNumber = "609"
+            landmarkName = "@implementation JSPushService"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

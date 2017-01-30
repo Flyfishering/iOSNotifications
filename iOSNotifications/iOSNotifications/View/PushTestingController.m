@@ -58,6 +58,8 @@
     
     self.switchArr = [NSArray arrayWithObjects:self.mutipleSwtich,self.pictureSwitch,self.videoSwitch,self.slientSwitch, nil];
     [self alertUserOpenPush];
+    
+    [self test_systemCompare];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -470,7 +472,7 @@
 }
 
 
-#pragma mark UITextFieldDelegate
+#pragma mark - UITextFieldDelegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -478,5 +480,23 @@
     [self.view endEditing:YES];
     return YES;
 }
+
+#pragma  mark - Test System Compare
+
+- (void)test_systemCompare
+{
+    NSString *version = [[UIDevice currentDevice] systemVersion];
+    int int_ver = [version intValue];
+    float float_ver = [version floatValue];
+    double double_ver = [version doubleValue];
+    NSLog(@"%@-%d-%f-%f",version,int_ver,float_ver,double_ver);
+    
+    
+    double coreVersion = kCFCoreFoundationVersionNumber;
+    double nsfoundaVersion = NSFoundationVersionNumber;
+    NSLog(@"%f-%f",coreVersion,nsfoundaVersion);
+}
+
+
 
 @end

@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  通知内容实体类
  */
-@interface JSNotificationContent : NSObject<NSCopying>
+@interface JSNotificationContent : NSObject<NSCopying,NSCoding>
 
 /**
  通知标题

@@ -22,6 +22,31 @@
     return trigger;
 }
 
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super init];
+    if (!self) {
+        return nil;
+    }
+    
+    self.repeat = [aDecoder decodeBoolForKey:@"repeat"];
+    self.region = [aDecoder decodeObjectForKey:@"region"];
+    self.fireDate = [aDecoder decodeObjectForKey:@"fireDate"];
+    self.dateComponents = [aDecoder decodeObjectForKey:@"dateComponents"];
+    self.timeInterval = [aDecoder decodeDoubleForKey:@"timeInterval"];
+
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeBool:self.repeat forKey:@"repeat"];
+    [aCoder encodeObject:self.region forKey:@"region"];
+    [aCoder encodeObject:self.fireDate forKey:@"fireDate"];
+    [aCoder encodeObject:self.dateComponents forKey:@"dateComponents"];
+    [aCoder encodeDouble:self.timeInterval forKey:@"timeInterval"];
+}
+
 + (instancetype)triggerWithTimeInterval:(NSTimeInterval)timeInterval repeats:(BOOL)repeats
 {
     JSNotificationTrigger *trigger = [[JSNotificationTrigger alloc] init];
@@ -32,6 +57,8 @@
     
     return trigger;
 }
+
+# pragma mark - init
 
 + (instancetype)triggerWithDateMatchingComponents:(NSDateComponents *)dateComponents repeats:(BOOL)repeats
 {

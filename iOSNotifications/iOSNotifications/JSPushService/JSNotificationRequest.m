@@ -21,6 +21,30 @@
     return request;
 }
 
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super init];
+    if (!self) {
+        return nil;
+    }
+    
+    self.requestIdentifier = [aDecoder decodeObjectForKey:@"requestIdentifier"];
+    self.content = [aDecoder decodeObjectForKey:@"content"];
+    self.trigger = [aDecoder decodeObjectForKey:@"trigger"];
+    self.completionHandler = [aDecoder decodeObjectForKey:@"completionHandler"];
+    
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:self.requestIdentifier forKey:@"requestIdentifier"];
+    [aCoder encodeObject:self.content forKey:@"content"];
+    [aCoder encodeObject:self.trigger forKey:@"trigger"];
+    [aCoder encodeObject:self.completionHandler forKey:@"completionHandler"];
+}
+
+
 + (instancetype)requestWithIdentifier:(NSString *)identifier content:(JSNotificationContent *)content trigger:(nullable JSNotificationTrigger *)trigger withCompletionHandler:(void(^)(id __nullable result))completionHandler
 {
     JSNotificationRequest *request = [[JSNotificationRequest alloc] init];

@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 /*
  * 注册或更新通知实体类
  */
-@interface JSNotificationRequest : NSObject<NSCopying>
+@interface JSNotificationRequest : NSObject<NSCopying,NSCoding>
 
 /**
  通知请求标识

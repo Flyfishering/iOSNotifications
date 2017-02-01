@@ -324,22 +324,6 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iOSNotifications/JSPushService/JSPushService.m"
-            timestampString = "507440050.204597"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "640"
-            endingLineNumber = "640"
-            landmarkName = "@implementation JSPushService"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "iOSNotifications/JSPushService/JSPushService.m"
             timestampString = "507440083.41143"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"

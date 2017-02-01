@@ -51,16 +51,20 @@ NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER       = @"com.jspush.kLocalNo
     
     if (JSPUSH_IOS_10_0){
 #if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
-        [JSPUSH_NOTIFICATIONCENTER requestAuthorizationWithOptions:types completionHandler:^(BOOL granted, NSError * _Nullable error) {
-            if (granted) {
-                if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerForRemoteNotifications)]) {
-                    [[UIApplication sharedApplication] registerForRemoteNotifications];
+        
+        if ([JSPUSH_NOTIFICATIONCENTER respondsToSelector:@selector(requestAuthorizationWithOptions:completionHandler:) ]) {
+            [JSPUSH_NOTIFICATIONCENTER requestAuthorizationWithOptions:types completionHandler:^(BOOL granted, NSError * _Nullable error) {
+                if (granted) {
+                    if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerForRemoteNotifications)]) {
+                        [[UIApplication sharedApplication] registerForRemoteNotifications];
+                    }
+                    if ([JSPUSH_NOTIFICATIONCENTER respondsToSelector:@selector(setNotificationCategories:)]) {
+                        [JSPUSH_NOTIFICATIONCENTER setNotificationCategories:categories];
+                    }
                 }
-                if ([JSPUSH_NOTIFICATIONCENTER respondsToSelector:@selector(setNotificationCategories:)]) {
-                    [JSPUSH_NOTIFICATIONCENTER setNotificationCategories:categories];
-                }
-            }
-        }];
+            }];
+        }
+
 #endif
     }else if (JSPUSH_IOS_8_0) {
         
@@ -71,9 +75,12 @@ NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER       = @"com.jspush.kLocalNo
             [[UIApplication sharedApplication] registerForRemoteNotifications];
         }
     }else{
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
         if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerForRemoteNotificationTypes:)]) {
             [[UIApplication sharedApplication] registerForRemoteNotificationTypes:types];
         }
+#pragma clang diagnostic pop
     }
     
 }
@@ -135,23 +142,35 @@ NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER       = @"com.jspush.kLocalNo
         
     }
 }
-//TODO: 返回已经注册的通知类型，需要重构
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+
 + (BOOL)checkNotificationType:(UIRemoteNotificationType)type
 {
+
     if ( ([UIApplication sharedApplication])) {
         NSUInteger notiType = 0;
-        if (JSPUSH_IOS_8_0) {
-            UIUserNotificationSettings *currentSettings = [[UIApplication sharedApplication] currentUserNotificationSettings];
-            notiType = currentSettings.types;
+        if (JSPUSH_IOS_10_0) {
+            //TODO:返回已经注册的通知类型，需要重构
+        }else if (JSPUSH_IOS_8_0) {
+            if ([[UIApplication sharedApplication] respondsToSelector:@selector(currentUserNotificationSettings)]) {
+                UIUserNotificationSettings *currentSettings = [[UIApplication sharedApplication] currentUserNotificationSettings];
+                notiType = currentSettings.types;
+            }
+
         }else{
-            notiType = [[UIApplication sharedApplication] enabledRemoteNotificationTypes];
+            if ([[UIApplication sharedApplication] respondsToSelector:@selector(enabledRemoteNotificationTypes)]) {
+                notiType = [[UIApplication sharedApplication] enabledRemoteNotificationTypes];
+            }
         }
         
         return (notiType & type);
     }else{
         return NO;
     }
+
 }
+#pragma clang diagnostic pop
 
 + (void)setBadgeToZero
 {
@@ -203,8 +222,15 @@ NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER       = @"com.jspush.kLocalNo
     if (JSPUSH_IOS_10_0) {
 #if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
         if (identifier == nil) {
-            [JSPUSH_NOTIFICATIONCENTER removeAllDeliveredNotifications];
-            [JSPUSH_NOTIFICATIONCENTER removeAllPendingNotificationRequests];
+            
+            if ([JSPUSH_NOTIFICATIONCENTER respondsToSelector:@selector(removeAllDeliveredNotifications)]) {
+                [JSPUSH_NOTIFICATIONCENTER removeAllDeliveredNotifications];
+            }
+            
+            if ([JSPUSH_NOTIFICATIONCENTER respondsToSelector:@selector(removeAllPendingNotificationRequests)]) {
+                [JSPUSH_NOTIFICATIONCENTER removeAllPendingNotificationRequests];
+            }
+            
         }else{
             
             if ([JSPushUtilities jspush_validateArray:identifier.identifiers]) {

@@ -86,7 +86,7 @@
 }
 - (void)registerRemote
 {
-    if (JSPUSH_IOS_10) {
+    if (JSPUSH_IOS_10_0) {
         [UNUserNotificationCenter currentNotificationCenter].delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         [JSPushService registerForRemoteNotificationTypes:7 categories:[PushTestingController categoriesAction4Test]];
     }else{
@@ -98,7 +98,7 @@
 + (NSSet *)categoriesAction4Test
 {
     //HCTEST:
-    if (JSPUSH_IOS_10) {
+    if (JSPUSH_IOS_10_0) {
 #if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
         
         //iOS 10以上，通知代理设置，不设置，代理不调用。

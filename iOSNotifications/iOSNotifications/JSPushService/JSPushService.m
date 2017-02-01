@@ -49,7 +49,7 @@ NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER       = @"com.jspush.kLocalNo
 + (void)registerForRemoteNotificationTypes:(NSUInteger)types categories:(NSSet *)categories
 {
     
-    if (JSPUSH_IOS_10){
+    if (JSPUSH_IOS_10_0){
 #if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
         [JSPUSH_NOTIFICATIONCENTER requestAuthorizationWithOptions:types completionHandler:^(BOOL granted, NSError * _Nullable error) {
             if (granted) {
@@ -62,7 +62,7 @@ NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER       = @"com.jspush.kLocalNo
             }
         }];
 #endif
-    }else if (JSPUSH_IOS_8) {
+    }else if (JSPUSH_IOS_8_0) {
         
         if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)]) {
             [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:types categories:categories]];
@@ -140,7 +140,7 @@ NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER       = @"com.jspush.kLocalNo
 {
     if ( ([UIApplication sharedApplication])) {
         NSUInteger notiType = 0;
-        if (JSPUSH_IOS_8) {
+        if (JSPUSH_IOS_8_0) {
             UIUserNotificationSettings *currentSettings = [[UIApplication sharedApplication] currentUserNotificationSettings];
             notiType = currentSettings.types;
         }else{
@@ -162,7 +162,7 @@ NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER       = @"com.jspush.kLocalNo
 
 + (void)addNotification:(JSNotificationRequest *)jsRequest {
     
-    if (JSPUSH_IOS_10) {
+    if (JSPUSH_IOS_10_0) {
         
 #if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
         //convert JSNotificationRequest to UNNotificationRequest
@@ -200,7 +200,7 @@ NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER       = @"com.jspush.kLocalNo
 
 + (void)removeNotification:(JSNotificationIdentifier *)identifier {
 
-    if (JSPUSH_IOS_10) {
+    if (JSPUSH_IOS_10_0) {
 #if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
         if (identifier == nil) {
             [JSPUSH_NOTIFICATIONCENTER removeAllDeliveredNotifications];
@@ -280,7 +280,7 @@ NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER       = @"com.jspush.kLocalNo
         return;
     }
     
-    if (JSPUSH_IOS_10) {
+    if (JSPUSH_IOS_10_0) {
 #if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
         switch (identifier.state) {
             case JSPushNotificationStateAll:
@@ -628,7 +628,7 @@ NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER       = @"com.jspush.kLocalNo
         //        notification.repeatInterval = kCFCalendarUnitDay;
         
         // 设置提醒的文字内容
-        if(JSPUSH_SYSTEM_VERSION_GREATER_THAN(@"8.2")){
+        if(JSPUSH_IOS_8_2){
 #if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= JSPUSH_IPHONE_8_2) )
             if([notification respondsToSelector:@selector(setAlertTitle:)]){
                 notification.alertTitle = alertTitle;     //8.2才支持,默认是应用名称
@@ -637,7 +637,7 @@ NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER       = @"com.jspush.kLocalNo
         }
         notification.alertBody   = alertBody;     //显示主体
 #if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= JSPUSH_IPHONE_8_0) )
-        if(JSPUSH_IOS_8){
+        if(JSPUSH_IOS_8_0){
             if([notification respondsToSelector:@selector(setCategory:)]){
                 notification.category = category;
             }

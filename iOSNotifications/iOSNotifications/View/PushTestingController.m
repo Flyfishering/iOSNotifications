@@ -328,11 +328,14 @@
     content.userInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"研发、测试、产品、项目",@"与会人员",@"12月5日",@"时间",nil];
     
     //传递NSDateComponents作为触发时间
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
     NSDate *date = [NSDate date];
     NSCalendar * cal = [NSCalendar currentCalendar];
     NSDateComponents *dateC = [cal components:unitFlags fromDate:date];
     dateC.second = dateC.second + self.timeSlide.value;
+#pragma clang diagnostic pop
 
     JSNotificationTrigger *trigger = [JSNotificationTrigger triggerWithDateMatchingComponents:dateC repeats:NO];
 

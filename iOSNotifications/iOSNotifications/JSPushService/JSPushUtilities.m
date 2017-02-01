@@ -62,6 +62,8 @@
     return date;
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 + (NSDateComponents *)jspush_dateComponentsWithNSDate:(NSDate *)date
 {
     unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
@@ -69,6 +71,7 @@
     NSDateComponents *dateComponents = [cal components:unitFlags fromDate:date];
     return dateComponents;
 }
+#pragma clang diagnostic pop
 
 
 # pragma mark - Log

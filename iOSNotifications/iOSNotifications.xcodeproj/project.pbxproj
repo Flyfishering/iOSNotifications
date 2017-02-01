@@ -41,8 +41,6 @@
 		5EBC82161E1136670068A20C /* JSNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBC82151E1136670068A20C /* JSNotification.m */; };
 		5ED6A2C61E02257C001A3DE2 /* joy.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ED6A2C51E02257C001A3DE2 /* joy.png */; };
 		5EDD91DA1E1CA15E00F8A236 /* NotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EDD91D91E1CA15E00F8A236 /* NotificationViewController.m */; };
-		5EDD91DB1E1CA19C00F8A236 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E8CACC51E1C899400671F60 /* Info.plist */; };
-		5EDD91DC1E1CA1A000F8A236 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E8CACD71E1C986500671F60 /* Info.plist */; };
 		5EDD91DD1E1CDD4E00F8A236 /* joy.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ED6A2C51E02257C001A3DE2 /* joy.png */; };
 /* End PBXBuildFile section */
 
@@ -357,7 +355,7 @@
 		5EF2B43D1CC7D51000AC71C5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = WengHengcong;
 				TargetAttributes = {
 					5E8CACBA1E1C899400671F60 = {
@@ -413,7 +411,6 @@
 				5EDD91DD1E1CDD4E00F8A236 /* joy.png in Resources */,
 				5E8CACCD1E1C8DFD00671F60 /* Media.xcassets in Resources */,
 				5E8CACC41E1C899400671F60 /* MainInterface.storyboard in Resources */,
-				5EDD91DB1E1CA19C00F8A236 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,7 +418,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5EDD91DC1E1CA1A000F8A236 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

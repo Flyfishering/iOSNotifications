@@ -33,12 +33,48 @@
  
  */
 
+
+/*
+ 
+ apns payload test demo
+ 
+ {
+ "aps": {
+ "alert": {
+ "title": "斯沃驰2016秋冬系列华丽上市",
+ "body": "Swatch推出Magies D'Hiver系列新品！"
+ },
+ "sound": "default",
+ "category": "pictureCat",
+ "mutable-content": 1
+ },
+ "isqImgPath": "https://cdn.pixabay.com/photo/2017/01/06/22/24/giraffe-1959110_1280.jpg",
+ "tImgPath": "https://cdn.pixabay.com/photo/2017/01/06/22/24/giraffe-1959110_1280.jpg",
+ "title": "斯沃驰2016秋冬系列华丽上市",
+ "content": "Swatch推出MagiesD'Hiver系列新品。该系列灵感来源于雪花的结晶构造，技术感十足，配以新潮迷彩色和爱尔兰式粗花呢，宛若置身壁炉旁。"
+ }
+ 
+ 以上图片若无效，尝试：https://img30.360buyimg.com/EdmPlatform/jfs/t4000/43/1883011713/62578/a8ef6739/589ac88dNdacd97ed.jpg
+ 
+ */
+
+//内容
+static NSString *forceTouchImageKey = @"tImgPath";
+static NSString *forceTouchTitleKey = @"title";
+static NSString *forceTouchContentKey = @"content";
+
+static NSString *forceTouchCategoryPic = @"pictureCat";
+
 @implementation NotificationViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any required interface initialization here.
-    self.preferredContentSize = CGSizeMake(self.view.bounds.size.width, 256);
+    //    self.botText.numberOfLines = 3;
+    self.contentImg.backgroundColor = [UIColor clearColor];
+    self.contentImg.layer.borderColor = [UIColor clearColor].CGColor;
+    self.botText.textColor = [UIColor colorWithRed:102/255.0 green:102/255.0 blue:102/255.0 alpha:1.0];
+    self.preferredContentSize = CGSizeMake(self.view.bounds.size.width, 243);
 }
 
 - (void)viewDidLayoutSubviews
@@ -54,32 +90,54 @@
      注意加载图片的机制，要么在NotificationContent中文件夹中放置对应的图片
      */
     
-    if ([notification.request.content.categoryIdentifier isEqualToString:@"pictureCat"]) {
+    if ( (notification == nil) || (notification.request == nil) || (notification.request.content == nil) || (notification.request.content.userInfo) == nil) {
+        return;
+    }
+    
+    NSString *pushTitle = notification.request.content.userInfo[forceTouchTitleKey];
+    NSString *pushContent = notification.request.content.userInfo[forceTouchContentKey];
+    
+    CGFloat screenWidth = CGRectGetWidth([[UIScreen mainScreen] bounds]);
+    CGSize botTextSize = CGSizeMake(screenWidth-2*15-2*15, MAXFLOAT);
+    NSDictionary *attribute = @{NSFontAttributeName:[UIFont systemFontOfSize:13]};
+    CGRect botTextRect = [pushContent boundingRectWithSize:botTextSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attribute context:nil];
+    
+    self.topText.text = pushTitle;
+    self.botText.text = pushContent;
+    
+    CGFloat subHeight = 47-botTextRect.size.height;
+    self.preferredContentSize = CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height-subHeight);
+    
+    [self.view layoutIfNeeded];
+    
+    __weak __typeof__(self) weakSelf = self;
+    if ([notification.request.content.categoryIdentifier isEqualToString:forceTouchCategoryPic]) {
+        __strong __typeof__(self) strongSelf = weakSelf;
         //注意：image读取的层次结构
-        NSString *urlFromNoti = notification.request.content.userInfo[@"image"];
-        if (urlFromNoti) {
-            [self downloadImageWithURL:urlFromNoti withCompletedHanlder:^(NSURL *fileUrl, NSData *data) {
-                
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    
-//                    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
-//                    NSString *documentsDirectory = [paths objectAtIndex:0];
-                    //NSString *extension = [imageName pathExtension];
-                    //NSString *fileName = [imageName componentsSeparatedByString:@"."].firstObject;
-//                    NSString *localFileURLStr = [NSString stringWithFormat:@"%@/%@",documentsDirectory,imageName];
-//                    NSURL *localFileURL = [NSURL URLWithString:localFileURLStr];
-//                    NSData *tempData = [NSData dataWithContentsOfURL:localFileURL];
-                    self.contentImg.image = [UIImage imageWithData:data] ;
-                });
-                
-            }];
-        }else{
-            self.topBackground.hidden = YES;
-            self.botBackground.hidden = YES;
-            self.preferredContentSize = CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height-138);
-            self.imageHeight.constant = 0;
-            [self.view layoutIfNeeded];
+        NSString *urlFromNoti = notification.request.content.userInfo[forceTouchImageKey];
+        if (strongSelf) {
+            if (urlFromNoti) {
+                [self downloadImageWithURL:urlFromNoti withCompletedHanlder:^(NSURL *fileUrl, NSData *data) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        
+                        if (data==nil) {
+                            [strongSelf defaultCategoryLayoutView];
+                        }else{
+                            UIImage *image = [UIImage imageWithData:data];
+                            if (image) {
+                                strongSelf.contentImg.image = [UIImage imageWithData:data] ;
+                                [strongSelf.view layoutIfNeeded];
+                            }else{
+                                [strongSelf defaultCategoryLayoutView];
+                            }
+                        }
+                    });
+                }];
+            }else{
+                [self defaultCategoryLayoutView];
+            }
         }
+        
     }
 }
 
@@ -92,9 +150,17 @@
     completion(UNNotificationContentExtensionResponseOptionDoNotDismiss);
 }
 
+- (void)defaultCategoryLayoutView
+{
+    self.topBackground.hidden = YES;
+    self.preferredContentSize = CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height-138);
+    self.contentTop.constant = 0;
+    self.imageHeight.constant = 0;
+    [self.view layoutIfNeeded];
+}
+
 - (void)downloadImageWithURL:(NSString *)urlStr withCompletedHanlder:(void  (^)(NSURL *fileUrl , NSData *data))completedHanlder
 {
-    //http://p2.so.qhmsg.com/t01570d67d63111d3e7.jpg
     if (urlStr) {
         
         NSURL *url = [NSURL URLWithString:urlStr];
@@ -110,14 +176,20 @@
             if (data && (error == nil)) {
                 if (completedHanlder) {
                     completedHanlder(documentsDirectoryURL,data);
+                }else{
+                    completedHanlder(nil,nil);
+                }
+            }else{
+                if (completedHanlder) {
+                    completedHanlder(documentsDirectoryURL,data);
+                }else{
+                    completedHanlder(nil,nil);
                 }
             }
             
         }];
         
         [task resume];
-        
-        
     }
 }
 

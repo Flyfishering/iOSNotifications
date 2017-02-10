@@ -182,36 +182,52 @@ NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER       = @"com.jspush.kLocalNo
 + (void)addNotification:(JSNotificationRequest *)jsRequest {
     
     if (JSPUSH_IOS_10_0) {
-        
 #if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
-        //convert JSNotificationRequest to UNNotificationRequest
-        UNNotificationRequest *request = [self convertJSNotificationRequestToUNNotificationRequest:jsRequest];
-        if (request != nil) {
-            [JSPUSH_NOTIFICATIONCENTER addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
-                //注册或更新通知成功回调，iOS10以上成功则result为UNNotificationRequest对象，失败则result为nil
-                id result = error ? nil : request;
+        //convert JSPushNotificationRequest to UNNotificationRequest
+        if ([UNNotificationRequest class]) {
+            UNNotificationRequest *request = [self convertJSNotificationRequestToUNNotificationRequest:jsRequest];
+            if (request != nil) {
                 
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    if (jsRequest.completionHandler) {
-                        jsRequest.completionHandler(result);
-                    }
-                });
-
-            }];
+                if ( (JSPUSH_NOTIFICATIONCENTER) && ([JSPUSH_NOTIFICATIONCENTER respondsToSelector:@selector(addNotificationRequest:withCompletionHandler:)]) ) {
+                    [JSPUSH_NOTIFICATIONCENTER addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
+                        //注册或更新通知成功回调，iOS10以上成功则result为UNNotificationRequest对象，失败则result为nil
+                        id result = error ? nil : request;
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            if (jsRequest.completionHandler) {
+                                jsRequest.completionHandler(result);
+                            }
+                        });
+                        
+                    }];
+                }
+            }
         }
+        
 #endif
-
     }else{
         
-        UILocalNotification *noti = [self convertJSNotificationRequestToUILocalNotification:jsRequest];
-        //iOS10以下成功result为UILocalNotification对象，失败则result为nil
-        id result = noti ? noti : nil;
-        if (result) {
-            [[UIApplication sharedApplication] scheduleLocalNotification:noti];
-        }
-        
-        if (jsRequest.completionHandler) {
-            jsRequest.completionHandler(result);
+        if ([UILocalNotification class]) {
+            UILocalNotification *noti = [self convertJSNotificationRequestToUILocalNotification:jsRequest];
+            //iOS10以下成功result为UILocalNotification对象，失败则result为nil
+            id result = noti ? noti : nil;
+            if (result) {
+                
+                Class UIApplicationClass = NSClassFromString(@"UIApplication");
+                if (!UIApplicationClass || ![UIApplicationClass respondsToSelector:@selector(sharedApplication)]){
+                    return;
+                }
+                
+                if ([UIApplication sharedApplication] && [[UIApplication sharedApplication] respondsToSelector:@selector(scheduleLocalNotification:)]) {
+                    [[UIApplication sharedApplication] scheduleLocalNotification:noti];
+                }
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (jsRequest.completionHandler) {
+                    jsRequest.completionHandler(result);
+                }
+            });
         }
         
     }
@@ -221,78 +237,94 @@ NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER       = @"com.jspush.kLocalNo
 
     if (JSPUSH_IOS_10_0) {
 #if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
-        if (identifier == nil) {
+        if (JSPUSH_NOTIFICATIONCENTER) {
+            BOOL hasResponds10Method = ([JSPUSH_NOTIFICATIONCENTER respondsToSelector:@selector(removeAllDeliveredNotifications)]) && ([JSPUSH_NOTIFICATIONCENTER respondsToSelector:@selector(removeAllPendingNotificationRequests)]) && ([JSPUSH_NOTIFICATIONCENTER respondsToSelector:@selector(removeDeliveredNotificationsWithIdentifiers:)]) && ([JSPUSH_NOTIFICATIONCENTER respondsToSelector:@selector(removePendingNotificationRequestsWithIdentifiers:)]);
             
-            if ([JSPUSH_NOTIFICATIONCENTER respondsToSelector:@selector(removeAllDeliveredNotifications)]) {
+            if (!hasResponds10Method) {
+                return;
+            }
+            
+            if (identifier == nil) {
                 [JSPUSH_NOTIFICATIONCENTER removeAllDeliveredNotifications];
-            }
-            
-            if ([JSPUSH_NOTIFICATIONCENTER respondsToSelector:@selector(removeAllPendingNotificationRequests)]) {
                 [JSPUSH_NOTIFICATIONCENTER removeAllPendingNotificationRequests];
-            }
-            
-        }else{
-            
-            if ([JSPushUtilities jspush_validateArray:identifier.identifiers]) {
-                switch (identifier.state) {
-                    case JSPushNotificationStateAll:
-                    {
-                        [JSPUSH_NOTIFICATIONCENTER removeDeliveredNotificationsWithIdentifiers:identifier.identifiers];
-                        [JSPUSH_NOTIFICATIONCENTER removePendingNotificationRequestsWithIdentifiers:identifier.identifiers];
-                        break;
-                    }
-                    case JSPushNotificationStatePending:
-                    {
-                        [JSPUSH_NOTIFICATIONCENTER removePendingNotificationRequestsWithIdentifiers:identifier.identifiers];
-                        break;
-                    }
-                    case JSPushNotificationStateDelivered:
-                    {
-                        [JSPUSH_NOTIFICATIONCENTER removeDeliveredNotificationsWithIdentifiers:identifier.identifiers];
-                        break;
-                    }
-                    default:
-                        break;
-                }
             }else{
-                switch (identifier.state) {
-                    case JSPushNotificationStateAll:
-                    {
-                        [JSPUSH_NOTIFICATIONCENTER removeAllPendingNotificationRequests];
-                        [JSPUSH_NOTIFICATIONCENTER removeAllDeliveredNotifications];
-                        break;
+                if ([JSPushUtilities jspush_validateArray:identifier.identifiers]) {
+                    switch (identifier.state) {
+                        case JSPushNotificationStateAll:
+                        {
+                            [JSPUSH_NOTIFICATIONCENTER removeDeliveredNotificationsWithIdentifiers:identifier.identifiers];
+                            [JSPUSH_NOTIFICATIONCENTER removePendingNotificationRequestsWithIdentifiers:identifier.identifiers];
+                            break;
+                        }
+                        case JSPushNotificationStatePending:
+                        {
+                            [JSPUSH_NOTIFICATIONCENTER removePendingNotificationRequestsWithIdentifiers:identifier.identifiers];
+                            break;
+                        }
+                        case JSPushNotificationStateDelivered:
+                        {
+                            [JSPUSH_NOTIFICATIONCENTER removeDeliveredNotificationsWithIdentifiers:identifier.identifiers];
+                            break;
+                        }
+                        default:
+                            break;
                     }
-                    case JSPushNotificationStatePending:
-                    {
-                        [JSPUSH_NOTIFICATIONCENTER removeAllPendingNotificationRequests];
-                        break;
+                }else{
+                    switch (identifier.state) {
+                        case JSPushNotificationStateAll:
+                        {
+                            [JSPUSH_NOTIFICATIONCENTER removeAllPendingNotificationRequests];
+                            [JSPUSH_NOTIFICATIONCENTER removeAllDeliveredNotifications];
+                            break;
+                        }
+                        case JSPushNotificationStatePending:
+                        {
+                            [JSPUSH_NOTIFICATIONCENTER removeAllPendingNotificationRequests];
+                            break;
+                        }
+                        case JSPushNotificationStateDelivered:
+                        {
+                            [JSPUSH_NOTIFICATIONCENTER removeAllDeliveredNotifications];
+                            break;
+                        }
+                        default:
+                            break;
                     }
-                    case JSPushNotificationStateDelivered:
-                    {
-                        [JSPUSH_NOTIFICATIONCENTER removeAllDeliveredNotifications];
-                        break;
-                    }
-                    default:
-                        break;
                 }
             }
         }
 #endif
     }else{
         
-        if(identifier.notificationObj != nil){
-            [[UIApplication sharedApplication] cancelLocalNotification:identifier.notificationObj];
-        }else if ( (identifier == nil) || (![JSPushUtilities jspush_validateArray:identifier.identifiers]) ){
-            [[UIApplication sharedApplication] cancelAllLocalNotifications];
-        }else{
-            NSArray *notis = [[UIApplication sharedApplication] scheduledLocalNotifications];
-            for (UILocalNotification *noti in notis) {
-                for (NSString *iden in identifier.identifiers) {
-                    NSString *notiIden =  noti.userInfo[JSPUSHSERVICE_LOCALNOTI_IDENTIFIER];
-                    if ([notiIden isEqualToString:iden]) {
-                        [[UIApplication sharedApplication] cancelLocalNotification:noti];
+        Class UIApplicationClass = NSClassFromString(@"UIApplication");
+        if (!UIApplicationClass || ![UIApplicationClass respondsToSelector:@selector(sharedApplication)]){
+            return;
+        }
+        
+        if ([UIApplication class] && [UIApplication sharedApplication]) {
+            
+            BOOL hasResponsed10BelowMethods = ([[UIApplication sharedApplication] respondsToSelector:@selector(cancelLocalNotification:)]) && ([[UIApplication sharedApplication] respondsToSelector:@selector(cancelAllLocalNotifications)]) && ([[UIApplication sharedApplication] respondsToSelector:@selector(scheduledLocalNotifications)]);
+            
+            if (!hasResponsed10BelowMethods) {
+                return;
+            }
+            
+            if(identifier.notificationObj != nil){
+                [[UIApplication sharedApplication] cancelLocalNotification:identifier.notificationObj];
+            }else if ( (identifier == nil) || (![JSPushUtilities jspush_validateArray:identifier.identifiers])){
+                [[UIApplication sharedApplication] cancelAllLocalNotifications];
+            }else{
+                
+                NSArray *notis = [[UIApplication sharedApplication] scheduledLocalNotifications];
+                for (UILocalNotification *noti in notis) {
+                    for (NSString *iden in identifier.identifiers) {
+                        NSString *notiIden =  noti.userInfo[JSPUSHSERVICE_LOCALNOTI_IDENTIFIER];
+                        if ([notiIden isEqualToString:iden]) {
+                            [[UIApplication sharedApplication] cancelLocalNotification:noti];
+                        }
                     }
                 }
+                
             }
         }
     }
@@ -538,35 +570,62 @@ NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER       = @"com.jspush.kLocalNo
     }
     
     UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
-    content.title = jsContent.title;
-    content.subtitle = jsContent.subtitle;
-    content.body = jsContent.body;
-    content.badge = jsContent.badge;
-    content.categoryIdentifier = jsContent.categoryIdentifier;
-
-    if (jsContent.userInfo != nil) {
-        NSMutableDictionary *userInfoM = [jsContent.userInfo mutableCopy];
-        [userInfoM setValue:@"YES" forKey:kLocalNotificationFromJSPushServiceKey];
-        jsContent.userInfo = [userInfoM copy];
-    }else{
-        NSMutableDictionary *userInfoM = [NSMutableDictionary dictionary];
-        [userInfoM setValue:@"YES" forKey:kLocalNotificationFromJSPushServiceKey];
-        jsContent.userInfo = [userInfoM copy];
+    if (content) {
+        if (jsContent.title && [content respondsToSelector:@selector(setTitle:)]) {
+            content.title = jsContent.title;
+        }
+        
+        if (jsContent.subtitle && [content respondsToSelector:@selector(setSubtitle:)]) {
+            content.subtitle = jsContent.subtitle;
+        }
+        
+        if (jsContent.body && [content respondsToSelector:@selector(setBody:)]) {
+            content.body = jsContent.body;
+        }
+        
+        if (jsContent.badge && [content respondsToSelector:@selector(setBadge:)]) {
+            content.badge = jsContent.badge;
+        }
+        
+        if (jsContent.categoryIdentifier && [content respondsToSelector:@selector(setCategoryIdentifier:)]) {
+            content.categoryIdentifier = jsContent.categoryIdentifier;
+        }
+        
+        if (jsContent.userInfo != nil) {
+            NSMutableDictionary *userInfoM = [jsContent.userInfo mutableCopy];
+            [userInfoM setValue:@"YES" forKey:kLocalNotificationFromJSPushServiceKey];
+            jsContent.userInfo = [userInfoM copy];
+        }else{
+            NSMutableDictionary *userInfoM = [NSMutableDictionary dictionary];
+            [userInfoM setValue:@"YES" forKey:kLocalNotificationFromJSPushServiceKey];
+            jsContent.userInfo = [userInfoM copy];
+        }
+        
+        if ([content respondsToSelector:@selector(setUserInfo:)]) {
+            content.userInfo = jsContent.userInfo;
+        }
+        
+        //假如sound为空，或者为default，设置为默认声音
+        if ([content respondsToSelector:@selector(setSound:)]) {
+            if ( !([JSPushUtilities jspush_validateString:(jsContent.sound)]) || [jsContent.sound isEqualToString:@"default"]) {
+                content.sound = [UNNotificationSound defaultSound];
+            }else{
+                content.sound = [UNNotificationSound soundNamed:jsContent.sound];
+            }
+        }
+        
+        if (jsContent.attachments && [content respondsToSelector:@selector(setAttachments:)]) {
+            content.attachments = jsContent.attachments;
+        }
+        
+        if (jsContent.threadIdentifier && [content respondsToSelector:@selector(setThreadIdentifier:)]) {
+            content.threadIdentifier = jsContent.threadIdentifier;
+        }
+        
+        if (jsContent.launchImageName && [content respondsToSelector:@selector(setLaunchImageName:)]) {
+            content.launchImageName = jsContent.launchImageName;
+        }
     }
-    
-    content.userInfo = jsContent.userInfo;
-    
-    //假如sound为空，或者为default，设置为默认声音
-    if ( ([JSPushUtilities jspush_validateString:jsContent.sound]) || [jsContent.sound isEqualToString:@"default"]) {
-        content.sound = [UNNotificationSound defaultSound];
-    }else{
-        content.sound = [UNNotificationSound soundNamed:jsContent.sound];
-    }
-    
-    content.attachments = jsContent.attachments;
-    content.threadIdentifier = jsContent.threadIdentifier;
-    content.launchImageName = jsContent.launchImageName;
-    
     return content;
 }
 
@@ -647,24 +706,33 @@ NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER       = @"com.jspush.kLocalNo
     UILocalNotification *notification = [[UILocalNotification alloc] init];
     if (notification) {
         // 设置通知的提醒时间
-        notification.timeZone = [NSTimeZone defaultTimeZone]; // 使用本地时区
-        notification.fireDate = fireDate;
+        if([notification respondsToSelector:@selector(setTimeZone:)]){
+            notification.timeZone = [NSTimeZone defaultTimeZone]; // 使用本地时区
+        }
+        
+        if(fireDate && [notification respondsToSelector:@selector(setFireDate:)]){
+            notification.fireDate = fireDate;
+        }
         
         // 设置重复间隔
-        //        notification.repeatInterval = kCFCalendarUnitDay;
+        // notification.repeatInterval = kCFCalendarUnitDay;
         
         // 设置提醒的文字内容
-        if(JSPUSH_IOS_8_2){
+         if(JSPUSH_SYSTEM_VERSION_GREATER_THAN(@"8.2")){
 #if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= JSPUSH_IPHONE_8_2) )
-            if([notification respondsToSelector:@selector(setAlertTitle:)]){
-                notification.alertTitle = alertTitle;     //8.2才支持,默认是应用名称
-            }
+         if([notification respondsToSelector:@selector(setAlertTitle:)]){
+                //8.2才支持,默认是应用名称
+                notification.alertTitle = alertTitle;
+         }
 #endif
+         }
+        
+        if(alertBody && [notification respondsToSelector:@selector(setAlertBody:)]){
+            notification.alertBody   = alertBody;     //显示主体
         }
-        notification.alertBody   = alertBody;     //显示主体
 #if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= JSPUSH_IPHONE_8_0) )
         if(JSPUSH_IOS_8_0){
-            if([notification respondsToSelector:@selector(setCategory:)]){
+            if(category && [notification respondsToSelector:@selector(setCategory:)]){
                 notification.category = category;
             }
             //设置地理位置
@@ -678,30 +746,38 @@ NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER       = @"com.jspush.kLocalNo
             }
         }
 #endif
-        
         //设置侧滑按钮文字
-        notification.hasAction = YES;
-        notification.alertAction = alertAction;
+        
+         if([notification respondsToSelector:@selector(setHasAction:)]){
+             notification.hasAction = YES;
+         }
+         if(alertAction && [notification respondsToSelector:@selector(setAlertAction:)]){
+             notification.alertAction = alertAction;
+         }
         
         // 通知提示音
-        if(soundName){
-            notification.soundName = soundName;     //默认提示音：UILocalNotificationDefaultSoundName
-        }else{
-            notification.soundName = UILocalNotificationDefaultSoundName;
+        if([notification respondsToSelector:@selector(setSoundName:)]){
+            if(soundName){
+                notification.soundName = soundName;     //默认提示音：UILocalNotificationDefaultSoundName
+            }else{
+                notification.soundName = UILocalNotificationDefaultSoundName;
+            }
         }
         
         // 设置应用程序右上角的提醒个数
-        if(badge != nil){
-            NSInteger badgeNum = [badge integerValue];
-            if(badgeNum == 0){
-                notification.applicationIconBadgeNumber = 0;
-            }else if(badgeNum > 0){
-                notification.applicationIconBadgeNumber = badgeNum;
-            }else if(badgeNum < 0){
-                notification.applicationIconBadgeNumber++;
+        if([notification respondsToSelector:@selector(setApplicationIconBadgeNumber:)]){
+            if(badge != nil){
+                NSInteger badgeNum = [badge integerValue];
+                if(badgeNum == 0){
+                    notification.applicationIconBadgeNumber = 0;
+                }else if(badgeNum > 0){
+                    notification.applicationIconBadgeNumber = badgeNum;
+                }else if(badgeNum < 0){
+                    notification.applicationIconBadgeNumber++;
+                }
             }
         }
- 
+        
         // 设定通知的userInfo，用来标识该通知
         NSMutableDictionary *aUserInfo = nil;
         if(userInfo){
@@ -709,10 +785,16 @@ NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER       = @"com.jspush.kLocalNo
         }else{
             aUserInfo = [NSMutableDictionary dictionary];
         }
-        aUserInfo[JSPUSHSERVICE_LOCALNOTI_IDENTIFIER] = notificationKey;
-        aUserInfo[kLocalNotificationFromJSPushServiceKey] = @"YES";
         
-        notification.userInfo = [aUserInfo copy];
+        if(aUserInfo){
+            if(notificationKey){
+                aUserInfo[JSPUSHSERVICE_LOCALNOTI_IDENTIFIER] = notificationKey;
+            }
+            aUserInfo[kLocalNotificationFromJSPushServiceKey] = @"YES";
+            if([notification respondsToSelector:@selector(setUserInfo:)]){
+                notification.userInfo = [aUserInfo copy];
+            }
+        }
     }
     return notification;
 }

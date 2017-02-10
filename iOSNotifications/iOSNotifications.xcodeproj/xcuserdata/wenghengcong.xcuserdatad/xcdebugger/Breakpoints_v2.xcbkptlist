@@ -276,11 +276,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iOSNotifications/JSPushService/JSPushService.m"
-            timestampString = "507652031.169268"
+            timestampString = "508382030.539803"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "635"
-            endingLineNumber = "635"
+            startingLineNumber = "694"
+            endingLineNumber = "694"
             landmarkName = "@implementation JSPushService"
             landmarkType = "3">
          </BreakpointContent>

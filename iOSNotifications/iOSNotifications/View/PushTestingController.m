@@ -60,6 +60,12 @@
     [self alertUserOpenPush];
     
     [self test_systemCompare];
+    
+    NSString *tstStr = @"8.4.1";
+    float flt = [tstStr floatValue];
+    if (flt > 8.2) {
+        NSLog(@"haha");
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -494,6 +500,26 @@
     double double_ver = [version doubleValue];
     NSLog(@"%@-%d-%f-%f",version,int_ver,float_ver,double_ver);
     
+    if (int_ver >= 9) {
+        NSLog(@"hah");
+    }
+    
+    if (int_ver >= 9.0) {
+        NSLog(@"mmm");
+    }
+    
+    if (int_ver >= 9.3) {
+        NSLog(@"sss");
+    }
+    
+    NSInteger ver_int = [[ [UIDevice currentDevice] systemVersion] integerValue];
+    if (ver_int >= 10) {
+        NSLog(@"gggg");
+    }
+    
+    if ([[ [UIDevice currentDevice] systemVersion] integerValue] >= 10) {
+        NSLog(@"");
+    }
     
     double coreVersion = kCFCoreFoundationVersionNumber;
     double nsfoundaVersion = NSFoundationVersionNumber;
@@ -502,7 +528,7 @@
     //NSOrderedAscending\NSOrderedDescending
     //前者相对于后者
     //10.0相对于10是低版本，显然不合理，所以该判断也是存在问题的。
-    NSInteger compareResult = [@"8.3" compare:@"8.2" options:NSNumericSearch];
+    NSInteger compareResult = [@"8.4.1" compare:@"8.2" options:NSNumericSearch];
     NSLog(@"string result %ld",(long)compareResult);
     
 }

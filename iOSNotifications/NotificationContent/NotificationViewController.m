@@ -54,7 +54,7 @@
      注意加载图片的机制，要么在NotificationContent中文件夹中放置对应的图片
      */
     
-    if ([notification.request.content.categoryIdentifier isEqualToString:@"customUI"]) {
+    if ([notification.request.content.categoryIdentifier isEqualToString:@"pictureCat"]) {
         //注意：image读取的层次结构
         NSString *urlFromNoti = notification.request.content.userInfo[@"image"];
         if (urlFromNoti) {

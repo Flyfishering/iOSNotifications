@@ -23,6 +23,14 @@ Everything tha about notification in iOS.
 ​		[local notification plays only default sound after app update](https://forums.developer.apple.com/thread/63186)
 ​		[UNNotificationSound not playing custom sound](https://forums.developer.apple.com/message/183937)
 
+#### 3. iOS Notification携带图片展示被截图 
+
+​		在iOS 10.2以下，如果带图片的通知，显示出来会被截。[[参考](https://forums.developer.apple.com/message/154320#154320)]。
+
+​		可以自定义截图，[[API](https://developer.apple.com/reference/usernotifications/unnotificationattachmentoptionsthumbnailclippingrectkey)] .
+
+​		[[讨论](http://stackoverflow.com/questions/39086878/media-attachment-crops-image-in-ios-10-notification)]
+
 *****
 
 ## iOS 10的新框架

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E2E26261E546CB800AEED81 /* joy.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E2E26251E546CB800AEED81 /* joy.png */; };
 		5E4DE4D01E001FDF004B90C7 /* JSNotificationContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4DE4C41E001FDF004B90C7 /* JSNotificationContent.m */; };
 		5E4DE4D11E001FDF004B90C7 /* JSNotificationIdentifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4DE4C61E001FDF004B90C7 /* JSNotificationIdentifier.m */; };
 		5E4DE4D21E001FDF004B90C7 /* JSNotificationRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4DE4C81E001FDF004B90C7 /* JSNotificationRequest.m */; };
@@ -26,22 +27,14 @@
 		5EB7A4851DDC61E4007E8C1F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EB7A4641DDC61E4007E8C1F /* LaunchScreen.storyboard */; };
 		5EB7A4861DDC61E4007E8C1F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EB7A4661DDC61E4007E8C1F /* Main.storyboard */; };
 		5EB7A4881DDC61E4007E8C1F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB7A46C1DDC61E4007E8C1F /* main.m */; };
-		5EB7A48D1DDC61E4007E8C1F /* Action列表.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 5EB7A4761DDC61E4007E8C1F /* Action列表.PNG */; };
-		5EB7A48F1DDC61E4007E8C1F /* InputAction.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 5EB7A4781DDC61E4007E8C1F /* InputAction.PNG */; };
 		5EB7A4901DDC61E4007E8C1F /* media.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 5EB7A4791DDC61E4007E8C1F /* media.mp4 */; };
-		5EB7A4911DDC61E4007E8C1F /* 图片.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 5EB7A47A1DDC61E4007E8C1F /* 图片.PNG */; };
-		5EB7A4921DDC61E4007E8C1F /* 横幅图片.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 5EB7A47B1DDC61E4007E8C1F /* 横幅图片.PNG */; };
-		5EB7A4931DDC61E4007E8C1F /* 自定义界面.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 5EB7A47C1DDC61E4007E8C1F /* 自定义界面.PNG */; };
-		5EB7A4941DDC61E4007E8C1F /* 视频.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 5EB7A47D1DDC61E4007E8C1F /* 视频.PNG */; };
-		5EB7A4951DDC61E4007E8C1F /* 通知中心图片.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 5EB7A47E1DDC61E4007E8C1F /* 通知中心图片.PNG */; };
 		5EB7A4B21DDD384D007E8C1F /* wake.caf in Resources */ = {isa = PBXBuildFile; fileRef = 5EB7A4B11DDD384D007E8C1F /* wake.caf */; };
 		5EB7A4C31DDEF8B1007E8C1F /* PayloadJSON.md in Sources */ = {isa = PBXBuildFile; fileRef = 5EB7A4C21DDEF8B1007E8C1F /* PayloadJSON.md */; };
 		5EBC82101E1123A10068A20C /* JSRegisterConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBC820F1E1123A10068A20C /* JSRegisterConfig.m */; };
 		5EBC82131E1134A60068A20C /* JSNotificationResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBC82121E1134A60068A20C /* JSNotificationResponse.m */; };
 		5EBC82161E1136670068A20C /* JSNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBC82151E1136670068A20C /* JSNotification.m */; };
-		5ED6A2C61E02257C001A3DE2 /* joy.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ED6A2C51E02257C001A3DE2 /* joy.png */; };
 		5EDD91DA1E1CA15E00F8A236 /* NotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EDD91D91E1CA15E00F8A236 /* NotificationViewController.m */; };
-		5EDD91DD1E1CDD4E00F8A236 /* joy.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ED6A2C51E02257C001A3DE2 /* joy.png */; };
+		5EE6E3DB1E53F470008EAECB /* Resources.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EE6E3DA1E53F470008EAECB /* Resources.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +70,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5E2E26251E546CB800AEED81 /* joy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = joy.png; sourceTree = "<group>"; };
 		5E4DE4C31E001FDF004B90C7 /* JSNotificationContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSNotificationContent.h; sourceTree = "<group>"; };
 		5E4DE4C41E001FDF004B90C7 /* JSNotificationContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSNotificationContent.m; sourceTree = "<group>"; };
 		5E4DE4C51E001FDF004B90C7 /* JSNotificationIdentifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSNotificationIdentifier.h; sourceTree = "<group>"; };
@@ -108,14 +102,7 @@
 		5EB7A4671DDC61E4007E8C1F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5EB7A4681DDC61E4007E8C1F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5EB7A46C1DDC61E4007E8C1F /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		5EB7A4761DDC61E4007E8C1F /* Action列表.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Action列表.PNG"; sourceTree = "<group>"; };
-		5EB7A4781DDC61E4007E8C1F /* InputAction.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = InputAction.PNG; sourceTree = "<group>"; };
 		5EB7A4791DDC61E4007E8C1F /* media.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = media.mp4; sourceTree = "<group>"; };
-		5EB7A47A1DDC61E4007E8C1F /* 图片.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "图片.PNG"; sourceTree = "<group>"; };
-		5EB7A47B1DDC61E4007E8C1F /* 横幅图片.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "横幅图片.PNG"; sourceTree = "<group>"; };
-		5EB7A47C1DDC61E4007E8C1F /* 自定义界面.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "自定义界面.PNG"; sourceTree = "<group>"; };
-		5EB7A47D1DDC61E4007E8C1F /* 视频.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "视频.PNG"; sourceTree = "<group>"; };
-		5EB7A47E1DDC61E4007E8C1F /* 通知中心图片.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "通知中心图片.PNG"; sourceTree = "<group>"; };
 		5EB7A4B11DDD384D007E8C1F /* wake.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = wake.caf; sourceTree = "<group>"; };
 		5EB7A4C21DDEF8B1007E8C1F /* PayloadJSON.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = PayloadJSON.md; sourceTree = "<group>"; };
 		5EBC820B1E11222B0068A20C /* JSServiceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSServiceDelegate.h; sourceTree = "<group>"; };
@@ -127,9 +114,9 @@
 		5EBC82151E1136670068A20C /* JSNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSNotification.m; sourceTree = "<group>"; };
 		5EC8A52D1D9127F000C8AC3C /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		5EC8A52F1D9127F000C8AC3C /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
-		5ED6A2C51E02257C001A3DE2 /* joy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = joy.png; sourceTree = "<group>"; };
 		5EDD91D81E1CA15E00F8A236 /* NotificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationViewController.h; sourceTree = "<group>"; };
 		5EDD91D91E1CA15E00F8A236 /* NotificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationViewController.m; sourceTree = "<group>"; };
+		5EE6E3DA1E53F470008EAECB /* Resources.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Resources.xcassets; sourceTree = "<group>"; };
 		5EF2B4451CC7D51000AC71C5 /* iOSNotifications.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSNotifications.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -236,16 +223,10 @@
 		5EB7A4751DDC61E4007E8C1F /* resource */ = {
 			isa = PBXGroup;
 			children = (
-				5ED6A2C51E02257C001A3DE2 /* joy.png */,
-				5EB7A4761DDC61E4007E8C1F /* Action列表.PNG */,
-				5EB7A4B11DDD384D007E8C1F /* wake.caf */,
-				5EB7A4781DDC61E4007E8C1F /* InputAction.PNG */,
+				5EE6E3DA1E53F470008EAECB /* Resources.xcassets */,
 				5EB7A4791DDC61E4007E8C1F /* media.mp4 */,
-				5EB7A47A1DDC61E4007E8C1F /* 图片.PNG */,
-				5EB7A47B1DDC61E4007E8C1F /* 横幅图片.PNG */,
-				5EB7A47C1DDC61E4007E8C1F /* 自定义界面.PNG */,
-				5EB7A47D1DDC61E4007E8C1F /* 视频.PNG */,
-				5EB7A47E1DDC61E4007E8C1F /* 通知中心图片.PNG */,
+				5EB7A4B11DDD384D007E8C1F /* wake.caf */,
+				5E2E26251E546CB800AEED81 /* joy.png */,
 			);
 			path = resource;
 			sourceTree = "<group>";
@@ -408,7 +389,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5EDD91DD1E1CDD4E00F8A236 /* joy.png in Resources */,
 				5E8CACCD1E1C8DFD00671F60 /* Media.xcassets in Resources */,
 				5E8CACC41E1C899400671F60 /* MainInterface.storyboard in Resources */,
 			);
@@ -425,17 +405,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5ED6A2C61E02257C001A3DE2 /* joy.png in Resources */,
-				5EB7A4941DDC61E4007E8C1F /* 视频.PNG in Resources */,
-				5EB7A4931DDC61E4007E8C1F /* 自定义界面.PNG in Resources */,
-				5EB7A48F1DDC61E4007E8C1F /* InputAction.PNG in Resources */,
+				5EE6E3DB1E53F470008EAECB /* Resources.xcassets in Resources */,
 				5EB7A4901DDC61E4007E8C1F /* media.mp4 in Resources */,
 				5EB7A4861DDC61E4007E8C1F /* Main.storyboard in Resources */,
+				5E2E26261E546CB800AEED81 /* joy.png in Resources */,
 				5EB7A4841DDC61E4007E8C1F /* Assets.xcassets in Resources */,
-				5EB7A48D1DDC61E4007E8C1F /* Action列表.PNG in Resources */,
-				5EB7A4911DDC61E4007E8C1F /* 图片.PNG in Resources */,
-				5EB7A4921DDC61E4007E8C1F /* 横幅图片.PNG in Resources */,
-				5EB7A4951DDC61E4007E8C1F /* 通知中心图片.PNG in Resources */,
 				5EB7A4B21DDD384D007E8C1F /* wake.caf in Resources */,
 				5EB7A4851DDC61E4007E8C1F /* LaunchScreen.storyboard in Resources */,
 			);

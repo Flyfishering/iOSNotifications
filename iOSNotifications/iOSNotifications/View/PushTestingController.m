@@ -60,12 +60,7 @@
     [self alertUserOpenPush];
     
     [self test_systemCompare];
-    
-    NSString *tstStr = @"8.4.1";
-    float flt = [tstStr floatValue];
-    if (flt > 8.2) {
-        NSLog(@"haha");
-    }
+    [self testVersion];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -367,10 +362,13 @@
     NSError *error = nil;
     //注意URL是本地图片路径，而不是http
     //假如用网络地址，UNNotificationAttachment会创建失败，为nil
-    NSURL * imageUrl = [[NSBundle mainBundle] URLForResource:@"joy" withExtension:@"png"];
+    NSURL * imageUrl = [[NSBundle mainBundle] URLForResource:@"joy" withExtension:@"jpg"];
     UNNotificationAttachment *imgAtt = [UNNotificationAttachment attachmentWithIdentifier:@"image" URL:imageUrl options:nil error:&error];
-    content.attachments = @[imgAtt];
+    if (imgAtt) {
+        content.attachments = @[imgAtt];
+    }
 #endif
+    
     
     content.body = @"预计今天下午3：00~5：00准时送达。";
     content.badge = @1;
@@ -492,6 +490,39 @@
 
 #pragma  mark - Test System Compare
 
+- (void)testVersion
+{
+    /*
+     iOS 版本号是两位或者三位
+     大版本如：8.4，9.2，10.1
+     小版本如：8.4.1，9.3.3，10.2.1
+     */
+    NSString *version = [[UIDevice currentDevice] systemVersion];
+    version = @"10.2.1";
+
+    NSArray *components = [version componentsSeparatedByString:@"."];
+    NSInteger major = 0;
+    NSInteger minor = 0;
+    NSInteger micro = 0;
+
+    if (components.count == 0) {
+        major = [version integerValue];
+    }else if (components.count == 1){
+        major = [version integerValue];
+    }if (components.count == 2){
+        major = [components[0] integerValue];
+        minor = [components[1] integerValue];
+    }else if (components.count == 3){
+        major = [components[0] integerValue];
+        minor = [components[1] integerValue];
+        micro = [components[2] integerValue];
+    }
+    
+    NSInteger versionInteget = major * 100 + minor * 10 + micro;
+
+    NSLog(@"%ld",(long)versionInteget);
+}
+
 - (void)test_systemCompare
 {
     NSString *version = [[UIDevice currentDevice] systemVersion];
@@ -531,6 +562,20 @@
     NSInteger compareResult = [@"8.4.1" compare:@"8.2" options:NSNumericSearch];
     NSLog(@"string result %ld",(long)compareResult);
     
+    NSDictionary *dic = @{@"name":@"wenghengcong",@"age":@"18"};
+    NSString *name = dic[@"name"];
+    NSString *country = dic[@"country"];
+    NSLog(@"%@%@",name,country);
+    
+    if ([@"China" isEqualToString:country]) {
+        NSLog(@"print compare result");
+    }
+    
+    NSString *tstStr = @"8.4.1";
+    float flt = [tstStr floatValue];
+    if (flt > 8.2) {
+        NSLog(@"haha");
+    }
 }
 
 

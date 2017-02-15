@@ -7,6 +7,8 @@
 //
 
 #import "NotificationService.h"
+#import <CoreGraphics/CoreGraphics.h>
+#import <UIKit/UIKit.h>
 
 /*
  
@@ -31,7 +33,9 @@
  
  */
 
+
 static NSString *notiSmallImageKey = @"isqImgPath";
+
 
 @interface NotificationService ()
 
@@ -44,7 +48,6 @@ static NSString *notiSmallImageKey = @"isqImgPath";
 
 - (void)didReceiveNotificationRequest:(UNNotificationRequest *)request withContentHandler:(void (^)(UNNotificationContent * _Nonnull))contentHandler {
     
-    
     if ( (request == nil) || (request.content == nil) || (request.content.userInfo == nil) ) {
         return;
     }
@@ -52,16 +55,15 @@ static NSString *notiSmallImageKey = @"isqImgPath";
     self.contentHandler = contentHandler;
     self.bestAttemptContent = [request.content mutableCopy];
     
-    // Modify the notification content here...
-    self.bestAttemptContent.title = [NSString stringWithFormat:@"%@ [modified]", self.bestAttemptContent.title];
-
-    //在此处修改category，可达到对应category的手段！！！
-    //可以配合服务端针对category来进行不同的自定义页面的设置。
-    //NSString *categoryFormServer = [self.bestAttemptContent.userInfo objectForKey:@"js_category"];
-    //self.bestAttemptContent.categoryIdentifier = categoryFormServer;
+    //小于10.2的系统，都不会执行该流程
+    if ([self systemVersionInteger] < 1020) {
+        self.contentHandler(self.bestAttemptContent);
+        return;
+    }
     
-    //自定义一个字段image，用于下载地址：
-    //同时，需要注意的是，在下载图片是采用http时，需要在extension info.plist加上 app transport
+    // Modify the notification content here...
+    //self.bestAttemptContent.title = [NSString stringWithFormat:@"%@ [modified]", self.bestAttemptContent.title];
+    
     NSString *urlStr = [self.bestAttemptContent.userInfo objectForKey:notiSmallImageKey];
     
     __weak __typeof__ (self) wself = self;
@@ -87,13 +89,10 @@ static NSString *notiSmallImageKey = @"isqImgPath";
         }
         
     });
-
+    
 }
 
 
-/*
- 在一定时间内没有调用 contentHandler 的话，系统会调用这个方法，来告诉你大限已到。你可以选择什么都不做，这样的话系统将当作什么都没发生，简单地显示原来的通知。可能你其实已经设置好了绝大部分内容，只是有很少一部分没有完成，这时你也可以像例子中这样调用 contentHandler 来显示一个变更“中途”的通知
- */
 - (void)serviceExtensionTimeWillExpire {
     // Called just before the extension will be terminated by the system.
     // Use this as an opportunity to deliver your "best attempt" at modified content, otherwise the original push payload will be used.
@@ -124,22 +123,33 @@ static NSString *notiSmallImageKey = @"isqImgPath";
     
     __block UNNotificationAttachment *attachment = nil;
     NSURL *attachmentURL = [NSURL URLWithString:urlString];
-    NSString *fileExt = [self fileExtensionForMediaType:type];
+    if (!attachmentURL) {
+        return;
+    }
     
+    NSString *fileExt = [self fileExtensionForMediaType:type];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     [[session downloadTaskWithURL:attachmentURL
                 completionHandler:^(NSURL *temporaryFileLocation, NSURLResponse *response, NSError *error) {
                     if (error != nil) {
-                        NSLog(@"%@", error.localizedDescription);
+                        //                        NSLog(@"%@", error.localizedDescription);
                     } else {
-                        NSFileManager *fileManager = [NSFileManager defaultManager];
-                        NSURL *localURL = [NSURL fileURLWithPath:[temporaryFileLocation.path stringByAppendingString:fileExt]];
-                        [fileManager moveItemAtURL:temporaryFileLocation toURL:localURL error:&error];
-                        
-                        NSError *attachmentError = nil;
-                        attachment = [UNNotificationAttachment attachmentWithIdentifier:notiSmallImageKey URL:localURL options:nil error:&attachmentError];
-                        if (attachmentError) {
-                            NSLog(@"%@", attachmentError.localizedDescription);
+                        if (temporaryFileLocation) {
+                            NSFileManager *fileManager = [NSFileManager defaultManager];
+                            NSURL *localURL = [NSURL fileURLWithPath:[temporaryFileLocation.path stringByAppendingString:fileExt]];
+                            if (localURL) {
+                                [fileManager moveItemAtURL:temporaryFileLocation toURL:localURL error:&error];
+                                NSError *attachmentError = nil;
+                                //NSMutableDictionary *option = [NSMutableDictionary dictionary];
+                                //option[UNNotificationAttachmentOptionsThumbnailClippingRectKey] = (__bridge id _Nullable)((CGRectCreateDictionaryRepresentation(CGRectMake(0.25, 0.25, 0.5, 0.5))));
+                                if (localURL) {
+                                    attachment = [UNNotificationAttachment attachmentWithIdentifier:notiSmallImageKey URL:localURL options:nil error:&attachmentError];
+                                    if (attachmentError) {
+                                        //NSLog(@"%@", attachmentError.localizedDescription);
+                                    }
+                                }
+                            }
+                            
                         }
                     }
                     dispatch_async(dispatch_get_main_queue(), ^{
@@ -149,6 +159,40 @@ static NSString *notiSmallImageKey = @"isqImgPath";
                     });
                 }]
      resume];
+}
+
+/**
+ 返回系统版本号
+ */
+- (NSInteger)systemVersionInteger
+{
+    /*
+     iOS 版本号是两位或者三位
+     大版本如：8.4，9.2，10.1
+     小版本如：8.4.1，9.3.3，10.2.1
+     */
+    NSString *version = [[UIDevice currentDevice] systemVersion];
+    NSArray *components = [version componentsSeparatedByString:@"."];
+    NSInteger major = 0;
+    NSInteger minor = 0;
+    NSInteger micro = 0;
+    
+    if (components.count == 0) {
+        major = [version integerValue];
+    }else if (components.count == 1){
+        major = [version integerValue];
+    }if (components.count == 2){
+        major = [components[0] integerValue];
+        minor = [components[1] integerValue];
+    }else if (components.count == 3){
+        major = [components[0] integerValue];
+        minor = [components[1] integerValue];
+        micro = [components[2] integerValue];
+    }
+    
+    NSInteger versionInteger = major * 100 + minor * 10 + micro;
+    //    NSLog(@"%ld",(long)versionInteger);
+    return versionInteger;
 }
 
 @end

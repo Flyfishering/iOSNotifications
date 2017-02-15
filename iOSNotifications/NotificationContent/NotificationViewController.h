@@ -23,19 +23,34 @@
 
 @interface NotificationViewController : UIViewController <UNNotificationContentExtension>
 
-@property (strong, nonatomic) IBOutlet UIView *contentView;
 
-@property IBOutlet UILabel *topText;
-@property (weak, nonatomic) IBOutlet UIImageView *topBackground;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
-@property IBOutlet UIImageView *contentImg;
+@property (weak, nonatomic) IBOutlet UIImageView *showImageV;
 
-@property IBOutlet UILabel *botText;
+@property (weak, nonatomic) IBOutlet UIImageView *blurtImageV;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentTop;
+@property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 
+/**
+ 图片高度
+ */
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageHeight;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *botTextTop;
+/**
+ 内容与图片的距离
+ */
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentTop;
+
+/**
+ 蒙版高度
+ */
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *blurImageH;
+
+/**
+ 内容高度
+ */
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentHeight;
+
 @end
 

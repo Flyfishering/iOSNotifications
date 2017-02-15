@@ -34,6 +34,7 @@
  */
 
 
+
 /*
  
  apns payload test demo
@@ -64,6 +65,7 @@ static NSString *forceTouchTitleKey = @"title";
 static NSString *forceTouchContentKey = @"content";
 
 static NSString *forceTouchCategoryPic = @"pictureCat";
+static NSString *forceTouchCategoryDefault = @"defaultCat";
 
 @implementation NotificationViewController
 
@@ -71,18 +73,22 @@ static NSString *forceTouchCategoryPic = @"pictureCat";
     [super viewDidLoad];
     // Do any required interface initialization here.
     //    self.botText.numberOfLines = 3;
-    self.contentImg.backgroundColor = [UIColor clearColor];
-    self.contentImg.layer.borderColor = [UIColor clearColor].CGColor;
-    self.botText.textColor = [UIColor colorWithRed:102/255.0 green:102/255.0 blue:102/255.0 alpha:1.0];
-    self.preferredContentSize = CGSizeMake(self.view.bounds.size.width, 243);
+    self.view.backgroundColor = [UIColor clearColor];
+    self.blurtImageV.hidden = YES;
+    self.showImageV.backgroundColor = [UIColor clearColor];
+    self.showImageV.layer.borderColor = [UIColor clearColor].CGColor;
+    self.contentLabel.textColor = [UIColor colorWithRed:102/255.0 green:102/255.0 blue:102/255.0 alpha:1.0];
+    [self.view bringSubviewToFront:self.blurtImageV];
 }
 
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-
 }
 
+/**
+ 处理收到的通知
+ */
 - (void)didReceiveNotification:(UNNotification *)notification {
     
     //后加载didReceiveNotification
@@ -94,24 +100,17 @@ static NSString *forceTouchCategoryPic = @"pictureCat";
         return;
     }
     
-    NSString *pushTitle = notification.request.content.userInfo[forceTouchTitleKey];
-    NSString *pushContent = notification.request.content.userInfo[forceTouchContentKey];
-    
-    CGFloat screenWidth = CGRectGetWidth([[UIScreen mainScreen] bounds]);
-    CGSize botTextSize = CGSizeMake(screenWidth-2*15-2*15, MAXFLOAT);
-    NSDictionary *attribute = @{NSFontAttributeName:[UIFont systemFontOfSize:13]};
-    CGRect botTextRect = [pushContent boundingRectWithSize:botTextSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attribute context:nil];
-    
-    self.topText.text = pushTitle;
-    self.botText.text = pushContent;
-    
-    CGFloat subHeight = 47-botTextRect.size.height;
-    self.preferredContentSize = CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height-subHeight);
-    
-    [self.view layoutIfNeeded];
-    
+    NSString *categoryId = notification.request.content.categoryIdentifier;
     __weak __typeof__(self) weakSelf = self;
-    if ([notification.request.content.categoryIdentifier isEqualToString:forceTouchCategoryPic]) {
+    
+    if ([categoryId isEqualToString:forceTouchCategoryPic]) {
+        
+        NSString *pushTitle = notification.request.content.userInfo[forceTouchTitleKey];
+        NSString *pushContent = notification.request.content.userInfo[forceTouchContentKey];
+        self.titleLabel.text = pushTitle;
+        self.contentLabel.text = pushContent;
+        [self defaultCategoryLayoutView];
+        
         __strong __typeof__(self) strongSelf = weakSelf;
         //注意：image读取的层次结构
         NSString *urlFromNoti = notification.request.content.userInfo[forceTouchImageKey];
@@ -119,70 +118,141 @@ static NSString *forceTouchCategoryPic = @"pictureCat";
             if (urlFromNoti) {
                 [self downloadImageWithURL:urlFromNoti withCompletedHanlder:^(NSURL *fileUrl, NSData *data) {
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        
                         if (data==nil) {
-                            [strongSelf defaultCategoryLayoutView];
+                            // [strongSelf defaultCategoryLayoutView];
                         }else{
                             UIImage *image = [UIImage imageWithData:data];
                             if (image) {
-                                strongSelf.contentImg.image = [UIImage imageWithData:data] ;
-                                [strongSelf.view layoutIfNeeded];
+                                strongSelf.showImageV.image = [UIImage imageWithData:data] ;
+                                [strongSelf pictureCategoryLayoutView];
                             }else{
-                                [strongSelf defaultCategoryLayoutView];
+                                // [strongSelf defaultCategoryLayoutView];
                             }
                         }
                     });
+                    
                 }];
             }else{
                 [self defaultCategoryLayoutView];
             }
         }
         
+    }else if([categoryId isEqualToString:forceTouchCategoryDefault]){
+        
+        NSString *pushTitle = @"手机京东";
+        NSDictionary *aps = notification.request.content.userInfo[@"aps"];
+        NSString *pushContent = nil;
+        if (aps) {
+            id alert = [aps objectForKey:@"alert"];
+            if ( alert && [alert isKindOfClass:[NSString class]]) {
+                pushContent = alert;
+            }else if (alert && [alert isKindOfClass:[NSDictionary class]]){
+                pushContent = [alert objectForKey:@"body"];
+            }else{
+                pushContent = @"";
+            }
+        }else{
+            pushContent = @"";
+        }
+        self.titleLabel.text = pushTitle;
+        self.contentLabel.text = pushContent;
+        [self defaultCategoryLayoutView];
+        
+        [self defaultCategoryLayoutView];
+    }else{
+        [self defaultCategoryLayoutView];
     }
+    
 }
 
-// If implemented, the method will be called when the user taps on one
-// of the notification actions. The completion handler can be called
-// after handling the action to dismiss the notification and forward the
-// action to the app if necessary.
-- (void)didReceiveNotificationResponse:(UNNotificationResponse *)response completionHandler:(void (^)(UNNotificationContentExtensionResponseOption))completion
-{
-    completion(UNNotificationContentExtensionResponseOptionDoNotDismiss);
-}
+#pragma mark -
 
+/**
+ 默认无图的样式布局
+ */
 - (void)defaultCategoryLayoutView
 {
-    self.topBackground.hidden = YES;
-    self.preferredContentSize = CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height-138);
-    self.contentTop.constant = 0;
+    //    self.preferredContentSize = CGSizeMake(self.view.bounds.size.width, 100);
+    
+    CGFloat fixH = [self.contentLabel sizeThatFits:CGSizeMake(self.view.bounds.size.width, CGFLOAT_MAX)].height;
+    
+    if (fixH > 47.0) {
+        fixH = 47.0;
+        self.contentTop.constant = 2;
+        self.preferredContentSize = CGSizeMake(self.view.bounds.size.width, 100);
+    }else{
+        CGFloat subHeight = 47-fixH;
+        self.contentTop.constant = -1;
+        self.contentHeight.constant = fixH;
+        self.preferredContentSize = CGSizeMake(self.view.bounds.size.width, 100-subHeight);
+    }
+    
+    self.blurtImageV.hidden = YES;
     self.imageHeight.constant = 0;
+    self.blurImageH.constant = 0;
     [self.view layoutIfNeeded];
 }
 
+/**
+ 大图样式布局
+ */
+- (void)pictureCategoryLayoutView
+{
+    //    self.preferredContentSize = CGSizeMake(self.view.bounds.size.width, 245);
+    CGFloat fixH = [self.contentLabel sizeThatFits:CGSizeMake(self.view.bounds.size.width, CGFLOAT_MAX)].height;
+    
+    if (fixH > 47.0) {
+        fixH = 47.0;
+        self.contentTop.constant = 10;
+        self.preferredContentSize = CGSizeMake(self.view.bounds.size.width, 245);
+    }else{
+        CGFloat subHeight = 47-fixH;
+        self.contentTop.constant = 7;
+        self.contentHeight.constant = fixH;
+        self.preferredContentSize = CGSizeMake(self.view.bounds.size.width, 245-subHeight);
+    }
+    
+    self.blurtImageV.hidden = NO;
+    self.imageHeight.constant = 138;
+    self.blurImageH.constant = 138;
+    [self.view layoutIfNeeded];
+}
+
+
+/**
+ 图片下载
+ 
+ @param urlStr <#urlStr description#>
+ @param completedHanlder <#completedHanlder description#>
+ */
 - (void)downloadImageWithURL:(NSString *)urlStr withCompletedHanlder:(void  (^)(NSURL *fileUrl , NSData *data))completedHanlder
 {
     if (urlStr) {
         
         NSURL *url = [NSURL URLWithString:urlStr];
-        
+        if (!url) {
+            return;
+        }
         NSURLSession *session = [NSURLSession sharedSession];
         
         NSURLSessionDataTask *task = [session dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
             
-            NSURL *documentsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
-            NSString *imageName = [response suggestedFilename];
-            documentsDirectoryURL = [documentsDirectoryURL URLByAppendingPathComponent:imageName];
-            
-            if (data && (error == nil)) {
-                if (completedHanlder) {
-                    completedHanlder(documentsDirectoryURL,data);
-                }else{
-                    completedHanlder(nil,nil);
+            if (error == nil) {
+                
+                NSURL *documentsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
+                if (documentsDirectoryURL) {
+                    NSString *imageName = [response suggestedFilename];
+                    documentsDirectoryURL = [documentsDirectoryURL URLByAppendingPathComponent:imageName];
+                    
+                    if (data && documentsDirectoryURL) {
+                        if (completedHanlder) {
+                            completedHanlder(documentsDirectoryURL,data);
+                        }
+                    }
                 }
+                
             }else{
                 if (completedHanlder) {
-                    completedHanlder(documentsDirectoryURL,data);
-                }else{
                     completedHanlder(nil,nil);
                 }
             }

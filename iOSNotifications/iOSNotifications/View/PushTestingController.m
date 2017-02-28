@@ -488,7 +488,7 @@
     return YES;
 }
 
-#pragma  mark - Test System Compare
+#pragma  mark - Test System Version Compare
 
 - (void)testVersion
 {

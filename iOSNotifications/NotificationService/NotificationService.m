@@ -132,7 +132,7 @@ static NSString *notiSmallImageKey = @"isqImgPath";
     [[session downloadTaskWithURL:attachmentURL
                 completionHandler:^(NSURL *temporaryFileLocation, NSURLResponse *response, NSError *error) {
                     if (error != nil) {
-                        //                        NSLog(@"%@", error.localizedDescription);
+                        //                        [self wirteLogWithString:@"%@", error.localizedDescription);
                     } else {
                         if (temporaryFileLocation) {
                             NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -145,7 +145,7 @@ static NSString *notiSmallImageKey = @"isqImgPath";
                                 if (localURL) {
                                     attachment = [UNNotificationAttachment attachmentWithIdentifier:notiSmallImageKey URL:localURL options:nil error:&attachmentError];
                                     if (attachmentError) {
-                                        //NSLog(@"%@", attachmentError.localizedDescription);
+                                        //[self wirteLogWithString:@"%@", attachmentError.localizedDescription);
                                     }
                                 }
                             }
@@ -191,7 +191,7 @@ static NSString *notiSmallImageKey = @"isqImgPath";
     }
     
     NSInteger versionInteger = major * 100 + minor * 10 + micro;
-    //    NSLog(@"%ld",(long)versionInteger);
+    //    [self wirteLogWithString:@"%ld",(long)versionInteger);
     return versionInteger;
 }
 

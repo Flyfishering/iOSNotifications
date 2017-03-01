@@ -45,6 +45,16 @@
 
 #pragma mark - View
 
+
+
+- (void)loadView {
+    
+    [super loadView];
+    
+    [appDelegate wirteLogWithString:@"iOSNoti:MasterVC loadView"];
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -55,16 +65,84 @@
     self.slientSwitch.on = NO;
     self.logLabel.numberOfLines = 0;
     self.notiIdenLbl.delegate = self;
-//    [JSPushService sharedManager].delegate = self;
+    //    [JSPushService sharedManager].delegate = self;
     
     self.switchArr = [NSArray arrayWithObjects:self.mutipleSwtich,self.pictureSwitch,self.videoSwitch,self.slientSwitch, nil];
     [self registerRemote];
+    
+    [appDelegate wirteLogWithString:@"iOSNoti:MasterVC viewDidLoad"];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [appDelegate wirteLogWithString:@"iOSNoti:MasterVC viewWillAppear"];
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    
+    [super viewDidAppear:animated];
+    
+    [appDelegate wirteLogWithString:@"iOSNoti:MasterVC viewDidAppear"];
+    
+}
+- (void)viewWillLayoutSubviews {
+    
+    [super viewWillLayoutSubviews];
+    
+    [appDelegate wirteLogWithString:@"iOSNoti:MasterVC viewWillLayoutSubviews"];
+    
+}
+
+- (void)viewDidLayoutSubviews {
+    
+    [super viewDidLayoutSubviews];
+    
+    [appDelegate wirteLogWithString:@"iOSNoti:MasterVC viewDidLayoutSubviews"];
+    
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    
+    [super viewWillDisappear:animated];
+    
+    [appDelegate wirteLogWithString:@"iOSNoti:MasterVC viewWillDisappear"];
+    
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    
+    [super viewDidDisappear:animated];
+    
+    [appDelegate wirteLogWithString:@"iOSNoti:MasterVC viewDidDisappear"];
+    
+}
+
+- (void)viewWillUnload {
+    
+    [super viewWillUnload];
+    
+    [appDelegate wirteLogWithString:@"iOSNoti:MasterVC viewWillUnload"];
+    
+}
+
+- (void)viewDidUnload {
+    
+    [super viewDidUnload];
+    
+    [appDelegate wirteLogWithString:@"iOSNoti:MasterVC viewDidUnload"];
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    
+    [appDelegate wirteLogWithString:@"iOSNoti:MasterVC didReceiveMemoryWarning"];
+    
 }
+
 
 # pragma mark - Category Test
 
@@ -85,7 +163,7 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0) {
-        NSLog(@"我不让你骚扰我");
+        
     }else{
         [self registerRemote];
     }
@@ -174,7 +252,9 @@
     //在app没有被启动的时候，接收到了消息通知。这时候操作系统会按照默认的方式来展现一个alert消息，在app icon上标记一个数字，甚至播放一段声音。
     
     //用户看到消息之后，点击了一下action按钮或者点击了应用图标。如果action按钮被点击了，系统会通过调用application:didFinishLaunchingWithOptions:这个代理方法来启动应用，并且会把notification的payload数据传递进去。如果应用图标被点击了，系统也一样会调用application:didFinishLaunchingWithOptions:这个代理方法来启动应用，唯一不同的是这时候启动参数里面不会有任何notification的信息。
-    NSLog(@"*** push original info:%@",launchOptions);
+    NSString *logDic = [NSString stringWithFormat:@"iOSNoti:*** push original info:%@",launchOptions];
+    
+    [appDelegate wirteLogWithString:logDic];
     
     NSDictionary* remoteDictionary = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
     NSDictionary* localDictionary = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
@@ -183,14 +263,21 @@
     NSString * sourceApplicationKey = [launchOptions objectForKey:UIApplicationLaunchOptionsSourceApplicationKey];
     if (remoteDictionary != nil){
         //处理app未启动的情况下，push跳转
-        NSLog(@"setup-remote notification");
-        NSLog(@"setup-%@",remoteDictionary[@"seg"]);
+        [appDelegate wirteLogWithString:@"iOSNoti:setup-remote notification"];
+        
+        NSString *log = [NSString stringWithFormat:@"iOSNoti:setup-%@",remoteDictionary[@"seg"]];
+        
+        [appDelegate wirteLogWithString:log];
+
     }else if (localDictionary != nil){
         // 本地消息
-        NSLog(@"setup-local notification");
-        NSLog(@"setup-%@",remoteDictionary[@"seg"]);
+        [appDelegate wirteLogWithString:@"iOSNoti:setup-local notification"];
+        
+        NSString *log = [NSString stringWithFormat:@"iOSNoti:setup-%@",localDictionary[@"seg"]];
+        
+        [appDelegate wirteLogWithString:log];
     }else{
-        NSLog(@"setup-other");
+        [appDelegate wirteLogWithString:@"iOSNoti:setup-other"];
     }
 }
 
@@ -259,13 +346,17 @@
  */
 - (void)jspushNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler
 {
-    NSLog(@"JSPushRegisterDelegate receive notification%@",notification);
+    NSString *log = [NSString stringWithFormat:@"iOSNoti:JSPushRegisterDelegate receive notification%@",notification];
+    
+    [appDelegate wirteLogWithString:log];
     completionHandler(UNNotificationPresentationOptionBadge|UNNotificationPresentationOptionSound|UNNotificationPresentationOptionAlert);
 }
 
 - (void)jspushNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler
 {
-    NSLog(@"JSPushRegisterDelegate receive response%@",response);
+    NSString *log = [NSString stringWithFormat:@"iOSNoti:JSPushRegisterDelegate receive response%@",response];
+    
+    [appDelegate wirteLogWithString:log];
     completionHandler();
 }
 #endif
@@ -553,7 +644,7 @@
     }
     
     if ([[ [UIDevice currentDevice] systemVersion] integerValue] >= 10) {
-        NSLog(@"");
+        
     }
     
     double coreVersion = kCFCoreFoundationVersionNumber;
@@ -572,13 +663,13 @@
     NSLog(@"%@%@",name,country);
     
     if ([@"China" isEqualToString:country]) {
-        NSLog(@"print compare result");
+        [appDelegate wirteLogWithString:@"print compare result"];
     }
     
     NSString *tstStr = @"8.4.1";
     float flt = [tstStr floatValue];
     if (flt > 8.2) {
-        NSLog(@"haha");
+        [appDelegate wirteLogWithString:@"haha"];
     }
 }
 

@@ -25,6 +25,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    [self wirteLogWithString:@"iOSNoti:didFinishLaunchingWithOptions."];
     [PushTestingController setupWithOption:launchOptions];
     return YES;
 }
@@ -37,6 +38,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [self wirteLogWithString:@"iOSNoti:applicationDidBecomeActive."];
     //重置角标
 //    [JSPushService resetBadge];
 }
@@ -44,18 +46,23 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    [self wirteLogWithString:@"iOSNoti:applicationDidEnterBackground."];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    [self wirteLogWithString:@"iOSNoti:applicationWillEnterForeground."];
+
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    [self wirteLogWithString:@"iOSNoti:applicationWillTerminate."];
+
 }
 
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {
-    
+    [self wirteLogWithString:@"iOSNoti:applicationDidReceiveMemoryWarning."];
 }
 
 #pragma mark - Push Message Handler
@@ -70,6 +77,7 @@
  */
 - (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
 {
+    [self wirteLogWithString:@"iOSNoti:didRegisterUserNotificationSettings."];
     // Calling this will result in either application:didRegisterForRemoteNotificationsWithDeviceToken: or application:didFailToRegisterForRemoteNotificationsWithError: to be called on the application delegate. Note: these callbacks will be made only if the application has successfully registered for user notifications with registerUserNotificationSettings:, or if it is enabled for Background App Refresh.
     if (notificationSettings.types != UIUserNotificationTypeNone) {
         //registerForRemoteNotifications方法调用后会application:didRegisterForRemoteNotificationsWithDeviceToken或application:didFailToRegisterForRemoteNotificationsWithError
@@ -85,7 +93,9 @@
 {
     [JSPushService registerDeviceToken:deviceToken completionHandler:^(NSString *devicetoken) {
        //将devicetoken传给你的服务器或者保存
-        NSLog(@"device token:%@",devicetoken);
+        NSString *devt = [NSString stringWithFormat:@"iOSNoti:device token:%@",devicetoken];
+        NSLog(@"%@",devt);
+        [self wirteLogWithString:devt];
     }];
 }
 /**
@@ -93,7 +103,7 @@
  */
 - (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
 {
-    NSLog(@"*** register failed.");
+    [self wirteLogWithString:@"iOSNoti:register failed."];
 }
 
 #pragma mark - action remote
@@ -104,6 +114,7 @@
  */
 - (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo completionHandler:(void(^)())completionHandler
 {
+    [self wirteLogWithString:@"iOSNoti:handleActionWithIdentifier forRemoteNotification completionHandler"];
     //handle the actions
     if ([identifier isEqualToString:@"acceptAction"]){
     }
@@ -117,7 +128,7 @@
  *  9.0 above
  */
 - (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo withResponseInfo:(NSDictionary *)responseInfo completionHandler:(void (^)())completionHandler {
-    
+    [self wirteLogWithString:@"iOSNoti:handleActionWithIdentifier forRemoteNotification withResponseInfo completionHandler"];
     //注意调用该函数！！！！
     completionHandler();
 }
@@ -130,6 +141,7 @@
  */
 - (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forLocalNotification:(UILocalNotification *)notification completionHandler:(void (^)())completionHandler {
     
+    [self wirteLogWithString:@"iOSNoti:handleActionWithIdentifier forLocalNotification completionHandler"];
     //注意调用该函数！！！！
     completionHandler();
 }
@@ -138,7 +150,8 @@
  *  9.0 above
  */
 - (void)application:(UIApplication *)application handleActionWithIdentifier:(nullable NSString *)identifier forLocalNotification:(UILocalNotification *)notification withResponseInfo:(NSDictionary *)responseInfo completionHandler:(void(^)())completionHandler {
-
+    
+    [self wirteLogWithString:@"iOSNoti:handleActionWithIdentifier forLocalNotification withResponseInfo completionHandler"];
     //注意调用该函数！！！！
     completionHandler();
 }
@@ -151,7 +164,9 @@
  */
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
-    NSLog(@"didReceiveLocalNotification %@",notification.userInfo);
+    NSString *not = [NSString stringWithFormat:@"iOSNoti:didReceiveLocalNotification %@",notification.userInfo];
+    
+    [self wirteLogWithString:not];
 }
 
 /**
@@ -162,7 +177,9 @@
  */
 - (void)application:(UIApplication*)application didReceiveRemoteNotification:(NSDictionary*)userInfo
 {
-    NSLog(@"didReceiveRemoteNotification %@",userInfo);
+    NSString *not = [NSString stringWithFormat:@"iOSNoti:didReceiveRemoteNotification %@",userInfo];
+    
+    [self wirteLogWithString:not];
 }
 
 /*! This delegate method offers an opportunity for applications with the "remote-notification" background mode to fetch appropriate new data in response to an incoming remote notification. You should call the fetchCompletionHandler as soon as you're finished performing that operation, so the system can accurately estimate its power and data cost.
@@ -179,8 +196,9 @@
  */
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
-    NSLog(@"push notification completionHandler %@",userInfo);
-    NSLog(@"didReceiveRemoteNotification %@",userInfo);
+    NSString *userInfoStr = [NSString stringWithFormat:@"iOSNoti:didReceiveRemoteNotification fetchCompletionHandler %@",userInfo];
+    
+    [self wirteLogWithString:userInfoStr];
 }
 
 # pragma mark iOS 10
@@ -198,6 +216,9 @@
  */
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler
 {
+    
+    [self wirteLogWithString:@"iOSNoti:iOSNoti:userNotificationCenter willPresentNotification"];
+
     NSDictionary * userInfo = notification.request.content.userInfo;
     
     UNNotificationRequest *request = notification.request; // 收到通知的请求
@@ -211,10 +232,13 @@
     
     //远程通知
     if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
-        NSLog(@"push");
+        
+        [self wirteLogWithString:@"iOSNoti:push"];
     }else{
         // 判断为本地通知
-        NSLog(@"iOS10 前台收到本地通知:{\nbody:%@，\ntitle:%@,\nsubtitle:%@,\nbadge：%@，\nsound：%@，\nuserInfo：%@\n}",body,title,subtitle,badge,sound,userInfo);
+        NSString *log = [NSString stringWithFormat:@"iOSNoti:iOS10 前台收到本地通知:{\nbody:%@，\ntitle:%@,\nsubtitle:%@,\nbadge：%@，\nsound：%@，\nuserInfo：%@\n}",body,title,subtitle,badge,sound,userInfo];
+        
+        [self wirteLogWithString:log];
     }
     
     // 需要执行这个方法，选择是否提醒用户，有Badge、Sound、Alert三种类型可以设置
@@ -229,6 +253,8 @@
  */
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler
 {
+    
+    [self wirteLogWithString:@"iOSNoti:userNotificationCenter didReceiveNotificationResponse"];
     /*
     >UNNotificationResponse
         >NSString *actionIdentifier
@@ -273,14 +299,18 @@
             if ([response isKindOfClass:[UNTextInputNotificationResponse class]]) {
                 
                 NSString *inputText = ((UNTextInputNotificationResponse *)response).userText;
-                NSLog(@"%@",inputText);
+                NSString *log = [NSString stringWithFormat:@"iOSNoti:%@",inputText];
+                
+                [self wirteLogWithString:log];
             }
             
         }
         
     }else{
         // 判断为本地通知
-        NSLog(@"iOS10 收到本地通知:{\nbody:%@，\ntitle:%@,\nsubtitle:%@,\nbadge：%@，\nsound：%@，\nuserInfo：%@\n}",body,title,subtitle,badge,sound,userInfo);
+        NSString *log = [NSString stringWithFormat:@"iOSNoti:iOS10 收到本地通知:{\nbody:%@，\ntitle:%@,\nsubtitle:%@,\nbadge：%@，\nsound：%@，\nuserInfo：%@\n}",body,title,subtitle,badge,sound,userInfo];
+        
+        [self wirteLogWithString:log];
         
         NSString *actionIdentifier = response.actionIdentifier;
         if ([actionIdentifier isEqualToString:@"acceptAction"]) {
@@ -293,7 +323,9 @@
             if ([response isKindOfClass:[UNTextInputNotificationResponse class]]) {
                 
                 NSString *inputText = ((UNTextInputNotificationResponse *)response).userText;
-                NSLog(@"%@",inputText);
+                NSString *log = [NSString stringWithFormat:@"iOSNoti:%@",inputText];
+                
+                [self wirteLogWithString:log];
             }
             
         }
@@ -305,5 +337,34 @@
 }
 
 #endif
+
+# pragma mark - Log
+
+- (void)wirteLogWithString:(NSString *)loginput
+{
+    NSLog(@"%@",loginput);
+    NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docPath = [path objectAtIndex:0];
+    
+    NSFileManager * fm = [NSFileManager defaultManager];
+    NSString *fileName = [docPath stringByAppendingPathComponent:@"MessageLog.txt"];
+    
+    if (![fm fileExistsAtPath:fileName]) {
+        NSString *str = @"测试数据\n";
+        [str writeToFile:fileName atomically:YES encoding:NSUTF8StringEncoding error:nil];
+    }
+    
+    NSFileHandle *fileHandle = [NSFileHandle fileHandleForUpdatingAtPath:fileName];
+    [fileHandle seekToEndOfFile];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss:SSS"];
+    
+    NSString *logDate = [dateFormatter stringFromDate:[NSDate date]];
+    NSString *logLine = [NSString stringWithFormat:@"\n%@-%@",loginput,logDate];
+    
+    NSData *logData = [logLine dataUsingEncoding:NSUTF8StringEncoding];
+    [fileHandle writeData:logData];
+}
 
 @end

@@ -44,6 +44,7 @@
 @implementation PushTestingController
 
 #pragma mark - View
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -57,10 +58,7 @@
 //    [JSPushService sharedManager].delegate = self;
     
     self.switchArr = [NSArray arrayWithObjects:self.mutipleSwtich,self.pictureSwitch,self.videoSwitch,self.slientSwitch, nil];
-    [self alertUserOpenPush];
-    
-    [self test_systemCompare];
-    [self testVersion];
+    [self registerRemote];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -70,6 +68,13 @@
 
 # pragma mark - Category Test
 
+- (void)onlyForTest
+{
+    //For test
+    [self alertUserOpenPush];
+    [self test_systemCompare];
+    [self testVersion];
+}
 
 - (void)alertUserOpenPush
 {
@@ -176,17 +181,16 @@
     //iOS8.0新增Today Widget
     NSURL * launchUrl              = [launchOptions objectForKey:UIApplicationLaunchOptionsURLKey];
     NSString * sourceApplicationKey = [launchOptions objectForKey:UIApplicationLaunchOptionsSourceApplicationKey];
-    if (remoteDictionary != nil)
-    {
+    if (remoteDictionary != nil){
         //处理app未启动的情况下，push跳转
+        NSLog(@"setup-remote notification");
         NSLog(@"setup-%@",remoteDictionary[@"seg"]);
-    }
-    
-    // 本地消息
-    else if (localDictionary != nil)
-    {
+    }else if (localDictionary != nil){
         // 本地消息
+        NSLog(@"setup-local notification");
         NSLog(@"setup-%@",remoteDictionary[@"seg"]);
+    }else{
+        NSLog(@"setup-other");
     }
 }
 

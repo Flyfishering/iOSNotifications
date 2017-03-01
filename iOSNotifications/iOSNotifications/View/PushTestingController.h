@@ -13,5 +13,5 @@
 @interface PushTestingController : UIViewController<UIAlertViewDelegate>
 
 + (NSSet *)categoriesAction4Test;
-
++ (void)setupWithOption:(NSDictionary *)launchOptions;
 @end

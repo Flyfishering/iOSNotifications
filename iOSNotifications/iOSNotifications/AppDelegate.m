@@ -25,6 +25,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    [self wirteLogWithString:@"****************************************************"];
     [self wirteLogWithString:@"iOSNoti:didFinishLaunchingWithOptions."];
     [PushTestingController setupWithOption:launchOptions];
     return YES;
@@ -79,7 +80,7 @@
 {
     [self wirteLogWithString:@"iOSNoti:didRegisterUserNotificationSettings."];
     // Calling this will result in either application:didRegisterForRemoteNotificationsWithDeviceToken: or application:didFailToRegisterForRemoteNotificationsWithError: to be called on the application delegate. Note: these callbacks will be made only if the application has successfully registered for user notifications with registerUserNotificationSettings:, or if it is enabled for Background App Refresh.
-    if (notificationSettings.types != UIUserNotificationTypeNone) {
+    if (notificationSettings.types == UIUserNotificationTypeNone) {
         //registerForRemoteNotifications方法调用后会application:didRegisterForRemoteNotificationsWithDeviceToken或application:didFailToRegisterForRemoteNotificationsWithError
         [[UIApplication sharedApplication] registerForRemoteNotifications];
     }
@@ -94,7 +95,6 @@
     [JSPushService registerDeviceToken:deviceToken completionHandler:^(NSString *devicetoken) {
        //将devicetoken传给你的服务器或者保存
         NSString *devt = [NSString stringWithFormat:@"iOSNoti:device token:%@",devicetoken];
-        NSLog(@"%@",devt);
         [self wirteLogWithString:devt];
     }];
 }

@@ -7,6 +7,7 @@
 //
 
 #import "PushTestingController.h"
+#import "LocaltionManagerTest.h"
 #import "AppDelegate.h"
 
 #if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
@@ -39,6 +40,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *logLabel;
 
+@property (strong ,nonatomic) LocaltionManagerTest *localTest;
+
 @end
 
 @implementation PushTestingController
@@ -69,6 +72,8 @@
     
     self.switchArr = [NSArray arrayWithObjects:self.mutipleSwtich,self.pictureSwitch,self.videoSwitch,self.slientSwitch, nil];
     [self registerRemote];
+    
+    self.localTest = [[LocaltionManagerTest alloc] init];
     
     [appDelegate wirteLogWithString:@"iOSNoti:MasterVC viewDidLoad"];
 }
@@ -145,14 +150,6 @@
 
 
 # pragma mark - Category Test
-
-- (void)onlyForTest
-{
-    //For test
-    [self alertUserOpenPush];
-    [self test_systemCompare];
-    [self testVersion];
-}
 
 - (void)alertUserOpenPush
 {
@@ -582,97 +579,6 @@
     [self.view endEditing:YES];
     return YES;
 }
-
-#pragma  mark - Test System Version Compare
-
-- (void)testVersion
-{
-    /*
-     iOS 版本号是两位或者三位
-     大版本如：8.4，9.2，10.1
-     小版本如：8.4.1，9.3.3，10.2.1
-     */
-    NSString *version = [[UIDevice currentDevice] systemVersion];
-    version = @"10.2.1";
-
-    NSArray *components = [version componentsSeparatedByString:@"."];
-    NSInteger major = 0;
-    NSInteger minor = 0;
-    NSInteger micro = 0;
-
-    if (components.count == 0) {
-        major = [version integerValue];
-    }else if (components.count == 1){
-        major = [version integerValue];
-    }if (components.count == 2){
-        major = [components[0] integerValue];
-        minor = [components[1] integerValue];
-    }else if (components.count == 3){
-        major = [components[0] integerValue];
-        minor = [components[1] integerValue];
-        micro = [components[2] integerValue];
-    }
-    
-    NSInteger versionInteget = major * 100 + minor * 10 + micro;
-
-    NSLog(@"%ld",(long)versionInteget);
-}
-
-- (void)test_systemCompare
-{
-    NSString *version = [[UIDevice currentDevice] systemVersion];
-    int int_ver = [version intValue];
-    float float_ver = [version floatValue];
-    double double_ver = [version doubleValue];
-    NSLog(@"%@-%d-%f-%f",version,int_ver,float_ver,double_ver);
-    
-    if (int_ver >= 9) {
-        NSLog(@"hah");
-    }
-    
-    if (int_ver >= 9.0) {
-        NSLog(@"mmm");
-    }
-    
-    if (int_ver >= 9.3) {
-        NSLog(@"sss");
-    }
-    
-    NSInteger ver_int = [[ [UIDevice currentDevice] systemVersion] integerValue];
-    if (ver_int >= 10) {
-        NSLog(@"gggg");
-    }
-    
-    if ([[ [UIDevice currentDevice] systemVersion] integerValue] >= 10) {
-        
-    }
-    
-    double coreVersion = kCFCoreFoundationVersionNumber;
-    double nsfoundaVersion = NSFoundationVersionNumber;
-    NSLog(@"%f-%f",coreVersion,nsfoundaVersion);
-    
-    //NSOrderedAscending\NSOrderedDescending
-    //前者相对于后者
-    //10.0相对于10是低版本，显然不合理，所以该判断也是存在问题的。
-    NSInteger compareResult = [@"8.4.1" compare:@"8.2" options:NSNumericSearch];
-    NSLog(@"string result %ld",(long)compareResult);
-    
-    NSDictionary *dic = @{@"name":@"wenghengcong",@"age":@"18"};
-    NSString *name = dic[@"name"];
-    NSString *country = dic[@"country"];
-    NSLog(@"%@%@",name,country);
-    
-    if ([@"China" isEqualToString:country]) {
-        [appDelegate wirteLogWithString:@"print compare result"];
-    }
-    
-    NSString *tstStr = @"8.4.1";
-    float flt = [tstStr floatValue];
-    if (flt > 8.2) {
-        [appDelegate wirteLogWithString:@"haha"];
-    }
-}
-
 
 
 @end

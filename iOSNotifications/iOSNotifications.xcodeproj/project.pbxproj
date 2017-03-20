@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E15CB561E7F779D009B84D7 /* LocaltionManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E15CB551E7F779D009B84D7 /* LocaltionManagerTest.m */; };
 		5E2E26261E546CB800AEED81 /* joy.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E2E26251E546CB800AEED81 /* joy.png */; };
 		5E4DE4D01E001FDF004B90C7 /* JSNotificationContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4DE4C41E001FDF004B90C7 /* JSNotificationContent.m */; };
 		5E4DE4D11E001FDF004B90C7 /* JSNotificationIdentifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4DE4C61E001FDF004B90C7 /* JSNotificationIdentifier.m */; };
@@ -14,6 +15,7 @@
 		5E4DE4D31E001FDF004B90C7 /* JSNotificationTrigger.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4DE4CA1E001FDF004B90C7 /* JSNotificationTrigger.m */; };
 		5E4DE4D41E001FDF004B90C7 /* JSPushService.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4DE4CD1E001FDF004B90C7 /* JSPushService.m */; };
 		5E4DE4D51E001FDF004B90C7 /* JSPushUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4DE4CF1E001FDF004B90C7 /* JSPushUtilities.m */; };
+		5E853E8C1E7F7B3B005A26F2 /* OtherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E853E8B1E7F7B3B005A26F2 /* OtherTest.m */; };
 		5E8CACBC1E1C899400671F60 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EC8A52D1D9127F000C8AC3C /* UserNotifications.framework */; };
 		5E8CACBD1E1C899400671F60 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EC8A52F1D9127F000C8AC3C /* UserNotificationsUI.framework */; };
 		5E8CACC41E1C899400671F60 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E8CACC21E1C899400671F60 /* MainInterface.storyboard */; };
@@ -70,6 +72,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5E15CB541E7F779D009B84D7 /* LocaltionManagerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocaltionManagerTest.h; sourceTree = "<group>"; };
+		5E15CB551E7F779D009B84D7 /* LocaltionManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocaltionManagerTest.m; sourceTree = "<group>"; };
 		5E2E26251E546CB800AEED81 /* joy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = joy.png; sourceTree = "<group>"; };
 		5E4DE4C31E001FDF004B90C7 /* JSNotificationContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSNotificationContent.h; sourceTree = "<group>"; };
 		5E4DE4C41E001FDF004B90C7 /* JSNotificationContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSNotificationContent.m; sourceTree = "<group>"; };
@@ -84,6 +88,8 @@
 		5E4DE4CE1E001FDF004B90C7 /* JSPushUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSPushUtilities.h; sourceTree = "<group>"; };
 		5E4DE4CF1E001FDF004B90C7 /* JSPushUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSPushUtilities.m; sourceTree = "<group>"; };
 		5E529C4C1E07D98C00ECA1AA /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		5E853E8A1E7F7B3B005A26F2 /* OtherTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OtherTest.h; sourceTree = "<group>"; };
+		5E853E8B1E7F7B3B005A26F2 /* OtherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OtherTest.m; sourceTree = "<group>"; };
 		5E8CACBB1E1C899400671F60 /* NotificationContent.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationContent.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E8CACC31E1C899400671F60 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		5E8CACC51E1C899400671F60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -234,8 +240,12 @@
 		5EB7A49D1DDC6656007E8C1F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5E15CB541E7F779D009B84D7 /* LocaltionManagerTest.h */,
+				5E15CB551E7F779D009B84D7 /* LocaltionManagerTest.m */,
 				5EAF7FA71E01336A00848C43 /* PushTestingController.h */,
 				5EAF7FA81E01336A00848C43 /* PushTestingController.m */,
+				5E853E8A1E7F7B3B005A26F2 /* OtherTest.h */,
+				5E853E8B1E7F7B3B005A26F2 /* OtherTest.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -441,6 +451,7 @@
 				5EBC82101E1123A10068A20C /* JSRegisterConfig.m in Sources */,
 				5E4DE4D41E001FDF004B90C7 /* JSPushService.m in Sources */,
 				5EBC82131E1134A60068A20C /* JSNotificationResponse.m in Sources */,
+				5E853E8C1E7F7B3B005A26F2 /* OtherTest.m in Sources */,
 				5EB7A4881DDC61E4007E8C1F /* main.m in Sources */,
 				5EB7A4C31DDEF8B1007E8C1F /* PayloadJSON.md in Sources */,
 				5EB7A4831DDC61E4007E8C1F /* AppDelegate.m in Sources */,
@@ -449,6 +460,7 @@
 				5E4DE4D21E001FDF004B90C7 /* JSNotificationRequest.m in Sources */,
 				5E4DE4D01E001FDF004B90C7 /* JSNotificationContent.m in Sources */,
 				5E4DE4D11E001FDF004B90C7 /* JSNotificationIdentifier.m in Sources */,
+				5E15CB561E7F779D009B84D7 /* LocaltionManagerTest.m in Sources */,
 				5E4DE4D31E001FDF004B90C7 /* JSNotificationTrigger.m in Sources */,
 				5EAF7FA91E01336A00848C43 /* PushTestingController.m in Sources */,
 			);

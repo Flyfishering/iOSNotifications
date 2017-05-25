@@ -159,6 +159,22 @@ Everything tha about notification in iOS.
 | [iOS unique user identifier](http://stackoverflow.com/questions/7273014/ios-unique-user-identifier?lq=1) |
 | [Unique id in ios](http://stackoverflow.com/questions/20453785/unique-id-in-ios) |
 
+
+
+### 角标
+
+1. 推送payload不带角标badge字段
+
+   app 自身清不清角标不起作用，通知栏始终会保持。点击一条消除一条，其他保持。
+
+2. 推送 payload 带角标badge字段
+
+   2.1 app清除角标到0，包括各种入口进入 app，通知栏和点击 app，通知栏就会全部清空。
+   2.2 假如app是角标递减，通知栏会保持，一直递减到0，遵循2.1
+   2.3 假如app没有清除角标，通知栏也会保持，点击一条消除一条推送，其他保持。
+
+
+
 ****
 
 ## 如何自己实现推送
@@ -170,7 +186,7 @@ TODO:
    1. ~~第一步：创建本地通知，测试DEMO；~~
    2. 第二步：服务器通信SDK（采用MQTT）；
 3. 性能测试；
-4. 翻译最新退出的[Guide](https://developer.apple.com/library/content/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/index.html);
+4. 翻译最新的[Guide](https://developer.apple.com/library/content/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/index.html);
 
 *****
 

@@ -352,12 +352,12 @@
 					5E8CACBA1E1C899400671F60 = {
 						CreatedOnToolsVersion = 8.2;
 						DevelopmentTeam = 69XHTLCF36;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					5E8CACD11E1C986500671F60 = {
 						CreatedOnToolsVersion = 8.2;
 						DevelopmentTeam = 69XHTLCF36;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					5EF2B4441CC7D51000AC71C5 = {
 						CreatedOnToolsVersion = 7.3;
@@ -514,13 +514,15 @@
 			buildSettings = {
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Hengcong Weng (7RMANB5BXZ)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hengcong Weng (7RMANB5BXZ)";
 				DEVELOPMENT_TEAM = 69XHTLCF36;
 				INFOPLIST_FILE = NotificationContent/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.junglesong.pushtestdemo.NotificationContent;
+				PRODUCT_BUNDLE_IDENTIFIER = com.junglesong.pushtestdemo.pushcontent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "7ee42fd3-93d1-4ca5-b046-86b753097722";
+				PROVISIONING_PROFILE_SPECIFIER = pushcontent;
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -530,13 +532,15 @@
 			buildSettings = {
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Hengcong Weng (7RMANB5BXZ)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hengcong Weng (7RMANB5BXZ)";
 				DEVELOPMENT_TEAM = 69XHTLCF36;
 				INFOPLIST_FILE = NotificationContent/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.junglesong.pushtestdemo.NotificationContent;
+				PRODUCT_BUNDLE_IDENTIFIER = com.junglesong.pushtestdemo.pushcontent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "7ee42fd3-93d1-4ca5-b046-86b753097722";
+				PROVISIONING_PROFILE_SPECIFIER = pushcontent;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -546,13 +550,15 @@
 			buildSettings = {
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Hengcong Weng (7RMANB5BXZ)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hengcong Weng (7RMANB5BXZ)";
 				DEVELOPMENT_TEAM = 69XHTLCF36;
 				INFOPLIST_FILE = NotificationService/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.junglesong.pushtestdemo.NotificationService;
+				PRODUCT_BUNDLE_IDENTIFIER = com.junglesong.pushtestdemo.pushservice;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "baa82d26-a4e5-47ef-9405-1bbda30790f3";
+				PROVISIONING_PROFILE_SPECIFIER = push_service;
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -562,13 +568,15 @@
 			buildSettings = {
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Hengcong Weng (7RMANB5BXZ)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hengcong Weng (7RMANB5BXZ)";
 				DEVELOPMENT_TEAM = 69XHTLCF36;
 				INFOPLIST_FILE = NotificationService/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.junglesong.pushtestdemo.NotificationService;
+				PRODUCT_BUNDLE_IDENTIFIER = com.junglesong.pushtestdemo.pushservice;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "baa82d26-a4e5-47ef-9405-1bbda30790f3";
+				PROVISIONING_PROFILE_SPECIFIER = push_service;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;

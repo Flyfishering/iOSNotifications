@@ -73,18 +73,14 @@ Everything tha about notification in iOS.
 ## 博客或文档
 
 * [Local and Remote Notification Programming Guide](https://developer.apple.com/library/mac/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/Introduction.html#//apple_ref/doc/uid/TP40008194-CH1-SW1)
-
 * [极光推送](http://blog.jpush.cn/)
-
 * [Push Notifications Tutorial: Getting Started](https://www.raywenderlich.com/123862/push-notifications-tutorial)
-
 * [Push Issues](https://developer.apple.com/library/ios/technotes/tn2265/_index.html)
-
 * [iOS 推送全解析，你不可不知的所有 Tips](http://blog.jiguang.cn/ios_push_overall/)
-
 * [服务器推送证书](http://docs.getui.com/mobile/ios/apns/)
 * [iOS开发各种证书问题](http://blog.csdn.net/li_shuang_ls/article/details/52259512)
 * [第三方服务推送名词](http://docs.getui.com/more/word/)
+* [iOS 证书一览](http://www.wenghengcong.com/2016/07/iOS%E8%AF%81%E4%B9%A6%E4%B8%80%E8%A7%88/)
 
 *****
 
@@ -172,7 +168,6 @@ Everything tha about notification in iOS.
    2.1 app清除角标到0，包括各种入口进入 app，通知栏和点击 app，通知栏就会全部清空。
    2.2 假如app是角标递减，通知栏会保持，一直递减到0，遵循2.1
    2.3 假如app没有清除角标，通知栏也会保持，点击一条消除一条推送，其他保持。
-
 
 
 ****

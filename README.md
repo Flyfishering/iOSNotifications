@@ -170,6 +170,8 @@ Everything tha about notification in iOS.
    2.3 假如app没有清除角标，通知栏也会保持，点击一条消除一条推送，其他保持。
 
 
+角标清除是指，APP 程序中调用 系统API `[UIApplication sharedApplication].applicationIconBadgeNumber = 0;`对角标数字进行增减，跟`设置`中角标设置无关。
+
 ****
 
 ## 如何自己实现推送

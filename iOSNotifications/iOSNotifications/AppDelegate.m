@@ -365,6 +365,7 @@
     
     NSData *logData = [logLine dataUsingEncoding:NSUTF8StringEncoding];
     [fileHandle writeData:logData];
+        
 }
 
 @end

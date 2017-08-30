@@ -99,6 +99,18 @@
     if (flt > 8.2) {
         [appDelegate wirteLogWithString:@"haha"];
     }
+    SEL selector = NULL;
+    if(flt/*some condition */) {
+        
+    } else if(flt+1/* some ohter condition */) {
+        
+    } else {
+        
+    }
+    [self performSelector:selector];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+    });
 }
 
 @end

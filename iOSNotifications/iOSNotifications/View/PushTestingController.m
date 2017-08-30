@@ -11,7 +11,7 @@
 #import "AppDelegate.h"
 
 #if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
-@interface PushTestingController ()<UITextFieldDelegate,JSServiceDelegate>
+@interface PushTestingController ()<UITextFieldDelegate,JSServiceDelegate,UNUserNotificationCenterDelegate>
 #else
 @interface PushTestingController ()<UITextFieldDelegate>
 
@@ -76,6 +76,8 @@
     self.localTest = [[LocaltionManagerTest alloc] init];
     
     [appDelegate wirteLogWithString:@"iOSNoti:MasterVC viewDidLoad"];
+    
+    [UNUserNotificationCenter currentNotificationCenter].delegate = self;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -580,5 +582,170 @@
     return YES;
 }
 
+#pragma mark - iOS 10
+
+#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
+    // 会屏蔽iOS10之前方法（设置对应的代理后）
+/**
+ *  在前台如何处理，通过completionHandler指定。如果不想显示某个通知，可以直接用空 options 调用 completionHandler:
+ // completionHandler(0)
+ *  前台收到远程通知，进入这里
+ *  前台收到本地通知，进入这里
+ *  前台收到带有其他字段alert/sound/badge的静默通知，进入这里
+ *  后台收到静默通知不会调用该方法
+ */
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler
+{
+    
+    [self wirteLogWithString:@"iOSNoti:iOSNoti:userNotificationCenter willPresentNotification"];
+    
+    NSDictionary * userInfo = notification.request.content.userInfo;
+    
+    UNNotificationRequest *request = notification.request; // 收到通知的请求
+    UNNotificationContent *content = request.content; // 收到通知的消息内容
+    
+    NSNumber *badge = content.badge;  // 通知消息的角标
+    NSString *body = content.body;    // 通知消息体
+    UNNotificationSound *sound = content.sound;  // 通知消息的声音
+    NSString *subtitle = content.subtitle;  // 通知消息的副标题
+    NSString *title = content.title;  // 通知消息的标题
+    
+        //远程通知
+    if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        
+        [self wirteLogWithString:@"iOSNoti:push"];
+    }else{
+            // 判断为本地通知
+        NSString *log = [NSString stringWithFormat:@"iOSNoti:iOS10 前台收到本地通知:{\nbody:%@，\ntitle:%@,\nsubtitle:%@,\nbadge：%@，\nsound：%@，\nuserInfo：%@\n}",body,title,subtitle,badge,sound,userInfo];
+        
+        [self wirteLogWithString:log];
+    }
+    
+        // 需要执行这个方法，选择是否提醒用户，有Badge、Sound、Alert三种类型可以设置
+    completionHandler(UNNotificationPresentationOptionBadge|UNNotificationPresentationOptionSound|UNNotificationPresentationOptionAlert);
+}
+
+
+/**
+ * 在用户与你通知的通知进行交互时被调用，包括用户通过通知打开了你的应用，或者点击或者触发了某个action
+ * 后台收到远程通知，点击进入
+ * 后台收到本地通知，点击进入
+ */
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler
+{
+    
+    [self wirteLogWithString:@"iOSNoti:userNotificationCenter didReceiveNotificationResponse"];
+    /*
+     >UNNotificationResponse
+     >NSString *actionIdentifier
+     >UNNotification *notification
+     >NSDate *date
+     >UNNotificationRequest *request
+     >NSString *identifier
+     >UNNotificationTrigger *trigger
+     >UNNotificationContent *content
+     >NSNumber *badge
+     >NSString *body
+     >NSString *categoryIdentifier
+     >NSString *launchImageName
+     >NSString *subtitle
+     >NSString *title
+     >NSString *threadIdentifier
+     >UNNotificationSound *sound
+     >NSArray <UNNotificationAttachment *> *attachments
+     >NSDictionary *userInfo
+     */
+    NSDictionary * userInfo = response.notification.request.content.userInfo;
+    UNNotificationRequest *request = response.notification.request; // 收到通知的请求
+    UNNotificationContent *content = request.content; // 收到通知的消息内容
+    
+    NSNumber *badge = content.badge;  // 通知消息的角标
+    NSString *body = content.body;    // 通知消息体
+    UNNotificationSound *sound = content.sound;  // 通知消息的声音
+    NSString *subtitle = content.subtitle;  // 通知消息的副标题
+    NSString *title = content.title;  // 通知消息的标题
+    
+        //远程通知
+    if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        
+        NSString *actionIdentifier = response.actionIdentifier;
+        if ([actionIdentifier isEqualToString:@"acceptAction"]) {
+            
+        }else if ([actionIdentifier isEqualToString:@"rejectAction"])
+            {
+            
+            }else if ([actionIdentifier isEqualToString:@"inputAction"]){
+                
+                if ([response isKindOfClass:[UNTextInputNotificationResponse class]]) {
+                    
+                    NSString *inputText = ((UNTextInputNotificationResponse *)response).userText;
+                    NSString *log = [NSString stringWithFormat:@"iOSNoti:%@",inputText];
+                    
+                    [self wirteLogWithString:log];
+                }
+                
+            }
+        
+    }else{
+            // 判断为本地通知
+        NSString *log = [NSString stringWithFormat:@"iOSNoti:iOS10 收到本地通知:{\nbody:%@，\ntitle:%@,\nsubtitle:%@,\nbadge：%@，\nsound：%@，\nuserInfo：%@\n}",body,title,subtitle,badge,sound,userInfo];
+        
+        [self wirteLogWithString:log];
+        
+        NSString *actionIdentifier = response.actionIdentifier;
+        if ([actionIdentifier isEqualToString:@"acceptAction"]) {
+            
+        }else if ([actionIdentifier isEqualToString:@"rejectAction"])
+            {
+            
+            }else if ([actionIdentifier isEqualToString:@"inputAction"]){
+                
+                if ([response isKindOfClass:[UNTextInputNotificationResponse class]]) {
+                    
+                    NSString *inputText = ((UNTextInputNotificationResponse *)response).userText;
+                    NSString *log = [NSString stringWithFormat:@"iOSNoti:%@",inputText];
+                    
+                    [self wirteLogWithString:log];
+                }
+                
+            }
+        
+    }
+    
+    completionHandler();
+    
+}
+
+#endif
+
+# pragma mark - Log
+
+- (void)wirteLogWithString:(NSString *)loginput
+{
+    NSLog(@"%@",loginput);
+    NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docPath = [path objectAtIndex:0];
+    
+    NSFileManager * fm = [NSFileManager defaultManager];
+    NSString *fileName = [docPath stringByAppendingPathComponent:@"MessageLog.txt"];
+    
+    if (![fm fileExistsAtPath:fileName]) {
+        NSString *str = @"测试数据\n";
+        [str writeToFile:fileName atomically:YES encoding:NSUTF8StringEncoding error:nil];
+    }
+    
+    NSFileHandle *fileHandle = [NSFileHandle fileHandleForUpdatingAtPath:fileName];
+    [fileHandle seekToEndOfFile];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss:SSS"];
+    
+    NSString *logDate = [dateFormatter stringFromDate:[NSDate date]];
+    NSString *logLine = [NSString stringWithFormat:@"\n%@-%@",loginput,logDate];
+    
+    NSData *logData = [logLine dataUsingEncoding:NSUTF8StringEncoding];
+    [fileHandle writeData:logData];
+    
+}
 
 @end

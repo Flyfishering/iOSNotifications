@@ -159,18 +159,47 @@ Everything tha about notification in iOS.
 
 ### 角标
 
-1. 推送payload不带角标badge字段
+1.  推送payload不带角标badge字段
 
-   app 自身清不清角标不起作用，通知栏始终会保持。点击一条消除一条，其他保持。
+    app 自身清不清角标不起作用，通知栏始终会保持。点击一条消除一条，其他保持。
 
-2. 推送 payload 带角标badge字段
+2.  推送 payload 带角标badge字段
 
    2.1 app清除角标到0，包括各种入口进入 app，通知栏和点击 app，通知栏就会全部清空。
+
    2.2 假如app是角标递减，通知栏会保持，一直递减到0，遵循2.1
+
    2.3 假如app没有清除角标，通知栏也会保持，点击一条消除一条推送，其他保持。
 
+3.    清理角标，但是不清理通知中心
+
+   ```objective-c
+    UILocalNotification *clearEpisodeNotification = [[UILocalNotification alloc] init];  
+       clearEpisodeNotification.applicationIconBadgeNumber = -1;  
+       [[UIApplication sharedApplication] scheduleLocalNotification:clearEpisodeNotification];  
+   ```
+
+   ​
 
 角标清除是指，APP 程序中调用 系统API `[UIApplication sharedApplication].applicationIconBadgeNumber = 0;`对角标数字进行增减，跟`设置`中角标设置无关。
+
+
+
+### 参考
+
+[【经验】清除appIcon的推送数量（badgeNumber），但是在系统通知栏保留推送通知的方法](http://blog.csdn.net/hherima/article/details/54601418)http://blog.csdn.net/hherima/article/details/54601418)
+
+[Clear applicationIconBadgeNumber without removing notifications not working](https://stackoverflow.com/questions/37789581/clear-applicationiconbadgenumber-without-removing-notifications-not-working)
+
+
+
+### alert/body 显示
+
+iOS 9：横幅弹出，最多显示两行，横幅下拉时完整显示，通知中心最多显示四行。超出之后会以“…”在末尾显示。
+
+iOS 10：横幅弹出，最多显示两行，横幅下拉时完整显示，通知中心最多显示四行。超出之后会以“…”在末尾显示。
+
+iOS 11：
 
 ****
 

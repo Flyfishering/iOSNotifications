@@ -173,11 +173,25 @@ Everything tha about notification in iOS.
 
 3.    清理角标，但是不清理通知中心
 
+   可惜的是，经过多次测试，这种实现问题很多：
+
+   iOS 11，需要通过下面方法：
+
    ```objective-c
-    UILocalNotification *clearEpisodeNotification = [[UILocalNotification alloc] init];  
+   [UIApplication sharedApplication].applicationIconBadgeNumber = -1;
+   ```
+
+   iOS 10，iOS 8目前好像无法实现。
+
+   iOS 8上，则通过：
+
+   ```
+   UILocalNotification *clearEpisodeNotification = [[UILocalNotification alloc] init];  
        clearEpisodeNotification.applicationIconBadgeNumber = -1;  
        [[UIApplication sharedApplication] scheduleLocalNotification:clearEpisodeNotification];  
    ```
+
+   总之，要实现，坑很多。
 
    ​
 

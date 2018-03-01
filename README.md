@@ -165,35 +165,72 @@ Everything tha about notification in iOS.
 
     1)  当applicationIconBadgeNumber > 0时
 
+    ​
+
     ​      	   1-1）包含历史通知，角标变化，通知栏通知不变。
+
+    ​
 
     ​	   1-2）不包含历史通知，角标变化，无通知栏推送。
 
+    ​
+
     2)  当applicationIconBadgeNumber<＝0时：
+
+    ​
+
        	   2-1）包含历史通知，历史通知中只要有一条通知badge>0，清除角标，清空通知栏。
-      	   2-2）包含历史通知，历史通知中所有通知badge=0，或无badge字段。无角标，通知栏不变。	          		 
+
+    ​
+
+      	   2-2）包含历史通知，历史通知中所有通知badge=0，或无badge字段。无角标，通知栏不变。
+
+    ​	          		 
       	   2-3）包含历史通知，历史通知中所有badge<0，无角标，通知栏不变。
+
+    ​
 
     ​	   2-4）不包含历史通知，无角标，无通知栏推送。
 
+    ​
+
 2. 远程推送payload的badge字段，既影响角标，也会影响通知栏。
+
+    ​
+
     1） 推送payload不带badge
+
+    ​
 
     ​       无角标，通知栏不变。
 
+    ​
+
     2） 推送 payload 带角标badge
+
+    ​
 
     ​	2-1）badge>0，不管是否有历史通知，角标变化，通知栏不变。
 
+    ​
+
     ​	2-2）badge=0，历史通知中只要有一条通知badge>0，清除角标，清空通知栏。
 
+    ​
+
     ​	2-3）badge<0，不管是否有历史通知角，无角标，通知栏不变。
+
+    ​
 
 3.   UILocalNotification的applicationIconBadgeNumber属性既影响角标，也会影响通知栏。
 
    参考4中的**“清理角标，但不清理通知中心”**说明
 
+   ​
+
 4.    清理角标，但不清理通知中心
+
+   ​
 
    可惜的是，经过多次测试，这种实现问题很多：
 
@@ -203,19 +240,13 @@ Everything tha about notification in iOS.
    [UIApplication sharedApplication].applicationIconBadgeNumber = -1;
    ```
 
-   iOS 10.3-10.3.3，以及iOS 9.3.5上，则通过：
+   iOS 11以下，则通过：
 
    ```objective-c
    UILocalNotification *clearEpisodeNotification = [[UILocalNotification alloc] init];  
        clearEpisodeNotification.applicationIconBadgeNumber = -1;  
-       [[UIApplication sharedApplication] scheduleLocalNotification:clearEpisodeNotification];  
+       [[UIApplication sharedApplication] scheduleLocalNotification:clearEpisodeNotification];  。
    ```
-
-   iOS 8目前好像无法实现。
-
-   iOS 10.3版本上，以上特性有时有效，有时无效。
-
-   总之，要实现，需要覆盖所有版本测试该特性，坑很多。
 
    ​
 

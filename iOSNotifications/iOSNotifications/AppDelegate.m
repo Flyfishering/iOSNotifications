@@ -199,6 +199,18 @@
     NSString *userInfoStr = [NSString stringWithFormat:@"iOSNoti:didReceiveRemoteNotification fetchCompletionHandler %@",userInfo];
     
     [self wirteLogWithString:userInfoStr];
+    NSString * alertTitle = @"";
+    if (userInfo[@"aps"] != nil && userInfo[@"aps"][@"alert"] != nil && [userInfo[@"aps"][@"alert"] isKindOfClass:[NSDictionary class]]) {
+        alertTitle = userInfo[@"aps"][@"alert"][@"body"];
+
+    } else if (userInfo[@"aps"] != nil && userInfo[@"aps"][@"alert"] != nil && [userInfo[@"aps"][@"alert"] isKindOfClass:[NSString class]]) {
+        alertTitle = userInfo[@"aps"][@"alert"];
+    }
+    if (alertTitle == nil || [alertTitle length] == 0) {
+        alertTitle = @"收到远程推送";
+    }
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:alertTitle message:@"iOS 10以下系统，显示通知弹窗" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil, nil];
+    [alert show];
 }
 
 # pragma mark iOS 10

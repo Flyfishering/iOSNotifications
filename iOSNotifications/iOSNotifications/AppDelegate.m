@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "JSPushService.h"
 #import "PushTestingController.h"
-
+#import "PushRouterManager.h"
 
 @interface AppDelegate ()
 
@@ -196,6 +196,10 @@
  */
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
+    [PushRouterManager handleRouterWithUserinfo:userInfo compeletion:^(NSString *className, NSDictionary *resultInfo) {
+        NSLog(@"class:%@-userin:%@", className, resultInfo);
+    }];
+    
     NSString *userInfoStr = [NSString stringWithFormat:@"iOSNoti:didReceiveRemoteNotification fetchCompletionHandler %@",userInfo];
     
     [self wirteLogWithString:userInfoStr];
@@ -345,7 +349,6 @@
     }
     
     completionHandler();
-    
 }
 
 #endif

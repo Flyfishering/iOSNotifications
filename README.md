@@ -47,12 +47,12 @@ Everything tha about notification in iOS.
 
 以下翻译的苹果原文档，现在均已经失效。
 
-1. [通知那些事儿（一）：简介](http://wenghengcong.com/2016/04/通知那些事儿（一）：简介/)
-2. [通知那些事儿（二）：深度剖析本地与远程通知](http://wenghengcong.com/2016/04/通知那些事儿（二）：深度剖析本地与远程通知/)
-3. [通知那些事儿（三）：注册、调度及处理用户通知](http://wenghengcong.com/2016/04/通知那些事儿（三）：注册、调度及处理用户通知/)
-4. [通知那些事儿（四）：Apple Push Notification Service](http://wenghengcong.com/2016/05/通知那些事儿（四）：Apple-Push-Notification-Service/)
-5. [通知那些事儿（五）：远程通知有效载荷](http://wenghengcong.com/2016/05/%E9%80%9A%E7%9F%A5%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF%EF%BC%88%E4%BA%94%EF%BC%89%EF%BC%9A%E8%BF%9C%E7%A8%8B%E9%80%9A%E7%9F%A5%E6%9C%89%E6%95%88%E8%BD%BD%E8%8D%B7/)
-6. [通知那些事儿（六）：更多的注意点](http://wenghengcong.com/2016/10/%E9%80%9A%E7%9F%A5%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF%EF%BC%88%E5%85%AD%EF%BC%89%EF%BC%9A%E6%9B%B4%E5%A4%9A%E7%9A%84%E6%B3%A8%E6%84%8F%E7%82%B9/)
+1. [通知那些事儿（一）：简介](http://wenghengcong.com/2016-04-%E9%80%9A%E7%9F%A5%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E7%AE%80%E4%BB%8B/)
+2. [通知那些事儿（二）：深度剖析本地与远程通知](http://wenghengcong.com/2016-04-%E9%80%9A%E7%9F%A5%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90%E6%9C%AC%E5%9C%B0%E4%B8%8E%E8%BF%9C%E7%A8%8B%E9%80%9A%E7%9F%A5/)
+3. [通知那些事儿（三）：注册、调度及处理用户通知](http://wenghengcong.com/2016-04-%E9%80%9A%E7%9F%A5%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E6%B3%A8%E5%86%8C%E3%80%81%E8%B0%83%E5%BA%A6%E5%8F%8A%E5%A4%84%E7%90%86%E7%94%A8%E6%88%B7%E9%80%9A%E7%9F%A5/)
+4. [通知那些事儿（四）：Apple Push Notification Service](http://wenghengcong.com/2016-05-%E9%80%9A%E7%9F%A5%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF%EF%BC%88%E5%9B%9B%EF%BC%89%EF%BC%9AApple-Push-Notification-Service/)
+5. [通知那些事儿（五）：远程通知有效载荷](http://wenghengcong.com/2016-05-%E9%80%9A%E7%9F%A5%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF%EF%BC%88%E4%BA%94%EF%BC%89%EF%BC%9A%E8%BF%9C%E7%A8%8B%E9%80%9A%E7%9F%A5%E6%9C%89%E6%95%88%E8%BD%BD%E8%8D%B7/)
+6. [通知那些事儿（六）：更多的注意点](http://wenghengcong.com/2016-10-%E9%80%9A%E7%9F%A5%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF%EF%BC%88%E5%85%AD%EF%BC%89%EF%BC%9A%E6%9B%B4%E5%A4%9A%E7%9A%84%E6%B3%A8%E6%84%8F%E7%82%B9/)
 
 ****
 
@@ -121,6 +121,94 @@ Everything tha about notification in iOS.
 ​	[This Demo](https://github.com/wenghengcong/PushNotificationEverything/tree/master/PushSettingsDemo)
 
 ​	[UserNotificationDemo](https://github.com/onevcat/UserNotificationDemo)
+
+## 推送的分发处理
+
+1. 推送处理管理类——PushRouterManager
+
+   ```objectivec
+   /**
+    注册类名和key映射关系
+
+    @param className 自定义实现的类
+    @param key 类名对应的key
+    */
+   + (void)registerClassName:(NSString *)className withKey:(NSString *)key;
+
+
+   /**
+    需要在自定义实现的类中实现的方法
+
+    @param userinfo 推送的userinfo
+    @param compeletion 处理推送后需要返回的回调
+    */
+   + (void)handleRouterWithUserinfo:(NSDictionary *)userinfo compeletion:(RouterDispatchCompeletionBlock)compeletion;
+
+   ```
+
+   ​
+
+2. 业务处理类——ServiceOne、ServiceTwo。
+
+   业务处理类必须按如下实现：
+
+   ```Objectivec
+   /**
+    在load方法中注册当前Service与key的对应关系
+    */
+   + (void)load
+   {
+       static dispatch_once_t onceToken;
+       dispatch_once(&onceToken, ^{
+           [PushRouterManager registerClassName:NSStringFromClass([self class]) withKey:@"serviceOne"];
+       });
+   }
+
+   /**
+    自定义Service处理
+
+    @param userinfo 推送的userinfo
+    */
+   - (void)handlePushWithUserinfo:(NSDictionary *)userinfo
+   {
+       NSLog(@"hanlde service one");
+   }
+
+   ```
+
+   在load中注册该类与key的映射关系，并实现对应推送处理方法handlePushWithUserinfo。
+
+   ​
+
+3. 在Appdelegate中实现消息推送分发
+
+   ```objective-c
+   - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
+   {
+       [PushRouterManager handleRouterWithUserinfo:userInfo compeletion:^(NSString *className, NSDictionary *resultInfo) {
+           NSLog(@"class:%@-userin:%@", className, resultInfo);
+       }];
+    }
+   ```
+
+4. 注意，推送需要包含key: className。
+
+   ```json
+   {
+    "aps":{
+   	"alert":"Testing.. (0)",
+   	"badge":1,
+   	"sound":"default"
+   	},
+     "key":"ServiceOne"
+   }
+   ```
+
+
+
+以上实现，具体可参照代码。
+
+
 
 ****
 

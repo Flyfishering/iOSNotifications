@@ -6,10 +6,10 @@
 //  Copyright © 2018年 WengHengcong. All rights reserved.
 //
 
-#import "PushRouterManager.h"
+#import "JSMessageHandler.h"
 #import <objc/message.h>
 
-@interface PushRouterManager()
+@interface JSMessageHandler()
 
 /**
  处理类隐射表
@@ -19,11 +19,11 @@
 
 @end
 
-@implementation PushRouterManager
+@implementation JSMessageHandler
 
 + (instancetype) shared
 {
-    static PushRouterManager *shared = nil;
+    static JSMessageHandler *shared = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         shared = [[self alloc] init];
@@ -38,7 +38,7 @@
         if (_mapper == nil) {
             _mapper = [[NSMutableDictionary alloc] init];
         }
-        _publicHandleMethodName = @"handlePushWithUserinfo:";
+        _publicHandleMethodName = @"jspushOpenMessageWithUserinfo:";
     }
     return self;
 }
@@ -66,7 +66,7 @@
         return;
     }
     id handleClass = NSClassFromString(className);
-    SEL handleSelector = @selector(handlePushWithUserinfo:);
+    SEL handleSelector = @selector(jsMessageOpenServiceWithUserinfo:);
     
     id handleClassInstance = ( ( id (*) (id, SEL)) objc_msgSend) ( (id)[handleClass class], @selector(alloc) );
     handleClassInstance = ( (id (*) (id, SEL)) objc_msgSend) ( (id)handleClassInstance, @selector(init));
@@ -75,7 +75,7 @@
     compeletion(key, userinfo);
 }
 
-- (void)handlePushWithUserinfo:(NSDictionary *)userinfo
+- (void)jsMessageOpenServiceWithUserinfo:(NSDictionary *)userinfo
 {
     
 }

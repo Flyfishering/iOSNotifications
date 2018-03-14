@@ -6,11 +6,11 @@
 //  Copyright © 2018年 WengHengcong. All rights reserved.
 //
 
-#import "PushHandle.h"
+#import "JSMessageServiceBase.h"
 
-@implementation PushHandle
+@implementation JSMessageServiceBase
 
-- (void)handlePushWithUserinfo:(NSDictionary *)userinfo
+- (void)jsMessageOpenServiceWithUserinfo:(NSDictionary *)userinfo
 {
     
 }

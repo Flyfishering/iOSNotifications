@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PushHandle.h"
+#import "JSMessageServiceBase.h"
 
-@interface ServiceOne : PushHandle
+@interface ServiceOne : JSMessageServiceBase
 
 @end

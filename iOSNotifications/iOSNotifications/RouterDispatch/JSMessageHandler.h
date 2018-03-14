@@ -16,7 +16,7 @@
  */
 typedef void(^RouterDispatchCompeletionBlock)(NSString *className, NSDictionary *resultInfo);
 
-@interface PushRouterManager : NSObject
+@interface JSMessageHandler : NSObject
 
 /**
  注册类名和key映射关系

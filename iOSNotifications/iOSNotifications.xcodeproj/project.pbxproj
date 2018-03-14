@@ -17,8 +17,8 @@
 		5E4DE4D51E001FDF004B90C7 /* JSPushUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4DE4CF1E001FDF004B90C7 /* JSPushUtilities.m */; };
 		5E82BD362051254A00DFA15C /* ServiceOne.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E82BD332051254A00DFA15C /* ServiceOne.m */; };
 		5E82BD372051254A00DFA15C /* ServiceTwo.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E82BD352051254A00DFA15C /* ServiceTwo.m */; };
-		5E82BD3B2051272200DFA15C /* PushRouterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E82BD3A2051272200DFA15C /* PushRouterManager.m */; };
-		5E82BD3E20513F6300DFA15C /* PushHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E82BD3D20513F6300DFA15C /* PushHandle.m */; };
+		5E82BD3B2051272200DFA15C /* JSMessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E82BD3A2051272200DFA15C /* JSMessageHandler.m */; };
+		5E82BD3E20513F6300DFA15C /* JSMessageServiceBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E82BD3D20513F6300DFA15C /* JSMessageServiceBase.m */; };
 		5E853E8C1E7F7B3B005A26F2 /* OtherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E853E8B1E7F7B3B005A26F2 /* OtherTest.m */; };
 		5E8CACBC1E1C899400671F60 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EC8A52D1D9127F000C8AC3C /* UserNotifications.framework */; };
 		5E8CACBD1E1C899400671F60 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EC8A52F1D9127F000C8AC3C /* UserNotificationsUI.framework */; };
@@ -96,10 +96,10 @@
 		5E82BD332051254A00DFA15C /* ServiceOne.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceOne.m; sourceTree = "<group>"; };
 		5E82BD342051254A00DFA15C /* ServiceTwo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceTwo.h; sourceTree = "<group>"; };
 		5E82BD352051254A00DFA15C /* ServiceTwo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceTwo.m; sourceTree = "<group>"; };
-		5E82BD392051272200DFA15C /* PushRouterManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PushRouterManager.h; sourceTree = "<group>"; };
-		5E82BD3A2051272200DFA15C /* PushRouterManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PushRouterManager.m; sourceTree = "<group>"; };
-		5E82BD3C20513F6300DFA15C /* PushHandle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PushHandle.h; sourceTree = "<group>"; };
-		5E82BD3D20513F6300DFA15C /* PushHandle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PushHandle.m; sourceTree = "<group>"; };
+		5E82BD392051272200DFA15C /* JSMessageHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSMessageHandler.h; sourceTree = "<group>"; };
+		5E82BD3A2051272200DFA15C /* JSMessageHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSMessageHandler.m; sourceTree = "<group>"; };
+		5E82BD3C20513F6300DFA15C /* JSMessageServiceBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSMessageServiceBase.h; sourceTree = "<group>"; };
+		5E82BD3D20513F6300DFA15C /* JSMessageServiceBase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSMessageServiceBase.m; sourceTree = "<group>"; };
 		5E853E8A1E7F7B3B005A26F2 /* OtherTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OtherTest.h; sourceTree = "<group>"; };
 		5E853E8B1E7F7B3B005A26F2 /* OtherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OtherTest.m; sourceTree = "<group>"; };
 		5E8CACBB1E1C899400671F60 /* NotificationContent.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationContent.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -205,10 +205,10 @@
 		5E82BD38205125FC00DFA15C /* RouterDispatch */ = {
 			isa = PBXGroup;
 			children = (
-				5E82BD3C20513F6300DFA15C /* PushHandle.h */,
-				5E82BD3D20513F6300DFA15C /* PushHandle.m */,
-				5E82BD392051272200DFA15C /* PushRouterManager.h */,
-				5E82BD3A2051272200DFA15C /* PushRouterManager.m */,
+				5E82BD3C20513F6300DFA15C /* JSMessageServiceBase.h */,
+				5E82BD3D20513F6300DFA15C /* JSMessageServiceBase.m */,
+				5E82BD392051272200DFA15C /* JSMessageHandler.h */,
+				5E82BD3A2051272200DFA15C /* JSMessageHandler.m */,
 			);
 			path = RouterDispatch;
 			sourceTree = "<group>";
@@ -494,8 +494,8 @@
 				5E4DE4D51E001FDF004B90C7 /* JSPushUtilities.m in Sources */,
 				5EBC82161E1136670068A20C /* JSNotification.m in Sources */,
 				5E4DE4D21E001FDF004B90C7 /* JSNotificationRequest.m in Sources */,
-				5E82BD3E20513F6300DFA15C /* PushHandle.m in Sources */,
-				5E82BD3B2051272200DFA15C /* PushRouterManager.m in Sources */,
+				5E82BD3E20513F6300DFA15C /* JSMessageServiceBase.m in Sources */,
+				5E82BD3B2051272200DFA15C /* JSMessageHandler.m in Sources */,
 				5E82BD362051254A00DFA15C /* ServiceOne.m in Sources */,
 				5E4DE4D01E001FDF004B90C7 /* JSNotificationContent.m in Sources */,
 				5E4DE4D11E001FDF004B90C7 /* JSNotificationIdentifier.m in Sources */,

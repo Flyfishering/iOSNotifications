@@ -7,10 +7,8 @@
 //
 
 #import "ServiceOne.h"
-#import "PushRouterManager.h"
 
 @implementation ServiceOne
-
 
 /**
  在load方法中注册当前Service与key的对应关系
@@ -19,16 +17,16 @@
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [PushRouterManager registerClassName:NSStringFromClass([self class]) withKey:@"serviceOne"];
+        [JSMessageHandler registerClassName:NSStringFromClass([self class]) withKey:@"serviceOne"];
     });
 }
 
 /**
- 自定义Service处理
+ 自定义Service 消息处理
 
  @param userinfo 推送的userinfo
  */
-- (void)handlePushWithUserinfo:(NSDictionary *)userinfo
+- (void)jsMessageOpenServiceWithUserinfo:(NSDictionary *)userinfo
 {
     NSLog(@"hanlde service one");
 }

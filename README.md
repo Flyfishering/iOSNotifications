@@ -23,13 +23,19 @@ Everything tha about notification in iOS.
 ​		[local notification plays only default sound after app update](https://forums.developer.apple.com/thread/63186)
 ​		[UNNotificationSound not playing custom sound](https://forums.developer.apple.com/message/183937)
 
-#### 3. iOS Notification携带图片展示被截图 
+#### 3. iOS 11 Notification携带图片展示被截图
 
 ​		在iOS 10.2以下，如果带图片的通知，显示出来会被截。[[参考](https://forums.developer.apple.com/message/154320#154320)]。
 
 ​		可以自定义截图，[[API](https://developer.apple.com/reference/usernotifications/unnotificationattachmentoptionsthumbnailclippingrectkey)] .
 
 ​		[[讨论](http://stackoverflow.com/questions/39086878/media-attachment-crops-image-in-ios-10-notification)]
+
+#### 4. iOS 11 部分beta版本或11.1部分版本可能收不到静默推送
+
+​	[Silent push notifications never received in iOS 11](http://www.openradar.me/34182776)
+
+​	 [Silent pushes not delivered to the app on iOS 11](https://stackoverflow.com/questions/44796613/silent-pushes-not-delivered-to-the-app-on-ios-11)
 
 *****
 
@@ -134,6 +140,7 @@ Everything tha about notification in iOS.
     @param key 类名对应的key
     */
    + (void)registerClassName:(NSString *)className withKey:(NSString *)key;
+   ```
 
 
    /**
@@ -252,19 +259,19 @@ Everything tha about notification in iOS.
 1.   UIApplication的applicationIconBadgeNumber属性既影响角标，也会影响通知栏。
 
     1) 当applicationIconBadgeNumber > 0时
-
+    
     ​	1-1）包含历史通知，角标变化，通知栏通知不变。
-
+    
     ​	1-2）不包含历史通知，角标变化，无通知栏推送。
-
+    
     2) 当applicationIconBadgeNumber<＝0时：
-
+    
     ​	2-1）包含历史通知，历史通知中只要有一条通知badge>0，清除角标，清空通知栏。
-
+    
     ​	2-2）包含历史通知，历史通知中所有通知badge=0，或无badge字段。无角标，通知栏不变。
-
+    
     ​	2-3）包含历史通知，历史通知中所有badge<0，无角标，通知栏不变。
-
+    
     ​	2-4）不包含历史通知，无角标，无通知栏推送。
 
 2. 远程推送payload的badge字段，既影响角标，也会影响通知栏。

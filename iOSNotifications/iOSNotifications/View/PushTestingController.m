@@ -291,7 +291,8 @@
 }
 
 - (IBAction)addNotification:(id)sender {
-    
+    [self.navigationController pushViewController:nil animated:YES];
+    return;
     if (self.mutipleSwtich.isOn) {
         [self test_addMutipleNotification];
     }else if (self.videoSwitch.isOn){

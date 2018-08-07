@@ -561,8 +561,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.junglesong.pushtestdemo.pushcontent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "bc1c40e4-db3d-45ba-88ea-8e254a4cebcb";
-				PROVISIONING_PROFILE_SPECIFIER = pushcontent_dev;
+				PROVISIONING_PROFILE = "44742d89-f0ff-4325-8acb-ca6728012b54";
+				PROVISIONING_PROFILE_SPECIFIER = pushtestdemo_content_dev;
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -597,8 +597,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.junglesong.pushtestdemo.pushservice;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "70b34493-0a66-4214-8c99-6bcb938d968e";
-				PROVISIONING_PROFILE_SPECIFIER = pushservice_dev;
+				PROVISIONING_PROFILE = "94c93327-5389-491f-99cf-05778e27fced";
+				PROVISIONING_PROFILE_SPECIFIER = pushtestdemo_service_dev;
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -615,8 +615,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.junglesong.pushtestdemo.pushservice;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "70b34493-0a66-4214-8c99-6bcb938d968e";
-				PROVISIONING_PROFILE_SPECIFIER = pushservice_dev;
+				PROVISIONING_PROFILE = "94c93327-5389-491f-99cf-05778e27fced";
+				PROVISIONING_PROFILE_SPECIFIER = pushtestdemo_service_dev;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;

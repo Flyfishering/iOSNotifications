@@ -40,19 +40,19 @@
  apns payload test demo
  
  {
- "aps": {
- "alert": {
- "title": "斯沃驰2016秋冬系列华丽上市",
- "body": "Swatch推出Magies D'Hiver系列新品！"
- },
- "sound": "default",
- "category": "pictureCat",
- "mutable-content": 1
- },
- "isqImgPath": "https://cdn.pixabay.com/photo/2017/01/06/22/24/giraffe-1959110_1280.jpg",
- "tImgPath": "https://cdn.pixabay.com/photo/2017/01/06/22/24/giraffe-1959110_1280.jpg",
- "title": "斯沃驰2016秋冬系列华丽上市",
- "content": "Swatch推出MagiesD'Hiver系列新品。该系列灵感来源于雪花的结晶构造，技术感十足，配以新潮迷彩色和爱尔兰式粗花呢，宛若置身壁炉旁。"
+    "aps": {
+        "alert": {
+            "title": "斯沃驰2016秋冬系列华丽上市",
+            "body": "Swatch推出Magies D'Hiver系列新品！"
+        },
+        "sound": "default",
+        "category": "pictureCat",
+        "mutable-content": 1
+    },
+    "isqImgPath": "https://cdn.pixabay.com/photo/2017/01/06/22/24/giraffe-1959110_1280.jpg",
+    "tImgPath": "https://cdn.pixabay.com/photo/2017/01/06/22/24/giraffe-1959110_1280.jpg",
+    "title": "斯沃驰2016秋冬系列华丽上市",
+    "content": "Swatch推出MagiesD'Hiver系列新品。该系列灵感来源于雪花的结晶构造，技术感十足，配以新潮迷彩色和爱尔兰式粗花呢，宛若置身壁炉旁。"
  }
  
  以上图片若无效，尝试：https://img30.360buyimg.com/EdmPlatform/jfs/t4000/43/1883011713/62578/a8ef6739/589ac88dNdacd97ed.jpg
@@ -65,6 +65,8 @@ static NSString *forceTouchTitleKey = @"title";
 static NSString *forceTouchContentKey = @"content";
 
 static NSString *forceTouchCategoryPic = @"pictureCat";
+static NSString *forceTouchCategoryLogistics = @"logisticsCategory";
+static NSString *forceTouchCategoryDiscount = @"discountCategory";
 static NSString *forceTouchCategoryDefault = @"defaultCat";
 
 @implementation NotificationViewController
@@ -103,7 +105,8 @@ static NSString *forceTouchCategoryDefault = @"defaultCat";
     NSString *categoryId = notification.request.content.categoryIdentifier;
     __weak __typeof__(self) weakSelf = self;
     
-    if ([categoryId isEqualToString:forceTouchCategoryPic]) {
+    if ([categoryId isEqualToString:forceTouchCategoryPic] || [categoryId isEqualToString:forceTouchCategoryLogistics]
+        || [categoryId isEqualToString:forceTouchCategoryDiscount]) {
         
         NSString *pushTitle = notification.request.content.userInfo[forceTouchTitleKey];
         NSString *pushContent = notification.request.content.userInfo[forceTouchContentKey];

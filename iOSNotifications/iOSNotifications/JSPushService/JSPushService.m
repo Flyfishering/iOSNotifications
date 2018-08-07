@@ -54,14 +54,14 @@ NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER       = @"com.jspush.kLocalNo
         
         if ([JSPUSH_NOTIFICATIONCENTER respondsToSelector:@selector(requestAuthorizationWithOptions:completionHandler:) ]) {
             [JSPUSH_NOTIFICATIONCENTER requestAuthorizationWithOptions:types completionHandler:^(BOOL granted, NSError * _Nullable error) {
-                if (granted) {
+                dispatch_async(dispatch_get_main_queue(), ^{
                     if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerForRemoteNotifications)]) {
                         [[UIApplication sharedApplication] registerForRemoteNotifications];
                     }
                     if ([JSPUSH_NOTIFICATIONCENTER respondsToSelector:@selector(setNotificationCategories:)]) {
                         [JSPUSH_NOTIFICATIONCENTER setNotificationCategories:categories];
                     }
-                }
+                });
             }];
         }
 

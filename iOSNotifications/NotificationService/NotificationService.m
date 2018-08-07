@@ -16,12 +16,12 @@
  
  {
  "aps": {
- "alert": {
- "title": "斯沃驰2016秋冬系列华丽上市",
- "body": "Swatch推出Magies D'Hiver系列新品！"
- },
- "sound": "default",
- "mutable-content": 1
+    "alert": {
+        "title": "斯沃驰2016秋冬系列华丽上市",
+        "body": "Swatch推出Magies D'Hiver系列新品！"
+    },
+    "sound": "default",
+    "mutable-content": 1
  },
  "isqImgPath": "https://cdn.pixabay.com/photo/2017/01/06/22/24/giraffe-1959110_1280.jpg",
  "tImgPath": "https://cdn.pixabay.com/photo/2017/01/06/22/24/giraffe-1959110_1280.jpg",

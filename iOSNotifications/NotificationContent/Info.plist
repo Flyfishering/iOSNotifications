@@ -30,11 +30,15 @@
 		<key>NSExtensionAttributes</key>
 		<dict>
 			<key>UNNotificationExtensionCategory</key>
-			<string>pictureCat</string>
+			<array>
+				<string>pictureCat</string>
+				<string>logisticsCategory</string>
+				<string>discountCategory</string>
+			</array>
 			<key>UNNotificationExtensionDefaultContentHidden</key>
 			<true/>
 			<key>UNNotificationExtensionInitialContentSizeRatio</key>
-			<real>0.69999999999999996</real>
+			<real>0.7</real>
 		</dict>
 		<key>NSExtensionMainStoryboard</key>
 		<string>MainInterface</string>

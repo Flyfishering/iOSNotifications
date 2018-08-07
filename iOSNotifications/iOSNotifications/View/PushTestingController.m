@@ -169,10 +169,13 @@
 }
 - (void)registerRemote
 {
-    if (JSPUSH_IOS_10_0) {
+    if (JSPUSH_IOS_12_0) {
         [UNUserNotificationCenter currentNotificationCenter].delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         [JSPushService registerForRemoteNotificationTypes:7 categories:[PushTestingController categoriesAction4Test]];
-    }else{
+    } else if (JSPUSH_IOS_10_0) {
+        [UNUserNotificationCenter currentNotificationCenter].delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        [JSPushService registerForRemoteNotificationTypes:7 categories:[PushTestingController categoriesAction4Test]];
+    } else {
         [JSPushService registerForRemoteNotificationTypes:7 categories:[PushTestingController categoriesAction4Test]];
     }
     
@@ -181,7 +184,45 @@
 + (NSSet *)categoriesAction4Test
 {
     //HCTEST:
-    if (JSPUSH_IOS_10_0) {
+    if (JSPUSH_IOS_12_0) {
+        //iOS 10以上，通知代理设置，不设置，代理不调用。
+        //在锁屏界面，通知栏，需要点击“查看”，才会显示“接受”、“拒绝”的按钮
+        if (@available(iOS 12.0, *)) {
+            /**第一组按钮*/
+            UNNotificationAction *acceptAction = [UNNotificationAction actionWithIdentifier:@"acceptAction" title:@"接受" options:UNNotificationActionOptionDestructive];
+            
+            UNNotificationAction *rejectAction = [UNNotificationAction actionWithIdentifier:@"rejectAction" title:@"拒绝" options:UNNotificationActionOptionForeground];
+            
+            //注意，输入的action，点击action后，会在Action列表显示：接受、拒绝、输入你想几点起
+            UNTextInputNotificationAction *inputAction = [UNTextInputNotificationAction actionWithIdentifier:@"inputAction" title:@"请输入您需要预约配送的时间" options:UNNotificationActionOptionForeground textInputButtonTitle:@"确定" textInputPlaceholder:@"再晚1小时吧"];
+            
+            //intentIdentifiers: INStartAudioCallIntentIdentifier
+            //form <Intents/INIntentIdentifiers.h>
+            NSString *summaryFormat = @"%u 条物流通知 商品：%@";
+            NSString *hiddenPreviewsPlaceholder = @"%u 消息";
+            
+            UNNotificationCategory *logisticsCate = [UNNotificationCategory categoryWithIdentifier:@"logistics" actions:@[acceptAction,rejectAction,inputAction] intentIdentifiers:@[@""] hiddenPreviewsBodyPlaceholder:hiddenPreviewsPlaceholder categorySummaryFormat:summaryFormat options:UNNotificationCategoryOptionCustomDismissAction];
+            /**第一组按钮结束**/
+            
+            /**第二组按钮*/
+            
+            UNNotificationAction *goodAction = [UNNotificationAction actionWithIdentifier:@"acceptAction" title:@"赞" options:UNNotificationActionOptionDestructive];
+            
+            UNNotificationAction *badAction = [UNNotificationAction actionWithIdentifier:@"rejectAction" title:@"踩" options:UNNotificationActionOptionForeground];
+            
+            NSString *disCountSummaryFormat = @"%u 条优惠触达 by%@发布";
+            NSString *disCountHdenPreviewsPlaceholder = @"%u 消息";
+            UNNotificationCategory *discountCate = [UNNotificationCategory categoryWithIdentifier:@"discount" actions:@[goodAction,badAction] intentIdentifiers:@[@""] hiddenPreviewsBodyPlaceholder:disCountHdenPreviewsPlaceholder categorySummaryFormat:disCountSummaryFormat options:UNNotificationCategoryOptionCustomDismissAction];
+            /**第二组按钮结束**/
+            NSSet *set = [NSSet setWithObjects:logisticsCate, discountCate,nil];
+            return set;
+        } else {
+            // Fallback on earlier versions
+        }
+        
+        return nil;
+        
+    } else if (JSPUSH_IOS_10_0) {
 #if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
         
         //iOS 10以上，通知代理设置，不设置，代理不调用。

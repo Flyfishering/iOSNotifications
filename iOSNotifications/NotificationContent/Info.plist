@@ -31,9 +31,8 @@
 		<dict>
 			<key>UNNotificationExtensionCategory</key>
 			<array>
-				<string>pictureCat</string>
-				<string>logisticsCategory</string>
 				<string>discountCategory</string>
+				<string>logisticsCategory</string>
 			</array>
 			<key>UNNotificationExtensionDefaultContentHidden</key>
 			<true/>

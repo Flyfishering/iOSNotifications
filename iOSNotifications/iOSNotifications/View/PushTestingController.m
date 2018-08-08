@@ -201,7 +201,7 @@
             NSString *summaryFormat = @"%u 条物流通知 商品：%@";
             NSString *hiddenPreviewsPlaceholder = @"%u 消息";
             
-            UNNotificationCategory *logisticsCate = [UNNotificationCategory categoryWithIdentifier:@"logistics" actions:@[acceptAction,rejectAction,inputAction] intentIdentifiers:@[@""] hiddenPreviewsBodyPlaceholder:hiddenPreviewsPlaceholder categorySummaryFormat:summaryFormat options:UNNotificationCategoryOptionCustomDismissAction];
+            UNNotificationCategory *logisticsCate = [UNNotificationCategory categoryWithIdentifier:@"logisticsCategory" actions:@[acceptAction,rejectAction,inputAction] intentIdentifiers:@[@""] hiddenPreviewsBodyPlaceholder:hiddenPreviewsPlaceholder categorySummaryFormat:summaryFormat options:UNNotificationCategoryOptionCustomDismissAction];
             /**第一组按钮结束**/
             
             /**第二组按钮*/
@@ -212,7 +212,7 @@
             
             NSString *disCountSummaryFormat = @"%u 条优惠触达 by%@发布";
             NSString *disCountHdenPreviewsPlaceholder = @"%u 消息";
-            UNNotificationCategory *discountCate = [UNNotificationCategory categoryWithIdentifier:@"discount" actions:@[goodAction,badAction] intentIdentifiers:@[@""] hiddenPreviewsBodyPlaceholder:disCountHdenPreviewsPlaceholder categorySummaryFormat:disCountSummaryFormat options:UNNotificationCategoryOptionCustomDismissAction];
+            UNNotificationCategory *discountCate = [UNNotificationCategory categoryWithIdentifier:@"discountCategory" actions:@[goodAction,badAction] intentIdentifiers:@[@""] hiddenPreviewsBodyPlaceholder:disCountHdenPreviewsPlaceholder categorySummaryFormat:disCountSummaryFormat options:UNNotificationCategoryOptionCustomDismissAction];
             /**第二组按钮结束**/
             NSSet *set = [NSSet setWithObjects:logisticsCate, discountCate,nil];
             return set;

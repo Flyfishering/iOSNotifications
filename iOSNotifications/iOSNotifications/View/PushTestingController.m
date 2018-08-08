@@ -172,7 +172,15 @@
 {
     if (JSPUSH_IOS_12_0) {
         [UNUserNotificationCenter currentNotificationCenter].delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-        [JSPushService registerForRemoteNotificationTypes:7 categories:[PushTestingController categoriesAction4Test]];
+        
+        //临时授权 UNAuthorizationOptionProvisional
+        if (@available(iOS 12.0, *)) {
+            UNAuthorizationOptions option = UNAuthorizationOptionBadge | UNAuthorizationOptionSound | UNAuthorizationOptionAlert | UNAuthorizationOptionProvidesAppNotificationSettings ;
+            
+            [JSPushService registerForRemoteNotificationTypes:option categories:[PushTestingController categoriesAction4Test]];
+        } else {
+            // Fallback on earlier versions
+        }
     } else if (JSPUSH_IOS_10_0) {
         [UNUserNotificationCenter currentNotificationCenter].delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         [JSPushService registerForRemoteNotificationTypes:7 categories:[PushTestingController categoriesAction4Test]];

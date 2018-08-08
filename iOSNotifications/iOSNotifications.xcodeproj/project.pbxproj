@@ -19,6 +19,8 @@
 		5E82BD372051254A00DFA15C /* ServiceTwo.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E82BD352051254A00DFA15C /* ServiceTwo.m */; };
 		5E82BD3B2051272200DFA15C /* JSMessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E82BD3A2051272200DFA15C /* JSMessageHandler.m */; };
 		5E82BD3E20513F6300DFA15C /* JSMessageServiceBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E82BD3D20513F6300DFA15C /* JSMessageServiceBase.m */; };
+		5E842F68211AFC6F00E5EA01 /* PushSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E842F66211AFC6F00E5EA01 /* PushSettingsViewController.m */; };
+		5E842F69211AFC6F00E5EA01 /* PushSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E842F67211AFC6F00E5EA01 /* PushSettingsViewController.xib */; };
 		5E853E8C1E7F7B3B005A26F2 /* OtherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E853E8B1E7F7B3B005A26F2 /* OtherTest.m */; };
 		5E8CACBC1E1C899400671F60 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EC8A52D1D9127F000C8AC3C /* UserNotifications.framework */; };
 		5E8CACBD1E1C899400671F60 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EC8A52F1D9127F000C8AC3C /* UserNotificationsUI.framework */; };
@@ -100,6 +102,9 @@
 		5E82BD3A2051272200DFA15C /* JSMessageHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSMessageHandler.m; sourceTree = "<group>"; };
 		5E82BD3C20513F6300DFA15C /* JSMessageServiceBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSMessageServiceBase.h; sourceTree = "<group>"; };
 		5E82BD3D20513F6300DFA15C /* JSMessageServiceBase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSMessageServiceBase.m; sourceTree = "<group>"; };
+		5E842F65211AFC6F00E5EA01 /* PushSettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PushSettingsViewController.h; sourceTree = "<group>"; };
+		5E842F66211AFC6F00E5EA01 /* PushSettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PushSettingsViewController.m; sourceTree = "<group>"; };
+		5E842F67211AFC6F00E5EA01 /* PushSettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PushSettingsViewController.xib; sourceTree = "<group>"; };
 		5E853E8A1E7F7B3B005A26F2 /* OtherTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OtherTest.h; sourceTree = "<group>"; };
 		5E853E8B1E7F7B3B005A26F2 /* OtherTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OtherTest.m; sourceTree = "<group>"; };
 		5E8CACBB1E1C899400671F60 /* NotificationContent.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationContent.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -280,6 +285,9 @@
 				5E15CB551E7F779D009B84D7 /* LocaltionManagerTest.m */,
 				5EAF7FA71E01336A00848C43 /* PushTestingController.h */,
 				5EAF7FA81E01336A00848C43 /* PushTestingController.m */,
+				5E842F65211AFC6F00E5EA01 /* PushSettingsViewController.h */,
+				5E842F66211AFC6F00E5EA01 /* PushSettingsViewController.m */,
+				5E842F67211AFC6F00E5EA01 /* PushSettingsViewController.xib */,
 				5E853E8A1E7F7B3B005A26F2 /* OtherTest.h */,
 				5E853E8B1E7F7B3B005A26F2 /* OtherTest.m */,
 			);
@@ -458,6 +466,7 @@
 				5EB7A4841DDC61E4007E8C1F /* Assets.xcassets in Resources */,
 				5EB7A4B21DDD384D007E8C1F /* wake.caf in Resources */,
 				5EB7A4851DDC61E4007E8C1F /* LaunchScreen.storyboard in Resources */,
+				5E842F69211AFC6F00E5EA01 /* PushSettingsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -499,6 +508,7 @@
 				5E82BD362051254A00DFA15C /* ServiceOne.m in Sources */,
 				5E4DE4D01E001FDF004B90C7 /* JSNotificationContent.m in Sources */,
 				5E4DE4D11E001FDF004B90C7 /* JSNotificationIdentifier.m in Sources */,
+				5E842F68211AFC6F00E5EA01 /* PushSettingsViewController.m in Sources */,
 				5E82BD372051254A00DFA15C /* ServiceTwo.m in Sources */,
 				5E15CB561E7F779D009B84D7 /* LocaltionManagerTest.m in Sources */,
 				5E4DE4D31E001FDF004B90C7 /* JSNotificationTrigger.m in Sources */,

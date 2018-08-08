@@ -10,6 +10,7 @@
 #import "JSPushService.h"
 #import "PushTestingController.h"
 #import "JSMessageHandler.h"
+#import "PushSettingsViewController.h"
 
 @interface AppDelegate ()
 
@@ -355,6 +356,18 @@
 
 #endif
 
+
+#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 120000) )
+
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center openSettingsForNotification:(UNNotification *)notification
+{
+    PushSettingsViewController *pushVc = [[PushSettingsViewController alloc] init];
+    UINavigationController *nav = [UIApplication sharedApplication].delegate.window.rootViewController;
+    [nav pushViewController:pushVc animated:YES];
+}
+
+#endif
+
 # pragma mark - Log
 
 - (void)wirteLogWithString:(NSString *)loginput
@@ -384,5 +397,4 @@
     [fileHandle writeData:logData];
         
 }
-
 @end

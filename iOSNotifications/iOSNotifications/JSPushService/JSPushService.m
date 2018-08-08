@@ -49,7 +49,25 @@ NSString *const JSPUSHSERVICE_LOCALNOTI_IDENTIFIER       = @"com.jspush.kLocalNo
 + (void)registerForRemoteNotificationTypes:(NSUInteger)types categories:(NSSet *)categories
 {
     
-    if (JSPUSH_IOS_10_0){
+    if (JSPUSH_IOS_12_0){
+#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 120000) )
+        
+        if ([JSPUSH_NOTIFICATIONCENTER respondsToSelector:@selector(requestAuthorizationWithOptions:completionHandler:) ]) {
+            [JSPUSH_NOTIFICATIONCENTER requestAuthorizationWithOptions:types completionHandler:^(BOOL granted, NSError * _Nullable error) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerForRemoteNotifications)]) {
+                        [[UIApplication sharedApplication] registerForRemoteNotifications];
+                    }
+                    if ([JSPUSH_NOTIFICATIONCENTER respondsToSelector:@selector(setNotificationCategories:)]) {
+                        [JSPUSH_NOTIFICATIONCENTER setNotificationCategories:categories];
+                    }
+                });
+            }];
+        }
+        
+#endif
+        
+    }else if (JSPUSH_IOS_10_0){
 #if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 100000) )
         
         if ([JSPUSH_NOTIFICATIONCENTER respondsToSelector:@selector(requestAuthorizationWithOptions:completionHandler:) ]) {

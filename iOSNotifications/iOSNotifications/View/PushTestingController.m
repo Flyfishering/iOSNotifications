@@ -77,7 +77,8 @@
     
     [appDelegate wirteLogWithString:@"iOSNoti:MasterVC viewDidLoad"];
     
-    [UNUserNotificationCenter currentNotificationCenter].delegate = self;
+    //TODO:是否要将通知处理的代理，设置为当前类
+//    [UNUserNotificationCenter currentNotificationCenter].delegate = self;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -206,9 +207,9 @@
             
             /**第二组按钮*/
             
-            UNNotificationAction *goodAction = [UNNotificationAction actionWithIdentifier:@"acceptAction" title:@"赞" options:UNNotificationActionOptionDestructive];
+            UNNotificationAction *goodAction = [UNNotificationAction actionWithIdentifier:@"goodAction" title:@"赞" options:UNNotificationActionOptionDestructive];
             
-            UNNotificationAction *badAction = [UNNotificationAction actionWithIdentifier:@"rejectAction" title:@"踩" options:UNNotificationActionOptionForeground];
+            UNNotificationAction *badAction = [UNNotificationAction actionWithIdentifier:@"badAction" title:@"踩" options:UNNotificationActionOptionForeground];
             
             NSString *disCountSummaryFormat = @"%u 条优惠触达 by%@发布";
             NSString *disCountHdenPreviewsPlaceholder = @"%u 消息";

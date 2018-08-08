@@ -320,8 +320,10 @@
                 [self wirteLogWithString:log];
             }
             
+        } else if ([actionIdentifier isEqualToString:@"goodDetailAction"]) {
+            //跳转到商品详情页面
+            NSLog(@"go to product detail page");
         }
-        
     }else{
         // 判断为本地通知
         NSString *log = [NSString stringWithFormat:@"iOSNoti:iOS10 收到本地通知:{\nbody:%@，\ntitle:%@,\nsubtitle:%@,\nbadge：%@，\nsound：%@，\nuserInfo：%@\n}",body,title,subtitle,badge,sound,userInfo];

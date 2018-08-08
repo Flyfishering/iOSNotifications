@@ -88,6 +88,52 @@ static NSString *forceTouchCategoryDefault = @"defaultCat";
     [super viewDidLayoutSubviews];
 }
 
+- (void)didReceiveNotificationResponse:(UNNotificationResponse *)response completionHandler:(void (^)(UNNotificationContentExtensionResponseOption))completion
+{
+    // Get the meeting ID from the original notification.
+    NSDictionary *userinfo = response.notification.request.content.userInfo;
+    NSString *actionIdentifier = response.actionIdentifier;
+    if ([actionIdentifier isEqualToString:@"goodAction"]) {
+        
+        UNNotificationAction *goodDetailAction = [UNNotificationAction actionWithIdentifier:@"goodDetailAction" title:@"去商品详情看看" options:UNNotificationActionOptionForeground];
+        if (@available(iOS 12.0, *)) {
+            NSArray *currentActions = self.extensionContext.notificationActions;
+            if (currentActions.count > 1) {
+                UNNotificationAction *badAction = currentActions[1];
+                NSArray *newActionList = @[goodDetailAction, badAction];
+                self.extensionContext.notificationActions = newActionList;
+            }
+        } else {
+            // Fallback on earlier versions
+        }
+        
+        completion(UNNotificationContentExtensionResponseOptionDoNotDismiss);
+    } else if ([actionIdentifier isEqualToString:@"badAction"]) {
+        if (@available(iOS 12.0, *)) {
+            //必须要调用该行，才会使得该页面消失
+            [self.extensionContext dismissNotificationContentExtension];
+        } else {
+            // Fallback on earlier versions
+        }
+        completion(UNNotificationContentExtensionResponseOptionDismiss);
+    } else if ([actionIdentifier isEqualToString:@"acceptAction"]) {
+        
+        completion(UNNotificationContentExtensionResponseOptionDoNotDismiss);
+    } else if ([actionIdentifier isEqualToString:@"rejectAction"]) {
+
+        completion(UNNotificationContentExtensionResponseOptionDismiss);
+    } else if ([actionIdentifier isEqualToString:@"goodDetailAction"]) {
+        if (@available(iOS 12.0, *)) {
+            //默认交给宿主app处理
+//            [self.extensionContext performNotificationDefaultAction];
+        } else {
+            // Fallback on earlier versions
+        }
+        completion(UNNotificationContentExtensionResponseOptionDismissAndForwardAction);
+    }
+    
+}
+
 /**
  处理收到的通知
  */

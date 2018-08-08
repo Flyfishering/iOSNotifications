@@ -52,5 +52,7 @@
  */
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentHeight;
 
+@property (weak, nonatomic) IBOutlet UIButton *starButton;
+
 @end
 

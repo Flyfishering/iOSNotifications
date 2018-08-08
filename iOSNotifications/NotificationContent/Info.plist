@@ -40,7 +40,7 @@
 			<real>0.7</real>
 			<key>UNNotificationExtensionOverridesDefaultTitle</key>
 			<true/>
-			<key>UNNotificationExtensionUserInteractionEnable</key>
+			<key>UNNotificationExtensionUserInteractionEnabled</key>
 			<true/>
 		</dict>
 		<key>NSExtensionMainStoryboard</key>

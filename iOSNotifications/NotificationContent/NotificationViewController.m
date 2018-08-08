@@ -81,12 +81,16 @@ static NSString *forceTouchCategoryDefault = @"defaultCat";
     self.showImageV.layer.borderColor = [UIColor clearColor].CGColor;
     self.contentLabel.textColor = [UIColor colorWithRed:102/255.0 green:102/255.0 blue:102/255.0 alpha:1.0];
     [self.view bringSubviewToFront:self.blurtImageV];
+    
+    [self.starButton addTarget:self action:@selector(starButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.view bringSubviewToFront:self.starButton];
 }
 
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
 }
+
 
 - (void)didReceiveNotificationResponse:(UNNotificationResponse *)response completionHandler:(void (^)(UNNotificationContentExtensionResponseOption))completion
 {
@@ -132,6 +136,25 @@ static NSString *forceTouchCategoryDefault = @"defaultCat";
         completion(UNNotificationContentExtensionResponseOptionDismissAndForwardAction);
     }
     
+}
+
+- (void)starButtonAction
+{
+    self.starButton.selected = !self.starButton.selected;
+    NSString *starStr = @"（已收藏）";
+    NSString *oriContent = self.contentLabel.text;
+    if (self.starButton.selected) {
+        if (![oriContent containsString:starStr]) {
+            NSString *starContent = [NSString stringWithFormat:@"%@ %@",starStr, oriContent];
+            self.contentLabel.text = starContent;
+        }
+    } else {
+        if ([oriContent containsString:starStr]) {
+            NSMutableString *mut = [oriContent mutableCopy];
+            NSString *starContent = [mut stringByReplacingOccurrencesOfString:starStr withString:@""];
+            self.contentLabel.text = starContent;
+        }
+    }
 }
 
 /**

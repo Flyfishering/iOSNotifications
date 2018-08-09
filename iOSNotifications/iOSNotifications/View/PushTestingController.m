@@ -175,7 +175,7 @@
         
         //临时授权 UNAuthorizationOptionProvisional
         if (@available(iOS 12.0, *)) {
-            UNAuthorizationOptions option = UNAuthorizationOptionBadge | UNAuthorizationOptionSound | UNAuthorizationOptionAlert | UNAuthorizationOptionProvidesAppNotificationSettings ;
+            UNAuthorizationOptions option = UNAuthorizationOptionBadge | UNAuthorizationOptionSound | UNAuthorizationOptionAlert | UNAuthorizationOptionProvidesAppNotificationSettings | UNAuthorizationOptionProvisional;
             
             [JSPushService registerForRemoteNotificationTypes:option categories:[PushTestingController categoriesAction4Test]];
         } else {

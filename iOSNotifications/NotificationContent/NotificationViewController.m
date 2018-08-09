@@ -209,7 +209,7 @@ static NSString *forceTouchCategoryDefault = @"defaultCat";
             }
         }
         
-    }else if([categoryId isEqualToString:forceTouchCategoryDefault]){
+    }else {
         
         NSString *pushTitle = @"手机京东";
         NSDictionary *aps = notification.request.content.userInfo[@"aps"];
@@ -228,10 +228,6 @@ static NSString *forceTouchCategoryDefault = @"defaultCat";
         }
         self.titleLabel.text = pushTitle;
         self.contentLabel.text = pushContent;
-        [self defaultCategoryLayoutView];
-        
-        [self defaultCategoryLayoutView];
-    }else{
         [self defaultCategoryLayoutView];
     }
     

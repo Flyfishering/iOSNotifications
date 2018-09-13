@@ -175,9 +175,11 @@
         
         //临时授权 UNAuthorizationOptionProvisional
         if (@available(iOS 12.0, *)) {
+#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 120000) )
             UNAuthorizationOptions option = UNAuthorizationOptionBadge | UNAuthorizationOptionSound | UNAuthorizationOptionAlert | UNAuthorizationOptionProvidesAppNotificationSettings | UNAuthorizationOptionProvisional;
             
             [JSPushService registerForRemoteNotificationTypes:option categories:[PushTestingController categoriesAction4Test]];
+#endif
         } else {
             // Fallback on earlier versions
         }
@@ -197,6 +199,7 @@
         //iOS 10以上，通知代理设置，不设置，代理不调用。
         //在锁屏界面，通知栏，需要点击“查看”，才会显示“接受”、“拒绝”的按钮
         if (@available(iOS 12.0, *)) {
+#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 120000) )
             /**第一组按钮*/
             UNNotificationAction *acceptAction = [UNNotificationAction actionWithIdentifier:@"acceptAction" title:@"接受" options:UNNotificationActionOptionDestructive];
             
@@ -225,6 +228,7 @@
             /**第二组按钮结束**/
             NSSet *set = [NSSet setWithObjects:logisticsCate, discountCate,nil];
             return set;
+#endif
         } else {
             // Fallback on earlier versions
         }

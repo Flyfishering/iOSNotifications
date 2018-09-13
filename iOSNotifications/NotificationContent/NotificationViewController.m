@@ -101,12 +101,15 @@ static NSString *forceTouchCategoryDefault = @"defaultCat";
         
         UNNotificationAction *goodDetailAction = [UNNotificationAction actionWithIdentifier:@"goodDetailAction" title:@"去商品详情看看" options:UNNotificationActionOptionForeground];
         if (@available(iOS 12.0, *)) {
+#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 120000) )
             NSArray *currentActions = self.extensionContext.notificationActions;
             if (currentActions.count > 1) {
                 UNNotificationAction *badAction = currentActions[1];
                 NSArray *newActionList = @[goodDetailAction, badAction];
                 self.extensionContext.notificationActions = newActionList;
+                
             }
+#endif
         } else {
             // Fallback on earlier versions
         }
@@ -114,8 +117,10 @@ static NSString *forceTouchCategoryDefault = @"defaultCat";
         completion(UNNotificationContentExtensionResponseOptionDoNotDismiss);
     } else if ([actionIdentifier isEqualToString:@"badAction"]) {
         if (@available(iOS 12.0, *)) {
+#if ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && (__IPHONE_OS_VERSION_MAX_ALLOWED >= 120000) )
             //必须要调用该行，才会使得该页面消失
             [self.extensionContext dismissNotificationContentExtension];
+#endif
         } else {
             // Fallback on earlier versions
         }

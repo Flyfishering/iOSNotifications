@@ -20,7 +20,14 @@
 
 - (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-
+    //the data store by host app, read by notification service extension
+    //go to NotificationService target to check the shared dta
+    NSUserDefaults *groupDefault = [[NSUserDefaults alloc] initWithSuiteName:@"group.bfpushtest"];
+    [groupDefault setObject:@"Between Host App And Extension" forKey:@"JSSharedData"];
+    [groupDefault synchronize];
+    
+    NSString *shared = [groupDefault objectForKey:@"JSSharedData"];
+    NSLog(@"shared data: %@", shared);
     return YES;
 }
 

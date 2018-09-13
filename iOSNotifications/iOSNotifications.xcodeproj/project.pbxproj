@@ -94,6 +94,8 @@
 		5E4DE4CE1E001FDF004B90C7 /* JSPushUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSPushUtilities.h; sourceTree = "<group>"; };
 		5E4DE4CF1E001FDF004B90C7 /* JSPushUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSPushUtilities.m; sourceTree = "<group>"; };
 		5E529C4C1E07D98C00ECA1AA /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		5E6A2D61214A48F400D981A2 /* NotificationService.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NotificationService.entitlements; sourceTree = "<group>"; };
+		5E6A2D62214A48FA00D981A2 /* NotificationContent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NotificationContent.entitlements; sourceTree = "<group>"; };
 		5E82BD322051254A00DFA15C /* ServiceOne.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceOne.h; sourceTree = "<group>"; };
 		5E82BD332051254A00DFA15C /* ServiceOne.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceOne.m; sourceTree = "<group>"; };
 		5E82BD342051254A00DFA15C /* ServiceTwo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceTwo.h; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 		5E8CACBE1E1C899400671F60 /* NotificationContent */ = {
 			isa = PBXGroup;
 			children = (
+				5E6A2D62214A48FA00D981A2 /* NotificationContent.entitlements */,
 				5EDD91D81E1CA15E00F8A236 /* NotificationViewController.h */,
 				5EDD91D91E1CA15E00F8A236 /* NotificationViewController.m */,
 				5E8CACC21E1C899400671F60 /* MainInterface.storyboard */,
@@ -233,6 +236,7 @@
 		5E8CACD31E1C986500671F60 /* NotificationService */ = {
 			isa = PBXGroup;
 			children = (
+				5E6A2D61214A48F400D981A2 /* NotificationService.entitlements */,
 				5E8CACD41E1C986500671F60 /* NotificationService.h */,
 				5E8CACD51E1C986500671F60 /* NotificationService.m */,
 				5E8CACD71E1C986500671F60 /* Info.plist */,
@@ -397,17 +401,30 @@
 						CreatedOnToolsVersion = 8.2;
 						DevelopmentTeam = 69XHTLCF36;
 						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					5E8CACD11E1C986500671F60 = {
 						CreatedOnToolsVersion = 8.2;
 						DevelopmentTeam = 69XHTLCF36;
 						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					5EF2B4441CC7D51000AC71C5 = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = 69XHTLCF36;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
@@ -563,6 +580,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_ENTITLEMENTS = NotificationContent/NotificationContent.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Hengcong Weng (7RMANB5BXZ)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hengcong Weng (7RMANB5BXZ)";
 				DEVELOPMENT_TEAM = 69XHTLCF36;
@@ -581,6 +599,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_ENTITLEMENTS = NotificationContent/NotificationContent.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Hengcong Weng (7RMANB5BXZ)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hengcong Weng (7RMANB5BXZ)";
 				DEVELOPMENT_TEAM = 69XHTLCF36;
@@ -589,8 +608,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.junglesong.pushtestdemo.pushcontent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "bc1c40e4-db3d-45ba-88ea-8e254a4cebcb";
-				PROVISIONING_PROFILE_SPECIFIER = pushcontent_dev;
+				PROVISIONING_PROFILE = "87afb9c7-9621-4ccb-91f1-7cc259530679";
+				PROVISIONING_PROFILE_SPECIFIER = pushtestdemo_content_dev;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -599,6 +618,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_ENTITLEMENTS = NotificationService/NotificationService.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Hengcong Weng (7RMANB5BXZ)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hengcong Weng (7RMANB5BXZ)";
 				DEVELOPMENT_TEAM = 69XHTLCF36;
@@ -617,6 +637,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_ENTITLEMENTS = NotificationService/NotificationService.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Hengcong Weng (7RMANB5BXZ)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hengcong Weng (7RMANB5BXZ)";
 				DEVELOPMENT_TEAM = 69XHTLCF36;

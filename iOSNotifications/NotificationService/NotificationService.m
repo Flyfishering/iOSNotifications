@@ -48,6 +48,11 @@ static NSString *notiSmallImageKey = @"isqImgPath";
 
 - (void)didReceiveNotificationRequest:(UNNotificationRequest *)request withContentHandler:(void (^)(UNNotificationContent * _Nonnull))contentHandler {
     
+    //the data store by host app, read by notification service extension
+    NSUserDefaults *groupDefault = [[NSUserDefaults alloc] initWithSuiteName:@"group.bfpushtest"];
+    NSString *shared = [groupDefault objectForKey:@"JSSharedData"];
+    NSLog(@"shared data: %@", shared);
+
     if ( (request == nil) || (request.content == nil) || (request.content.userInfo == nil) ) {
         return;
     }

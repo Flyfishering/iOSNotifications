@@ -64,7 +64,9 @@ Everything tha about notification in iOS.
 
 ## 测试工具	
 
-​	[Puhser](https://github.com/noodlewerk/NWPusher)最新的客户端，更新及时，支持iOS 10.
+​	**推荐**：[PushFly](https://github.com/wenghengcong/BFPushFly)在Puhsher基础上，增加了对中文的支持，以及增加推送模板。
+
+​	[Pusher](https://github.com/noodlewerk/NWPusher)最新的客户端，更新及时，支持iOS 10.
 
 ​	[Knuff](https://github.com/KnuffApp/Knuff)是一个用来测试远程推送的客户端。
 
@@ -144,7 +146,7 @@ Everything tha about notification in iOS.
 
 
    /**
-    需要在自定义实现的类中实现的方法
+​    需要在自定义实现的类中实现的方法
 
     @param userinfo 推送的userinfo
     @param compeletion 处理推送后需要返回的回调
